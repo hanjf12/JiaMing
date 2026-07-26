@@ -16,6 +16,9 @@
     "corpus:sync": "node tools/sync-corpus.mjs",
     "corpus:build": "node tools/build-corpus-index.mjs",
     "corpus:status": "node tools/corpus-status.mjs",
+    "agent:status": "node tools/knowledge-agent-tools.mjs status",
+    "agent:wiki": "node tools/knowledge-agent-tools.mjs wiki-search",
+    "agent:corpus": "node tools/knowledge-agent-tools.mjs corpus-search",
     "test": "pnpm run build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"

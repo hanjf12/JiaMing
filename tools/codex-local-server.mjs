@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { constants, existsSync } from "node:fs";
+import { constants, existsSync, readFileSync } from "node:fs";
 import { access, mkdtemp, readFile, rm } from "node:fs/promises";
 import { createServer } from "node:http";
 import { homedir, tmpdir } from "node:os";
@@ -14,8 +14,41 @@ const HOST = ARGUMENTS.includes("--lan")
 const PORT = Number(process.env.JIAMING_PORT || 4318);
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PAGE = join(ROOT, "宝宝起名.html");
+const AGENT_CONFIG_FILE = join(ROOT, "config", "local-agent.json");
+const OUTPUT_SCHEMA = join(ROOT, "tools", "schemas", "agent-answer.schema.json");
 const CODEX_ARGUMENT = ARGUMENTS.find((value) => value.startsWith("--codex-bin="))?.slice(12);
 let busy = false;
+
+function loadAgentConfig() {
+  const defaults = {
+    provider: "codex-subscription",
+    model: "",
+    reasoningEffort: "",
+    timeoutMs: 240_000,
+    maxHistoryMessages: 8,
+  };
+  if (!existsSync(AGENT_CONFIG_FILE)) return defaults;
+  try {
+    const local = JSON.parse(readFileSync(AGENT_CONFIG_FILE, "utf8"));
+    return { ...defaults, ...local };
+  } catch (error) {
+    process.stderr.write(`本地 Agent 配置不可读，将使用默认值：${error.message}\n`);
+    return defaults;
+  }
+}
+
+const AGENT_CONFIG = loadAgentConfig();
+const CODEX_MODEL = String(process.env.JIAMING_CODEX_MODEL || AGENT_CONFIG.model || "").trim();
+const CODEX_REASONING = String(
+  process.env.JIAMING_CODEX_REASONING || AGENT_CONFIG.reasoningEffort || "",
+).trim();
+const CODEX_TIMEOUT_MS = Math.max(
+  30_000,
+  Math.min(
+    Number(process.env.JIAMING_CODEX_TIMEOUT_MS || AGENT_CONFIG.timeoutMs) || 240_000,
+    600_000,
+  ),
+);
 
 function codexCandidates() {
   const home = homedir();
@@ -47,10 +80,16 @@ async function resolveCodex() {
 
 function run(command, args, { input = "", timeout = 20_000 } = {}) {
   return new Promise((resolvePromise, reject) => {
+    const nodeDirectory = dirname(process.execPath);
+    const delimiter = process.platform === "win32" ? ";" : ":";
     const child = spawn(command, args, {
       cwd: ROOT,
       windowsHide: true,
       stdio: ["pipe", "pipe", "pipe"],
+      env: {
+        ...process.env,
+        PATH: `${nodeDirectory}${delimiter}${process.env.PATH || ""}`,
+      },
     });
     let stdout = "";
     let stderr = "";
@@ -110,8 +149,8 @@ function clean(value, limit = 1200) {
   return String(value || "").trim().slice(0, limit);
 }
 
-function buildPrompt(body) {
-  const context = Array.isArray(body.context)
+function buildAgentPrompt(body) {
+  const attachments = Array.isArray(body.context)
     ? body.context.slice(0, 8).map((item, index) => ({
         index: index + 1,
         title: clean(item.title, 120),
@@ -121,21 +160,33 @@ function buildPrompt(body) {
     : [];
   const profile = body.profile && typeof body.profile === "object" ? body.profile : {};
   const history = Array.isArray(body.messages)
-    ? body.messages.slice(-6).map((item) => `${item.role === "assistant" ? "助手" : "用户"}：${clean(item.content)}`).join("\n")
+    ? body.messages
+        .slice(-Math.max(2, Math.min(Number(AGENT_CONFIG.maxHistoryMessages) || 8, 16)))
+        .map((item) => `${item.role === "assistant" ? "助手" : "用户"}：${clean(item.content)}`)
+        .join("\n")
     : "";
-  const sources = context.length
-    ? context.map((item) => `[${item.index}] ${item.title}\n来源：${item.source}\n${item.content}`).join("\n\n")
-    : "无命中资料。";
+  const attachmentText = attachments.length
+    ? attachments
+        .map((item) => `[自建资料 ${item.index}] ${item.title}\n来源：${item.source}\n${item.content}`)
+        .join("\n\n")
+    : "无。";
+  const requestedScope = clean(body.retrievalScope, 40) || "all";
+  const requestedLimit = Math.max(3, Math.min(Number(body.topK) || 6, 12));
   return [
-    "你是“问典”，一个中文宝宝起名助手。",
-    "请直接输出给用户看的简洁中文回答，不要描述你的工作过程，不要调用工具或访问文件。",
-    "优先依据下方检索资料，引用时使用 [1]、[2]。严禁伪造原句、篇名、作者或出处。",
+    "你是“问典”，一个运行在本机只读沙箱中的中文宝宝起名知识 Agent。",
+    "必须自主读取项目的 AGENTS.md，并使用其中列出的知识库工具完成检索；不要只依赖模型记忆。",
+    `工具运行时使用 Node.js 命令 node，当前项目目录是：${ROOT}`,
+    `本次用户选择的检索范围是 ${requestedScope}，期望优先保留约 ${requestedLimit} 条最相关证据。你可以根据问题调整检索词并进行多轮工具调用。`,
+    "优先直接调用 jiaming MCP 工具。回答姓名建议时至少调用 knowledge_status 和 wiki_search；涉及诗句、古籍原句、篇名或作者时还要调用 corpus_search；需要方法或语境判断时沿 links 使用 wiki_read。",
+    "不得访问网络，不得修改任何文件，也不得运行与本地知识检索无关的命令。",
+    "最终只输出符合指定 JSON Schema 的对象。answer 是直接给用户看的简洁中文，引用按 citations 数组顺序使用 [1]、[2]；每个 [n] 必须准确对应 citations[n-1]，原文引句优先对应 corpus_search 的原文记录。提交前逐项检查编号，不要在 answer 中描述工具调用过程。",
+    "严禁伪造原句、篇名、作者或出处。检索不到时明确说明，不用记忆补写。",
     body.strict === false ? "" : "严格引用模式：资料未提供的出处要明确说明，不要凭印象补写。",
     "八字与五行只作为传统民俗文化偏好，不是科学预测；不得断言吉凶。",
     "若只有四柱而没有用户明确指定五行倾向，不得擅自推算或声称已判断喜用神。",
     `用户资料：${JSON.stringify(profile)}`,
     history ? `近期对话：\n${history}` : "",
-    `检索资料：\n${sources}`,
+    `用户在浏览器中导入、并明确随本次问题提供的自建资料：\n${attachmentText}`,
     `当前问题：${clean(body.question)}`,
   ].filter(Boolean).join("\n\n");
 }
@@ -147,18 +198,76 @@ async function codexStatus() {
     const loggedIn = /Logged in using ChatGPT/i.test(`${result.stdout}\n${result.stderr}`);
     return {
       configured: loggedIn,
-      provider: "Codex 订阅",
-      model: loggedIn ? "ChatGPT 已登录" : "尚未登录",
+      provider: "Codex Agent",
+      model: loggedIn
+        ? CODEX_MODEL || "订阅默认模型"
+        : "尚未登录",
+      auth: loggedIn ? "ChatGPT 订阅已登录" : "未配置",
+      agentTools: ["wiki_search", "wiki_read", "corpus_search"],
       detail: `${result.stdout}\n${result.stderr}`.trim(),
     };
   } catch (error) {
     return {
       configured: false,
-      provider: "Codex 订阅",
+      provider: "Codex Agent",
       model: "CLI 不可用",
+      auth: "未配置",
+      agentTools: [],
       detail: error instanceof Error ? error.message : String(error),
     };
   }
+}
+
+function normalizeAgentResult(raw) {
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { answer: raw, citations: [], toolsUsed: [] };
+  }
+  const citations = Array.isArray(parsed.citations)
+    ? parsed.citations.slice(0, 12).map((item) => ({
+        title: clean(item?.title, 160),
+        source: clean(item?.source, 240),
+        verified: Boolean(item?.verified),
+      })).filter((item) => item.title && item.source)
+    : [];
+  const allowedTools = new Set([
+    "knowledge_status",
+    "wiki_search",
+    "wiki_read",
+    "corpus_search",
+  ]);
+  const toolsUsed = Array.isArray(parsed.toolsUsed)
+    ? [...new Set(parsed.toolsUsed.map(String).filter((item) => allowedTools.has(item)))]
+    : [];
+  return {
+    answer: clean(parsed.answer, 16_000) || "Codex Agent 没有返回可显示的回答",
+    citations,
+    toolsUsed,
+  };
+}
+
+function completedAgentTools(jsonLines) {
+  const tools = [];
+  for (const line of String(jsonLines || "").split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    try {
+      const event = JSON.parse(line);
+      const item = event?.item;
+      if (
+        event.type === "item.completed"
+        && item?.type === "mcp_tool_call"
+        && item?.server === "jiaming"
+        && item?.status === "completed"
+      ) {
+        tools.push(String(item.tool || ""));
+      }
+    } catch {
+      // Ignore non-JSON diagnostics.
+    }
+  }
+  return [...new Set(tools)].filter(Boolean);
 }
 
 async function askCodex(body) {
@@ -169,21 +278,42 @@ async function askCodex(body) {
   const output = join(work, "answer.txt");
   try {
     const command = await resolveCodex();
-    const prompt = buildPrompt(body);
-    await run(command, [
+    const prompt = buildAgentPrompt(body);
+    const mcpNode = process.execPath.replaceAll("\\", "/").replaceAll('"', '\\"');
+    const mcpRoot = ROOT.replaceAll("\\", "/").replaceAll('"', '\\"');
+    const args = [
       "exec",
+      "--json",
       "--ephemeral",
       "--sandbox", "read-only",
       "--skip-git-repo-check",
       "--ignore-user-config",
       "--ignore-rules",
       "--color", "never",
+      "--config", `mcp_servers.jiaming.command="${mcpNode}"`,
+      "--config", 'mcp_servers.jiaming.args=["tools/jiaming-mcp-server.mjs"]',
+      "--config", `mcp_servers.jiaming.cwd="${mcpRoot}"`,
+      "--config", "mcp_servers.jiaming.startup_timeout_sec=20",
+      "--config", "mcp_servers.jiaming.tool_timeout_sec=30",
+      "--output-schema", OUTPUT_SCHEMA,
       "--output-last-message", output,
-      "-",
-    ], { input: prompt, timeout: 180_000 });
-    const answer = (await readFile(output, "utf8")).trim();
-    if (!answer) throw new Error("Codex 没有返回内容");
-    return answer;
+    ];
+    if (CODEX_MODEL) args.push("--model", CODEX_MODEL);
+    if (CODEX_REASONING) {
+      args.push("--config", `model_reasoning_effort="${CODEX_REASONING}"`);
+    }
+    args.push("-");
+    const execution = await run(command, args, { input: prompt, timeout: CODEX_TIMEOUT_MS });
+    if (process.env.JIAMING_AGENT_DEBUG === "1") {
+      process.stderr.write(`\n--- Codex Agent JSON events ---\n${execution.stdout}\n`);
+      process.stderr.write(`\n--- Codex Agent diagnostics ---\n${execution.stderr}\n`);
+    }
+    const raw = (await readFile(output, "utf8")).trim();
+    if (!raw) throw new Error("Codex Agent 没有返回内容");
+    const result = normalizeAgentResult(raw);
+    const actualTools = completedAgentTools(execution.stdout);
+    if (actualTools.length) result.toolsUsed = actualTools;
+    return result;
   } finally {
     busy = false;
     await rm(work, { recursive: true, force: true }).catch(() => {});
@@ -210,6 +340,18 @@ const server = createServer(async (request, response) => {
   if (request.method === "GET" && url.pathname === "/api/kb/status") {
     return responseJson(response, corpusStatus());
   }
+  if (request.method === "GET" && url.pathname === "/api/agent/tools") {
+    return responseJson(response, {
+      tools: [
+        { name: "knowledge_status", description: "查看 Wiki 与原文库状态" },
+        { name: "wiki_search", description: "检索互链 Wiki" },
+        { name: "wiki_read", description: "读取完整 Wiki 页面" },
+        { name: "corpus_search", description: "检索历代经典原文" },
+      ],
+      mode: "read-only",
+      network: false,
+    });
+  }
   if (request.method === "GET" && url.pathname === "/api/kb/search") {
     try {
       const query = clean(url.searchParams.get("q"), 600);
@@ -233,8 +375,8 @@ const server = createServer(async (request, response) => {
     }
     try {
       const body = await readJson(request);
-      const answer = await askCodex(body);
-      return responseJson(response, { answer });
+      const result = await askCodex(body);
+      return responseJson(response, result);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Codex 调用失败";
       return responseJson(response, { error: message }, /过大/.test(message) ? 413 : 502);

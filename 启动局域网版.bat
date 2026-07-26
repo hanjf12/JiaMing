@@ -3,6 +3,7 @@ chcp 65001 >nul
 setlocal
 cd /d "%~dp0"
 set "JIAMING_HOST=0.0.0.0"
+set "CODEX_BIN=%USERPROFILE%\.codex\.sandbox-bin\codex.exe"
 
 where node >nul 2>nul
 if %errorlevel% equ 0 (
@@ -12,6 +13,7 @@ if %errorlevel% equ 0 (
 
 set "BUNDLED_NODE=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe"
 if exist "%BUNDLED_NODE%" (
+  set "PATH=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin;%PATH%"
   "%BUNDLED_NODE%" tools\codex-local-server.mjs
   goto :end
 )

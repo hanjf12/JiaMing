@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "citations", "toolsUsed"],
+  "properties": {
+    "answer": {
+      "type": "string",
+      "description": "直接给用户看的中文回答，使用 [1]、[2] 引用 citations。"
+    },
+    "citations": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "source", "verified"],
+        "properties": {
+          "title": { "type": "string" },
+          "source": { "type": "string" },
+          "verified": { "type": "boolean" }
+        }
+      }
+    },
+    "toolsUsed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["knowledge_status", "wiki_search", "wiki_read", "corpus_search"]
+      }
+    }
+  }
+}

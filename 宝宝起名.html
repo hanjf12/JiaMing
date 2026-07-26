@@ -743,9 +743,9 @@
 
     <section class="assistant" id="assistant" aria-label="起名知识库对话">
       <aside class="kb-side">
-        <div class="eyebrow">本地 RAG · 有据可查</div>
+        <div class="eyebrow">本机 Codex Agent · 自主检索</div>
         <h2 class="kb-title">问典</h2>
-        <p class="kb-description">先检索互链 Markdown Wiki，再沿来源与概念关系补充上下文。每条建议都会附上本次命中的知识来源。</p>
+        <p class="kb-description">模型会自行搜索本地 Wiki、按需读取互链页面并核对完整原文；回答附带本次实际采用的知识来源。</p>
 
         <div class="kb-stat">
           <span><i class="status-dot" aria-hidden="true"></i><span id="kb-count">0</span> 个 Wiki 页面</span>
@@ -755,9 +755,8 @@
         <div class="field">
           <div class="label-line"><label for="chat-mode">回答模式</label><span class="hint" id="ai-status">检测中</span></div>
           <select class="select" id="chat-mode">
-            <option value="local">本地知识库</option>
-            <option value="codex">Codex 订阅（本机）</option>
-            <option value="ai">本地 / 兼容模型</option>
+            <option value="codex" selected>Codex Agent（自主检索）</option>
+            <option value="local">仅本地检索（诊断）</option>
           </select>
         </div>
 
@@ -793,7 +792,7 @@
 
         <label class="inline-check" for="strict-citations">
           <input id="strict-citations" type="checkbox" checked>
-          严格依据检索结果，不补写未知出处
+          严格依据 Agent 实际检索结果，不补写未知出处
         </label>
 
         <div class="kb-divider"></div>
@@ -990,7 +989,7 @@
         } catch (_) {}
         return [{
           role:"assistant",
-          content:"你好，我是“问典”。我会先检索本地知识库，再回答你的起名问题。你可以直接描述姓氏、性别、偏好的典籍和名字气质。",
+          content:"你好，我是“问典”。我会通过本机 Codex Agent 自主读取 Wiki、检索经典原文，再回答你的起名问题。你可以直接描述姓氏、性别、偏好的典籍和名字气质。",
           citations:[]
         }];
       }
@@ -1181,7 +1180,7 @@
       }
       function citationMarkup(citations) {
         if (!citations || !citations.length) return "";
-        return `<div class="citations"><div class="citation-title">本次检索来源</div>${citations.map((item, index) =>
+        return `<div class="citations"><div class="citation-title">Agent 引用来源</div>${citations.map((item, index) =>
           `<span class="citation-item">[${index + 1}] ${escapeHTML(item.title)} · ${escapeHTML(item.source)}${item.verified ? " · 已核验" : ""}</span>`
         ).join("")}</div>`;
       }
@@ -1192,7 +1191,7 @@
           return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(message.content)}</div>${message.role === "assistant" ? citationMarkup(message.citations) : ""}`;
         }).join("");
         const pending = chatPending
-          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>正在检索知识并组织回答……</div>`
+          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>Agent 正在读取 Wiki 并调用本地知识工具……</div>`
           : "";
         messages.innerHTML = content + pending;
         messages.scrollTop = messages.scrollHeight;
@@ -1246,8 +1245,8 @@
         }
         return profile;
       }
-      async function callAI(question, hits) {
-        const context = hits.map((hit, index) => ({
+      async function callAI(question, customHits = []) {
+        const context = customHits.map((hit, index) => ({
           index:index + 1,
           title:hit.doc.title,
           source:hit.doc.source,
@@ -1262,12 +1261,14 @@
             context,
             strict:strictCitations.checked,
             profile:profileContext(true),
-            requestedMode:chatMode.value
+            requestedMode:chatMode.value,
+            retrievalScope:retrievalScope.value,
+            topK:Number(topKSelect.value) || 6
           })
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(data.error || "AI 模型暂时不可用");
-        return data.answer;
+        return data;
       }
       async function askQuestion(question) {
         const value = question.trim();
@@ -1280,33 +1281,49 @@
           localProfile.baziElement ? `${localProfile.baziElement}意` : ""
         ].filter(Boolean).join(" ");
         const retrievalQuery = `${value} ${profileTerms}`;
-        const localHits = retrieveKnowledge(retrievalQuery);
         chatHistory.push({role:"user", content:value});
         chatInput.value = "";
         chatPending = true;
         sendBtn.disabled = true;
-        retrievalStatus.textContent = "正在并行检索 Wiki 与完整原文库";
         renderMessages();
-        const corpusHits = await retrieveFullCorpus(retrievalQuery);
-        const hits = mergeKnowledgeHits(localHits, corpusHits);
-        const citations = hits.map(hit => ({title:hit.doc.title, source:hit.doc.source, verified:hit.doc.verified}));
-        retrievalStatus.textContent = `已召回 ${localHits.length} 条 Wiki / ${corpusHits.length} 条原文，正在组织回答`;
-        let answer;
-        if (chatMode.value !== "local") {
+
+        let answer = "";
+        let citations = [];
+        if (chatMode.value === "codex") {
+          retrievalStatus.textContent = "Codex Agent 正在自主规划检索";
+          const customHits = retrieveKnowledge(retrievalQuery)
+            .filter(hit => hit.doc.type === "custom")
+            .slice(0, Number(topKSelect.value) || 6);
           try {
-            answer = await callAI(value, hits);
+            const result = await callAI(value, customHits);
+            answer = result.answer;
+            citations = Array.isArray(result.citations) ? result.citations : [];
+            const tools = Array.isArray(result.toolsUsed) ? result.toolsUsed : [];
+            retrievalStatus.textContent = tools.length
+              ? `Agent 已使用 ${tools.join("、")}，引用 ${citations.length} 条资料`
+              : `Agent 已完成回答，引用 ${citations.length} 条资料`;
           } catch (err) {
-            answer = `AI 服务未连接，已切换为本地知识库回答。\n\n${localAnswer(value, hits)}`;
-            showToast(err.message || "AI 服务未连接");
+            answer = `Codex Agent 暂时不可用：${err.message || "请检查订阅登录与本地服务"}`;
+            retrievalStatus.textContent = "Agent 调用失败";
+            showToast(err.message || "Codex Agent 未连接");
           }
         } else {
+          retrievalStatus.textContent = "正在执行诊断性本地检索";
+          const localHits = retrieveKnowledge(retrievalQuery);
+          const corpusHits = await retrieveFullCorpus(retrievalQuery);
+          const hits = mergeKnowledgeHits(localHits, corpusHits);
           answer = localAnswer(value, hits);
+          citations = hits.map(hit => ({
+            title:hit.doc.title,
+            source:hit.doc.source,
+            verified:hit.doc.verified
+          }));
+          retrievalStatus.textContent = `诊断检索使用 ${hits.length} 条结果`;
         }
         chatHistory.push({role:"assistant", content:answer, citations});
         chatHistory = chatHistory.slice(-20);
         chatPending = false;
         sendBtn.disabled = false;
-        retrievalStatus.textContent = `本次使用 ${hits.length} 条检索结果`;
         saveChatHistory();
         renderMessages();
       }
@@ -1560,7 +1577,7 @@
       document.getElementById("clear-chat").addEventListener("click", () => {
         chatHistory = [{
           role:"assistant",
-          content:"对话已清空。告诉我姓氏、性别、偏好的典籍和名字气质，我会先检索知识库再回答。",
+          content:"对话已清空。告诉我姓氏、性别、偏好的典籍和名字气质，Codex Agent 会自行检索 Wiki 与原文库后回答。",
           citations:[]
         }];
         saveChatHistory();
