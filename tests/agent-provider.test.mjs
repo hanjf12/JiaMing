@@ -84,6 +84,7 @@ test("agent prompt permits only file-native knowledge reads through shell", () =
   assert.match(prompt, /rg -n -F/);
   assert.match(prompt, /knowledge\/llms\.txt/);
   assert.match(prompt, /file_find、file_grep、file_read/);
+  assert.match(prompt, /nameCards/);
   assert.doesNotMatch(prompt, /scripts\/knowledge\.mjs/);
   assert.match(prompt, /不要调用 MCP/);
   assert.match(prompt, /不得擅自推算喜用神或断言吉凶/);
@@ -132,4 +133,22 @@ test("observed shell events override unverified model tool declarations", () => 
     toolsUsed: ["file_find"],
   }), []);
   assert.deepEqual(result.toolsUsed, []);
+});
+
+test("agent name recommendations are normalized into display cards", () => {
+  const result = normalizeAgentResult({
+    answer: "推荐林清欢。",
+    citations: [],
+    nameCards: [{
+      name: "林清欢",
+      pinyin: "lín qīng huān",
+      source: "苏轼《浣溪沙》",
+      quote: "人间有味是清欢。",
+      meaning: "清澈明朗，知足从容。",
+      verified: true,
+    }],
+    toolsUsed: [],
+  }, []);
+  assert.equal(result.nameCards.length, 1);
+  assert.equal(result.nameCards[0].name, "林清欢");
 });

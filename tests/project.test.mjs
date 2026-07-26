@@ -28,7 +28,9 @@ function runNode(args, env = {}) {
 test("static page is self-contained and provider-neutral", async () => {
   const html = await read("../public/index.html");
   assert.match(html, /<title>嘉名 · 中文宝宝起名<\/title>/);
-  assert.match(html, /本地知识 Agent · 自主检索/);
+  assert.match(html, /第二步 · 问答主入口/);
+  assert.match(html, /左侧资料会自动带入每次提问/);
+  assert.match(html, /data-ask-name/);
   assert.match(html, /LLM Agent（自主检索）/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
   assert.doesNotMatch(html, /value="codex"|本机 Codex Agent/);

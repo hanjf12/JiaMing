@@ -22,6 +22,24 @@
         }
       }
     },
+    "nameCards": {
+      "type": "array",
+      "maxItems": 6,
+      "description": "推荐或比较姓名时返回的结构化候选卡；纯方法问答可以为空数组。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "pinyin", "source", "quote", "meaning", "verified"],
+        "properties": {
+          "name": { "type": "string" },
+          "pinyin": { "type": "string" },
+          "source": { "type": "string" },
+          "quote": { "type": "string" },
+          "meaning": { "type": "string" },
+          "verified": { "type": "boolean" }
+        }
+      }
+    },
     "toolsUsed": {
       "type": "array",
       "items": {
