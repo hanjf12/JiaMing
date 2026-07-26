@@ -57,7 +57,7 @@ test("local server exposes the page, status, tools, and chat endpoint", async ()
     assert.equal(tools.mcp, false);
     assert.deepEqual(
       tools.commands.map((command) => command.id),
-      ["knowledge_status", "wiki_search", "wiki_read", "corpus_search"],
+      ["file_find", "file_grep", "file_read"],
     );
 
     const chat = await fetch(`${base}/api/chat`, {

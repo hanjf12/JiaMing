@@ -1,31 +1,25 @@
 export const KNOWLEDGE_SHELL_COMMANDS = [
   {
-    id: "knowledge_status",
-    command: "node scripts/knowledge.mjs status",
-    description: "查看本地 Wiki、知识图谱与经典原文库状态。",
+    id: "file_find",
+    command: "rg --files knowledge",
+    windows: "Get-ChildItem knowledge -Recurse -File",
+    macos: "find knowledge -type f",
+    description: "发现 llms.txt、Wiki 页面、语料目录和原始文本文件。",
   },
   {
-    id: "wiki_search",
-    command: 'node scripts/knowledge.mjs wiki-search --query "<关键词>" --scope <范围> --limit <1-12>',
-    description: "检索姓名、方法、来源、音韵、用字和八字边界。",
+    id: "file_grep",
+    command: 'rg -n -i -m 20 "<关键词>" knowledge/wiki knowledge/llms.txt',
+    windows: "Select-String -Path <知识库文件> -Pattern <关键词>",
+    macos: "grep -RIn -m 20 <关键词> knowledge/wiki",
+    description: "在 Wiki 或原始语料中定位关键词、原句及行号。",
   },
   {
-    id: "wiki_read",
-    command: "node scripts/knowledge.mjs wiki-read --id <pageId>",
-    description: "读取一个完整 Wiki Markdown 页面并查看互链。",
+    id: "file_read",
+    command: "按当前系统使用 Get-Content -Encoding UTF8 <文件> 或 sed -n '1,220p' <文件>",
+    windows: "Get-Content -Encoding UTF8 <知识库文件>",
+    macos: "sed -n '1,220p' <知识库文件>",
+    description: "按需读取命中的 Markdown、JSON 上下文或清单；不要一次加载整个大库。",
   },
-  {
-    id: "corpus_search",
-    command: 'node scripts/knowledge.mjs corpus-search --query "<原句或关键词>" --scope <范围> --limit <1-12>',
-    description: "检索四书五经、十三经与历代诗词原文。",
-  },
-];
-
-const COMMAND_PATTERNS = [
-  ["knowledge_status", /\bscripts[\\/]knowledge\.mjs\s+status\b/i],
-  ["wiki_search", /\bscripts[\\/]knowledge\.mjs\s+wiki-search\b/i],
-  ["wiki_read", /\bscripts[\\/]knowledge\.mjs\s+wiki-read\b/i],
-  ["corpus_search", /\bscripts[\\/]knowledge\.mjs\s+corpus-search\b/i],
 ];
 
 function commandText(item) {
@@ -46,9 +40,18 @@ export function completedKnowledgeCommands(jsonLines) {
         || event.item?.status !== "completed"
       ) continue;
       const text = commandText(event.item);
-      for (const [id, pattern] of COMMAND_PATTERNS) {
-        if (pattern.test(text)) used.push(id);
-      }
+      const rgFiles = /\brg(?:\.exe)?\s+--files\b/i.test(text);
+      const find = /\bGet-ChildItem\b/i.test(text)
+        || /(?:^|[\s"';&|])find(?:\.exe)?\s+knowledge(?:[\\/]|(?:\s|$))/i.test(text)
+        || rgFiles;
+      const grep = /\bSelect-String\b/i.test(text)
+        || /(?:^|[\s"';&|])grep(?:\.exe)?\b/i.test(text)
+        || (/\brg(?:\.exe)?\b/i.test(text) && !rgFiles);
+      const read = /\bGet-Content\b/i.test(text)
+        || /(?:^|[\s"';&|])(?:cat|sed|head|tail)(?:\.exe)?\b/i.test(text);
+      if (find) used.push("file_find");
+      if (grep) used.push("file_grep");
+      if (read) used.push("file_read");
     } catch {
       // Ignore diagnostics that are not JSON events.
     }
@@ -58,6 +61,11 @@ export function completedKnowledgeCommands(jsonLines) {
 
 export function knowledgeShellGuide() {
   return KNOWLEDGE_SHELL_COMMANDS
-    .map((item) => `- \`${item.command}\`：${item.description}`)
+    .map((item) => [
+      `- ${item.id}：${item.description}`,
+      `  - 首选：\`${item.command}\``,
+      `  - Windows 回退：\`${item.windows}\``,
+      `  - macOS 回退：\`${item.macos}\``,
+    ].join("\n"))
     .join("\n");
 }

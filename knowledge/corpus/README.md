@@ -4,7 +4,8 @@
 
 - Wiki 负责来源、概念、候选姓名与互链关系。
 - Corpus 负责完整原文和作品级全文检索。
-- 浏览器先搜 Wiki；通过本地服务运行时，再并行搜索 Corpus。
+- 浏览器先搜 Wiki；通过本地服务运行时，再并行搜索 SQLite Corpus。
+- LLM Agent 不打开 SQLite，而是按 `catalog.md` 用 find/grep/read 直接核对 Wiki 和上游原始文件。
 
 ## 当前语料
 

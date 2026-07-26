@@ -2,7 +2,7 @@
 
 嘉名是一个本地优先、可追溯出处的中文宝宝起名项目。它将四书五经、十三经、唐诗、宋诗、宋词、元曲等本地语料做成可检索知识库，并让 Codex Agent 自主运行只读 Shell 命令核对原文、阅读 Wiki，再生成名字建议。
 
-[English](README.en.md) · [模型配置](docs/configuration.zh-CN.md) · [产品与开源调研](docs/product-research.zh-CN.md)
+[English](README.en.md) · [模型配置](docs/configuration.zh-CN.md) · [文件原生 LLM Wiki](docs/file-native-llm-wiki.zh-CN.md) · [产品与开源调研](docs/product-research.zh-CN.md)
 
 ## 功能
 
@@ -10,7 +10,7 @@
 - 典籍偏好、性别气质、包含字、避开字、收藏与导出。
 - 接受用户已确认的出生四柱和五行用字倾向，仅作传统文化偏好。
 - 104 页互链 Wiki 与 345,579 条本机经典原文索引。
-- 统一 Agent 链路：知识库只通过 `node scripts/knowledge.mjs ...` 接入，不启动 MCP。
+- 统一 Agent 链路：直接用 `read / grep / find` 等只读 Shell 命令查看文件知识库，不启动 MCP。
 - 两种模型配置：
   - Codex 订阅：使用本机已登录的 Codex CLI，不需要 API Key。
   - 第三方模型：仍由同一个 Codex CLI Agent 运行，通过自定义 provider 连接 Responses 兼容接口。
@@ -111,15 +111,19 @@ OPENAI_API_KEY=你的密钥
 
 ```text
 knowledge/
+├── README.md             # Agent 文件检索指南
+├── llms.txt              # 精炼知识地图
+├── llms-full.txt         # Wiki 合并全文
 ├── purpose.md
 ├── schema.md
 ├── raw/
 ├── wiki/
 ├── runtime/
 └── corpus/
+    ├── catalog.md         # 完整语料路径表
     ├── vendor/             # 上游仓库，本机忽略
     ├── authorized/         # 用户有权使用的资料
-    ├── classics.sqlite     # 生成的本机全文索引
+    ├── classics.sqlite     # 网页诊断检索索引
     └── manifest.json
 ```
 
@@ -138,14 +142,27 @@ npm run corpus:status
 
 近现代仍受著作权保护的全文不会随项目分发。仅可将你有权使用的材料放入 `knowledge/corpus/authorized/`，并自行承担授权责任。
 
-Agent 与人工诊断使用同一套 Shell 命令：
+Agent 先读小地图，再直接检索和读取文件。`rg` 是跨平台首选；没有 `rg` 时分别使用 PowerShell 或 macOS 原生命令：
 
 ```bash
-node scripts/knowledge.mjs status
-node scripts/knowledge.mjs wiki-search --query "连姓音韵" --scope all --limit 6
-node scripts/knowledge.mjs wiki-read --id concept-full-name-phonology
-node scripts/knowledge.mjs corpus-search --query "人间有味是清欢" --scope song --limit 6
+rg --files knowledge
+rg -n -i -m 20 "连姓|音韵" knowledge/wiki knowledge/llms.txt
+rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
 ```
+
+读取具体页面：
+
+```powershell
+# Windows
+Get-Content -Encoding UTF8 knowledge\wiki\concepts\concept-full-name-phonology.md
+```
+
+```bash
+# macOS
+sed -n '1,220p' knowledge/wiki/concepts/concept-full-name-phonology.md
+```
+
+完整流程和文件路径见[文件知识库指南](knowledge/README.md)。
 
 ## 局域网
 
@@ -181,8 +198,9 @@ docs/         配置与调研文档
 
 ## 安全与文化边界
 
-- Codex 运行在只读沙箱和临时会话中；项目规则只放行知识库 Shell 命令。
+- Codex 运行在只读沙箱和临时会话中，并使用 `approval_policy=never` 禁止请求跳出沙箱。
 - 每次执行把 Codex MCP 配置覆盖为空，并关闭插件、应用等无关能力。
+- Agent 只能读取 `knowledge/`，使用文件发现、文本检索和局部读取命令，不运行项目脚本或打开 SQLite。
 - 不凭模型记忆伪造原句、作者或出处，找不到时应明确说明。
 - 八字和五行不被当作科学预测，不自动判断喜用神，不断言吉凶。
 - `.env`、`config.local.json`、本地语料和 SQLite 索引均已忽略，提交前仍请自行检查敏感信息。

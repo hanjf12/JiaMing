@@ -21,7 +21,7 @@ npm run wiki:lint
 
 ### Query
 
-从 `wiki/index.md` 进入，优先读取具体页面及其一跳链接。回答必须区分原句直取、取意重组和编辑性建议。
+从 `llms.txt` 或 `wiki/index.md` 进入，用 `rg`/`grep` 定位页面，优先读取具体页面及其一跳链接。核对完整原文时，先按 `corpus/catalog.md` 缩小目录，再检索上游 JSON。回答必须区分原句直取、取意重组和编辑性建议。
 
 ### Lint
 

@@ -1,10 +1,9 @@
 import { knowledgeShellGuide } from "./knowledge-shell.mjs";
 
 const ALLOWED_TOOLS = new Set([
-  "knowledge_status",
-  "wiki_search",
-  "wiki_read",
-  "corpus_search",
+  "file_find",
+  "file_grep",
+  "file_read",
 ]);
 
 export function clean(value, limit = 1200) {
@@ -59,20 +58,22 @@ export function buildPrompts(request) {
     : "无。";
   const system = [
     "你是“问典”，一个中文宝宝起名知识 Agent。",
-    "先使用 Codex 内置 shell 工具运行本项目的只读知识命令，再回答；不要仅凭模型记忆补写出处。",
+    "先使用 Codex 内置 shell 工具直接查看本项目的文件知识库，再回答；不要仅凭模型记忆补写出处。",
     `检索范围：${request.retrievalScope}；优先保留约 ${request.topK} 条相关证据。`,
-    "只允许使用以下知识库 Shell 命令：",
+    "文件知识库入口是 knowledge/llms.txt，检索说明是 knowledge/README.md，完整语料路径表是 knowledge/corpus/catalog.md。",
+    "只允许在 knowledge/ 目录内使用以下只读 Shell 命令族：",
     knowledgeShellGuide(),
-    "姓名建议至少运行 status 和 wiki-search；涉及原句、篇名或作者时运行 corpus-search；需要方法、语境或音韵判断时沿 links 运行 wiki-read。",
-    "不要调用 MCP、网页、浏览器或其他数据工具。不得访问网络或修改文件，也不要直接遍历 knowledge 目录来绕过知识命令。",
-    "命令参数必须来自当前问题；不要拼接命令替换、重定向、管道、控制符或额外子命令。",
+    "标准流程：先用 rg/grep 在 llms.txt 与 Wiki 中定位相关页面，再读取命中的少量 Markdown；不要完整输出 llms.txt 或 llms-full.txt。只有不清楚目录时才局部读取 README.md；涉及原句、篇名或作者时，按 corpus/catalog.md 缩小目录后用固定字符串检索原始 JSON，并保留文件路径和行号。",
+    "姓名建议至少完成一次 file_grep 和一次 file_read；需要确认目录时再运行 file_find。涉及原文时优先使用 `rg -n -F -m 8 -B 12 -A 5`，不要用单个常见汉字扫描整个语料。",
+    "不要调用 MCP、网页、浏览器、SQLite 或项目脚本。不得访问网络、修改文件、读取 knowledge/ 之外的路径，也不得执行 Node、Python、Git 或系统管理命令。",
+    "命令参数必须来自当前问题。不要使用重定向、命令替换、环境变量、控制流或写入命令；只有为了截断输出时才可把只读结果交给 head、tail 或 Select-Object。",
     "严禁伪造原句、篇名、作者和出处；找不到就明确说明。",
     request.strict
       ? "严格引用：答案中的事实和出处只能来自本轮工具结果或用户明确提供的资料。"
       : "",
     "八字与五行只作为用户主动提供的传统文化偏好，不是科学预测；不得擅自推算喜用神或断言吉凶。",
-    "最终返回 JSON 对象：answer 为中文回答；citations 为 {title,source,verified} 数组；toolsUsed 为实际成功运行的命令标识（knowledge_status、wiki_search、wiki_read、corpus_search）数组。",
-    "answer 中的 [n] 必须对应 citations[n-1]；原文引句优先对应 corpus_search 记录。提交前检查编号。",
+    "最终返回 JSON 对象：answer 为中文回答；citations 为 {title,source,verified} 数组；toolsUsed 为实际成功运行的命令标识（file_find、file_grep、file_read）数组。",
+    "answer 中的 [n] 必须对应 citations[n-1]；source 优先写 `knowledge/...:行号`，并保留作品、作者或上游来源信息。提交前检查编号。",
   ].filter(Boolean).join("\n");
   const user = [
     `用户资料：${JSON.stringify(request.profile)}`,

@@ -16,7 +16,6 @@
     "corpus:sync": "node scripts/sync-corpus.mjs",
     "corpus:build": "node scripts/build-corpus.mjs",
     "corpus:status": "node scripts/corpus-status.mjs",
-    "knowledge": "node scripts/knowledge.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run wiki:lint && npm test"
   },

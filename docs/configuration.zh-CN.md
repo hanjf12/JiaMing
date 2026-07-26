@@ -34,23 +34,22 @@ config.example.json → config.local.json
 ```text
 网页 /api/chat
   → codex exec --ephemeral --sandbox read-only
-  → Agent 自主运行 node scripts/knowledge.mjs ...
-  → 本地 Wiki / SQLite
+  → Agent 自主使用 find / grep / read
+  → knowledge/llms.txt → Wiki Markdown → 上游原始 JSON
   → 结构化回答与引用
 ```
 
-应用不启动 MCP server，也不向 Codex 注册 MCP 工具。每次执行都用 `mcp_servers={}` 覆盖个人配置，同时关闭插件、应用、Hooks、浏览器、计算机和多 Agent 等无关能力。保留用户配置层只为了读取项目可信状态和订阅认证；当前模型 provider、只读沙箱和工具能力都由本次命令覆盖。项目内 `.codex/rules/knowledge.rules` 只放行知识 CLI，第三方 provider 也只通过本次进程的 `--config` 参数注入。
+应用不启动 MCP server，也不向 Codex 注册 MCP 工具。每次执行都用 `mcp_servers={}` 覆盖个人配置，同时关闭插件、应用、Hooks、浏览器、计算机和多 Agent 等无关能力。保留用户配置层只为了读取项目可信状态和订阅认证；当前模型 provider、只读沙箱和工具能力都由本次命令覆盖。执行时设置 `approval_policy=never`，所以 Agent 不能请求跳出只读沙箱；第三方 provider 只通过本次进程的 `--config` 参数注入。
 
-Agent 只应运行：
+Agent 只在 `knowledge/` 中运行只读文件命令：
 
 ```bash
-node scripts/knowledge.mjs status
-node scripts/knowledge.mjs wiki-search --query "连姓音韵" --scope all --limit 6
-node scripts/knowledge.mjs wiki-read --id concept-full-name-phonology
-node scripts/knowledge.mjs corpus-search --query "人间有味是清欢" --scope song --limit 6
+rg --files knowledge
+rg -n -i -m 20 "连姓|音韵" knowledge/wiki knowledge/llms.txt
+rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
 ```
 
-Codex 自身运行在只读沙箱，知识命令只读项目文件和 SQLite。
+读取命中页时，Windows 使用 `Get-Content`，macOS 使用 `sed`；没有 `rg` 时分别回退到 `Get-ChildItem / Select-String` 或 `find / grep`。详细路径和限制见 [`knowledge/README.md`](../knowledge/README.md)。SQLite 只供网页本地诊断检索，LLM Agent 不读取数据库。
 
 Windows 后台服务显式使用官方的 `windows.sandbox = "unelevated"` 回退模式，避免依赖桌面 App 的 elevated sandbox 会话；它仍使用受限令牌和 ACL 边界。若希望使用更强的 elevated 模式，可先在 Codex App 中完成管理员批准的沙箱设置，再自行调整这一项目默认值。参考 [Windows sandbox](https://developers.openai.com/codex/windows)。
 

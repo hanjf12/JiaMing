@@ -1301,8 +1301,9 @@
             answer = result.answer;
             citations = Array.isArray(result.citations) ? result.citations : [];
             const tools = Array.isArray(result.toolsUsed) ? result.toolsUsed : [];
+            const toolLabels = {file_find:"find", file_grep:"grep", file_read:"read"};
             retrievalStatus.textContent = tools.length
-              ? `Agent 已使用 ${tools.join("、")}，引用 ${citations.length} 条资料`
+              ? `Agent 已使用 ${tools.map(tool => toolLabels[tool] || tool).join("、")}，引用 ${citations.length} 条资料`
               : `Agent 已完成回答，引用 ${citations.length} 条资料`;
           } catch (err) {
             answer = `LLM Agent 暂时不可用：${err.message || "请检查模型配置与本地服务"}`;

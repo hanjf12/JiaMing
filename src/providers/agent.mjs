@@ -183,6 +183,7 @@ export function buildAgentInvocation(config, output) {
     "--sandbox", "read-only",
     "--skip-git-repo-check",
     "--color", "never",
+    "--config", 'approval_policy="never"',
     "--config", "mcp_servers={}",
     "--output-schema", OUTPUT_SCHEMA,
     "--output-last-message", output,

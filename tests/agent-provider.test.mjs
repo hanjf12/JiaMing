@@ -49,6 +49,7 @@ test("both routes use the same read-only Codex Agent invocation without MCP", ()
     assert.ok(!invocation.args.includes("--ignore-user-config"));
     assert.ok(!invocation.args.includes("--ignore-rules"));
     assert.ok(invocation.args.includes("mcp_servers={}"));
+    assert.ok(invocation.args.includes('approval_policy="never"'));
     if (process.platform === "win32") {
       assert.ok(invocation.args.includes('windows.sandbox="unelevated"'));
     }
@@ -72,7 +73,7 @@ test("third-party route configures a Responses provider without exposing its key
   assert.equal(invocation.extraEnv.JIAMING_AGENT_PROVIDER_API_KEY, "secret-test-key");
 });
 
-test("agent prompt permits only the knowledge CLI through shell", () => {
+test("agent prompt permits only file-native knowledge reads through shell", () => {
   const request = sanitizeRequest({
     question: "先核对出处，再推荐名字",
     retrievalScope: "all",
@@ -80,7 +81,10 @@ test("agent prompt permits only the knowledge CLI through shell", () => {
   });
   const prompt = buildPrompts(request).system;
   assert.match(prompt, /Codex 内置 shell 工具/);
-  assert.match(prompt, /node scripts\/knowledge\.mjs corpus-search/);
+  assert.match(prompt, /rg -n -F/);
+  assert.match(prompt, /knowledge\/llms\.txt/);
+  assert.match(prompt, /file_find、file_grep、file_read/);
+  assert.doesNotMatch(prompt, /scripts\/knowledge\.mjs/);
   assert.match(prompt, /不要调用 MCP/);
   assert.match(prompt, /不得擅自推算喜用神或断言吉凶/);
 });
@@ -91,7 +95,7 @@ test("completed shell commands are reported as knowledge usage", () => {
       type: "item.completed",
       item: {
         type: "command_execution",
-        command: "node scripts/knowledge.mjs status",
+        command: "rg --files knowledge/wiki",
         exit_code: 0,
         status: "completed",
       },
@@ -100,7 +104,7 @@ test("completed shell commands are reported as knowledge usage", () => {
       type: "item.completed",
       item: {
         type: "command_execution",
-        command: 'node scripts\\knowledge.mjs corpus-search --query "清欢"',
+        command: 'rg -n -F -m 8 "清欢" knowledge/corpus/vendor/chinese-poetry/宋词',
         exit_code: 0,
         status: "completed",
       },
@@ -109,7 +113,7 @@ test("completed shell commands are reported as knowledge usage", () => {
       type: "item.completed",
       item: {
         type: "command_execution",
-        command: "node scripts/knowledge.mjs wiki-search --query blocked",
+        command: "Get-Content -Encoding UTF8 knowledge/wiki/index.md",
         exit_code: -1,
         status: "declined",
       },
@@ -117,7 +121,7 @@ test("completed shell commands are reported as knowledge usage", () => {
   ].join("\n");
   assert.deepEqual(
     completedKnowledgeCommands(events),
-    ["knowledge_status", "corpus_search"],
+    ["file_find", "file_grep"],
   );
 });
 
@@ -125,7 +129,7 @@ test("observed shell events override unverified model tool declarations", () => 
   const result = normalizeAgentResult(JSON.stringify({
     answer: "命令未执行。",
     citations: [],
-    toolsUsed: ["knowledge_status"],
+    toolsUsed: ["file_find"],
   }), []);
   assert.deepEqual(result.toolsUsed, []);
 });

@@ -26,7 +26,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["knowledge_status", "wiki_search", "wiki_read", "corpus_search"]
+        "enum": ["file_find", "file_grep", "file_read"]
       }
     }
   }

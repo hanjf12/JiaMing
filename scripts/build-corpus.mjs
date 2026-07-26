@@ -334,7 +334,7 @@ const manifest = {
   byCorpus,
   byCategory,
   database: "classics.sqlite",
-  architecture: "SQLite FTS5 + Wiki hybrid retrieval",
+  architecture: "File-native Agent retrieval + SQLite FTS5 browser diagnostics",
   modernCopyrightPolicy: "metadata-only unless user-authorized",
 };
 await writeFile(MANIFEST_FILE, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
