@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="从四书五经、唐诗、宋词、诗经与楚辞中，为宝宝寻找有出处、有寓意的中文姓名。">
+  <meta name="color-scheme" content="light">
+  <title>嘉名 · 中文宝宝起名</title>
+  <style>
+    :root {
+      --paper: #f5f0e4;
+      --paper-deep: #ece3d1;
+      --card: rgba(255, 253, 247, .88);
+      --ink: #26211b;
+      --muted: #6d6459;
+      --cinnabar: #9f2f23;
+      --cinnabar-deep: #742016;
+      --bamboo: #667464;
+      --line: #d6c9b4;
+      --soft-red: #f2e4df;
+      --shadow: 0 14px 36px rgba(71, 52, 31, .08);
+      --serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, SimSun, serif;
+      --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(159,47,35,.035) 0 1px, transparent 1.4px) 0 0/22px 22px,
+        linear-gradient(90deg, rgba(90,72,45,.018) 1px, transparent 1px) 0 0/34px 100%,
+        var(--paper);
+      font-family: var(--sans);
+      min-width: 320px;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid rgba(159,47,35,.2);
+      outline-offset: 2px;
+    }
+
+    .topbar {
+      min-height: 76px;
+      border-bottom: 1px solid rgba(120, 98, 67, .18);
+      background: rgba(250, 247, 238, .9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px clamp(18px, 4vw, 58px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .seal {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      border: 2px solid var(--cinnabar);
+      color: var(--cinnabar);
+      font: 700 15px/1 var(--serif);
+      letter-spacing: .12em;
+      transform: rotate(-2deg);
+      box-shadow: inset 0 0 0 3px rgba(159,47,35,.08);
+    }
+    .brand-name { font: 700 25px/1.15 var(--serif); letter-spacing: .16em; }
+    .brand-sub { color: var(--muted); font: 12px/1.4 var(--serif); margin-top: 4px; letter-spacing: .08em; }
+    .local-badge {
+      color: var(--bamboo);
+      border: 1px solid rgba(102,116,100,.35);
+      background: rgba(102,116,100,.08);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .layout {
+      width: min(1540px, calc(100% - 36px));
+      margin: 28px auto 54px;
+      display: grid;
+      grid-template-columns: 390px minmax(0, 1fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .panel, .name-card {
+      background: var(--card);
+      border: 1px solid rgba(159, 137, 105, .34);
+      box-shadow: var(--shadow);
+    }
+
+    .panel {
+      position: sticky;
+      top: 103px;
+      padding: 27px 29px;
+      overflow: hidden;
+    }
+    .panel::after {
+      content: "名";
+      position: absolute;
+      right: -2px; top: -22px;
+      color: rgba(159,47,35,.045);
+      font: 150px/1 var(--serif);
+      pointer-events: none;
+    }
+    .eyebrow {
+      color: var(--cinnabar);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+    }
+    h1 {
+      margin: 12px 0 9px;
+      font: 700 clamp(26px, 2.25vw, 37px)/1.28 var(--serif);
+      letter-spacing: .06em;
+    }
+    .intro {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font: 14px/1.75 var(--serif);
+    }
+    .field { margin: 0 0 17px; position: relative; z-index: 1; }
+    .field-row { display: grid; grid-template-columns: 1.25fr .75fr; gap: 12px; }
+    .label-line {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      margin-bottom: 8px;
+    }
+    label, .field-label { font-size: 13px; font-weight: 700; }
+    .hint { color: #908577; font-size: 11px; font-weight: 400; }
+    .input, .select {
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      color: var(--ink);
+      background: rgba(255,255,255,.52);
+      padding: 0 13px;
+    }
+    .input::placeholder { color: #aaa094; }
+    .segmented {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.32);
+    }
+    .segmented input { position: absolute; opacity: 0; pointer-events: none; }
+    .segmented label {
+      min-height: 42px;
+      display: grid; place-items: center;
+      color: var(--muted);
+      border-right: 1px solid var(--line);
+      font-weight: 500;
+      transition: .18s ease;
+    }
+    .segmented label:last-child { border-right: 0; }
+    .segmented input:checked + label {
+      color: var(--cinnabar-deep);
+      background: rgba(159,47,35,.09);
+      box-shadow: inset 0 -2px var(--cinnabar);
+      font-weight: 700;
+    }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .check {
+      position: relative;
+      min-height: 39px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .check:has(input:checked) {
+      color: var(--cinnabar-deep);
+      border-color: rgba(159,47,35,.48);
+      background: rgba(159,47,35,.07);
+    }
+    .check input { accent-color: var(--cinnabar); width: 15px; height: 15px; }
+    .bazi-box {
+      margin: 0 0 17px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.3);
+    }
+    .bazi-box summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 13px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .bazi-box summary::-webkit-details-marker { display: none; }
+    .bazi-box summary::after { content: "＋"; color: var(--cinnabar); font-size: 17px; font-weight: 400; }
+    .bazi-box[open] summary::after { content: "－"; }
+    .bazi-content { padding: 4px 13px 14px; border-top: 1px solid rgba(120,103,77,.12); }
+    .bazi-note { margin: 0 0 11px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .bazi-consent { margin-top: 10px; }
+    .generate {
+      width: 100%;
+      min-height: 51px;
+      border: 0;
+      color: #fffaf0;
+      background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+      font: 700 16px/1 var(--serif);
+      letter-spacing: .18em;
+      box-shadow: 0 9px 20px rgba(116,32,22,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .generate:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(116,32,22,.24); }
+    .privacy {
+      display: flex; gap: 7px; align-items: flex-start;
+      margin: 11px 0 0;
+      color: #8d8478;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+    .privacy::before { content: "○"; color: var(--bamboo); }
+    .error { min-height: 18px; margin: 8px 0 0; color: var(--cinnabar); font-size: 12px; }
+
+    .results { min-width: 0; }
+    .results-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 5px 2px 18px;
+    }
+    .result-kicker { color: var(--cinnabar); font: 12px/1.4 var(--serif); letter-spacing: .14em; }
+    h2 { margin: 6px 0 4px; font: 700 clamp(24px, 2.1vw, 34px)/1.25 var(--serif); }
+    .result-sub { color: var(--muted); font: 13px/1.6 var(--serif); }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .quiet-btn {
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.35);
+      transition: .18s ease;
+    }
+    .quiet-btn:hover, .quiet-btn.active {
+      color: var(--cinnabar-deep);
+      border-color: rgba(159,47,35,.45);
+      background: rgba(159,47,35,.07);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .name-card {
+      min-height: 326px;
+      padding: 23px 22px 19px;
+      position: relative;
+      overflow: hidden;
+      animation: cardIn .35s both;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .name-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(71,52,31,.13);
+      border-color: rgba(159,47,35,.32);
+    }
+    .name-card::after {
+      content: attr(data-mark);
+      position: absolute;
+      right: -5px; top: 35px;
+      color: rgba(159,47,35,.038);
+      font: 116px/1 var(--serif);
+      pointer-events: none;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; position: relative; z-index: 1; }
+    .full-name { font: 700 clamp(25px, 2vw, 33px)/1.2 var(--serif); letter-spacing: .05em; }
+    .pinyin { margin-top: 5px; color: #8a7e70; font: italic 12px/1.3 Georgia, serif; letter-spacing: .08em; }
+    .heart {
+      width: 36px; height: 36px; flex: 0 0 36px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: #9b9083;
+      background: rgba(255,255,255,.45);
+      font-size: 20px;
+      line-height: 1;
+    }
+    .heart.saved { color: var(--cinnabar); border-color: rgba(159,47,35,.42); background: var(--soft-red); }
+    .quote {
+      margin: 18px 0 10px;
+      padding: 1px 0 1px 15px;
+      border-left: 2px solid var(--cinnabar);
+      font: 15px/1.65 var(--serif);
+      position: relative; z-index: 1;
+    }
+    .source-line { display: flex; align-items: center; gap: 8px; color: #85796b; font-size: 11px; position: relative; z-index: 1; }
+    .source-tag {
+      color: var(--cinnabar-deep);
+      border: 1px solid rgba(159,47,35,.36);
+      padding: 3px 7px;
+      font-family: var(--serif);
+      white-space: nowrap;
+    }
+    .char-meanings {
+      margin: 15px 0 11px;
+      padding: 12px 0 10px;
+      border-top: 1px solid rgba(159,137,105,.25);
+      border-bottom: 1px solid rgba(159,137,105,.25);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      position: relative; z-index: 1;
+    }
+    .char-meanings.single { grid-template-columns: 1fr; }
+    .char-meaning { display: flex; gap: 7px; min-width: 0; }
+    .char-box {
+      width: 25px; height: 25px; flex: 0 0 25px;
+      display: grid; place-items: center;
+      border: 1px solid var(--line);
+      font: 15px/1 var(--serif);
+    }
+    .char-copy { font-size: 11px; line-height: 1.45; color: var(--muted); }
+    .char-copy strong { color: var(--ink); display: block; font-weight: 700; }
+    .meaning { color: var(--muted); font: 12px/1.65 var(--serif); position: relative; z-index: 1; }
+    .meaning strong { color: var(--bamboo); margin-right: 7px; }
+    .card-foot {
+      margin-top: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .traits { display: flex; gap: 5px; flex-wrap: wrap; }
+    .trait { color: var(--bamboo); background: rgba(102,116,100,.08); padding: 3px 7px; font-size: 10px; }
+    .copy-btn { border: 0; color: var(--cinnabar); background: transparent; padding: 5px; font-size: 11px; }
+    .empty {
+      grid-column: 1 / -1;
+      padding: 70px 24px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      background: rgba(255,255,255,.26);
+      font: 15px/1.8 var(--serif);
+    }
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 18px 2px 0;
+      color: #877e73;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .toast {
+      position: fixed;
+      left: 50%; bottom: 28px;
+      transform: translate(-50%, 15px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      color: #fffaf1;
+      background: rgba(38,33,27,.92);
+      padding: 10px 17px;
+      font-size: 12px;
+      transition: .22s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    .assistant {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: minmax(250px, 310px) minmax(0, 1fr);
+      min-height: 650px;
+      margin-top: 10px;
+      background: var(--card);
+      border: 1px solid rgba(159, 137, 105, .34);
+      box-shadow: var(--shadow);
+      scroll-margin-top: 100px;
+    }
+    .kb-side {
+      padding: 25px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(236, 227, 209, .3);
+    }
+    .kb-title {
+      margin: 7px 0 8px;
+      font: 700 24px/1.3 var(--serif);
+      letter-spacing: .08em;
+    }
+    .kb-description {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font: 12px/1.7 var(--serif);
+    }
+    .kb-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 11px 12px;
+      border: 1px solid rgba(102,116,100,.28);
+      color: var(--bamboo);
+      background: rgba(102,116,100,.07);
+      font-size: 12px;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      display: inline-block;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: var(--bamboo);
+      box-shadow: 0 0 0 4px rgba(102,116,100,.1);
+    }
+    .status-dot.offline { background: #a27855; box-shadow: 0 0 0 4px rgba(162,120,85,.1); }
+    .kb-divider { height: 1px; margin: 20px 0; background: var(--line); }
+    .kb-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .kb-file { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .kb-small {
+      margin: 9px 0 0;
+      color: #8f8578;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .inline-check {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .inline-check input { accent-color: var(--cinnabar); width: 15px; height: 15px; }
+    .chat-shell { min-width: 0; display: flex; flex-direction: column; }
+    .chat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 25px 17px;
+      border-bottom: 1px solid rgba(159,137,105,.24);
+    }
+    .chat-head h3 { margin: 0 0 4px; font: 700 22px/1.3 var(--serif); }
+    .chat-head p { margin: 0; color: var(--muted); font-size: 12px; }
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 14px 25px 0;
+    }
+    .prompt-chip {
+      min-height: 33px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.38);
+      font-size: 11px;
+    }
+    .prompt-chip:hover { color: var(--cinnabar-deep); border-color: rgba(159,47,35,.4); }
+    .messages {
+      min-height: 370px;
+      max-height: 560px;
+      overflow-y: auto;
+      padding: 20px 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      scrollbar-color: var(--line) transparent;
+    }
+    .message {
+      width: min(780px, 88%);
+      padding: 14px 16px;
+      border: 1px solid rgba(159,137,105,.28);
+      font: 13px/1.75 var(--serif);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .message.user {
+      align-self: flex-end;
+      color: #fffaf1;
+      border-color: var(--cinnabar-deep);
+      background: var(--cinnabar-deep);
+    }
+    .message.assistant-message {
+      align-self: flex-start;
+      background: rgba(255,255,255,.48);
+    }
+    .message.pending { color: var(--muted); }
+    .message-label {
+      display: block;
+      margin-bottom: 5px;
+      color: inherit;
+      opacity: .68;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+    .citations {
+      width: min(780px, 88%);
+      align-self: flex-start;
+      margin-top: -8px;
+      border-left: 2px solid var(--gold);
+      padding-left: 12px;
+    }
+    .citation-title { color: #8a7550; font-size: 10px; letter-spacing: .1em; margin-bottom: 5px; }
+    .citation-item {
+      display: block;
+      color: var(--muted);
+      font: 11px/1.55 var(--serif);
+      margin-bottom: 4px;
+    }
+    .composer {
+      margin-top: auto;
+      padding: 17px 25px 22px;
+      border-top: 1px solid rgba(159,137,105,.24);
+    }
+    .composer-row { display: grid; grid-template-columns: minmax(0,1fr) 104px; gap: 9px; }
+    .chat-input {
+      width: 100%;
+      min-height: 66px;
+      max-height: 150px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      color: var(--ink);
+      background: rgba(255,255,255,.52);
+      padding: 11px 13px;
+      font: 13px/1.55 var(--sans);
+    }
+    .send-btn {
+      border: 0;
+      color: #fffaf0;
+      background: var(--cinnabar);
+      font: 700 14px/1 var(--serif);
+      letter-spacing: .1em;
+    }
+    .send-btn:disabled { cursor: wait; opacity: .6; }
+    .composer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+      color: #8f8578;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1260px) {
+      .layout { grid-template-columns: 360px minmax(0,1fr); }
+      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 900px) {
+      .topbar { position: static; }
+      .layout { width: min(720px, calc(100% - 28px)); grid-template-columns: 1fr; margin-top: 18px; }
+      .panel { position: static; }
+      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .assistant { grid-column: 1; grid-template-columns: 1fr; }
+      .kb-side { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 620px) {
+      .topbar { align-items: flex-start; padding: 12px 15px; }
+      .brand-sub { display: none; }
+      .local-badge { white-space: normal; text-align: center; max-width: 125px; }
+      .layout { width: min(100% - 20px, 520px); }
+      .panel { padding: 23px 19px; }
+      .field-row { grid-template-columns: 1fr; }
+      .results-head { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      .cards { grid-template-columns: 1fr; }
+      .name-card { min-height: 0; }
+      .footer-note { flex-direction: column; }
+      .chat-head { align-items: flex-start; }
+      .suggestions, .messages, .composer { padding-left: 15px; padding-right: 15px; }
+      .messages { max-height: none; }
+      .message, .citations { width: 94%; }
+      .composer-row { grid-template-columns: 1fr; }
+      .send-btn { min-height: 45px; }
+      .composer-note { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">嘉<br>名</div>
+      <div>
+        <div class="brand-name">嘉名</div>
+        <div class="brand-sub">采撷千年文脉 · 为新生取一佳名</div>
+      </div>
+    </div>
+    <div class="local-badge">纯本地 · 信息不上传</div>
+  </header>
+
+  <main class="layout">
+    <form class="panel" id="naming-form" novalidate>
+      <div class="eyebrow">为新生 · 择嘉名</div>
+      <h1>从千年文脉中，<br>取一生清雅。</h1>
+      <p class="intro">录入基础偏好，从典籍原句、字义与整体意境出发，生成有出处的中文姓名。</p>
+
+      <div class="field">
+        <div class="label-line"><label for="surname">宝宝姓氏</label><span class="hint">支持单姓、复姓</span></div>
+        <input class="input" id="surname" name="surname" value="林" maxlength="2" autocomplete="off" aria-describedby="form-error">
+      </div>
+
+      <div class="field">
+        <div class="label-line"><span class="field-label">宝宝性别</span><span class="hint">只影响气质筛选</span></div>
+        <div class="segmented">
+          <input id="gender-any" name="gender" type="radio" value="any" checked><label for="gender-any">不限</label>
+          <input id="gender-girl" name="gender" type="radio" value="f"><label for="gender-girl">女孩</label>
+          <input id="gender-boy" name="gender" type="radio" value="m"><label for="gender-boy">男孩</label>
+        </div>
+      </div>
+
+      <div class="field field-row">
+        <div>
+          <div class="label-line"><label for="birth-date">出生日期</label><span class="hint">选填</span></div>
+          <input class="input" id="birth-date" name="birthDate" type="date">
+        </div>
+        <div>
+          <div class="label-line"><label for="birth-time">时间</label><span class="hint">选填</span></div>
+          <input class="input" id="birth-time" name="birthTime" type="time">
+        </div>
+      </div>
+
+      <details class="bazi-box">
+        <summary>八字参考 <span class="hint">有四柱时选填</span></summary>
+        <div class="bazi-content">
+          <p class="bazi-note">仅接受你已经确认的年、月、日、时四柱，不自动判断“喜用神”。五行归类属于传统民俗参考，不代表科学预测。</p>
+          <label class="inline-check" for="use-bazi">
+            <input id="use-bazi" name="useBazi" type="checkbox">
+            让八字偏好参与候选排序
+          </label>
+          <div class="field field-row" style="margin-top:12px">
+            <div>
+              <div class="label-line"><label for="bazi-pillars">出生八字</label><span class="hint">四柱</span></div>
+              <input class="input" id="bazi-pillars" name="baziPillars" maxlength="12" placeholder="如：甲辰 丁卯 丙子 戊戌">
+            </div>
+            <div>
+              <div class="label-line"><label for="bazi-element">用字倾向</label><span class="hint">请自行确认</span></div>
+              <select class="select" id="bazi-element" name="baziElement">
+                <option value="">不指定</option>
+                <option value="木">木意</option>
+                <option value="火">火意</option>
+                <option value="土">土意</option>
+                <option value="金">金意</option>
+                <option value="水">水意</option>
+              </select>
+            </div>
+          </div>
+          <label class="inline-check bazi-consent" for="share-bazi-ai">
+            <input id="share-bazi-ai" type="checkbox">
+            使用 AI 时，允许把八字与五行倾向发给本机模型
+          </label>
+        </div>
+      </details>
+
+      <div class="field">
+        <div class="label-line"><span class="field-label">名字字数</span><span class="hint">不含姓氏</span></div>
+        <div class="segmented">
+          <input id="len-any" name="nameLength" type="radio" value="any"><label for="len-any">不限</label>
+          <input id="len-one" name="nameLength" type="radio" value="1"><label for="len-one">单字名</label>
+          <input id="len-two" name="nameLength" type="radio" value="2" checked><label for="len-two">双字名</label>
+        </div>
+      </div>
+
+      <fieldset class="field" style="border:0;padding:0">
+        <div class="label-line"><legend class="field-label">典籍偏好</legend><span class="hint">可多选</span></div>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" name="source" value="classics" checked>四书五经</label>
+          <label class="check"><input type="checkbox" name="source" value="tang" checked>唐诗</label>
+          <label class="check"><input type="checkbox" name="source" value="song" checked>宋词</label>
+          <label class="check"><input type="checkbox" name="source" value="shijing">诗经</label>
+          <label class="check"><input type="checkbox" name="source" value="chuci">楚辞</label>
+        </div>
+      </fieldset>
+
+      <div class="field field-row">
+        <div>
+          <div class="label-line"><label for="include-char">期望包含</label><span class="hint">选填</span></div>
+          <input class="input" id="include-char" maxlength="2" placeholder="如：宁">
+        </div>
+        <div>
+          <div class="label-line"><label for="avoid-char">避开用字</label><span class="hint">选填</span></div>
+          <input class="input" id="avoid-char" maxlength="8" placeholder="如：轩梓">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="label-line"><label for="temperament">名字气质</label><span class="hint">影响排序</span></div>
+        <select class="select" id="temperament">
+          <option value="any">兼收并蓄</option>
+          <option value="雅正">雅正端方</option>
+          <option value="温润">温润从容</option>
+          <option value="明朗">明朗开阔</option>
+          <option value="坚毅">坚毅笃行</option>
+          <option value="灵秀">清灵秀逸</option>
+        </select>
+      </div>
+
+      <button class="generate" type="submit">寻章摘句 · 生成嘉名</button>
+      <p class="privacy">出生信息与八字默认仅在当前页面内使用，不保存。只有勾选授权后，才会发送给你主动启用的本机 AI 服务。</p>
+      <p class="error" id="form-error" role="alert"></p>
+    </form>
+
+    <section class="results" aria-live="polite">
+      <div class="results-head">
+        <div>
+          <div class="result-kicker" id="result-kicker">卷一 · 初见</div>
+          <h2 id="result-title">为“林”姓宝宝择得六名</h2>
+          <div class="result-sub" id="result-sub">每个名字，都有清晰的文化出处与字义说明。</div>
+        </div>
+        <div class="actions">
+          <button class="quiet-btn" id="favorite-toggle" type="button">♡ 我的收藏 <span id="favorite-count">0</span></button>
+          <button class="quiet-btn" id="export-btn" type="button">导出收藏</button>
+          <button class="quiet-btn" id="refresh-btn" type="button">换一批</button>
+        </div>
+      </div>
+
+      <div class="cards" id="cards"></div>
+      <div class="footer-note">
+        <span>姓名建议仅供灵感参考，可结合家族字辈、方言谐音与户籍用字规范综合判断。</span>
+        <span>嘉名 · 让每个名字都有来处</span>
+      </div>
+    </section>
+
+    <section class="assistant" id="assistant" aria-label="起名知识库对话">
+      <aside class="kb-side">
+        <div class="eyebrow">本地 RAG · 有据可查</div>
+        <h2 class="kb-title">问典</h2>
+        <p class="kb-description">先从典籍姓名与起名方法中检索，再组织回答。每条建议都会附上本次命中的知识来源。</p>
+
+        <div class="kb-stat">
+          <span><i class="status-dot" aria-hidden="true"></i><span id="kb-count">0</span> 条知识可检索</span>
+          <span id="custom-count">自建 0</span>
+        </div>
+
+        <div class="field">
+          <div class="label-line"><label for="chat-mode">回答模式</label><span class="hint" id="ai-status">检测中</span></div>
+          <select class="select" id="chat-mode">
+            <option value="local">本地知识库</option>
+            <option value="codex">Codex 订阅（本机）</option>
+            <option value="ai">本地 / 兼容模型</option>
+          </select>
+        </div>
+
+        <div class="field field-row">
+          <div>
+            <div class="label-line"><label for="retrieval-scope">检索范围</label></div>
+            <select class="select" id="retrieval-scope">
+              <option value="all">全部知识</option>
+              <option value="classics">四书五经</option>
+              <option value="tang">唐诗</option>
+              <option value="song">宋词</option>
+              <option value="shijing">诗经</option>
+              <option value="chuci">楚辞</option>
+              <option value="guide">起名方法</option>
+              <option value="custom">自建知识</option>
+            </select>
+          </div>
+          <div>
+            <div class="label-line"><label for="top-k">召回条数</label></div>
+            <select class="select" id="top-k">
+              <option value="3">3 条</option>
+              <option value="5" selected>5 条</option>
+              <option value="8">8 条</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="inline-check" for="strict-citations">
+          <input id="strict-citations" type="checkbox" checked>
+          严格依据检索结果，不补写未知出处
+        </label>
+
+        <div class="kb-divider"></div>
+        <div class="label-line"><span class="field-label">扩充知识库</span><span class="hint">仅存本机</span></div>
+        <div class="kb-actions">
+          <label class="quiet-btn" for="kb-file" style="display:grid;place-items:center">导入 TXT / JSON</label>
+          <input class="kb-file" id="kb-file" type="file" accept=".txt,.md,.json,application/json,text/plain">
+          <button class="quiet-btn" id="clear-kb" type="button">清空自建</button>
+        </div>
+        <p class="kb-small">TXT/Markdown 会按空行分段；JSON 支持由 title、content、source 组成的对象数组。</p>
+
+        <div class="kb-divider"></div>
+        <p class="kb-small" id="ai-privacy">本地模式不会发送任何内容。切换到模型模式后，只发送当前问题与命中的知识片段；八字还需要单独勾选授权。</p>
+      </aside>
+
+      <div class="chat-shell">
+        <header class="chat-head">
+          <div>
+            <h3>和典籍起名助手聊一聊</h3>
+            <p>可以让它推荐名字、解释出处、比较候选，或检查名字的音义搭配。</p>
+          </div>
+          <button class="quiet-btn" id="clear-chat" type="button">清空对话</button>
+        </header>
+
+        <div class="suggestions" aria-label="示例问题">
+          <button class="prompt-chip" type="button">林姓女孩，想要宋词里温润清雅的名字</button>
+          <button class="prompt-chip" type="button">“知微”和“慎思”哪个更适合男孩？</button>
+          <button class="prompt-chip" type="button">起名时怎样兼顾典籍出处与方言谐音？</button>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+
+        <form class="composer" id="chat-form">
+          <div class="composer-row">
+            <textarea class="chat-input" id="chat-input" rows="2" maxlength="600" placeholder="例如：爸爸姓陈，女孩，想从诗经里找一个清朗、不生僻的双字名……"></textarea>
+            <button class="send-btn" id="send-btn" type="submit">检索并回答</button>
+          </div>
+          <div class="composer-note">
+            <span id="retrieval-status">回车发送，Shift + 回车换行</span>
+            <span>回答用于起名灵感，不替代户籍用字与方言核验</span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const NAMES = [
+        {id:"c01",n:"知微",p:"zhī wēi",g:"n",cat:"classics",tag:"四书五经",work:"《周易·系辞下》",q:"君子知微知彰，知柔知刚，万夫之望。",cm:["知：明辨通达","微：洞察精微"],m:"见微知著，思虑通透，温柔且有力量。",t:["雅正","灵秀"]},
+        {id:"c02",n:"明德",p:"míng dé",g:"n",cat:"classics",tag:"四书五经",work:"《大学》",q:"大学之道，在明明德，在亲民，在止于至善。",cm:["明：澄明光亮","德：品行仁厚"],m:"明心修德，光而不耀，以仁厚立身。",t:["雅正","明朗"]},
+        {id:"c03",n:"慎思",p:"shèn sī",g:"n",cat:"classics",tag:"四书五经",work:"《中庸》",q:"博学之，审问之，慎思之，明辨之，笃行之。",cm:["慎：审慎周全","思：善思明辨"],m:"勤学善思，审慎笃定，行事有分寸。",t:["雅正","温润"]},
+        {id:"c04",n:"笃行",p:"dǔ xíng",g:"m",cat:"classics",tag:"四书五经",work:"《中庸》",q:"博学之，审问之，慎思之，明辨之，笃行之。",cm:["笃：坚定专一","行：躬身践履"],m:"知行相济，坚定务实，所行有所至。",t:["坚毅","雅正"]},
+        {id:"c05",n:"知新",p:"zhī xīn",g:"n",cat:"classics",tag:"四书五经",work:"《论语·为政》",q:"温故而知新，可以为师矣。",cm:["知：通晓明达","新：日有所进"],m:"温故知新，常怀好奇，日日精进。",t:["明朗","灵秀"]},
+        {id:"c06",n:"德邻",p:"dé lín",g:"n",cat:"classics",tag:"四书五经",work:"《论语·里仁》",q:"德不孤，必有邻。",cm:["德：仁厚有度","邻：亲和相伴"],m:"以德立身，亲和宽厚，所行自有同道。",t:["温润","雅正"]},
+        {id:"c07",n:"弘毅",p:"hóng yì",g:"m",cat:"classics",tag:"四书五经",work:"《论语·泰伯》",q:"士不可以不弘毅，任重而道远。",cm:["弘：宽广宏阔","毅：坚韧果决"],m:"胸怀广阔，意志坚毅，能担远任。",t:["坚毅","明朗"]},
+        {id:"c08",n:"思齐",p:"sī qí",g:"n",cat:"classics",tag:"四书五经",work:"《论语·里仁》",q:"见贤思齐焉，见不贤而内自省也。",cm:["思：善思自省","齐：向善看齐"],m:"心有所向，自省自进，始终向优秀者看齐。",t:["雅正","温润"]},
+        {id:"c09",n:"自牧",p:"zì mù",g:"n",cat:"classics",tag:"四书五经",work:"《周易·谦》",q:"谦谦君子，卑以自牧也。",cm:["自：自省自主","牧：修养涵育"],m:"谦逊自持，善于自我涵养，安静而有力量。",t:["温润","雅正"]},
+        {id:"c10",n:"厚德",p:"hòu dé",g:"m",cat:"classics",tag:"四书五经",work:"《周易·坤》",q:"地势坤，君子以厚德载物。",cm:["厚：宽厚深沉","德：仁善端方"],m:"厚道包容，有担当，也有容纳万物的胸襟。",t:["坚毅","雅正"]},
+        {id:"c11",n:"玉成",p:"yù chéng",g:"n",cat:"classics",tag:"四书五经",work:"《礼记·学记》",q:"玉不琢，不成器；人不学，不知道。",cm:["玉：温润珍贵","成：成就圆满"],m:"如玉可琢，勤学自成，温润而坚定。",t:["温润","雅正"]},
+        {id:"c12",n:"安仁",p:"ān rén",g:"n",cat:"classics",tag:"四书五经",work:"《论语·里仁》",q:"仁者安仁，知者利仁。",cm:["安：安定从容","仁：仁爱宽和"],m:"内心安定，以仁厚待人，温和而自有原则。",t:["温润","雅正"]},
+
+        {id:"t01",n:"云起",p:"yún qǐ",g:"n",cat:"tang",tag:"唐诗",work:"王维《终南别业》",q:"行到水穷处，坐看云起时。",cm:["云：自在舒展","起：蓬勃向上"],m:"从容通达，顺境逆境皆能看见新的生机。",t:["明朗","温润"]},
+        {id:"t02",n:"星垂",p:"xīng chuí",g:"m",cat:"tang",tag:"唐诗",work:"杜甫《旅夜书怀》",q:"星垂平野阔，月涌大江流。",cm:["星：明亮高远","垂：沉静照临"],m:"胸有星野，气象开阔，沉静中自有光芒。",t:["明朗","坚毅"]},
+        {id:"t03",n:"润物",p:"rùn wù",g:"n",cat:"tang",tag:"唐诗",work:"杜甫《春夜喜雨》",q:"随风潜入夜，润物细无声。",cm:["润：温和滋养","物：关怀万有"],m:"温厚体贴，行善无声，给身边人以滋养。",t:["温润","雅正"]},
+        {id:"t04",n:"轻舟",p:"qīng zhōu",g:"n",cat:"tang",tag:"唐诗",work:"李白《早发白帝城》",q:"两岸猿声啼不住，轻舟已过万重山。",cm:["轻：从容洒脱","舟：行稳致远"],m:"一生从容自在，纵有万山亦能轻快向前。",t:["明朗","灵秀"]},
+        {id:"t05",n:"云帆",p:"yún fān",g:"m",cat:"tang",tag:"唐诗",work:"李白《行路难》",q:"长风破浪会有时，直挂云帆济沧海。",cm:["云：高远自在","帆：逐风前行"],m:"志向高远，乘风破浪，始终相信前路。",t:["坚毅","明朗"]},
+        {id:"t06",n:"明月",p:"míng yuè",g:"f",cat:"tang",tag:"唐诗",work:"张九龄《望月怀远》",q:"海上生明月，天涯共此时。",cm:["明：澄澈明亮","月：清雅温柔"],m:"心境澄明，温柔清雅，也寄托长久的牵念。",t:["灵秀","温润"]},
+        {id:"t07",n:"春晖",p:"chūn huī",g:"n",cat:"tang",tag:"唐诗",work:"孟郊《游子吟》",q:"谁言寸草心，报得三春晖。",cm:["春：和暖生机","晖：温暖光辉"],m:"温暖明朗，心怀感恩，如春光照拂身边的人。",t:["温润","明朗"]},
+        {id:"t08",n:"灵犀",p:"líng xī",g:"f",cat:"tang",tag:"唐诗",work:"李商隐《无题》",q:"身无彩凤双飞翼，心有灵犀一点通。",cm:["灵：聪慧灵动","犀：通透敏锐"],m:"聪慧敏锐，善解人意，内心通透明澈。",t:["灵秀","温润"]},
+        {id:"t09",n:"晴川",p:"qíng chuān",g:"n",cat:"tang",tag:"唐诗",work:"崔颢《黄鹤楼》",q:"晴川历历汉阳树，芳草萋萋鹦鹉洲。",cm:["晴：明净开朗","川：舒展通达"],m:"心境明净，人生如长川舒展，明朗而辽阔。",t:["明朗","灵秀"]},
+        {id:"t10",n:"若邻",p:"ruò lín",g:"n",cat:"tang",tag:"唐诗",work:"王勃《送杜少府之任蜀州》",q:"海内存知己，天涯若比邻。",cm:["若：从容柔和","邻：亲近和睦"],m:"真诚亲和，重情重义，虽远亦能心意相通。",t:["温润","雅正"]},
+        {id:"t11",n:"秋池",p:"qiū chí",g:"f",cat:"tang",tag:"唐诗",work:"李商隐《夜雨寄北》",q:"君问归期未有期，巴山夜雨涨秋池。",cm:["秋：澄澈丰盈","池：宁静包容"],m:"清澈宁静，情感丰沛，心中自有一方天地。",t:["灵秀","温润"]},
+        {id:"t12",n:"晚晴",p:"wǎn qíng",g:"f",cat:"tang",tag:"唐诗",work:"李商隐《晚晴》",q:"天意怜幽草，人间重晚晴。",cm:["晚：沉静从容","晴：明朗温暖"],m:"历雨而晴，温柔坚定，珍惜平常日子里的光亮。",t:["温润","明朗"]},
+
+        {id:"s01",n:"疏桐",p:"shū tóng",g:"n",cat:"song",tag:"宋词",work:"苏轼《卜算子·黄州定慧院寓居作》",q:"缺月挂疏桐，漏断人初静。",cm:["疏：通透从容","桐：清雅坚贞"],m:"清朗疏阔，内心安定，保有独立清雅的品格。",t:["灵秀","雅正"]},
+        {id:"s02",n:"清欢",p:"qīng huān",g:"n",cat:"song",tag:"宋词",work:"苏轼《浣溪沙·细雨斜风作晓寒》",q:"人间有味是清欢。",cm:["清：澄澈纯净","欢：喜悦明朗"],m:"知足清醒，能在平常生活里发现真切欢喜。",t:["温润","明朗"]},
+        {id:"s03",n:"徐行",p:"xú xíng",g:"m",cat:"song",tag:"宋词",work:"苏轼《定风波·莫听穿林打叶声》",q:"莫听穿林打叶声，何妨吟啸且徐行。",cm:["徐：从容不迫","行：笃定前行"],m:"风雨之中仍从容前行，豁达而有定力。",t:["坚毅","温润"]},
+        {id:"s04",n:"烟雨",p:"yān yǔ",g:"n",cat:"song",tag:"宋词",work:"苏轼《定风波·莫听穿林打叶声》",q:"竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。",cm:["烟：轻盈旷远","雨：滋养万物"],m:"旷达自在，不畏风雨，内心自有从容天地。",t:["明朗","灵秀"]},
+        {id:"s05",n:"婵娟",p:"chán juān",g:"f",cat:"song",tag:"宋词",work:"苏轼《水调歌头·明月几时有》",q:"但愿人长久，千里共婵娟。",cm:["婵：姿态美好","娟：秀丽清雅"],m:"清雅美好，寄托团圆长久与真挚祝愿。",t:["灵秀","温润"]},
+        {id:"s06",n:"锦书",p:"jǐn shū",g:"f",cat:"song",tag:"宋词",work:"李清照《一剪梅·红藕香残玉簟秋》",q:"云中谁寄锦书来？雁字回时，月满西楼。",cm:["锦：绚丽美好","书：知礼好学"],m:"腹有诗书，情感细腻，人生如锦而有章法。",t:["雅正","灵秀"]},
+        {id:"s07",n:"星河",p:"xīng hé",g:"n",cat:"song",tag:"宋词",work:"李清照《渔家傲·天接云涛连晓雾》",q:"天接云涛连晓雾，星河欲转千帆舞。",cm:["星：明亮高远","河：辽阔绵长"],m:"心有星河，眼界辽阔，明亮而富有想象力。",t:["明朗","灵秀"]},
+        {id:"s08",n:"清圆",p:"qīng yuán",g:"f",cat:"song",tag:"宋词",work:"周邦彦《苏幕遮·燎沉香》",q:"叶上初阳干宿雨，水面清圆，一一风荷举。",cm:["清：清澈高洁","圆：圆融和满"],m:"清澈圆融，温和完整，如雨后荷叶生机自持。",t:["温润","灵秀"]},
+        {id:"s09",n:"风荷",p:"fēng hé",g:"f",cat:"song",tag:"宋词",work:"周邦彦《苏幕遮·燎沉香》",q:"叶上初阳干宿雨，水面清圆，一一风荷举。",cm:["风：自由清朗","荷：高洁生香"],m:"气质清雅，舒展有节，在风中仍保有自己的姿态。",t:["灵秀","雅正"]},
+        {id:"s10",n:"知许",p:"zhī xǔ",g:"f",cat:"song",tag:"宋词",work:"李清照《永遇乐·落日熔金》",q:"染柳烟浓，吹梅笛怨，春意知几许。",cm:["知：聪慧通达","许：从容期许"],m:"知春意、懂分寸，聪慧温柔，对未来怀有期许。",t:["灵秀","温润"]},
+        {id:"s11",n:"阑珊",p:"lán shān",g:"f",cat:"song",tag:"宋词",work:"辛弃疾《青玉案·元夕》",q:"蓦然回首，那人却在，灯火阑珊处。",cm:["阑：沉静有度","珊：珍贵美好"],m:"沉静自持，不逐喧哗，自有被看见的光芒。",t:["灵秀","雅正"]},
+        {id:"s12",n:"兰舟",p:"lán zhōu",g:"n",cat:"song",tag:"宋词",work:"柳永《雨霖铃·寒蝉凄切》",q:"都门帐饮无绪，留恋处，兰舟催发。",cm:["兰：高洁芬芳","舟：坚定远行"],m:"品格如兰，心有远方，温柔而有前行的勇气。",t:["温润","灵秀"]},
+        {id:"s13",n:"轻寒",p:"qīng hán",g:"f",cat:"song",tag:"宋词",work:"秦观《浣溪沙·漠漠轻寒上小楼》",q:"漠漠轻寒上小楼，晓阴无赖似穷秋。",cm:["轻：从容灵动","寒：清澈自守"],m:"清秀灵动，安静自持，气质轻盈而不失坚韧。",t:["灵秀","温润"]},
+
+        {id:"p01",n:"子衿",p:"zǐ jīn",g:"n",cat:"shijing",tag:"诗经",work:"《诗经·郑风·子衿》",q:"青青子衿，悠悠我心。",cm:["子：谦谦君子","衿：文雅学子"],m:"温文有礼，勤学知雅，也寄托深长的牵念。",t:["雅正","温润"]},
+        {id:"p02",n:"其华",p:"qí huá",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·周南·桃夭》",q:"桃之夭夭，灼灼其华。",cm:["其：从容笃定","华：灿烂美好"],m:"生命明媚，丰盛灿然，也有家庭和美的祝愿。",t:["明朗","灵秀"]},
+        {id:"p03",n:"静好",p:"jìng hǎo",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·郑风·女曰鸡鸣》",q:"琴瑟在御，莫不静好。",cm:["静：安宁沉着","好：美善和悦"],m:"岁月安宁，内心和悦，生活温柔而美好。",t:["温润","雅正"]},
+        {id:"p04",n:"令仪",p:"lìng yí",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·小雅·湛露》",q:"岂弟君子，莫不令仪。",cm:["令：美好端正","仪：仪度有礼"],m:"端方知礼，举止从容，内外皆有美好风仪。",t:["雅正","温润"]},
+        {id:"p05",n:"徽音",p:"huī yīn",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·大雅·思齐》",q:"大姒嗣徽音，则百斯男。",cm:["徽：美善嘉德","音：声誉文采"],m:"品德美善，声名清雅，将温柔与力量传续下去。",t:["雅正","灵秀"]},
+        {id:"p06",n:"攸宁",p:"yōu níng",g:"n",cat:"shijing",tag:"诗经",work:"《诗经·小雅·斯干》",q:"哙哙其正，哕哕其冥，君子攸宁。",cm:["攸：从容长远","宁：安定平和"],m:"心有所安，行有所往，一生从容宁定。",t:["温润","雅正"]},
+        {id:"p07",n:"维桢",p:"wéi zhēn",g:"m",cat:"shijing",tag:"诗经",work:"《诗经·大雅·文王》",q:"王国克生，维周之桢。",cm:["维：持守担当","桢：坚实栋梁"],m:"坚定可靠，有持守、有担当，能成为可托付的人。",t:["坚毅","雅正"]},
+        {id:"p08",n:"柔嘉",p:"róu jiā",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·大雅·抑》",q:"敬尔威仪，无不柔嘉。",cm:["柔：温和有韧","嘉：美善可喜"],m:"温柔而有原则，言行美善，亲和且有分寸。",t:["温润","雅正"]},
+        {id:"p09",n:"清扬",p:"qīng yáng",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·郑风·野有蔓草》",q:"有美一人，清扬婉兮。",cm:["清：清澈高洁","扬：舒展明朗"],m:"眉目清朗，气质舒展，既清秀也自信。",t:["灵秀","明朗"]},
+        {id:"p10",n:"琼瑶",p:"qióng yáo",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·卫风·木瓜》",q:"投我以木桃，报之以琼瑶。",cm:["琼：美玉珍贵","瑶：温润光洁"],m:"如美玉温润珍贵，也懂得珍惜与回报真情。",t:["温润","灵秀"]},
+        {id:"p11",n:"景行",p:"jǐng xíng",g:"m",cat:"shijing",tag:"诗经",work:"《诗经·小雅·车舝》",q:"高山仰止，景行行止。",cm:["景：光明高尚","行：践履笃定"],m:"心向高洁，行有准则，光明坦荡而脚踏实地。",t:["坚毅","雅正"]},
+        {id:"p12",n:"文茵",p:"wén yīn",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·秦风·小戎》",q:"文茵畅毂，驾我骐馵。",cm:["文：文雅有章","茵：柔和温暖"],m:"文雅温和，细腻有涵养，给人舒适安定之感。",t:["温润","灵秀"]},
+
+        {id:"q01",n:"怀瑾",p:"huái jǐn",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《九章·怀沙》",q:"怀瑾握瑜兮，穷不知所示。",cm:["怀：胸怀宽广","瑾：美玉之德"],m:"怀抱美德，珍重内心，即使困顿也不改其质。",t:["雅正","坚毅"]},
+        {id:"q02",n:"修远",p:"xiū yuǎn",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"路漫漫其修远兮，吾将上下而求索。",cm:["修：修身自进","远：志向长远"],m:"志在远方，勤于修身，漫漫长路仍求索不息。",t:["坚毅","雅正"]},
+        {id:"q03",n:"望舒",p:"wàng shū",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"前望舒使先驱兮，后飞廉使奔属。",cm:["望：志向高远","舒：从容舒展"],m:"望舒为神话中为月驾车之神，寓意清朗从容、心向远方。",t:["灵秀","明朗"]},
+        {id:"q04",n:"秋兰",p:"qiū lán",g:"f",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"扈江离与辟芷兮，纫秋兰以为佩。",cm:["秋：澄澈丰盈","兰：幽香高洁"],m:"如秋兰清雅自持，温柔有节，不改芬芳。",t:["灵秀","雅正"]},
+        {id:"q05",n:"灵均",p:"líng jūn",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"名余曰正则兮，字余曰灵均。",cm:["灵：聪慧敏锐","均：平和端正"],m:"天资灵慧，心有尺度，聪敏而不失平和。",t:["灵秀","雅正"]},
+        {id:"q06",n:"杜若",p:"dù ruò",g:"f",cat:"chuci",tag:"楚辞",work:"屈原《九歌·山鬼》",q:"山中人兮芳杜若，饮石泉兮荫松柏。",cm:["杜：安静自守","若：柔和从容"],m:"取香草杜若之意，清芬自然，柔美中自有坚持。",t:["灵秀","温润"]},
+        {id:"q07",n:"正则",p:"zhèng zé",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"名余曰正则兮，字余曰灵均。",cm:["正：端方坦荡","则：准则法度"],m:"品行端正，心有准则，坦荡而知分寸。",t:["雅正","坚毅"]},
+        {id:"q08",n:"若英",p:"ruò yīng",g:"f",cat:"chuci",tag:"楚辞",work:"屈原《九歌·云中君》",q:"浴兰汤兮沐芳，华采衣兮若英。",cm:["若：温柔从容","英：花之光华"],m:"如花英明丽，气质清芬，柔和而有光彩。",t:["灵秀","明朗"]},
+        {id:"q09",n:"云旗",p:"yún qí",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"驾八龙之婉婉兮，载云旗之委蛇。",cm:["云：高远自在","旗：志向引领"],m:"气象高远，志向舒展，心怀方向而不失洒脱。",t:["明朗","坚毅"]},
+        {id:"q10",n:"安歌",p:"ān gē",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《九歌·东皇太一》",q:"疏缓节兮安歌，陈竽瑟兮浩倡。",cm:["安：从容宁定","歌：开朗有情"],m:"从容安然，心中有歌，既宁静也有充沛生命力。",t:["温润","明朗"]},
+        {id:"q11",n:"嘉树",p:"jiā shù",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《九章·橘颂》",q:"后皇嘉树，橘徕服兮。",cm:["嘉：美善可喜","树：坚实成长"],m:"如嘉木深根挺立，品性美好，成长坚定。",t:["坚毅","雅正"]},
+        {id:"q12",n:"辰良",p:"chén liáng",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《九歌·东皇太一》",q:"吉日兮辰良，穆将愉兮上皇。",cm:["辰：星辰时序","良：善美贤良"],m:"生逢良辰，心性善美，人生明亮而有秩序。",t:["明朗","雅正"]},
+        {id:"q13",n:"秉德",p:"bǐng dé",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《九章·橘颂》",q:"秉德无私，参天地兮。",cm:["秉：持守坚守","德：仁厚端方"],m:"持守美德，坦荡无私，内心坚定而有担当。",t:["坚毅","雅正"]}
+      ];
+
+      const GUIDE_DOCS = [
+        {id:"g01",title:"有出处不等于生搬原句",cat:"guide",tag:"起名方法",source:"本地知识库·文化出处",content:"典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。两字在原文中相邻最清晰；若是重新组合，应明确说明是取意而不是原句直取，避免给名字附会不存在的出处。"},
+        {id:"g02",title:"姓名音韵要连姓通读",cat:"guide",tag:"起名方法",source:"本地知识库·音韵",content:"判断名字是否顺口，要把姓和名连续朗读。注意声母是否过度重复、韵母是否拗口、声调是否全部挤在同一调类。普通话顺口之外，还应让家人用常用方言多读几遍。"},
+        {id:"g03",title:"优先选择常用规范汉字",cat:"guide",tag:"起名方法",source:"本地知识库·用字",content:"文化感不等于使用生僻字。过于冷僻、容易误读或输入困难的字，可能给证件办理、入学登记和日常交流带来负担。正式确定前，应再核对当地户籍可用字规范。"},
+        {id:"g04",title:"复姓更需要控制名字节奏",cat:"guide",tag:"起名方法",source:"本地知识库·复姓",content:"欧阳、上官、司马等复姓本身已有两个音节。搭配双字名时总长度较长，可优先选择结构简洁、发音清楚的用字；搭配单字名时则要留意整体意象是否完整。"},
+        {id:"g05",title:"方言谐音需要家人共同核验",cat:"guide",tag:"起名方法",source:"本地知识库·谐音",content:"程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。候选名字应分别快速连读、倒序听读，并和常见称呼搭配，由熟悉家庭方言的人一起检查不雅谐音。"},
+        {id:"g06",title:"比较候选名的四个维度",cat:"guide",tag:"起名方法",source:"本地知识库·筛选",content:"比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。不要只依赖一个笼统分数。"},
+        {id:"g07",title:"性别气质只是偏好而非规则",cat:"guide",tag:"起名方法",source:"本地知识库·气质",content:"传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。更重要的是家庭对名字气质的认同，以及孩子未来使用时的舒适感。"},
+        {id:"g08",title:"家族字辈应先于自动推荐",cat:"guide",tag:"起名方法",source:"本地知识库·字辈",content:"如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。系统中的“期望包含”适合完成这类约束，但最终仍需家人确认。"},
+        {id:"g09",title:"八字信息需要明确授权",cat:"guide",tag:"起名方法",source:"本地知识库·隐私",content:"八字与五行归类属于传统民俗文化参考，不代表科学预测。系统只接受用户已确认的四柱和用字倾向，不擅自判断喜用神或吉凶；纯本地模式不上传、不保存，使用模型时还需用户单独勾选授权。"},
+        {id:"g10",title:"最终落名前做一次长期使用检查",cat:"guide",tag:"起名方法",source:"本地知识库·定名",content:"把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。一个好名字既要有文化来处，也要经得起长期日常使用。"}
+      ];
+      const CUSTOM_KB_KEY = "jiaming-custom-knowledge";
+      const CHAT_KEY = "jiaming-chat-history";
+      const FIVE_ELEMENT_CHARS = {
+        木:"林桐兰荷嘉若英华荣森松竹芷茵栩楠",
+        火:"明晖晴星灵灿昭景阳煦照昕曜",
+        土:"安宁均远辰良厚山宇城岚岳",
+        金:"锦书瑾瑜琼瑶知思慎正则钧铭",
+        水:"云雨清河川泽润涵沐江海霖溪冰露寒池"
+      };
+
+      const form = document.getElementById("naming-form");
+      const cards = document.getElementById("cards");
+      const error = document.getElementById("form-error");
+      const title = document.getElementById("result-title");
+      const subtitle = document.getElementById("result-sub");
+      const kicker = document.getElementById("result-kicker");
+      const favoriteToggle = document.getElementById("favorite-toggle");
+      const favoriteCount = document.getElementById("favorite-count");
+      const exportBtn = document.getElementById("export-btn");
+      const toast = document.getElementById("toast");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+      const messages = document.getElementById("messages");
+      const sendBtn = document.getElementById("send-btn");
+      const chatMode = document.getElementById("chat-mode");
+      const retrievalScope = document.getElementById("retrieval-scope");
+      const topKSelect = document.getElementById("top-k");
+      const strictCitations = document.getElementById("strict-citations");
+      const retrievalStatus = document.getElementById("retrieval-status");
+      const aiStatus = document.getElementById("ai-status");
+      const kbCount = document.getElementById("kb-count");
+      const customCount = document.getElementById("custom-count");
+      const shareBaziAI = document.getElementById("share-bazi-ai");
+      let batch = 0;
+      let favoriteMode = false;
+      let current = [];
+      let favorites = loadFavorites();
+      let customKnowledge = loadCustomKnowledge();
+      let chatHistory = loadChatHistory();
+      let aiInfo = {configured:false, provider:"", model:""};
+      let chatPending = false;
+
+      function loadFavorites() {
+        try { return JSON.parse(localStorage.getItem("jiaming-favorites") || "[]"); }
+        catch (_) { return []; }
+      }
+      function loadCustomKnowledge() {
+        try {
+          const data = JSON.parse(localStorage.getItem(CUSTOM_KB_KEY) || "[]");
+          return Array.isArray(data) ? data : [];
+        } catch (_) { return []; }
+      }
+      function loadChatHistory() {
+        try {
+          const data = JSON.parse(localStorage.getItem(CHAT_KEY) || "[]");
+          if (Array.isArray(data) && data.length) return data.slice(-20);
+        } catch (_) {}
+        return [{
+          role:"assistant",
+          content:"你好，我是“问典”。我会先检索本地知识库，再回答你的起名问题。你可以直接描述姓氏、性别、偏好的典籍和名字气质。",
+          citations:[]
+        }];
+      }
+      function saveChatHistory() {
+        try { localStorage.setItem(CHAT_KEY, JSON.stringify(chatHistory.slice(-20))); }
+        catch (_) {}
+      }
+      function saveCustomKnowledge() {
+        try { localStorage.setItem(CUSTOM_KB_KEY, JSON.stringify(customKnowledge)); }
+        catch (_) {}
+        refreshKnowledgeStats();
+      }
+      function saveFavorites() {
+        try { localStorage.setItem("jiaming-favorites", JSON.stringify(favorites)); }
+        catch (_) {}
+        favoriteCount.textContent = favorites.length;
+      }
+      function hash(text) {
+        let h = 2166136261;
+        for (let i = 0; i < text.length; i++) {
+          h ^= text.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return h >>> 0;
+      }
+      function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
+      }
+      function knowledgeDocuments() {
+        const names = NAMES.map(item => ({
+          id:`name-${item.id}`,
+          title:item.n,
+          category:item.cat,
+          tag:item.tag,
+          source:item.work,
+          type:"name",
+          content:`姓名：${item.n}。拼音：${item.p}。原句：${item.q}。字义：${item.cm.join("；")}。整体寓意：${item.m}。气质：${item.t.join("、")}。`,
+          item
+        }));
+        const guides = GUIDE_DOCS.map(item => ({
+          id:item.id,
+          title:item.title,
+          category:item.cat,
+          tag:item.tag,
+          source:item.source,
+          type:"guide",
+          content:item.content
+        }));
+        const custom = customKnowledge.map(item => ({
+          id:item.id,
+          title:item.title,
+          category:"custom",
+          tag:"自建知识",
+          source:item.source || "本机导入",
+          type:"custom",
+          content:item.content
+        }));
+        return [...names, ...guides, ...custom];
+      }
+      function tokenize(text) {
+        const normalized = String(text || "").toLowerCase().replace(/\s+/g, " ");
+        const han = normalized.match(/[\u3400-\u9fff]/g) || [];
+        const terms = [...han];
+        for (let i = 0; i < han.length - 1; i++) terms.push(han[i] + han[i + 1]);
+        const latin = normalized.match(/[a-z0-9]{2,}/g) || [];
+        return [...new Set([...terms, ...latin])];
+      }
+      function retrieveKnowledge(query) {
+        const scope = retrievalScope.value;
+        const topK = Number(topKSelect.value) || 5;
+        const wantsGirl = /女孩|女宝|女生/.test(query);
+        const wantsBoy = /男孩|男宝|男生/.test(query);
+        let docs = knowledgeDocuments().filter(doc => scope === "all" || doc.category === scope);
+        docs = docs.filter(doc => {
+          if (doc.type !== "name") return true;
+          if (wantsGirl && doc.item.g === "m") return false;
+          if (wantsBoy && doc.item.g === "f") return false;
+          return true;
+        });
+        const queryTerms = tokenize(query);
+        if (!queryTerms.length) return [];
+        const tokenSets = docs.map(doc => new Set(tokenize(`${doc.title} ${doc.tag} ${doc.source} ${doc.content}`)));
+        const documentFrequency = new Map();
+        tokenSets.forEach(set => set.forEach(term => documentFrequency.set(term, (documentFrequency.get(term) || 0) + 1)));
+        const sourceWords = {classics:"四书五经",tang:"唐诗",song:"宋词",shijing:"诗经",chuci:"楚辞",guide:"起名方法",custom:"自建知识"};
+        const scored = docs.map((doc, index) => {
+          const haystack = `${doc.title} ${doc.tag} ${doc.source} ${doc.content}`.toLowerCase();
+          let score = 0;
+          queryTerms.forEach(term => {
+            if (!tokenSets[index].has(term)) return;
+            const idf = Math.log((docs.length + 1) / ((documentFrequency.get(term) || 0) + 1)) + 1;
+            const weight = term.length > 1 ? 4 : .75;
+            score += idf * weight;
+            if (doc.title.includes(term)) score += 4;
+            if (doc.source.includes(term) || doc.tag.includes(term)) score += 2;
+          });
+          if (query.includes(doc.title)) score += 18;
+          const categoryWord = sourceWords[doc.category];
+          if (categoryWord && query.includes(categoryWord)) score += 7;
+          if (doc.type === "name" && doc.item.t.some(trait => query.includes(trait))) score += 8;
+          return {doc, score};
+        }).filter(item => item.score > 0);
+        scored.sort((a,b) => b.score - a.score);
+        return scored.slice(0, topK);
+      }
+      function extractSurname(question) {
+        const before = question.match(/([\u3400-\u9fff]{1,2})姓(?:男孩|女孩|男宝|女宝|宝宝)?/);
+        if (before) return before[1];
+        const after = question.match(/姓(?:氏是|氏为|是|为)?([\u3400-\u9fff]{1,2})/);
+        if (after) return after[1];
+        return document.getElementById("surname").value.trim() || "林";
+      }
+      function localAnswer(question, hits) {
+        if (!hits.length) {
+          return "这次没有检索到足够相关的知识。可以换一种说法，或把检索范围改成“全部知识”；也可以导入自己的家族字辈和用字要求后再问。";
+        }
+        const methodQuestion = /怎样|如何|注意|兼顾|方法|原则|谐音|生僻|户籍|字辈|比较/.test(question);
+        const guideHits = hits.filter(hit => hit.doc.type !== "name");
+        const nameHits = hits.filter(hit => hit.doc.type === "name");
+        if (methodQuestion && guideHits.length) {
+          return `我从起名方法知识中整理出以下要点：\n\n${guideHits.slice(0,4).map((hit, index) =>
+            `${index + 1}. ${hit.doc.title}：${hit.doc.content} [${index + 1}]`
+          ).join("\n\n")}\n\n建议把文化出处、连姓音韵、方言谐音和长期使用便利性一起判断。`;
+        }
+        if (nameHits.length) {
+          const surname = extractSurname(question);
+          const picks = nameHits.slice(0,4);
+          return `我从本地典籍库中检索到 ${picks.length} 个较贴近描述的候选：\n\n${picks.map((hit, index) => {
+            const item = hit.doc.item;
+            return `${index + 1}. ${surname}${item.n}（${item.p}）\n出处：${item.work}，“${item.q}”\n寓意：${item.m} [${index + 1}]`;
+          }).join("\n\n")}\n\n可以再告诉我希望避开的字、方言地区或家族字辈，我会继续缩小范围。`;
+        }
+        return `检索到以下相关知识：\n\n${hits.slice(0,4).map((hit, index) =>
+          `${index + 1}. ${hit.doc.title}：${hit.doc.content} [${index + 1}]`
+        ).join("\n\n")}`;
+      }
+      function citationMarkup(citations) {
+        if (!citations || !citations.length) return "";
+        return `<div class="citations"><div class="citation-title">本次检索来源</div>${citations.map((item, index) =>
+          `<span class="citation-item">[${index + 1}] ${escapeHTML(item.title)} · ${escapeHTML(item.source)}</span>`
+        ).join("")}</div>`;
+      }
+      function renderMessages() {
+        const content = chatHistory.map(message => {
+          const roleLabel = message.role === "user" ? "你的问题" : "问典回答";
+          const roleClass = message.role === "user" ? "user" : "assistant-message";
+          return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(message.content)}</div>${message.role === "assistant" ? citationMarkup(message.citations) : ""}`;
+        }).join("");
+        const pending = chatPending
+          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>正在检索知识并组织回答……</div>`
+          : "";
+        messages.innerHTML = content + pending;
+        messages.scrollTop = messages.scrollHeight;
+      }
+      function refreshKnowledgeStats() {
+        kbCount.textContent = knowledgeDocuments().length;
+        customCount.textContent = `自建 ${customKnowledge.length}`;
+      }
+      async function checkAIStatus() {
+        if (location.protocol === "file:") {
+          aiStatus.textContent = "需启动 AI 服务版";
+          return;
+        }
+        try {
+          const response = await fetch("/api/chat", {headers:{accept:"application/json"}});
+          if (!response.ok) throw new Error("status unavailable");
+          aiInfo = await response.json();
+          aiStatus.textContent = aiInfo.configured ? `${aiInfo.provider} · ${aiInfo.model}` : "模型未配置";
+        } catch (_) {
+          aiStatus.textContent = "服务未连接";
+        }
+      }
+      function profileContext(forAI = false) {
+        const settings = getSettings();
+        const profile = {
+          surname:settings.surname,
+          gender:settings.gender,
+          preferredSources:settings.sources,
+          temperament:settings.temperament,
+          include:settings.include,
+          avoid:settings.avoid
+        };
+        if (settings.useBazi && (!forAI || shareBaziAI.checked)) {
+          profile.bazi = settings.bazi;
+          profile.baziElement = settings.baziElement;
+          profile.baziNotice = "八字与五行只作传统文化偏好；不得据此断言吉凶或擅自推算喜用神。";
+        }
+        return profile;
+      }
+      async function callAI(question, hits) {
+        const context = hits.map((hit, index) => ({
+          index:index + 1,
+          title:hit.doc.title,
+          source:hit.doc.source,
+          content:hit.doc.content.slice(0, 1400)
+        }));
+        const response = await fetch("/api/chat", {
+          method:"POST",
+          headers:{"content-type":"application/json"},
+          body:JSON.stringify({
+            messages:chatHistory.slice(-8).map(message => ({role:message.role, content:message.content})),
+            question,
+            context,
+            strict:strictCitations.checked,
+            profile:profileContext(true),
+            requestedMode:chatMode.value
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || "AI 模型暂时不可用");
+        return data.answer;
+      }
+      async function askQuestion(question) {
+        const value = question.trim();
+        if (!value || chatPending) return;
+        const localProfile = profileContext(false);
+        const profileTerms = [
+          localProfile.gender === "f" ? "女孩" : localProfile.gender === "m" ? "男孩" : "",
+          ...(localProfile.preferredSources || []).map(cat => ({classics:"四书五经",tang:"唐诗",song:"宋词",shijing:"诗经",chuci:"楚辞"}[cat] || "")),
+          localProfile.temperament === "any" ? "" : localProfile.temperament,
+          localProfile.baziElement ? `${localProfile.baziElement}意` : ""
+        ].filter(Boolean).join(" ");
+        const hits = retrieveKnowledge(`${value} ${profileTerms}`);
+        const citations = hits.map(hit => ({title:hit.doc.title, source:hit.doc.source}));
+        chatHistory.push({role:"user", content:value});
+        chatInput.value = "";
+        chatPending = true;
+        sendBtn.disabled = true;
+        retrievalStatus.textContent = `已召回 ${hits.length} 条知识，正在组织回答`;
+        renderMessages();
+        let answer;
+        if (chatMode.value !== "local") {
+          try {
+            answer = await callAI(value, hits);
+          } catch (err) {
+            answer = `AI 服务未连接，已切换为本地知识库回答。\n\n${localAnswer(value, hits)}`;
+            showToast(err.message || "AI 服务未连接");
+          }
+        } else {
+          answer = localAnswer(value, hits);
+        }
+        chatHistory.push({role:"assistant", content:answer, citations});
+        chatHistory = chatHistory.slice(-20);
+        chatPending = false;
+        sendBtn.disabled = false;
+        retrievalStatus.textContent = `本次使用 ${hits.length} 条检索结果`;
+        saveChatHistory();
+        renderMessages();
+      }
+      async function importKnowledgeFile(file) {
+        if (!file) return;
+        if (file.size > 1024 * 1024) throw new Error("文件请控制在 1MB 以内");
+        const text = await file.text();
+        let items = [];
+        if (file.name.toLowerCase().endsWith(".json")) {
+          const parsed = JSON.parse(text);
+          if (!Array.isArray(parsed)) throw new Error("JSON 顶层需要是数组");
+          items = parsed.map((item, index) => ({
+            title:String(item.title || `导入知识 ${index + 1}`),
+            content:String(item.content || item.text || ""),
+            source:String(item.source || file.name)
+          }));
+        } else {
+          items = text.split(/\n\s*\n/).map((block, index) => {
+            const clean = block.trim();
+            const firstLine = clean.split("\n")[0].replace(/^#+\s*/, "").slice(0, 60);
+            return {title:firstLine || `导入知识 ${index + 1}`, content:clean, source:file.name};
+          });
+        }
+        const stamp = Date.now();
+        const normalized = items.filter(item => item.content.trim()).slice(0,100).map((item,index) => ({
+          id:`custom-${stamp}-${index}`,
+          title:item.title.slice(0,80),
+          content:item.content.slice(0,4000),
+          source:item.source.slice(0,100)
+        }));
+        customKnowledge = [...customKnowledge, ...normalized].slice(-200);
+        saveCustomKnowledge();
+        showToast(`已导入 ${normalized.length} 条知识`);
+      }
+      function getSettings() {
+        const data = new FormData(form);
+        return {
+          surname: document.getElementById("surname").value.trim(),
+          gender: data.get("gender"),
+          length: data.get("nameLength"),
+          sources: data.getAll("source"),
+          birth: `${data.get("birthDate") || ""}${data.get("birthTime") || ""}`,
+          useBazi: data.get("useBazi") === "on",
+          bazi: String(data.get("baziPillars") || "").replace(/\s+/g, " ").trim(),
+          baziElement: String(data.get("baziElement") || ""),
+          include: document.getElementById("include-char").value.trim(),
+          avoid: document.getElementById("avoid-char").value.trim(),
+          temperament: document.getElementById("temperament").value
+        };
+      }
+      function toLength(seed, length, salt) {
+        if (length !== "1") return {...seed, given: seed.n, py: seed.p, charMeanings: seed.cm};
+        const idx = hash(seed.id + salt) % seed.n.length;
+        const parts = seed.p.split(" ");
+        return {
+          ...seed,
+          id: seed.id + "-" + idx,
+          given: seed.n[idx],
+          py: parts[idx] || parts[0],
+          charMeanings: [seed.cm[idx] || seed.cm[0]]
+        };
+      }
+      function buildCandidates(settings) {
+        const sources = settings.sources.length ? settings.sources : ["classics","tang","song","shijing","chuci"];
+        const seedKey = settings.surname + settings.birth + settings.gender + settings.temperament +
+          (settings.useBazi ? settings.bazi + settings.baziElement : "") + batch;
+        let pool = NAMES.filter(item =>
+          sources.includes(item.cat) &&
+          (settings.gender === "any" || item.g === "n" || item.g === settings.gender)
+        );
+        const lengths = settings.length === "any" ? ["2","1"] : [settings.length];
+        let transformed = [];
+        lengths.forEach(len => pool.forEach(item => transformed.push(toLength(item, len, seedKey))));
+        if (settings.avoid) transformed = transformed.filter(item => ![...settings.avoid].some(ch => item.given.includes(ch)));
+        const seen = new Set();
+        transformed = transformed.filter(item => {
+          if (seen.has(item.given)) return false;
+          seen.add(item.given);
+          return true;
+        });
+        transformed.forEach(item => {
+          item.score = hash(item.id + seedKey);
+          item.elementMatch = "";
+          if (settings.include && item.given.includes(settings.include)) item.score -= 1000000000;
+          if (settings.temperament !== "any" && item.t.includes(settings.temperament)) item.score -= 500000000;
+          if (settings.useBazi && settings.baziElement) {
+            const elementChars = FIVE_ELEMENT_CHARS[settings.baziElement] || "";
+            if ([...item.given].some(ch => elementChars.includes(ch))) {
+              item.score -= 750000000;
+              item.elementMatch = settings.baziElement;
+            }
+          }
+        });
+        transformed.sort((a,b) => a.score - b.score);
+        return transformed.slice(0, 6);
+      }
+      function isSaved(item) {
+        return favorites.some(f => f.key === item.key);
+      }
+      function renderCard(item, index) {
+        const saved = isSaved(item);
+        const meanings = item.charMeanings.map((value, idx) => {
+          const parts = value.split("：");
+          const char = item.given[idx] || item.given[0];
+          return `<div class="char-meaning"><span class="char-box">${escapeHTML(char)}</span><span class="char-copy"><strong>${escapeHTML(parts[0] || char)}</strong>${escapeHTML(parts[1] || value)}</span></div>`;
+        }).join("");
+        return `<article class="name-card" data-mark="${escapeHTML(item.given[item.given.length-1])}" style="animation-delay:${index*45}ms">
+          <div class="card-top">
+            <div><div class="full-name">${escapeHTML(item.fullName)}</div><div class="pinyin">${escapeHTML(item.py)}</div></div>
+            <button class="heart ${saved ? "saved" : ""}" type="button" data-favorite="${escapeHTML(item.key)}" aria-label="${saved ? "取消收藏" : "收藏"}${escapeHTML(item.fullName)}">${saved ? "♥" : "♡"}</button>
+          </div>
+          <blockquote class="quote">“${escapeHTML(item.q)}”</blockquote>
+          <div class="source-line"><span class="source-tag">${escapeHTML(item.tag)}</span><span>${escapeHTML(item.work)}</span></div>
+          <div class="char-meanings ${item.given.length === 1 ? "single" : ""}">${meanings}</div>
+          <div class="meaning"><strong>整体寓意</strong>${escapeHTML(item.m)}</div>
+          <div class="card-foot"><div class="traits">${item.t.map(t => `<span class="trait">${escapeHTML(t)}</span>`).join("")}${item.elementMatch ? `<span class="trait">${escapeHTML(item.elementMatch)}意参考</span>` : ""}</div><button class="copy-btn" type="button" data-copy="${escapeHTML(item.fullName)}">复制姓名</button></div>
+        </article>`;
+      }
+      function render(list, settings, mode) {
+        current = list.map(item => ({
+          ...item,
+          fullName: item.fullName || settings.surname + item.given,
+          key: item.key || `${settings.surname}${item.given}|${item.id}`
+        }));
+        if (!current.length) {
+          cards.innerHTML = `<div class="empty">暂时没有符合全部条件的名字。<br>可以减少避开用字，或多选一个典籍范围再试。</div>`;
+        } else {
+          cards.innerHTML = current.map(renderCard).join("");
+        }
+        title.textContent = mode ? `已收藏 ${current.length} 个名字` : `为“${settings.surname}”姓宝宝择得${toChineseNumber(current.length)}名`;
+        subtitle.textContent = mode ? "收藏保存在当前浏览器，可导出为文本与家人一起斟酌。" :
+          settings.useBazi && settings.baziElement
+            ? `已按你指定的“${settings.baziElement}意”用字倾向优先排序；该归类仅作民俗文化参考。`
+            : "每个名字，都有清晰的文化出处、原句与字义说明。";
+        kicker.textContent = mode ? "藏卷 · 心选" : `卷${toChineseNumber(batch + 1)} · 寻章`;
+        favoriteCount.textContent = favorites.length;
+        favoriteToggle.classList.toggle("active", mode);
+      }
+      function toChineseNumber(num) {
+        return ["零","一","二","三","四","五","六","七","八","九","十"][num] || String(num);
+      }
+      function validate(settings) {
+        if (!/^[\u3400-\u9fff]{1,2}$/.test(settings.surname)) return "请输入 1—2 个汉字姓氏。";
+        if (settings.include && !/^[\u3400-\u9fff]{1,2}$/.test(settings.include)) return "“期望包含”请填写 1—2 个汉字。";
+        if (settings.avoid && !/^[\u3400-\u9fff]{1,8}$/.test(settings.avoid)) return "“避开用字”请只填写汉字。";
+        if (settings.useBazi && !/^([甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥]\s*){4}$/.test(settings.bazi)) {
+          return "启用八字参考后，请填写完整四柱，例如“甲辰 丁卯 丙子 戊戌”。";
+        }
+        return "";
+      }
+      function generate(forceBatch) {
+        const settings = getSettings();
+        const message = validate(settings);
+        error.textContent = message;
+        if (message) return;
+        if (forceBatch) batch++;
+        favoriteMode = false;
+        render(buildCandidates(settings), settings, false);
+      }
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600);
+      }
+      function toggleFavorite(key) {
+        const item = current.find(x => x.key === key);
+        const idx = favorites.findIndex(f => f.key === key);
+        if (idx >= 0) {
+          favorites.splice(idx, 1);
+          showToast("已取消收藏");
+        } else if (item) {
+          favorites.push(item);
+          showToast("已收藏到本机");
+        }
+        saveFavorites();
+        if (favoriteMode) render(favorites, getSettings(), true);
+        else render(current, getSettings(), false);
+      }
+      async function copyName(name) {
+        try {
+          if (navigator.clipboard && location.protocol !== "file:") await navigator.clipboard.writeText(name);
+          else {
+            const area = document.createElement("textarea");
+            area.value = name;
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            area.remove();
+          }
+          showToast(`已复制：${name}`);
+        } catch (_) { showToast("请长按姓名手动复制"); }
+      }
+      function exportFavorites() {
+        if (!favorites.length) return showToast("还没有收藏名字");
+        const text = favorites.map((f, i) =>
+          `${i+1}. ${f.fullName}（${f.py}）\n出处：${f.work}\n原句：${f.q}\n寓意：${f.m}`
+        ).join("\n\n");
+        const blob = new Blob([`嘉名 · 宝宝姓名收藏\n\n${text}\n\n仅供起名灵感参考。`], {type:"text/plain;charset=utf-8"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "宝宝姓名收藏.txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+        showToast("收藏已导出");
+      }
+
+      form.addEventListener("submit", event => { event.preventDefault(); batch = 0; generate(false); });
+      document.getElementById("refresh-btn").addEventListener("click", () => generate(true));
+      favoriteToggle.addEventListener("click", () => {
+        favoriteMode = !favoriteMode;
+        if (favoriteMode) render(favorites, getSettings(), true);
+        else generate(false);
+      });
+      exportBtn.addEventListener("click", exportFavorites);
+      cards.addEventListener("click", event => {
+        const favorite = event.target.closest("[data-favorite]");
+        const copy = event.target.closest("[data-copy]");
+        if (favorite) toggleFavorite(favorite.dataset.favorite);
+        if (copy) copyName(copy.dataset.copy);
+      });
+      chatForm.addEventListener("submit", event => {
+        event.preventDefault();
+        askQuestion(chatInput.value);
+      });
+      chatInput.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          chatForm.requestSubmit();
+        }
+      });
+      document.querySelectorAll(".prompt-chip").forEach(button => {
+        button.addEventListener("click", () => askQuestion(button.textContent));
+      });
+      document.getElementById("kb-file").addEventListener("change", async event => {
+        try { await importKnowledgeFile(event.target.files[0]); }
+        catch (err) { showToast(err.message || "知识导入失败"); }
+        event.target.value = "";
+      });
+      document.getElementById("clear-kb").addEventListener("click", () => {
+        if (!customKnowledge.length) return showToast("自建知识库已经是空的");
+        customKnowledge = [];
+        saveCustomKnowledge();
+        showToast("已清空自建知识");
+      });
+      document.getElementById("clear-chat").addEventListener("click", () => {
+        chatHistory = [{
+          role:"assistant",
+          content:"对话已清空。告诉我姓氏、性别、偏好的典籍和名字气质，我会先检索知识库再回答。",
+          citations:[]
+        }];
+        saveChatHistory();
+        renderMessages();
+      });
+      chatMode.addEventListener("change", () => {
+        if (chatMode.value !== "local" && location.protocol === "file:") {
+          showToast("请使用“启动Codex订阅版.bat”开启模型服务");
+        }
+        checkAIStatus();
+      });
+      saveFavorites();
+      generate(false);
+      refreshKnowledgeStats();
+      renderMessages();
+      checkAIStatus();
+    })();
+  </script>
+</body>
+</html>
