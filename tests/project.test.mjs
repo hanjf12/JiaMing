@@ -33,6 +33,9 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.match(html, /data-ask-name/);
   assert.match(html, /已自动改用本地知识库回答/);
   assert.match(html, /function cardSourceText/);
+  assert.match(html, /function compositionModeLabel/);
+  assert.match(html, /构成说明/);
+  assert.match(html, /跨典合意/);
   assert.match(html, /const references = hasNameCards \? "" : citationMarkup/);
   assert.match(html, /LLM Agent（自主检索）/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
@@ -116,6 +119,19 @@ test("package has no third-party runtime dependencies", async () => {
   const pkg = JSON.parse(await read("../package.json"));
   assert.equal(pkg.type, "module");
   assert.equal(pkg.license, "MIT");
+  assert.equal(pkg.repository.url, "git+https://github.com/hanjf12/JiaMing.git");
+  assert.equal(pkg.scripts.doctor, "node scripts/doctor.mjs");
   assert.deepEqual(pkg.dependencies || {}, {});
   assert.deepEqual(pkg.devDependencies || {}, {});
+});
+
+test("installation guide documents system dependencies and both model routes", async () => {
+  const guide = await read("../docs/installation.zh-CN.md");
+  assert.match(guide, /git clone https:\/\/github\.com\/hanjf12\/JiaMing\.git/);
+  assert.match(guide, /npm install -g @openai\/codex@latest/);
+  assert.match(guide, /codex login/);
+  assert.match(guide, /npm run doctor/);
+  assert.match(guide, /Responses API/);
+  assert.match(guide, /Windows/);
+  assert.match(guide, /macOS/);
 });

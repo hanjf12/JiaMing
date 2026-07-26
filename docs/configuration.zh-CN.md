@@ -9,14 +9,17 @@
 两种模式都需要：
 
 - Node.js 22.13 或更高版本；
-- Codex CLI；
+- 最新版 Codex CLI，且 `codex exec` 支持 `--ephemeral`、`--output-schema`、`--output-last-message`、`--sandbox` 与 `--json`；
 - 项目内已经构建好的 Wiki 与原文索引。
 
 ```bash
 node --version
 codex --version
+npm run doctor
 node src/server.mjs
 ```
+
+安装、克隆、Windows/macOS 启动和常见问题见[完整安装与运行说明](installation.zh-CN.md)。
 
 首次配置可复制模板：
 

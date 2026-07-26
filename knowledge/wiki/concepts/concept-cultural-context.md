@@ -20,4 +20,4 @@ keywords: ["古义", "今义", "语境", "情绪", "现代联想"]
 ## 关联
 
 - 前向链接：[[concept-source-verification|出处核验]]、[[concept-direct-or-inspired|原句直取与取意重组]]
-- 反向链接：[[source-zhouyi|《周易》来源页]]、[[source-liji|《礼记》来源页]]、[[source-shijing|《诗经》来源页]]、[[source-chuci|《楚辞》来源页]]、[[source-tang-poetry|唐诗来源页]]、[[source-song-ci|宋词来源页]]、[[concept-source-verification|出处核验]]、[[comparison-classic-vs-practical|古典感与实用性]]、[[source-thirteen-classics|完整四书五经与十三经语料]]、[[source-complete-song|全宋诗与全宋词本地原文库]]
+- 反向链接：[[source-zhouyi|《周易》来源页]]、[[source-liji|《礼记》来源页]]、[[source-shijing|《诗经》来源页]]、[[source-chuci|《楚辞》来源页]]、[[source-tang-poetry|唐诗来源页]]、[[source-song-ci|宋词来源页]]、[[concept-source-verification|出处核验]]、[[concept-multi-route-generation|多路线候选生成与筛选]]、[[comparison-classic-vs-practical|古典感与实用性]]、[[source-thirteen-classics|完整四书五经与十三经语料]]、[[source-complete-song|全宋诗与全宋词本地原文库]]

@@ -13,6 +13,25 @@ Jiaming is a local-first Chinese baby-naming application with traceable literary
 - Windows and macOS launchers.
 - No third-party runtime packages; Node.js 22.13+ is required.
 
+## Requirements
+
+- Git for cloning and updates.
+- Node.js 22.13 or newer.
+- The latest Codex CLI in both subscription and third-party modes.
+- A ChatGPT/Codex login for subscription mode, or a Responses-compatible endpoint with tool calling and structured outputs for third-party mode.
+
+Clone and check the environment:
+
+```bash
+git clone https://github.com/hanjf12/JiaMing.git
+cd JiaMing
+npm install -g @openai/codex@latest
+codex login
+npm run doctor
+```
+
+The application itself has no npm dependencies, so `npm install` is not required. Codex CLI is a user-level Agent runtime and should be installed globally. See the [complete Chinese installation guide](docs/installation.zh-CN.md) and the official [Codex CLI](https://developers.openai.com/codex/cli) and [authentication](https://developers.openai.com/codex/auth) documentation.
+
 ## Run
 
 On Windows, double-click `start-windows.bat`. On macOS:

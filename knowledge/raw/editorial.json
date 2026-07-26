@@ -139,8 +139,21 @@
     "status": "verified",
     "summary": "原句相邻字词可称直取；跨句、换序或另行组合应称取意。",
     "body": "两种方式都可以形成好名字，但说明必须准确。直取应给出完整原句，取意重组应解释组合逻辑并避免声称原文中存在该固定词组。",
-    "links": ["concept-source-verification", "comparison-classic-vs-practical"],
+    "links": ["concept-source-verification", "concept-multi-route-generation", "comparison-classic-vs-practical"],
     "keywords": ["直取", "取意", "重组", "典故", "附会"]
+  },
+  {
+    "id": "concept-multi-route-generation",
+    "type": "concept",
+    "title": "多路线候选生成与筛选",
+    "category": "guide",
+    "tag": "候选生成",
+    "source": "本地知识库·产品方法",
+    "status": "verified",
+    "summary": "文化出处是证据，不应成为机械截取连续两字的限制。",
+    "body": "候选分为三类：原文相邻字词属于“原文直取”；同篇、同章或同一典故中的非相邻字词重组属于“同篇化用”；两个分别核验的来源共同构成名字属于“跨典合意”。生成时先扩大候选池，再检查原文语境、连姓音韵、多音字、生僻字、谐音、现代联想与长期使用成本，最后按语义差异去重。六个结果通常可采用一项直取、三项同篇化用和两项跨典合意；可靠来源不足时宁可减少候选，也不伪造出处。跨典合意必须分别保留两个原句和组合理由。",
+    "links": ["concept-direct-or-inspired", "concept-source-verification", "concept-full-name-phonology", "concept-cultural-context", "concept-long-term-use"],
+    "keywords": ["多路线", "原文直取", "同篇化用", "跨典合意", "候选池", "筛选", "多样性"]
   },
   {
     "id": "concept-full-name-phonology",
@@ -334,7 +347,7 @@
     "status": "verified",
     "summary": "直取证据链清楚，取意组合更自由；两者关键差别是说明是否诚实准确。",
     "body": "重视出处可追溯时优先原句相邻词；重视连姓音韵或字辈约束时可取意重组。无论哪种，都应保存原句和组合理由。",
-    "links": ["concept-direct-or-inspired", "concept-source-verification"],
+    "links": ["concept-direct-or-inspired", "concept-multi-route-generation", "concept-source-verification"],
     "keywords": ["直取", "取意", "出处", "组合", "字辈"]
   },
   {

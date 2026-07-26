@@ -13,7 +13,7 @@ fi
 if codex login status; then
   echo "Codex 订阅已经登录，无需配置 API Key。"
 else
-  echo "即将登录 ChatGPT / Codex 订阅。"
-  codex login --device-auth
+  echo "即将通过浏览器登录 ChatGPT / Codex 订阅。"
+  codex login
   codex login status
 fi

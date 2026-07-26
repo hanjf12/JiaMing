@@ -499,6 +499,12 @@
       "category": "guide"
     },
     {
+      "id": "concept-multi-route-generation",
+      "title": "多路线候选生成与筛选",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
       "id": "concept-full-name-phonology",
       "title": "连姓音韵",
       "type": "concept",
@@ -1798,7 +1804,37 @@
     },
     {
       "source": "concept-direct-or-inspired",
+      "target": "concept-multi-route-generation",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-direct-or-inspired",
       "target": "comparison-classic-vs-practical",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-multi-route-generation",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-multi-route-generation",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-multi-route-generation",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-multi-route-generation",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-multi-route-generation",
+      "target": "concept-long-term-use",
       "type": "wikilink"
     },
     {
@@ -1964,6 +2000,11 @@
     {
       "source": "comparison-direct-vs-inspired",
       "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-direct-vs-inspired",
+      "target": "concept-multi-route-generation",
       "type": "wikilink"
     },
     {

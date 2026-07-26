@@ -1,6 +1,6 @@
 # 嘉名知识目录
 
-> 版本 bcc4eccdbd01 · 104 页 · 104 检索块 · 283 条关联
+> 版本 fd2c7f916310 · 105 页 · 105 检索块 · 290 条关联
 
 ## 典籍与来源
 
@@ -21,6 +21,7 @@
 
 - [[concept-source-verification|出处核验]] · guide · verified
 - [[concept-direct-or-inspired|原句直取与取意重组]] · guide · verified
+- [[concept-multi-route-generation|多路线候选生成与筛选]] · guide · verified
 - [[concept-full-name-phonology|连姓音韵]] · guide · verified
 - [[concept-tone-pattern|声调节奏]] · guide · review
 - [[concept-compound-surname|复姓节奏]] · guide · verified

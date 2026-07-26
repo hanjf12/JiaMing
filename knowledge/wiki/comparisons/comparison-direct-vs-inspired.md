@@ -19,5 +19,5 @@ keywords: ["直取", "取意", "出处", "组合", "字辈"]
 
 ## 关联
 
-- 前向链接：[[concept-direct-or-inspired|原句直取与取意重组]]、[[concept-source-verification|出处核验]]
+- 前向链接：[[concept-direct-or-inspired|原句直取与取意重组]]、[[concept-multi-route-generation|多路线候选生成与筛选]]、[[concept-source-verification|出处核验]]
 - 反向链接：暂无

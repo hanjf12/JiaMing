@@ -4,12 +4,21 @@
   "description": "中文宝宝起名与经典原文检索 Agent，支持 Codex 订阅和第三方 Responses 兼容模型。",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanjf12/JiaMing.git"
+  },
+  "homepage": "https://github.com/hanjf12/JiaMing#readme",
+  "bugs": {
+    "url": "https://github.com/hanjf12/JiaMing/issues"
+  },
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
     "start": "node src/server.mjs",
     "start:lan": "node src/server.mjs --lan",
+    "doctor": "node scripts/doctor.mjs",
     "wiki:build": "node scripts/build-wiki.mjs",
     "wiki:lint": "node scripts/lint-wiki.mjs",
     "wiki:check": "npm run wiki:build && npm run wiki:lint",

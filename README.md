@@ -2,14 +2,16 @@
 
 嘉名是一个本地优先、可追溯出处的中文宝宝起名项目。它将四书五经、十三经、唐诗、宋诗、宋词、元曲等本地语料做成可检索知识库，并让 Codex Agent 自主运行只读 Shell 命令核对原文、阅读 Wiki，再生成名字建议。
 
-[English](README.en.md) · [模型配置](docs/configuration.zh-CN.md) · [文件原生 LLM Wiki](docs/file-native-llm-wiki.zh-CN.md) · [产品与开源调研](docs/product-research.zh-CN.md)
+[English](README.en.md) · [完整安装与运行](docs/installation.zh-CN.md) · [模型配置](docs/configuration.zh-CN.md) · [文件原生 LLM Wiki](docs/file-native-llm-wiki.zh-CN.md) · [产品与开源调研](docs/product-research.zh-CN.md)
 
 ## 功能
 
 - 中文单姓、复姓，单字名和双字名。
 - 典籍偏好、性别气质、包含字、避开字、收藏与导出。
 - 接受用户已确认的出生四柱和五行用字倾向，仅作传统文化偏好。
-- 104 页互链 Wiki 与 345,579 条本机经典原文索引。
+- 105 页互链 Wiki 与 345,579 条本机经典原文索引。
+- Agent 采用“原文直取、同篇化用、跨典合意”三条候选路线，先扩展候选池，再按出处、语境、连姓音韵与长期使用成本筛选。
+- 问答中的姓名卡片会标明构成方式、原句、组合理由、音律和风险提醒，不用本地文件路径干扰选择。
 - 统一 Agent 链路：直接用 `read / grep / find` 等只读 Shell 命令查看文件知识库，不启动 MCP。
 - 两种模型配置：
   - Codex 订阅：使用本机已登录的 Codex CLI，不需要 API Key。
@@ -18,14 +20,43 @@
 
 ## 环境要求
 
-- Node.js 22.13 或更高版本。项目使用 Node 内置的 `node:sqlite`。
-- Codex CLI。两种模式都使用它提供 Agent 循环和 Shell 工具。
+- Git，用于克隆和更新仓库。
+- Node.js 22.13 或更高版本；项目使用 Node 内置的 `node:sqlite`。
+- 最新版 Codex CLI；两种模式都使用它提供 Agent 循环、结构化输出和只读 Shell。
 - Codex 订阅模式需要有效的 ChatGPT/Codex 登录。
-- 第三方模式要求端点兼容 OpenAI Responses API，并支持函数/工具调用。
+- 第三方模式要求端点兼容 OpenAI Responses API，并支持工具调用与结构化输出。
+- `rg` 为可选加速工具；没有时自动回退到 PowerShell 或 macOS 原生命令。
 
-项目没有第三方运行时依赖，克隆后无需执行 `npm install`。
+项目没有第三方 npm 运行时依赖，克隆后无需执行 `npm install`。Codex CLI 是用户级 Agent 运行时，应全局安装，不写入本项目的 `dependencies`。详见[完整安装与运行说明](docs/installation.zh-CN.md)。
 
 ## 快速开始
+
+克隆并进入项目：
+
+```bash
+git clone https://github.com/hanjf12/JiaMing.git
+cd JiaMing
+```
+
+安装 Codex CLI：
+
+```bash
+npm install -g @openai/codex@latest
+codex --version
+```
+
+Codex 订阅用户登录：
+
+```bash
+codex login
+codex login status
+```
+
+检查当前电脑是否具备全部运行条件：
+
+```bash
+npm run doctor
+```
 
 ### Windows
 
@@ -79,6 +110,8 @@ cp .env.example .env
 ```
 
 Windows 双击 `configure-codex-windows.bat`；macOS 运行 `./configure-codex-macos.command`。登录凭据由 Codex CLI 管理，不写入本项目。
+
+OpenAI 官方说明：[Codex CLI](https://developers.openai.com/codex/cli) · [身份认证](https://developers.openai.com/codex/auth) · [配置基础](https://developers.openai.com/codex/config-basic)。
 
 ### 第三方模型
 
@@ -179,6 +212,7 @@ sed -n '1,220p' knowledge/wiki/concepts/concept-full-name-phonology.md
 ## 开发与校验
 
 ```bash
+npm run doctor
 npm test
 npm run wiki:lint
 npm run check

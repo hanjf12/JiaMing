@@ -73,7 +73,14 @@ export function buildPrompts(request) {
       : "",
     "八字与五行只作为用户主动提供的传统文化偏好，不是科学预测；不得擅自推算喜用神或断言吉凶。",
     "最终返回 JSON 对象：answer 为中文回答；citations 为 {title,source,verified} 数组；toolsUsed 为实际成功运行的命令标识（file_find、file_grep、file_read）数组。",
-    "当回答包含姓名推荐或姓名比较时，同时返回 nameCards 数组（最多 6 个），每项含 name（带姓完整姓名）、pinyin、source、quote、meaning、verified；source 只写作者与作品名，不写 knowledge/ 本地路径；纯方法问答返回空数组。",
+    "当回答包含姓名推荐或姓名比较时，先在内部生成约 24 个候选，再经过出处、语境、连姓音韵、常用字、多音字、普通话谐音、用户避用字和长期使用成本过滤，最后返回不重复且意象有差异的 6 个 nameCards；不要把首次想到的名字直接作为最终结果。",
+    "候选使用三条路线：direct（原文相邻字词直取）、adapted（同篇或同一典故中选取不相邻语义单元进行化用）、combined（两个相关来源各取一字或一层意象后合意）。名字的自然使用感优先于机械截取连续两字。",
+    "默认 6 个结果采用 1 个 direct、3 个 adapted、2 个 combined；若可靠原文不足可调整数量，但至少使用两种路线，并避免超过 2 个候选依赖同一原句。单字名不强求该比例。",
+    "direct 只有名字两字确实在 quote 中连续出现时才能使用；跨句、换序、删改或重组一律标 adapted；combined 必须提供两个分别核验的来源。不得把化用或合意声称为原文固定词组。",
+    "每个 nameCards 项必须包含 name（带姓完整姓名）、pinyin、compositionMode、source、quote、source2、quote2、compositionReason、meaning、phoneticNote、riskNote、verified。source/source2 只写作者与作品名，不写 knowledge/ 本地路径；非 combined 的 source2 和 quote2 返回空字符串。",
+    "phoneticNote 必须按完整姓名检查普通话声调和连读，遇到多音字要指出；riskNote 检查普通话谐音、生僻字、现代联想及原文情绪语境，并提醒方言仍需家人核验。不要给不可验证的吉凶总分或重名率。",
+    "verified 仅表示卡片所列原句、作者和篇名均由本轮 Shell 结果支持；combined 的两个来源都核验后才能为 true。纯方法问答返回空 nameCards。",
+    "当返回 nameCards 时，answer 只写简短的整体选择建议和各路线差别，不要再次逐项抄写姓名、原句、路径或引用清单；详细证据全部放在卡片中。",
     "answer 中的 [n] 必须对应 citations[n-1]；source 优先写 `knowledge/...:行号`，并保留作品、作者或上游来源信息。提交前检查编号。",
   ].filter(Boolean).join("\n");
   const user = [
@@ -112,13 +119,28 @@ export function normalizeAgentResult(raw, observedTools = null) {
   const toolsUsed = [
     ...new Set(Array.isArray(observedTools) ? observedTools : declared),
   ];
+  const compositionMode = (value) => {
+    const normalized = clean(value, 20).toLowerCase();
+    if (["direct", "原文直取", "直取"].includes(normalized)) return "direct";
+    if (["combined", "跨典合意", "合意"].includes(normalized)) return "combined";
+    return "adapted";
+  };
   const nameCards = Array.isArray(parsed?.nameCards)
     ? parsed.nameCards.slice(0, 6).map((item) => ({
         name: clean(item?.name, 20),
         pinyin: clean(item?.pinyin, 80),
+        compositionMode: compositionMode(item?.compositionMode),
         source: clean(item?.source, 200),
         quote: clean(item?.quote, 500),
+        source2: clean(item?.source2, 200),
+        quote2: clean(item?.quote2, 500),
+        compositionReason: clean(item?.compositionReason, 600)
+          || "根据原文意象与完整姓名的使用感组合。",
         meaning: clean(item?.meaning, 600),
+        phoneticNote: clean(item?.phoneticNote, 400)
+          || "请结合完整姓名朗读，并由家人复核常用方言。",
+        riskNote: clean(item?.riskNote, 400)
+          || "未发现明确风险；正式落名前仍需核验方言谐音与户籍用字。",
         verified: Boolean(item?.verified),
       })).filter((item) => item.name && item.source && item.meaning)
     : [];

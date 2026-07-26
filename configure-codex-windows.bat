@@ -29,8 +29,8 @@ if %errorlevel% equ 0 (
 )
 
 echo.
-echo 即将登录 ChatGPT / Codex 订阅。
-"%CODEX_BIN%" login --device-auth
+echo 即将通过浏览器登录 ChatGPT / Codex 订阅。
+"%CODEX_BIN%" login
 if errorlevel 1 (
   echo 登录未完成，请稍后重试。
   pause

@@ -1,27 +1,27 @@
 {
   "meta": {
     "architecture": "LLM Wiki",
-    "version": "bcc4eccdbd01",
+    "version": "fd2c7f916310",
     "builtAt": "2026-07-26",
-    "pages": 104,
-    "chunks": 104,
-    "links": 283,
+    "pages": 105,
+    "chunks": 105,
+    "links": 290,
     "names": 62,
     "methods": 10,
     "sources": 12,
-    "concepts": 16,
+    "concepts": 17,
     "comparisons": 4,
     "categoryCounts": {
       "chuci": 14,
       "classics": 18,
-      "guide": 30,
+      "guide": 31,
       "shijing": 13,
       "song": 15,
       "tang": 14
     },
     "typeCounts": {
       "comparison": 4,
-      "concept": 16,
+      "concept": 17,
       "method": 10,
       "name": 62,
       "source": 12
@@ -2475,6 +2475,7 @@
         "source-tang-poetry",
         "source-song-ci",
         "concept-direct-or-inspired",
+        "concept-multi-route-generation",
         "concept-cultural-context",
         "comparison-direct-vs-inspired",
         "source-thirteen-classics",
@@ -2505,6 +2506,7 @@
       ],
       "links": [
         "concept-source-verification",
+        "concept-multi-route-generation",
         "comparison-classic-vs-practical"
       ],
       "backlinks": [
@@ -2514,11 +2516,46 @@
         "source-liji",
         "source-tang-poetry",
         "concept-source-verification",
+        "concept-multi-route-generation",
         "concept-cultural-context",
         "comparison-direct-vs-inspired",
         "source-complete-tang"
       ],
       "content": "原句相邻字词可称直取；跨句、换序或另行组合应称取意。 两种方式都可以形成好名字，但说明必须准确。直取应给出完整原句，取意重组应解释组合逻辑并避免声称原文中存在该固定词组。"
+    },
+    {
+      "id": "concept-multi-route-generation:chunk-1",
+      "pageId": "concept-multi-route-generation",
+      "chunkIndex": 1,
+      "title": "多路线候选生成与筛选",
+      "category": "guide",
+      "tag": "候选生成",
+      "source": "本地知识库·产品方法",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "多路线",
+        "原文直取",
+        "同篇化用",
+        "跨典合意",
+        "候选池",
+        "筛选",
+        "多样性"
+      ],
+      "links": [
+        "concept-direct-or-inspired",
+        "concept-source-verification",
+        "concept-full-name-phonology",
+        "concept-cultural-context",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "concept-direct-or-inspired",
+        "comparison-direct-vs-inspired"
+      ],
+      "content": "文化出处是证据，不应成为机械截取连续两字的限制。 候选分为三类：原文相邻字词属于“原文直取”；同篇、同章或同一典故中的非相邻字词重组属于“同篇化用”；两个分别核验的来源共同构成名字属于“跨典合意”。生成时先扩大候选池，再检查原文语境、连姓音韵、多音字、生僻字、谐音、现代联想与长期使用成本，最后按语义差异去重。六个结果通常可采用一项直取、三项同篇化用和两项跨典合意；可靠来源不足时宁可减少候选，也不伪造出处。跨典合意必须分别保留两个原句和组合理由。"
     },
     {
       "id": "concept-full-name-phonology:chunk-1",
@@ -2612,6 +2649,7 @@
         "source-zhongyong",
         "source-shijing",
         "source-song-ci",
+        "concept-multi-route-generation",
         "concept-tone-pattern",
         "concept-compound-surname",
         "concept-polyphonic-characters",
@@ -3012,6 +3050,7 @@
         "method-g06",
         "method-g07",
         "method-g10",
+        "concept-multi-route-generation",
         "concept-standard-characters",
         "concept-rare-characters",
         "concept-polyphonic-characters",
@@ -3053,6 +3092,7 @@
         "source-tang-poetry",
         "source-song-ci",
         "concept-source-verification",
+        "concept-multi-route-generation",
         "comparison-classic-vs-practical",
         "source-thirteen-classics",
         "source-complete-song"
@@ -3112,6 +3152,7 @@
       ],
       "links": [
         "concept-direct-or-inspired",
+        "concept-multi-route-generation",
         "concept-source-verification"
       ],
       "backlinks": [],

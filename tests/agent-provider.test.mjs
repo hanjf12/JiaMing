@@ -86,7 +86,10 @@ test("agent prompt permits only file-native knowledge reads through shell", () =
   assert.match(prompt, /knowledge\/llms\.txt/);
   assert.match(prompt, /file_find、file_grep、file_read/);
   assert.match(prompt, /nameCards/);
-  assert.match(prompt, /source 只写作者与作品名，不写 knowledge\//);
+  assert.match(prompt, /1 个 direct、3 个 adapted、2 个 combined/);
+  assert.match(prompt, /名字的自然使用感优先于机械截取连续两字/);
+  assert.match(prompt, /compositionReason/);
+  assert.match(prompt, /source\/source2 只写作者与作品名，不写 knowledge\//);
   assert.doesNotMatch(prompt, /scripts\/knowledge\.mjs/);
   assert.match(prompt, /不要调用 MCP/);
   assert.match(prompt, /不得擅自推算喜用神或断言吉凶/);
@@ -144,15 +147,23 @@ test("agent name recommendations are normalized into display cards", () => {
     nameCards: [{
       name: "林清欢",
       pinyin: "lín qīng huān",
+      compositionMode: "同篇化用",
       source: "苏轼《浣溪沙》",
       quote: "人间有味是清欢。",
+      source2: "",
+      quote2: "",
+      compositionReason: "从原句意象中化用。",
       meaning: "清澈明朗，知足从容。",
+      phoneticNote: "声调有起伏，连读自然。",
+      riskNote: "需由家人复核方言谐音。",
       verified: true,
     }],
     toolsUsed: [],
   }, []);
   assert.equal(result.nameCards.length, 1);
   assert.equal(result.nameCards[0].name, "林清欢");
+  assert.equal(result.nameCards[0].compositionMode, "adapted");
+  assert.match(result.nameCards[0].phoneticNote, /连读自然/);
 });
 
 test("Codex process errors are reduced to user-safe messages", () => {

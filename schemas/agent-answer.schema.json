@@ -29,13 +29,51 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "pinyin", "source", "quote", "meaning", "verified"],
+        "required": [
+          "name",
+          "pinyin",
+          "compositionMode",
+          "source",
+          "quote",
+          "source2",
+          "quote2",
+          "compositionReason",
+          "meaning",
+          "phoneticNote",
+          "riskNote",
+          "verified"
+        ],
         "properties": {
           "name": { "type": "string" },
           "pinyin": { "type": "string" },
+          "compositionMode": {
+            "type": "string",
+            "enum": ["direct", "adapted", "combined"],
+            "description": "direct=原文相邻字词直取；adapted=同篇或同一典故取意化用；combined=两个来源跨典合意。"
+          },
           "source": { "type": "string" },
           "quote": { "type": "string" },
+          "source2": {
+            "type": "string",
+            "description": "跨典合意的第二来源；其他方式返回空字符串。"
+          },
+          "quote2": {
+            "type": "string",
+            "description": "跨典合意的第二原句；其他方式返回空字符串。"
+          },
+          "compositionReason": {
+            "type": "string",
+            "description": "说明两个字为何组合，并准确区分原文直取和创作性化用。"
+          },
           "meaning": { "type": "string" },
+          "phoneticNote": {
+            "type": "string",
+            "description": "结合完整姓名说明普通话声调、连读和多音字情况。"
+          },
+          "riskNote": {
+            "type": "string",
+            "description": "说明谐音、生僻、多音、语境等风险；无明显风险时也要明确写出仍需家人核验方言。"
+          },
           "verified": { "type": "boolean" }
         }
       }

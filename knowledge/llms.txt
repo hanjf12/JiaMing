@@ -96,6 +96,7 @@
 - [宋词来源页](wiki/sources/source-song-ci.md): 宋词姓名素材富于画面与情绪，需同时关注词牌、作者、篇名和上下文。
 - [出处核验](wiki/concepts/concept-source-verification.md): 可靠的出处至少包含作品、篇章或词牌、作者信息和可定位的原句。
 - [原句直取与取意重组](wiki/concepts/concept-direct-or-inspired.md): 原句相邻字词可称直取；跨句、换序或另行组合应称取意。
+- [多路线候选生成与筛选](wiki/concepts/concept-multi-route-generation.md): 文化出处是证据，不应成为机械截取连续两字的限制。
 - [连姓音韵](wiki/concepts/concept-full-name-phonology.md): 音韵判断的最小单位是完整姓名，而不是孤立的名字。
 - [声调节奏](wiki/concepts/concept-tone-pattern.md): 声调有起伏通常更易辨认，但没有对所有姓氏都适用的固定吉凶公式。
 - [复姓节奏](wiki/concepts/concept-compound-surname.md): 复姓已有两个音节，搭配名字时要额外控制总长度、停顿和书写密度。
