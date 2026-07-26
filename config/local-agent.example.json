@@ -1,7 +1,0 @@
-{
-  "provider": "codex-subscription",
-  "model": "gpt-5.6-terra",
-  "reasoningEffort": "low",
-  "timeoutMs": 240000,
-  "maxHistoryMessages": 8
-}

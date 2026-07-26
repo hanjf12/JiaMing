@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="从四书五经、唐诗、宋词、诗经与楚辞中，为宝宝寻找有出处、有寓意的中文姓名。">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>嘉名 · 中文宝宝起名</title>
+  <style>
+    :root {
+      --paper: #f5f0e4;
+      --paper-deep: #ece3d1;
+      --card: rgba(255, 253, 247, .88);
+      --ink: #26211b;
+      --muted: #6d6459;
+      --cinnabar: #9f2f23;
+      --cinnabar-deep: #742016;
+      --bamboo: #667464;
+      --line: #d6c9b4;
+      --soft-red: #f2e4df;
+      --shadow: 0 14px 36px rgba(71, 52, 31, .08);
+      --serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", STSong, SimSun, serif;
+      --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(159,47,35,.035) 0 1px, transparent 1.4px) 0 0/22px 22px,
+        linear-gradient(90deg, rgba(90,72,45,.018) 1px, transparent 1px) 0 0/34px 100%,
+        var(--paper);
+      font-family: var(--sans);
+      min-width: 320px;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid rgba(159,47,35,.2);
+      outline-offset: 2px;
+    }
+
+    .topbar {
+      min-height: 76px;
+      border-bottom: 1px solid rgba(120, 98, 67, .18);
+      background: rgba(250, 247, 238, .9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px clamp(18px, 4vw, 58px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .seal {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      border: 2px solid var(--cinnabar);
+      color: var(--cinnabar);
+      font: 700 15px/1 var(--serif);
+      letter-spacing: .12em;
+      transform: rotate(-2deg);
+      box-shadow: inset 0 0 0 3px rgba(159,47,35,.08);
+    }
+    .brand-name { font: 700 25px/1.15 var(--serif); letter-spacing: .16em; }
+    .brand-sub { color: var(--muted); font: 12px/1.4 var(--serif); margin-top: 4px; letter-spacing: .08em; }
+    .local-badge {
+      color: var(--bamboo);
+      border: 1px solid rgba(102,116,100,.35);
+      background: rgba(102,116,100,.08);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .layout {
+      width: min(1540px, calc(100% - 36px));
+      margin: 28px auto 54px;
+      display: grid;
+      grid-template-columns: 390px minmax(0, 1fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .panel, .name-card {
+      background: var(--card);
+      border: 1px solid rgba(159, 137, 105, .34);
+      box-shadow: var(--shadow);
+    }
+
+    .panel {
+      position: sticky;
+      top: 103px;
+      padding: 27px 29px;
+      overflow: hidden;
+    }
+    .panel::after {
+      content: "名";
+      position: absolute;
+      right: -2px; top: -22px;
+      color: rgba(159,47,35,.045);
+      font: 150px/1 var(--serif);
+      pointer-events: none;
+    }
+    .eyebrow {
+      color: var(--cinnabar);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+    }
+    h1 {
+      margin: 12px 0 9px;
+      font: 700 clamp(26px, 2.25vw, 37px)/1.28 var(--serif);
+      letter-spacing: .06em;
+    }
+    .intro {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font: 14px/1.75 var(--serif);
+    }
+    .field { margin: 0 0 17px; position: relative; z-index: 1; }
+    .field-row { display: grid; grid-template-columns: 1.25fr .75fr; gap: 12px; }
+    .label-line {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      margin-bottom: 8px;
+    }
+    label, .field-label { font-size: 13px; font-weight: 700; }
+    .hint { color: #908577; font-size: 11px; font-weight: 400; }
+    .input, .select {
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      color: var(--ink);
+      background: rgba(255,255,255,.52);
+      padding: 0 13px;
+    }
+    .input::placeholder { color: #aaa094; }
+    .segmented {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.32);
+    }
+    .segmented input { position: absolute; opacity: 0; pointer-events: none; }
+    .segmented label {
+      min-height: 42px;
+      display: grid; place-items: center;
+      color: var(--muted);
+      border-right: 1px solid var(--line);
+      font-weight: 500;
+      transition: .18s ease;
+    }
+    .segmented label:last-child { border-right: 0; }
+    .segmented input:checked + label {
+      color: var(--cinnabar-deep);
+      background: rgba(159,47,35,.09);
+      box-shadow: inset 0 -2px var(--cinnabar);
+      font-weight: 700;
+    }
+    .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .check {
+      position: relative;
+      min-height: 39px;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .check:has(input:checked) {
+      color: var(--cinnabar-deep);
+      border-color: rgba(159,47,35,.48);
+      background: rgba(159,47,35,.07);
+    }
+    .check input { accent-color: var(--cinnabar); width: 15px; height: 15px; }
+    .bazi-box {
+      margin: 0 0 17px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.3);
+    }
+    .bazi-box summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 13px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .bazi-box summary::-webkit-details-marker { display: none; }
+    .bazi-box summary::after { content: "＋"; color: var(--cinnabar); font-size: 17px; font-weight: 400; }
+    .bazi-box[open] summary::after { content: "－"; }
+    .bazi-content { padding: 4px 13px 14px; border-top: 1px solid rgba(120,103,77,.12); }
+    .bazi-note { margin: 0 0 11px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .bazi-consent { margin-top: 10px; }
+    .generate {
+      width: 100%;
+      min-height: 51px;
+      border: 0;
+      color: #fffaf0;
+      background: linear-gradient(135deg, var(--cinnabar), var(--cinnabar-deep));
+      font: 700 16px/1 var(--serif);
+      letter-spacing: .18em;
+      box-shadow: 0 9px 20px rgba(116,32,22,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .generate:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(116,32,22,.24); }
+    .privacy {
+      display: flex; gap: 7px; align-items: flex-start;
+      margin: 11px 0 0;
+      color: #8d8478;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+    .privacy::before { content: "○"; color: var(--bamboo); }
+    .error { min-height: 18px; margin: 8px 0 0; color: var(--cinnabar); font-size: 12px; }
+
+    .results { min-width: 0; }
+    .results-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 5px 2px 18px;
+    }
+    .result-kicker { color: var(--cinnabar); font: 12px/1.4 var(--serif); letter-spacing: .14em; }
+    h2 { margin: 6px 0 4px; font: 700 clamp(24px, 2.1vw, 34px)/1.25 var(--serif); }
+    .result-sub { color: var(--muted); font: 13px/1.6 var(--serif); }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .quiet-btn {
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.35);
+      transition: .18s ease;
+    }
+    .quiet-btn:hover, .quiet-btn.active {
+      color: var(--cinnabar-deep);
+      border-color: rgba(159,47,35,.45);
+      background: rgba(159,47,35,.07);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .name-card {
+      min-height: 326px;
+      padding: 23px 22px 19px;
+      position: relative;
+      overflow: hidden;
+      animation: cardIn .35s both;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .name-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(71,52,31,.13);
+      border-color: rgba(159,47,35,.32);
+    }
+    .name-card::after {
+      content: attr(data-mark);
+      position: absolute;
+      right: -5px; top: 35px;
+      color: rgba(159,47,35,.038);
+      font: 116px/1 var(--serif);
+      pointer-events: none;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; position: relative; z-index: 1; }
+    .full-name { font: 700 clamp(25px, 2vw, 33px)/1.2 var(--serif); letter-spacing: .05em; }
+    .pinyin { margin-top: 5px; color: #8a7e70; font: italic 12px/1.3 Georgia, serif; letter-spacing: .08em; }
+    .heart {
+      width: 36px; height: 36px; flex: 0 0 36px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: #9b9083;
+      background: rgba(255,255,255,.45);
+      font-size: 20px;
+      line-height: 1;
+    }
+    .heart.saved { color: var(--cinnabar); border-color: rgba(159,47,35,.42); background: var(--soft-red); }
+    .quote {
+      margin: 18px 0 10px;
+      padding: 1px 0 1px 15px;
+      border-left: 2px solid var(--cinnabar);
+      font: 15px/1.65 var(--serif);
+      position: relative; z-index: 1;
+    }
+    .source-line { display: flex; align-items: center; gap: 8px; color: #85796b; font-size: 11px; position: relative; z-index: 1; }
+    .source-tag {
+      color: var(--cinnabar-deep);
+      border: 1px solid rgba(159,47,35,.36);
+      padding: 3px 7px;
+      font-family: var(--serif);
+      white-space: nowrap;
+    }
+    .char-meanings {
+      margin: 15px 0 11px;
+      padding: 12px 0 10px;
+      border-top: 1px solid rgba(159,137,105,.25);
+      border-bottom: 1px solid rgba(159,137,105,.25);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      position: relative; z-index: 1;
+    }
+    .char-meanings.single { grid-template-columns: 1fr; }
+    .char-meaning { display: flex; gap: 7px; min-width: 0; }
+    .char-box {
+      width: 25px; height: 25px; flex: 0 0 25px;
+      display: grid; place-items: center;
+      border: 1px solid var(--line);
+      font: 15px/1 var(--serif);
+    }
+    .char-copy { font-size: 11px; line-height: 1.45; color: var(--muted); }
+    .char-copy strong { color: var(--ink); display: block; font-weight: 700; }
+    .meaning { color: var(--muted); font: 12px/1.65 var(--serif); position: relative; z-index: 1; }
+    .meaning strong { color: var(--bamboo); margin-right: 7px; }
+    .card-foot {
+      margin-top: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .traits { display: flex; gap: 5px; flex-wrap: wrap; }
+    .trait { color: var(--bamboo); background: rgba(102,116,100,.08); padding: 3px 7px; font-size: 10px; }
+    .copy-btn { border: 0; color: var(--cinnabar); background: transparent; padding: 5px; font-size: 11px; }
+    .empty {
+      grid-column: 1 / -1;
+      padding: 70px 24px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      background: rgba(255,255,255,.26);
+      font: 15px/1.8 var(--serif);
+    }
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 18px 2px 0;
+      color: #877e73;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .toast {
+      position: fixed;
+      left: 50%; bottom: 28px;
+      transform: translate(-50%, 15px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      color: #fffaf1;
+      background: rgba(38,33,27,.92);
+      padding: 10px 17px;
+      font-size: 12px;
+      transition: .22s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    .assistant {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: minmax(250px, 310px) minmax(0, 1fr);
+      min-height: 650px;
+      margin-top: 10px;
+      background: var(--card);
+      border: 1px solid rgba(159, 137, 105, .34);
+      box-shadow: var(--shadow);
+      scroll-margin-top: 100px;
+    }
+    .kb-side {
+      padding: 25px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(236, 227, 209, .3);
+    }
+    .kb-title {
+      margin: 7px 0 8px;
+      font: 700 24px/1.3 var(--serif);
+      letter-spacing: .08em;
+    }
+    .kb-description {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font: 12px/1.7 var(--serif);
+    }
+    .kb-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 11px 12px;
+      border: 1px solid rgba(102,116,100,.28);
+      color: var(--bamboo);
+      background: rgba(102,116,100,.07);
+      font-size: 12px;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      display: inline-block;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: var(--bamboo);
+      box-shadow: 0 0 0 4px rgba(102,116,100,.1);
+    }
+    .status-dot.offline { background: #a27855; box-shadow: 0 0 0 4px rgba(162,120,85,.1); }
+    .kb-divider { height: 1px; margin: 20px 0; background: var(--line); }
+    .kb-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .kb-file { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .kb-small {
+      margin: 9px 0 0;
+      color: #8f8578;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .inline-check {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .inline-check input { accent-color: var(--cinnabar); width: 15px; height: 15px; }
+    .chat-shell { min-width: 0; display: flex; flex-direction: column; }
+    .chat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 25px 17px;
+      border-bottom: 1px solid rgba(159,137,105,.24);
+    }
+    .chat-head h3 { margin: 0 0 4px; font: 700 22px/1.3 var(--serif); }
+    .chat-head p { margin: 0; color: var(--muted); font-size: 12px; }
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      padding: 14px 25px 0;
+    }
+    .prompt-chip {
+      min-height: 33px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.38);
+      font-size: 11px;
+    }
+    .prompt-chip:hover { color: var(--cinnabar-deep); border-color: rgba(159,47,35,.4); }
+    .messages {
+      min-height: 370px;
+      max-height: 560px;
+      overflow-y: auto;
+      padding: 20px 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      scrollbar-color: var(--line) transparent;
+    }
+    .message {
+      width: min(780px, 88%);
+      padding: 14px 16px;
+      border: 1px solid rgba(159,137,105,.28);
+      font: 13px/1.75 var(--serif);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .message.user {
+      align-self: flex-end;
+      color: #fffaf1;
+      border-color: var(--cinnabar-deep);
+      background: var(--cinnabar-deep);
+    }
+    .message.assistant-message {
+      align-self: flex-start;
+      background: rgba(255,255,255,.48);
+    }
+    .message.pending { color: var(--muted); }
+    .message-label {
+      display: block;
+      margin-bottom: 5px;
+      color: inherit;
+      opacity: .68;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+    .citations {
+      width: min(780px, 88%);
+      align-self: flex-start;
+      margin-top: -8px;
+      border-left: 2px solid var(--gold);
+      padding-left: 12px;
+    }
+    .citation-title { color: #8a7550; font-size: 10px; letter-spacing: .1em; margin-bottom: 5px; }
+    .citation-item {
+      display: block;
+      color: var(--muted);
+      font: 11px/1.55 var(--serif);
+      margin-bottom: 4px;
+    }
+    .composer {
+      margin-top: auto;
+      padding: 17px 25px 22px;
+      border-top: 1px solid rgba(159,137,105,.24);
+    }
+    .composer-row { display: grid; grid-template-columns: minmax(0,1fr) 104px; gap: 9px; }
+    .chat-input {
+      width: 100%;
+      min-height: 66px;
+      max-height: 150px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      color: var(--ink);
+      background: rgba(255,255,255,.52);
+      padding: 11px 13px;
+      font: 13px/1.55 var(--sans);
+    }
+    .send-btn {
+      border: 0;
+      color: #fffaf0;
+      background: var(--cinnabar);
+      font: 700 14px/1 var(--serif);
+      letter-spacing: .1em;
+    }
+    .send-btn:disabled { cursor: wait; opacity: .6; }
+    .composer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+      color: #8f8578;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1260px) {
+      .layout { grid-template-columns: 360px minmax(0,1fr); }
+      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 900px) {
+      .topbar { position: static; }
+      .layout { width: min(720px, calc(100% - 28px)); grid-template-columns: 1fr; margin-top: 18px; }
+      .panel { position: static; }
+      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .assistant { grid-column: 1; grid-template-columns: 1fr; }
+      .kb-side { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 620px) {
+      .topbar { align-items: flex-start; padding: 12px 15px; }
+      .brand-sub { display: none; }
+      .local-badge { white-space: normal; text-align: center; max-width: 125px; }
+      .layout { width: min(100% - 20px, 520px); }
+      .panel { padding: 23px 19px; }
+      .field-row { grid-template-columns: 1fr; }
+      .results-head { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      .cards { grid-template-columns: 1fr; }
+      .name-card { min-height: 0; }
+      .footer-note { flex-direction: column; }
+      .chat-head { align-items: flex-start; }
+      .suggestions, .messages, .composer { padding-left: 15px; padding-right: 15px; }
+      .messages { max-height: none; }
+      .message, .citations { width: 94%; }
+      .composer-row { grid-template-columns: 1fr; }
+      .send-btn { min-height: 45px; }
+      .composer-note { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="seal" aria-hidden="true">嘉<br>名</div>
+      <div>
+        <div class="brand-name">嘉名</div>
+        <div class="brand-sub">采撷千年文脉 · 为新生取一佳名</div>
+      </div>
+    </div>
+    <div class="local-badge">本地知识库 · 模型可配置</div>
+  </header>
+
+  <main class="layout">
+    <form class="panel" id="naming-form" novalidate>
+      <div class="eyebrow">为新生 · 择嘉名</div>
+      <h1>从千年文脉中，<br>取一生清雅。</h1>
+      <p class="intro">录入基础偏好，从典籍原句、字义与整体意境出发，生成有出处的中文姓名。</p>
+
+      <div class="field">
+        <div class="label-line"><label for="surname">宝宝姓氏</label><span class="hint">支持单姓、复姓</span></div>
+        <input class="input" id="surname" name="surname" value="林" maxlength="2" autocomplete="off" aria-describedby="form-error">
+      </div>
+
+      <div class="field">
+        <div class="label-line"><span class="field-label">宝宝性别</span><span class="hint">只影响气质筛选</span></div>
+        <div class="segmented">
+          <input id="gender-any" name="gender" type="radio" value="any" checked><label for="gender-any">不限</label>
+          <input id="gender-girl" name="gender" type="radio" value="f"><label for="gender-girl">女孩</label>
+          <input id="gender-boy" name="gender" type="radio" value="m"><label for="gender-boy">男孩</label>
+        </div>
+      </div>
+
+      <div class="field field-row">
+        <div>
+          <div class="label-line"><label for="birth-date">出生日期</label><span class="hint">选填</span></div>
+          <input class="input" id="birth-date" name="birthDate" type="date">
+        </div>
+        <div>
+          <div class="label-line"><label for="birth-time">时间</label><span class="hint">选填</span></div>
+          <input class="input" id="birth-time" name="birthTime" type="time">
+        </div>
+      </div>
+
+      <details class="bazi-box">
+        <summary>八字参考 <span class="hint">有四柱时选填</span></summary>
+        <div class="bazi-content">
+          <p class="bazi-note">仅接受你已经确认的年、月、日、时四柱，不自动判断“喜用神”。五行归类属于传统民俗参考，不代表科学预测。</p>
+          <label class="inline-check" for="use-bazi">
+            <input id="use-bazi" name="useBazi" type="checkbox">
+            让八字偏好参与候选排序
+          </label>
+          <div class="field field-row" style="margin-top:12px">
+            <div>
+              <div class="label-line"><label for="bazi-pillars">出生八字</label><span class="hint">四柱</span></div>
+              <input class="input" id="bazi-pillars" name="baziPillars" maxlength="12" placeholder="如：甲辰 丁卯 丙子 戊戌">
+            </div>
+            <div>
+              <div class="label-line"><label for="bazi-element">用字倾向</label><span class="hint">请自行确认</span></div>
+              <select class="select" id="bazi-element" name="baziElement">
+                <option value="">不指定</option>
+                <option value="木">木意</option>
+                <option value="火">火意</option>
+                <option value="土">土意</option>
+                <option value="金">金意</option>
+                <option value="水">水意</option>
+              </select>
+            </div>
+          </div>
+          <label class="inline-check bazi-consent" for="share-bazi-ai">
+            <input id="share-bazi-ai" type="checkbox">
+            使用 AI 时，允许把八字与五行倾向发给已配置的模型
+          </label>
+        </div>
+      </details>
+
+      <div class="field">
+        <div class="label-line"><span class="field-label">名字字数</span><span class="hint">不含姓氏</span></div>
+        <div class="segmented">
+          <input id="len-any" name="nameLength" type="radio" value="any"><label for="len-any">不限</label>
+          <input id="len-one" name="nameLength" type="radio" value="1"><label for="len-one">单字名</label>
+          <input id="len-two" name="nameLength" type="radio" value="2" checked><label for="len-two">双字名</label>
+        </div>
+      </div>
+
+      <fieldset class="field" style="border:0;padding:0">
+        <div class="label-line"><legend class="field-label">典籍偏好</legend><span class="hint">可多选</span></div>
+        <div class="check-grid">
+          <label class="check"><input type="checkbox" name="source" value="classics" checked>四书五经</label>
+          <label class="check"><input type="checkbox" name="source" value="tang" checked>唐诗</label>
+          <label class="check"><input type="checkbox" name="source" value="song" checked>宋词</label>
+          <label class="check"><input type="checkbox" name="source" value="shijing">诗经</label>
+          <label class="check"><input type="checkbox" name="source" value="chuci">楚辞</label>
+        </div>
+      </fieldset>
+
+      <div class="field field-row">
+        <div>
+          <div class="label-line"><label for="include-char">期望包含</label><span class="hint">选填</span></div>
+          <input class="input" id="include-char" maxlength="2" placeholder="如：宁">
+        </div>
+        <div>
+          <div class="label-line"><label for="avoid-char">避开用字</label><span class="hint">选填</span></div>
+          <input class="input" id="avoid-char" maxlength="8" placeholder="如：轩梓">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="label-line"><label for="temperament">名字气质</label><span class="hint">影响排序</span></div>
+        <select class="select" id="temperament">
+          <option value="any">兼收并蓄</option>
+          <option value="雅正">雅正端方</option>
+          <option value="温润">温润从容</option>
+          <option value="明朗">明朗开阔</option>
+          <option value="坚毅">坚毅笃行</option>
+          <option value="灵秀">清灵秀逸</option>
+        </select>
+      </div>
+
+      <button class="generate" type="submit">寻章摘句 · 生成嘉名</button>
+      <p class="privacy">出生信息与八字默认仅在当前页面内使用，不保存。只有勾选授权后，才会发送给你主动启用的模型服务。</p>
+      <p class="error" id="form-error" role="alert"></p>
+    </form>
+
+    <section class="results" aria-live="polite">
+      <div class="results-head">
+        <div>
+          <div class="result-kicker" id="result-kicker">卷一 · 初见</div>
+          <h2 id="result-title">为“林”姓宝宝择得六名</h2>
+          <div class="result-sub" id="result-sub">每个名字，都有清晰的文化出处与字义说明。</div>
+        </div>
+        <div class="actions">
+          <button class="quiet-btn" id="favorite-toggle" type="button">♡ 我的收藏 <span id="favorite-count">0</span></button>
+          <button class="quiet-btn" id="export-btn" type="button">导出收藏</button>
+          <button class="quiet-btn" id="refresh-btn" type="button">换一批</button>
+        </div>
+      </div>
+
+      <div class="cards" id="cards"></div>
+      <div class="footer-note">
+        <span>姓名建议仅供灵感参考，可结合家族字辈、方言谐音与户籍用字规范综合判断。</span>
+        <span>嘉名 · 让每个名字都有来处</span>
+      </div>
+    </section>
+
+    <section class="assistant" id="assistant" aria-label="起名知识库对话">
+      <aside class="kb-side">
+        <div class="eyebrow">本地知识 Agent · 自主检索</div>
+        <h2 class="kb-title">问典</h2>
+        <p class="kb-description">模型会自行搜索本地 Wiki、按需读取互链页面并核对完整原文；回答附带本次实际采用的知识来源。</p>
+
+        <div class="kb-stat">
+          <span><i class="status-dot" aria-hidden="true"></i><span id="kb-count">0</span> 个 Wiki 页面</span>
+          <span><span id="kb-health">索引准备中</span> · <span id="custom-count">自建 0</span></span>
+        </div>
+
+        <div class="field">
+          <div class="label-line"><label for="chat-mode">回答模式</label><span class="hint" id="ai-status">检测中</span></div>
+          <select class="select" id="chat-mode">
+            <option value="agent" selected>LLM Agent（自主检索）</option>
+            <option value="local">仅本地检索（诊断）</option>
+          </select>
+        </div>
+
+        <div class="field field-row">
+          <div>
+            <div class="label-line"><label for="retrieval-scope">检索范围</label></div>
+            <select class="select" id="retrieval-scope">
+              <option value="all">全部知识</option>
+              <option value="classics">四书五经</option>
+              <option value="tang">唐诗</option>
+              <option value="song">宋词</option>
+              <option value="shijing">诗经</option>
+              <option value="chuci">楚辞</option>
+              <option value="guide">起名方法</option>
+              <option value="corpus">历代完整原文（本机）</option>
+              <option value="song-poetry">全宋诗（本机）</option>
+              <option value="five-dynasties">五代诗词（本机）</option>
+              <option value="yuan">元曲（本机）</option>
+              <option value="qing">清代专题（本机）</option>
+              <option value="modern">近现代授权库（本机）</option>
+              <option value="custom">自建知识</option>
+            </select>
+          </div>
+          <div>
+            <div class="label-line"><label for="top-k">召回条数</label></div>
+            <select class="select" id="top-k">
+              <option value="3">3 条</option>
+              <option value="5" selected>5 条</option>
+              <option value="8">8 条</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="inline-check" for="strict-citations">
+          <input id="strict-citations" type="checkbox" checked>
+          严格依据 Agent 实际检索结果，不补写未知出处
+        </label>
+
+        <div class="kb-divider"></div>
+        <div class="label-line"><span class="field-label">扩充知识库</span><span class="hint">仅存本机</span></div>
+        <div class="kb-actions">
+          <label class="quiet-btn" for="kb-file" style="display:grid;place-items:center">导入 TXT / JSON</label>
+          <input class="kb-file" id="kb-file" type="file" accept=".txt,.md,.json,application/json,text/plain">
+          <button class="quiet-btn" id="clear-kb" type="button">清空自建</button>
+        </div>
+        <p class="kb-small">TXT/Markdown 会按空行分段；JSON 支持由 title、content、source 组成的对象数组。</p>
+
+        <div class="kb-divider"></div>
+        <p class="kb-small" id="ai-privacy">本地模式不会发送任何内容。切换到模型模式后，只发送当前问题与命中的知识片段；八字还需要单独勾选授权。</p>
+      </aside>
+
+      <div class="chat-shell">
+        <header class="chat-head">
+          <div>
+            <h3>和典籍起名助手聊一聊</h3>
+            <p>可以让它推荐名字、解释出处、比较候选，或检查名字的音义搭配。</p>
+          </div>
+          <button class="quiet-btn" id="clear-chat" type="button">清空对话</button>
+        </header>
+
+        <div class="suggestions" aria-label="示例问题">
+          <button class="prompt-chip" type="button">林姓女孩，想要宋词里温润清雅的名字</button>
+          <button class="prompt-chip" type="button">“知微”和“慎思”哪个更适合男孩？</button>
+          <button class="prompt-chip" type="button">起名时怎样兼顾典籍出处与方言谐音？</button>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+
+        <form class="composer" id="chat-form">
+          <div class="composer-row">
+            <textarea class="chat-input" id="chat-input" rows="2" maxlength="600" placeholder="例如：爸爸姓陈，女孩，想从诗经里找一个清朗、不生僻的双字名……"></textarea>
+            <button class="send-btn" id="send-btn" type="submit">检索并回答</button>
+          </div>
+          <div class="composer-note">
+            <span id="retrieval-status">回车发送，Shift + 回车换行</span>
+            <span>回答用于起名灵感，不替代户籍用字与方言核验</span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    (() => {
+      "use strict";
+      const NAMES = [
+        {id:"c01",n:"知微",p:"zhī wēi",g:"n",cat:"classics",tag:"四书五经",work:"《周易·系辞下》",q:"君子知微知彰，知柔知刚，万夫之望。",cm:["知：明辨通达","微：洞察精微"],m:"见微知著，思虑通透，温柔且有力量。",t:["雅正","灵秀"]},
+        {id:"c02",n:"明德",p:"míng dé",g:"n",cat:"classics",tag:"四书五经",work:"《大学》",q:"大学之道，在明明德，在亲民，在止于至善。",cm:["明：澄明光亮","德：品行仁厚"],m:"明心修德，光而不耀，以仁厚立身。",t:["雅正","明朗"]},
+        {id:"c03",n:"慎思",p:"shèn sī",g:"n",cat:"classics",tag:"四书五经",work:"《中庸》",q:"博学之，审问之，慎思之，明辨之，笃行之。",cm:["慎：审慎周全","思：善思明辨"],m:"勤学善思，审慎笃定，行事有分寸。",t:["雅正","温润"]},
+        {id:"c04",n:"笃行",p:"dǔ xíng",g:"m",cat:"classics",tag:"四书五经",work:"《中庸》",q:"博学之，审问之，慎思之，明辨之，笃行之。",cm:["笃：坚定专一","行：躬身践履"],m:"知行相济，坚定务实，所行有所至。",t:["坚毅","雅正"]},
+        {id:"c05",n:"知新",p:"zhī xīn",g:"n",cat:"classics",tag:"四书五经",work:"《论语·为政》",q:"温故而知新，可以为师矣。",cm:["知：通晓明达","新：日有所进"],m:"温故知新，常怀好奇，日日精进。",t:["明朗","灵秀"]},
+        {id:"c06",n:"德邻",p:"dé lín",g:"n",cat:"classics",tag:"四书五经",work:"《论语·里仁》",q:"德不孤，必有邻。",cm:["德：仁厚有度","邻：亲和相伴"],m:"以德立身，亲和宽厚，所行自有同道。",t:["温润","雅正"]},
+        {id:"c07",n:"弘毅",p:"hóng yì",g:"m",cat:"classics",tag:"四书五经",work:"《论语·泰伯》",q:"士不可以不弘毅，任重而道远。",cm:["弘：宽广宏阔","毅：坚韧果决"],m:"胸怀广阔，意志坚毅，能担远任。",t:["坚毅","明朗"]},
+        {id:"c08",n:"思齐",p:"sī qí",g:"n",cat:"classics",tag:"四书五经",work:"《论语·里仁》",q:"见贤思齐焉，见不贤而内自省也。",cm:["思：善思自省","齐：向善看齐"],m:"心有所向，自省自进，始终向优秀者看齐。",t:["雅正","温润"]},
+        {id:"c09",n:"自牧",p:"zì mù",g:"n",cat:"classics",tag:"四书五经",work:"《周易·谦》",q:"谦谦君子，卑以自牧也。",cm:["自：自省自主","牧：修养涵育"],m:"谦逊自持，善于自我涵养，安静而有力量。",t:["温润","雅正"]},
+        {id:"c10",n:"厚德",p:"hòu dé",g:"m",cat:"classics",tag:"四书五经",work:"《周易·坤》",q:"地势坤，君子以厚德载物。",cm:["厚：宽厚深沉","德：仁善端方"],m:"厚道包容，有担当，也有容纳万物的胸襟。",t:["坚毅","雅正"]},
+        {id:"c11",n:"玉成",p:"yù chéng",g:"n",cat:"classics",tag:"四书五经",work:"《礼记·学记》",q:"玉不琢，不成器；人不学，不知道。",cm:["玉：温润珍贵","成：成就圆满"],m:"如玉可琢，勤学自成，温润而坚定。",t:["温润","雅正"]},
+        {id:"c12",n:"安仁",p:"ān rén",g:"n",cat:"classics",tag:"四书五经",work:"《论语·里仁》",q:"仁者安仁，知者利仁。",cm:["安：安定从容","仁：仁爱宽和"],m:"内心安定，以仁厚待人，温和而自有原则。",t:["温润","雅正"]},
+
+        {id:"t01",n:"云起",p:"yún qǐ",g:"n",cat:"tang",tag:"唐诗",work:"王维《终南别业》",q:"行到水穷处，坐看云起时。",cm:["云：自在舒展","起：蓬勃向上"],m:"从容通达，顺境逆境皆能看见新的生机。",t:["明朗","温润"]},
+        {id:"t02",n:"星垂",p:"xīng chuí",g:"m",cat:"tang",tag:"唐诗",work:"杜甫《旅夜书怀》",q:"星垂平野阔，月涌大江流。",cm:["星：明亮高远","垂：沉静照临"],m:"胸有星野，气象开阔，沉静中自有光芒。",t:["明朗","坚毅"]},
+        {id:"t03",n:"润物",p:"rùn wù",g:"n",cat:"tang",tag:"唐诗",work:"杜甫《春夜喜雨》",q:"随风潜入夜，润物细无声。",cm:["润：温和滋养","物：关怀万有"],m:"温厚体贴，行善无声，给身边人以滋养。",t:["温润","雅正"]},
+        {id:"t04",n:"轻舟",p:"qīng zhōu",g:"n",cat:"tang",tag:"唐诗",work:"李白《早发白帝城》",q:"两岸猿声啼不住，轻舟已过万重山。",cm:["轻：从容洒脱","舟：行稳致远"],m:"一生从容自在，纵有万山亦能轻快向前。",t:["明朗","灵秀"]},
+        {id:"t05",n:"云帆",p:"yún fān",g:"m",cat:"tang",tag:"唐诗",work:"李白《行路难》",q:"长风破浪会有时，直挂云帆济沧海。",cm:["云：高远自在","帆：逐风前行"],m:"志向高远，乘风破浪，始终相信前路。",t:["坚毅","明朗"]},
+        {id:"t06",n:"明月",p:"míng yuè",g:"f",cat:"tang",tag:"唐诗",work:"张九龄《望月怀远》",q:"海上生明月，天涯共此时。",cm:["明：澄澈明亮","月：清雅温柔"],m:"心境澄明，温柔清雅，也寄托长久的牵念。",t:["灵秀","温润"]},
+        {id:"t07",n:"春晖",p:"chūn huī",g:"n",cat:"tang",tag:"唐诗",work:"孟郊《游子吟》",q:"谁言寸草心，报得三春晖。",cm:["春：和暖生机","晖：温暖光辉"],m:"温暖明朗，心怀感恩，如春光照拂身边的人。",t:["温润","明朗"]},
+        {id:"t08",n:"灵犀",p:"líng xī",g:"f",cat:"tang",tag:"唐诗",work:"李商隐《无题》",q:"身无彩凤双飞翼，心有灵犀一点通。",cm:["灵：聪慧灵动","犀：通透敏锐"],m:"聪慧敏锐，善解人意，内心通透明澈。",t:["灵秀","温润"]},
+        {id:"t09",n:"晴川",p:"qíng chuān",g:"n",cat:"tang",tag:"唐诗",work:"崔颢《黄鹤楼》",q:"晴川历历汉阳树，芳草萋萋鹦鹉洲。",cm:["晴：明净开朗","川：舒展通达"],m:"心境明净，人生如长川舒展，明朗而辽阔。",t:["明朗","灵秀"]},
+        {id:"t10",n:"若邻",p:"ruò lín",g:"n",cat:"tang",tag:"唐诗",work:"王勃《送杜少府之任蜀州》",q:"海内存知己，天涯若比邻。",cm:["若：从容柔和","邻：亲近和睦"],m:"真诚亲和，重情重义，虽远亦能心意相通。",t:["温润","雅正"]},
+        {id:"t11",n:"秋池",p:"qiū chí",g:"f",cat:"tang",tag:"唐诗",work:"李商隐《夜雨寄北》",q:"君问归期未有期，巴山夜雨涨秋池。",cm:["秋：澄澈丰盈","池：宁静包容"],m:"清澈宁静，情感丰沛，心中自有一方天地。",t:["灵秀","温润"]},
+        {id:"t12",n:"晚晴",p:"wǎn qíng",g:"f",cat:"tang",tag:"唐诗",work:"李商隐《晚晴》",q:"天意怜幽草，人间重晚晴。",cm:["晚：沉静从容","晴：明朗温暖"],m:"历雨而晴，温柔坚定，珍惜平常日子里的光亮。",t:["温润","明朗"]},
+
+        {id:"s01",n:"疏桐",p:"shū tóng",g:"n",cat:"song",tag:"宋词",work:"苏轼《卜算子·黄州定慧院寓居作》",q:"缺月挂疏桐，漏断人初静。",cm:["疏：通透从容","桐：清雅坚贞"],m:"清朗疏阔，内心安定，保有独立清雅的品格。",t:["灵秀","雅正"]},
+        {id:"s02",n:"清欢",p:"qīng huān",g:"n",cat:"song",tag:"宋词",work:"苏轼《浣溪沙·细雨斜风作晓寒》",q:"人间有味是清欢。",cm:["清：澄澈纯净","欢：喜悦明朗"],m:"知足清醒，能在平常生活里发现真切欢喜。",t:["温润","明朗"]},
+        {id:"s03",n:"徐行",p:"xú xíng",g:"m",cat:"song",tag:"宋词",work:"苏轼《定风波·莫听穿林打叶声》",q:"莫听穿林打叶声，何妨吟啸且徐行。",cm:["徐：从容不迫","行：笃定前行"],m:"风雨之中仍从容前行，豁达而有定力。",t:["坚毅","温润"]},
+        {id:"s04",n:"烟雨",p:"yān yǔ",g:"n",cat:"song",tag:"宋词",work:"苏轼《定风波·莫听穿林打叶声》",q:"竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。",cm:["烟：轻盈旷远","雨：滋养万物"],m:"旷达自在，不畏风雨，内心自有从容天地。",t:["明朗","灵秀"]},
+        {id:"s05",n:"婵娟",p:"chán juān",g:"f",cat:"song",tag:"宋词",work:"苏轼《水调歌头·明月几时有》",q:"但愿人长久，千里共婵娟。",cm:["婵：姿态美好","娟：秀丽清雅"],m:"清雅美好，寄托团圆长久与真挚祝愿。",t:["灵秀","温润"]},
+        {id:"s06",n:"锦书",p:"jǐn shū",g:"f",cat:"song",tag:"宋词",work:"李清照《一剪梅·红藕香残玉簟秋》",q:"云中谁寄锦书来？雁字回时，月满西楼。",cm:["锦：绚丽美好","书：知礼好学"],m:"腹有诗书，情感细腻，人生如锦而有章法。",t:["雅正","灵秀"]},
+        {id:"s07",n:"星河",p:"xīng hé",g:"n",cat:"song",tag:"宋词",work:"李清照《渔家傲·天接云涛连晓雾》",q:"天接云涛连晓雾，星河欲转千帆舞。",cm:["星：明亮高远","河：辽阔绵长"],m:"心有星河，眼界辽阔，明亮而富有想象力。",t:["明朗","灵秀"]},
+        {id:"s08",n:"清圆",p:"qīng yuán",g:"f",cat:"song",tag:"宋词",work:"周邦彦《苏幕遮·燎沉香》",q:"叶上初阳干宿雨，水面清圆，一一风荷举。",cm:["清：清澈高洁","圆：圆融和满"],m:"清澈圆融，温和完整，如雨后荷叶生机自持。",t:["温润","灵秀"]},
+        {id:"s09",n:"风荷",p:"fēng hé",g:"f",cat:"song",tag:"宋词",work:"周邦彦《苏幕遮·燎沉香》",q:"叶上初阳干宿雨，水面清圆，一一风荷举。",cm:["风：自由清朗","荷：高洁生香"],m:"气质清雅，舒展有节，在风中仍保有自己的姿态。",t:["灵秀","雅正"]},
+        {id:"s10",n:"知许",p:"zhī xǔ",g:"f",cat:"song",tag:"宋词",work:"李清照《永遇乐·落日熔金》",q:"染柳烟浓，吹梅笛怨，春意知几许。",cm:["知：聪慧通达","许：从容期许"],m:"知春意、懂分寸，聪慧温柔，对未来怀有期许。",t:["灵秀","温润"]},
+        {id:"s11",n:"阑珊",p:"lán shān",g:"f",cat:"song",tag:"宋词",work:"辛弃疾《青玉案·元夕》",q:"蓦然回首，那人却在，灯火阑珊处。",cm:["阑：沉静有度","珊：珍贵美好"],m:"沉静自持，不逐喧哗，自有被看见的光芒。",t:["灵秀","雅正"]},
+        {id:"s12",n:"兰舟",p:"lán zhōu",g:"n",cat:"song",tag:"宋词",work:"柳永《雨霖铃·寒蝉凄切》",q:"都门帐饮无绪，留恋处，兰舟催发。",cm:["兰：高洁芬芳","舟：坚定远行"],m:"品格如兰，心有远方，温柔而有前行的勇气。",t:["温润","灵秀"]},
+        {id:"s13",n:"轻寒",p:"qīng hán",g:"f",cat:"song",tag:"宋词",work:"秦观《浣溪沙·漠漠轻寒上小楼》",q:"漠漠轻寒上小楼，晓阴无赖似穷秋。",cm:["轻：从容灵动","寒：清澈自守"],m:"清秀灵动，安静自持，气质轻盈而不失坚韧。",t:["灵秀","温润"]},
+
+        {id:"p01",n:"子衿",p:"zǐ jīn",g:"n",cat:"shijing",tag:"诗经",work:"《诗经·郑风·子衿》",q:"青青子衿，悠悠我心。",cm:["子：谦谦君子","衿：文雅学子"],m:"温文有礼，勤学知雅，也寄托深长的牵念。",t:["雅正","温润"]},
+        {id:"p02",n:"其华",p:"qí huá",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·周南·桃夭》",q:"桃之夭夭，灼灼其华。",cm:["其：从容笃定","华：灿烂美好"],m:"生命明媚，丰盛灿然，也有家庭和美的祝愿。",t:["明朗","灵秀"]},
+        {id:"p03",n:"静好",p:"jìng hǎo",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·郑风·女曰鸡鸣》",q:"琴瑟在御，莫不静好。",cm:["静：安宁沉着","好：美善和悦"],m:"岁月安宁，内心和悦，生活温柔而美好。",t:["温润","雅正"]},
+        {id:"p04",n:"令仪",p:"lìng yí",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·小雅·湛露》",q:"岂弟君子，莫不令仪。",cm:["令：美好端正","仪：仪度有礼"],m:"端方知礼，举止从容，内外皆有美好风仪。",t:["雅正","温润"]},
+        {id:"p05",n:"徽音",p:"huī yīn",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·大雅·思齐》",q:"大姒嗣徽音，则百斯男。",cm:["徽：美善嘉德","音：声誉文采"],m:"品德美善，声名清雅，将温柔与力量传续下去。",t:["雅正","灵秀"]},
+        {id:"p06",n:"攸宁",p:"yōu níng",g:"n",cat:"shijing",tag:"诗经",work:"《诗经·小雅·斯干》",q:"哙哙其正，哕哕其冥，君子攸宁。",cm:["攸：从容长远","宁：安定平和"],m:"心有所安，行有所往，一生从容宁定。",t:["温润","雅正"]},
+        {id:"p07",n:"维桢",p:"wéi zhēn",g:"m",cat:"shijing",tag:"诗经",work:"《诗经·大雅·文王》",q:"王国克生，维周之桢。",cm:["维：持守担当","桢：坚实栋梁"],m:"坚定可靠，有持守、有担当，能成为可托付的人。",t:["坚毅","雅正"]},
+        {id:"p08",n:"柔嘉",p:"róu jiā",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·大雅·抑》",q:"敬尔威仪，无不柔嘉。",cm:["柔：温和有韧","嘉：美善可喜"],m:"温柔而有原则，言行美善，亲和且有分寸。",t:["温润","雅正"]},
+        {id:"p09",n:"清扬",p:"qīng yáng",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·郑风·野有蔓草》",q:"有美一人，清扬婉兮。",cm:["清：清澈高洁","扬：舒展明朗"],m:"眉目清朗，气质舒展，既清秀也自信。",t:["灵秀","明朗"]},
+        {id:"p10",n:"琼瑶",p:"qióng yáo",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·卫风·木瓜》",q:"投我以木桃，报之以琼瑶。",cm:["琼：美玉珍贵","瑶：温润光洁"],m:"如美玉温润珍贵，也懂得珍惜与回报真情。",t:["温润","灵秀"]},
+        {id:"p11",n:"景行",p:"jǐng xíng",g:"m",cat:"shijing",tag:"诗经",work:"《诗经·小雅·车舝》",q:"高山仰止，景行行止。",cm:["景：光明高尚","行：践履笃定"],m:"心向高洁，行有准则，光明坦荡而脚踏实地。",t:["坚毅","雅正"]},
+        {id:"p12",n:"文茵",p:"wén yīn",g:"f",cat:"shijing",tag:"诗经",work:"《诗经·秦风·小戎》",q:"文茵畅毂，驾我骐馵。",cm:["文：文雅有章","茵：柔和温暖"],m:"文雅温和，细腻有涵养，给人舒适安定之感。",t:["温润","灵秀"]},
+
+        {id:"q01",n:"怀瑾",p:"huái jǐn",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《九章·怀沙》",q:"怀瑾握瑜兮，穷不知所示。",cm:["怀：胸怀宽广","瑾：美玉之德"],m:"怀抱美德，珍重内心，即使困顿也不改其质。",t:["雅正","坚毅"]},
+        {id:"q02",n:"修远",p:"xiū yuǎn",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"路漫漫其修远兮，吾将上下而求索。",cm:["修：修身自进","远：志向长远"],m:"志在远方，勤于修身，漫漫长路仍求索不息。",t:["坚毅","雅正"]},
+        {id:"q03",n:"望舒",p:"wàng shū",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"前望舒使先驱兮，后飞廉使奔属。",cm:["望：志向高远","舒：从容舒展"],m:"望舒为神话中为月驾车之神，寓意清朗从容、心向远方。",t:["灵秀","明朗"]},
+        {id:"q04",n:"秋兰",p:"qiū lán",g:"f",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"扈江离与辟芷兮，纫秋兰以为佩。",cm:["秋：澄澈丰盈","兰：幽香高洁"],m:"如秋兰清雅自持，温柔有节，不改芬芳。",t:["灵秀","雅正"]},
+        {id:"q05",n:"灵均",p:"líng jūn",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"名余曰正则兮，字余曰灵均。",cm:["灵：聪慧敏锐","均：平和端正"],m:"天资灵慧，心有尺度，聪敏而不失平和。",t:["灵秀","雅正"]},
+        {id:"q06",n:"杜若",p:"dù ruò",g:"f",cat:"chuci",tag:"楚辞",work:"屈原《九歌·山鬼》",q:"山中人兮芳杜若，饮石泉兮荫松柏。",cm:["杜：安静自守","若：柔和从容"],m:"取香草杜若之意，清芬自然，柔美中自有坚持。",t:["灵秀","温润"]},
+        {id:"q07",n:"正则",p:"zhèng zé",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"名余曰正则兮，字余曰灵均。",cm:["正：端方坦荡","则：准则法度"],m:"品行端正，心有准则，坦荡而知分寸。",t:["雅正","坚毅"]},
+        {id:"q08",n:"若英",p:"ruò yīng",g:"f",cat:"chuci",tag:"楚辞",work:"屈原《九歌·云中君》",q:"浴兰汤兮沐芳，华采衣兮若英。",cm:["若：温柔从容","英：花之光华"],m:"如花英明丽，气质清芬，柔和而有光彩。",t:["灵秀","明朗"]},
+        {id:"q09",n:"云旗",p:"yún qí",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《离骚》",q:"驾八龙之婉婉兮，载云旗之委蛇。",cm:["云：高远自在","旗：志向引领"],m:"气象高远，志向舒展，心怀方向而不失洒脱。",t:["明朗","坚毅"]},
+        {id:"q10",n:"安歌",p:"ān gē",g:"n",cat:"chuci",tag:"楚辞",work:"屈原《九歌·东皇太一》",q:"疏缓节兮安歌，陈竽瑟兮浩倡。",cm:["安：从容宁定","歌：开朗有情"],m:"从容安然，心中有歌，既宁静也有充沛生命力。",t:["温润","明朗"]},
+        {id:"q11",n:"嘉树",p:"jiā shù",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《九章·橘颂》",q:"后皇嘉树，橘徕服兮。",cm:["嘉：美善可喜","树：坚实成长"],m:"如嘉木深根挺立，品性美好，成长坚定。",t:["坚毅","雅正"]},
+        {id:"q12",n:"辰良",p:"chén liáng",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《九歌·东皇太一》",q:"吉日兮辰良，穆将愉兮上皇。",cm:["辰：星辰时序","良：善美贤良"],m:"生逢良辰，心性善美，人生明亮而有秩序。",t:["明朗","雅正"]},
+        {id:"q13",n:"秉德",p:"bǐng dé",g:"m",cat:"chuci",tag:"楚辞",work:"屈原《九章·橘颂》",q:"秉德无私，参天地兮。",cm:["秉：持守坚守","德：仁厚端方"],m:"持守美德，坦荡无私，内心坚定而有担当。",t:["坚毅","雅正"]}
+      ];
+
+      const GUIDE_DOCS = [
+        {id:"g01",title:"有出处不等于生搬原句",cat:"guide",tag:"起名方法",source:"本地知识库·文化出处",content:"典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。两字在原文中相邻最清晰；若是重新组合，应明确说明是取意而不是原句直取，避免给名字附会不存在的出处。"},
+        {id:"g02",title:"姓名音韵要连姓通读",cat:"guide",tag:"起名方法",source:"本地知识库·音韵",content:"判断名字是否顺口，要把姓和名连续朗读。注意声母是否过度重复、韵母是否拗口、声调是否全部挤在同一调类。普通话顺口之外，还应让家人用常用方言多读几遍。"},
+        {id:"g03",title:"优先选择常用规范汉字",cat:"guide",tag:"起名方法",source:"本地知识库·用字",content:"文化感不等于使用生僻字。过于冷僻、容易误读或输入困难的字，可能给证件办理、入学登记和日常交流带来负担。正式确定前，应再核对当地户籍可用字规范。"},
+        {id:"g04",title:"复姓更需要控制名字节奏",cat:"guide",tag:"起名方法",source:"本地知识库·复姓",content:"欧阳、上官、司马等复姓本身已有两个音节。搭配双字名时总长度较长，可优先选择结构简洁、发音清楚的用字；搭配单字名时则要留意整体意象是否完整。"},
+        {id:"g05",title:"方言谐音需要家人共同核验",cat:"guide",tag:"起名方法",source:"本地知识库·谐音",content:"程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。候选名字应分别快速连读、倒序听读，并和常见称呼搭配，由熟悉家庭方言的人一起检查不雅谐音。"},
+        {id:"g06",title:"比较候选名的四个维度",cat:"guide",tag:"起名方法",source:"本地知识库·筛选",content:"比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。不要只依赖一个笼统分数。"},
+        {id:"g07",title:"性别气质只是偏好而非规则",cat:"guide",tag:"起名方法",source:"本地知识库·气质",content:"传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。更重要的是家庭对名字气质的认同，以及孩子未来使用时的舒适感。"},
+        {id:"g08",title:"家族字辈应先于自动推荐",cat:"guide",tag:"起名方法",source:"本地知识库·字辈",content:"如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。系统中的“期望包含”适合完成这类约束，但最终仍需家人确认。"},
+        {id:"g09",title:"八字信息需要明确授权",cat:"guide",tag:"起名方法",source:"本地知识库·隐私",content:"八字与五行归类属于传统民俗文化参考，不代表科学预测。系统只接受用户已确认的四柱和用字倾向，不擅自判断喜用神或吉凶；纯本地模式不上传、不保存，使用模型时还需用户单独勾选授权。"},
+        {id:"g10",title:"最终落名前做一次长期使用检查",cat:"guide",tag:"起名方法",source:"本地知识库·定名",content:"把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。一个好名字既要有文化来处，也要经得起长期日常使用。"}
+      ];
+      /* WIKI_BUNDLE_START */
+      const WIKI_META = {"architecture":"LLM Wiki","version":"bcc4eccdbd01","builtAt":"2026-07-26","pages":104,"chunks":104,"links":283,"names":62,"methods":10,"sources":12,"concepts":16,"comparisons":4,"categoryCounts":{"chuci":14,"classics":18,"guide":30,"shijing":13,"song":15,"tang":14},"typeCounts":{"comparison":4,"concept":16,"method":10,"name":62,"source":12}};
+      const WIKI_CHUNKS = [{"id":"name-c01:chunk-1","pageId":"name-c01","chunkIndex":1,"title":"知微","category":"classics","tag":"四书五经","source":"《周易·系辞下》","type":"name","status":"verified","verified":true,"recordId":"c01","keywords":["知微","zhī wēi","四书五经","《周易·系辞下》","雅正","灵秀","知","微"],"links":["source-zhouyi","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：知微。拼音：zhī wēi。原句：君子知微知彰，知柔知刚，万夫之望。。字义：知：明辨通达；微：洞察精微。整体寓意：见微知著，思虑通透，温柔且有力量。。气质：雅正、灵秀。关联知识：《周易》来源页、连姓音韵、长期使用检查。"},{"id":"name-c02:chunk-1","pageId":"name-c02","chunkIndex":1,"title":"明德","category":"classics","tag":"四书五经","source":"《大学》","type":"name","status":"verified","verified":true,"recordId":"c02","keywords":["明德","míng dé","四书五经","《大学》","雅正","明朗","明","德"],"links":["source-daxue","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：明德。拼音：míng dé。原句：大学之道，在明明德，在亲民，在止于至善。。字义：明：澄明光亮；德：品行仁厚。整体寓意：明心修德，光而不耀，以仁厚立身。。气质：雅正、明朗。关联知识：《大学》来源页、连姓音韵、长期使用检查。"},{"id":"name-c03:chunk-1","pageId":"name-c03","chunkIndex":1,"title":"慎思","category":"classics","tag":"四书五经","source":"《中庸》","type":"name","status":"verified","verified":true,"recordId":"c03","keywords":["慎思","shèn sī","四书五经","《中庸》","雅正","温润","慎","思"],"links":["source-zhongyong","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：慎思。拼音：shèn sī。原句：博学之，审问之，慎思之，明辨之，笃行之。。字义：慎：审慎周全；思：善思明辨。整体寓意：勤学善思，审慎笃定，行事有分寸。。气质：雅正、温润。关联知识：《中庸》来源页、连姓音韵、长期使用检查。"},{"id":"name-c04:chunk-1","pageId":"name-c04","chunkIndex":1,"title":"笃行","category":"classics","tag":"四书五经","source":"《中庸》","type":"name","status":"verified","verified":true,"recordId":"c04","keywords":["笃行","dǔ xíng","四书五经","《中庸》","坚毅","雅正","笃","行"],"links":["source-zhongyong","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：笃行。拼音：dǔ xíng。原句：博学之，审问之，慎思之，明辨之，笃行之。。字义：笃：坚定专一；行：躬身践履。整体寓意：知行相济，坚定务实，所行有所至。。气质：坚毅、雅正。关联知识：《中庸》来源页、连姓音韵、长期使用检查。"},{"id":"name-c05:chunk-1","pageId":"name-c05","chunkIndex":1,"title":"知新","category":"classics","tag":"四书五经","source":"《论语·为政》","type":"name","status":"verified","verified":true,"recordId":"c05","keywords":["知新","zhī xīn","四书五经","《论语·为政》","明朗","灵秀","知","新"],"links":["source-lunyu","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：知新。拼音：zhī xīn。原句：温故而知新，可以为师矣。。字义：知：通晓明达；新：日有所进。整体寓意：温故知新，常怀好奇，日日精进。。气质：明朗、灵秀。关联知识：《论语》来源页、连姓音韵、长期使用检查。"},{"id":"name-c06:chunk-1","pageId":"name-c06","chunkIndex":1,"title":"德邻","category":"classics","tag":"四书五经","source":"《论语·里仁》","type":"name","status":"verified","verified":true,"recordId":"c06","keywords":["德邻","dé lín","四书五经","《论语·里仁》","温润","雅正","德","邻"],"links":["source-lunyu","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：德邻。拼音：dé lín。原句：德不孤，必有邻。。字义：德：仁厚有度；邻：亲和相伴。整体寓意：以德立身，亲和宽厚，所行自有同道。。气质：温润、雅正。关联知识：《论语》来源页、连姓音韵、长期使用检查。"},{"id":"name-c07:chunk-1","pageId":"name-c07","chunkIndex":1,"title":"弘毅","category":"classics","tag":"四书五经","source":"《论语·泰伯》","type":"name","status":"verified","verified":true,"recordId":"c07","keywords":["弘毅","hóng yì","四书五经","《论语·泰伯》","坚毅","明朗","弘","毅"],"links":["source-lunyu","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：弘毅。拼音：hóng yì。原句：士不可以不弘毅，任重而道远。。字义：弘：宽广宏阔；毅：坚韧果决。整体寓意：胸怀广阔，意志坚毅，能担远任。。气质：坚毅、明朗。关联知识：《论语》来源页、连姓音韵、长期使用检查。"},{"id":"name-c08:chunk-1","pageId":"name-c08","chunkIndex":1,"title":"思齐","category":"classics","tag":"四书五经","source":"《论语·里仁》","type":"name","status":"verified","verified":true,"recordId":"c08","keywords":["思齐","sī qí","四书五经","《论语·里仁》","雅正","温润","思","齐"],"links":["source-lunyu","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：思齐。拼音：sī qí。原句：见贤思齐焉，见不贤而内自省也。。字义：思：善思自省；齐：向善看齐。整体寓意：心有所向，自省自进，始终向优秀者看齐。。气质：雅正、温润。关联知识：《论语》来源页、连姓音韵、长期使用检查。"},{"id":"name-c09:chunk-1","pageId":"name-c09","chunkIndex":1,"title":"自牧","category":"classics","tag":"四书五经","source":"《周易·谦》","type":"name","status":"verified","verified":true,"recordId":"c09","keywords":["自牧","zì mù","四书五经","《周易·谦》","温润","雅正","自","牧"],"links":["source-zhouyi","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：自牧。拼音：zì mù。原句：谦谦君子，卑以自牧也。。字义：自：自省自主；牧：修养涵育。整体寓意：谦逊自持，善于自我涵养，安静而有力量。。气质：温润、雅正。关联知识：《周易》来源页、连姓音韵、长期使用检查。"},{"id":"name-c10:chunk-1","pageId":"name-c10","chunkIndex":1,"title":"厚德","category":"classics","tag":"四书五经","source":"《周易·坤》","type":"name","status":"verified","verified":true,"recordId":"c10","keywords":["厚德","hòu dé","四书五经","《周易·坤》","坚毅","雅正","厚","德"],"links":["source-zhouyi","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：厚德。拼音：hòu dé。原句：地势坤，君子以厚德载物。。字义：厚：宽厚深沉；德：仁善端方。整体寓意：厚道包容，有担当，也有容纳万物的胸襟。。气质：坚毅、雅正。关联知识：《周易》来源页、连姓音韵、长期使用检查。"},{"id":"name-c11:chunk-1","pageId":"name-c11","chunkIndex":1,"title":"玉成","category":"classics","tag":"四书五经","source":"《礼记·学记》","type":"name","status":"verified","verified":true,"recordId":"c11","keywords":["玉成","yù chéng","四书五经","《礼记·学记》","温润","雅正","玉","成"],"links":["source-liji","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：玉成。拼音：yù chéng。原句：玉不琢，不成器；人不学，不知道。。字义：玉：温润珍贵；成：成就圆满。整体寓意：如玉可琢，勤学自成，温润而坚定。。气质：温润、雅正。关联知识：《礼记》来源页、连姓音韵、长期使用检查。"},{"id":"name-c12:chunk-1","pageId":"name-c12","chunkIndex":1,"title":"安仁","category":"classics","tag":"四书五经","source":"《论语·里仁》","type":"name","status":"verified","verified":true,"recordId":"c12","keywords":["安仁","ān rén","四书五经","《论语·里仁》","温润","雅正","安","仁"],"links":["source-lunyu","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：安仁。拼音：ān rén。原句：仁者安仁，知者利仁。。字义：安：安定从容；仁：仁爱宽和。整体寓意：内心安定，以仁厚待人，温和而自有原则。。气质：温润、雅正。关联知识：《论语》来源页、连姓音韵、长期使用检查。"},{"id":"name-t01:chunk-1","pageId":"name-t01","chunkIndex":1,"title":"云起","category":"tang","tag":"唐诗","source":"王维《终南别业》","type":"name","status":"verified","verified":true,"recordId":"t01","keywords":["云起","yún qǐ","唐诗","王维《终南别业》","明朗","温润","云","起"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：云起。拼音：yún qǐ。原句：行到水穷处，坐看云起时。。字义：云：自在舒展；起：蓬勃向上。整体寓意：从容通达，顺境逆境皆能看见新的生机。。气质：明朗、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t02:chunk-1","pageId":"name-t02","chunkIndex":1,"title":"星垂","category":"tang","tag":"唐诗","source":"杜甫《旅夜书怀》","type":"name","status":"verified","verified":true,"recordId":"t02","keywords":["星垂","xīng chuí","唐诗","杜甫《旅夜书怀》","明朗","坚毅","星","垂"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：星垂。拼音：xīng chuí。原句：星垂平野阔，月涌大江流。。字义：星：明亮高远；垂：沉静照临。整体寓意：胸有星野，气象开阔，沉静中自有光芒。。气质：明朗、坚毅。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t03:chunk-1","pageId":"name-t03","chunkIndex":1,"title":"润物","category":"tang","tag":"唐诗","source":"杜甫《春夜喜雨》","type":"name","status":"verified","verified":true,"recordId":"t03","keywords":["润物","rùn wù","唐诗","杜甫《春夜喜雨》","温润","雅正","润","物"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：润物。拼音：rùn wù。原句：随风潜入夜，润物细无声。。字义：润：温和滋养；物：关怀万有。整体寓意：温厚体贴，行善无声，给身边人以滋养。。气质：温润、雅正。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t04:chunk-1","pageId":"name-t04","chunkIndex":1,"title":"轻舟","category":"tang","tag":"唐诗","source":"李白《早发白帝城》","type":"name","status":"verified","verified":true,"recordId":"t04","keywords":["轻舟","qīng zhōu","唐诗","李白《早发白帝城》","明朗","灵秀","轻","舟"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：轻舟。拼音：qīng zhōu。原句：两岸猿声啼不住，轻舟已过万重山。。字义：轻：从容洒脱；舟：行稳致远。整体寓意：一生从容自在，纵有万山亦能轻快向前。。气质：明朗、灵秀。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t05:chunk-1","pageId":"name-t05","chunkIndex":1,"title":"云帆","category":"tang","tag":"唐诗","source":"李白《行路难》","type":"name","status":"verified","verified":true,"recordId":"t05","keywords":["云帆","yún fān","唐诗","李白《行路难》","坚毅","明朗","云","帆"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：云帆。拼音：yún fān。原句：长风破浪会有时，直挂云帆济沧海。。字义：云：高远自在；帆：逐风前行。整体寓意：志向高远，乘风破浪，始终相信前路。。气质：坚毅、明朗。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t06:chunk-1","pageId":"name-t06","chunkIndex":1,"title":"明月","category":"tang","tag":"唐诗","source":"张九龄《望月怀远》","type":"name","status":"verified","verified":true,"recordId":"t06","keywords":["明月","míng yuè","唐诗","张九龄《望月怀远》","灵秀","温润","明","月"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：明月。拼音：míng yuè。原句：海上生明月，天涯共此时。。字义：明：澄澈明亮；月：清雅温柔。整体寓意：心境澄明，温柔清雅，也寄托长久的牵念。。气质：灵秀、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t07:chunk-1","pageId":"name-t07","chunkIndex":1,"title":"春晖","category":"tang","tag":"唐诗","source":"孟郊《游子吟》","type":"name","status":"verified","verified":true,"recordId":"t07","keywords":["春晖","chūn huī","唐诗","孟郊《游子吟》","温润","明朗","春","晖"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：春晖。拼音：chūn huī。原句：谁言寸草心，报得三春晖。。字义：春：和暖生机；晖：温暖光辉。整体寓意：温暖明朗，心怀感恩，如春光照拂身边的人。。气质：温润、明朗。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t08:chunk-1","pageId":"name-t08","chunkIndex":1,"title":"灵犀","category":"tang","tag":"唐诗","source":"李商隐《无题》","type":"name","status":"verified","verified":true,"recordId":"t08","keywords":["灵犀","líng xī","唐诗","李商隐《无题》","灵秀","温润","灵","犀"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：灵犀。拼音：líng xī。原句：身无彩凤双飞翼，心有灵犀一点通。。字义：灵：聪慧灵动；犀：通透敏锐。整体寓意：聪慧敏锐，善解人意，内心通透明澈。。气质：灵秀、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t09:chunk-1","pageId":"name-t09","chunkIndex":1,"title":"晴川","category":"tang","tag":"唐诗","source":"崔颢《黄鹤楼》","type":"name","status":"verified","verified":true,"recordId":"t09","keywords":["晴川","qíng chuān","唐诗","崔颢《黄鹤楼》","明朗","灵秀","晴","川"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：晴川。拼音：qíng chuān。原句：晴川历历汉阳树，芳草萋萋鹦鹉洲。。字义：晴：明净开朗；川：舒展通达。整体寓意：心境明净，人生如长川舒展，明朗而辽阔。。气质：明朗、灵秀。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t10:chunk-1","pageId":"name-t10","chunkIndex":1,"title":"若邻","category":"tang","tag":"唐诗","source":"王勃《送杜少府之任蜀州》","type":"name","status":"verified","verified":true,"recordId":"t10","keywords":["若邻","ruò lín","唐诗","王勃《送杜少府之任蜀州》","温润","雅正","若","邻"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：若邻。拼音：ruò lín。原句：海内存知己，天涯若比邻。。字义：若：从容柔和；邻：亲近和睦。整体寓意：真诚亲和，重情重义，虽远亦能心意相通。。气质：温润、雅正。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t11:chunk-1","pageId":"name-t11","chunkIndex":1,"title":"秋池","category":"tang","tag":"唐诗","source":"李商隐《夜雨寄北》","type":"name","status":"verified","verified":true,"recordId":"t11","keywords":["秋池","qiū chí","唐诗","李商隐《夜雨寄北》","灵秀","温润","秋","池"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：秋池。拼音：qiū chí。原句：君问归期未有期，巴山夜雨涨秋池。。字义：秋：澄澈丰盈；池：宁静包容。整体寓意：清澈宁静，情感丰沛，心中自有一方天地。。气质：灵秀、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-t12:chunk-1","pageId":"name-t12","chunkIndex":1,"title":"晚晴","category":"tang","tag":"唐诗","source":"李商隐《晚晴》","type":"name","status":"verified","verified":true,"recordId":"t12","keywords":["晚晴","wǎn qíng","唐诗","李商隐《晚晴》","温润","明朗","晚","晴"],"links":["source-tang-poetry","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：晚晴。拼音：wǎn qíng。原句：天意怜幽草，人间重晚晴。。字义：晚：沉静从容；晴：明朗温暖。整体寓意：历雨而晴，温柔坚定，珍惜平常日子里的光亮。。气质：温润、明朗。关联知识：唐诗来源页、连姓音韵、长期使用检查。"},{"id":"name-s01:chunk-1","pageId":"name-s01","chunkIndex":1,"title":"疏桐","category":"song","tag":"宋词","source":"苏轼《卜算子·黄州定慧院寓居作》","type":"name","status":"verified","verified":true,"recordId":"s01","keywords":["疏桐","shū tóng","宋词","苏轼《卜算子·黄州定慧院寓居作》","灵秀","雅正","疏","桐"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：疏桐。拼音：shū tóng。原句：缺月挂疏桐，漏断人初静。。字义：疏：通透从容；桐：清雅坚贞。整体寓意：清朗疏阔，内心安定，保有独立清雅的品格。。气质：灵秀、雅正。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s02:chunk-1","pageId":"name-s02","chunkIndex":1,"title":"清欢","category":"song","tag":"宋词","source":"苏轼《浣溪沙·细雨斜风作晓寒》","type":"name","status":"verified","verified":true,"recordId":"s02","keywords":["清欢","qīng huān","宋词","苏轼《浣溪沙·细雨斜风作晓寒》","温润","明朗","清","欢"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：清欢。拼音：qīng huān。原句：人间有味是清欢。。字义：清：澄澈纯净；欢：喜悦明朗。整体寓意：知足清醒，能在平常生活里发现真切欢喜。。气质：温润、明朗。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s03:chunk-1","pageId":"name-s03","chunkIndex":1,"title":"徐行","category":"song","tag":"宋词","source":"苏轼《定风波·莫听穿林打叶声》","type":"name","status":"verified","verified":true,"recordId":"s03","keywords":["徐行","xú xíng","宋词","苏轼《定风波·莫听穿林打叶声》","坚毅","温润","徐","行"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：徐行。拼音：xú xíng。原句：莫听穿林打叶声，何妨吟啸且徐行。。字义：徐：从容不迫；行：笃定前行。整体寓意：风雨之中仍从容前行，豁达而有定力。。气质：坚毅、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s04:chunk-1","pageId":"name-s04","chunkIndex":1,"title":"烟雨","category":"song","tag":"宋词","source":"苏轼《定风波·莫听穿林打叶声》","type":"name","status":"verified","verified":true,"recordId":"s04","keywords":["烟雨","yān yǔ","宋词","苏轼《定风波·莫听穿林打叶声》","明朗","灵秀","烟","雨"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：烟雨。拼音：yān yǔ。原句：竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。。字义：烟：轻盈旷远；雨：滋养万物。整体寓意：旷达自在，不畏风雨，内心自有从容天地。。气质：明朗、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s05:chunk-1","pageId":"name-s05","chunkIndex":1,"title":"婵娟","category":"song","tag":"宋词","source":"苏轼《水调歌头·明月几时有》","type":"name","status":"verified","verified":true,"recordId":"s05","keywords":["婵娟","chán juān","宋词","苏轼《水调歌头·明月几时有》","灵秀","温润","婵","娟"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：婵娟。拼音：chán juān。原句：但愿人长久，千里共婵娟。。字义：婵：姿态美好；娟：秀丽清雅。整体寓意：清雅美好，寄托团圆长久与真挚祝愿。。气质：灵秀、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s06:chunk-1","pageId":"name-s06","chunkIndex":1,"title":"锦书","category":"song","tag":"宋词","source":"李清照《一剪梅·红藕香残玉簟秋》","type":"name","status":"verified","verified":true,"recordId":"s06","keywords":["锦书","jǐn shū","宋词","李清照《一剪梅·红藕香残玉簟秋》","雅正","灵秀","锦","书"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：锦书。拼音：jǐn shū。原句：云中谁寄锦书来？雁字回时，月满西楼。。字义：锦：绚丽美好；书：知礼好学。整体寓意：腹有诗书，情感细腻，人生如锦而有章法。。气质：雅正、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s07:chunk-1","pageId":"name-s07","chunkIndex":1,"title":"星河","category":"song","tag":"宋词","source":"李清照《渔家傲·天接云涛连晓雾》","type":"name","status":"verified","verified":true,"recordId":"s07","keywords":["星河","xīng hé","宋词","李清照《渔家傲·天接云涛连晓雾》","明朗","灵秀","星","河"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：星河。拼音：xīng hé。原句：天接云涛连晓雾，星河欲转千帆舞。。字义：星：明亮高远；河：辽阔绵长。整体寓意：心有星河，眼界辽阔，明亮而富有想象力。。气质：明朗、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s08:chunk-1","pageId":"name-s08","chunkIndex":1,"title":"清圆","category":"song","tag":"宋词","source":"周邦彦《苏幕遮·燎沉香》","type":"name","status":"verified","verified":true,"recordId":"s08","keywords":["清圆","qīng yuán","宋词","周邦彦《苏幕遮·燎沉香》","温润","灵秀","清","圆"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：清圆。拼音：qīng yuán。原句：叶上初阳干宿雨，水面清圆，一一风荷举。。字义：清：清澈高洁；圆：圆融和满。整体寓意：清澈圆融，温和完整，如雨后荷叶生机自持。。气质：温润、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s09:chunk-1","pageId":"name-s09","chunkIndex":1,"title":"风荷","category":"song","tag":"宋词","source":"周邦彦《苏幕遮·燎沉香》","type":"name","status":"verified","verified":true,"recordId":"s09","keywords":["风荷","fēng hé","宋词","周邦彦《苏幕遮·燎沉香》","灵秀","雅正","风","荷"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：风荷。拼音：fēng hé。原句：叶上初阳干宿雨，水面清圆，一一风荷举。。字义：风：自由清朗；荷：高洁生香。整体寓意：气质清雅，舒展有节，在风中仍保有自己的姿态。。气质：灵秀、雅正。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s10:chunk-1","pageId":"name-s10","chunkIndex":1,"title":"知许","category":"song","tag":"宋词","source":"李清照《永遇乐·落日熔金》","type":"name","status":"verified","verified":true,"recordId":"s10","keywords":["知许","zhī xǔ","宋词","李清照《永遇乐·落日熔金》","灵秀","温润","知","许"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：知许。拼音：zhī xǔ。原句：染柳烟浓，吹梅笛怨，春意知几许。。字义：知：聪慧通达；许：从容期许。整体寓意：知春意、懂分寸，聪慧温柔，对未来怀有期许。。气质：灵秀、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s11:chunk-1","pageId":"name-s11","chunkIndex":1,"title":"阑珊","category":"song","tag":"宋词","source":"辛弃疾《青玉案·元夕》","type":"name","status":"verified","verified":true,"recordId":"s11","keywords":["阑珊","lán shān","宋词","辛弃疾《青玉案·元夕》","灵秀","雅正","阑","珊"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：阑珊。拼音：lán shān。原句：蓦然回首，那人却在，灯火阑珊处。。字义：阑：沉静有度；珊：珍贵美好。整体寓意：沉静自持，不逐喧哗，自有被看见的光芒。。气质：灵秀、雅正。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s12:chunk-1","pageId":"name-s12","chunkIndex":1,"title":"兰舟","category":"song","tag":"宋词","source":"柳永《雨霖铃·寒蝉凄切》","type":"name","status":"verified","verified":true,"recordId":"s12","keywords":["兰舟","lán zhōu","宋词","柳永《雨霖铃·寒蝉凄切》","温润","灵秀","兰","舟"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：兰舟。拼音：lán zhōu。原句：都门帐饮无绪，留恋处，兰舟催发。。字义：兰：高洁芬芳；舟：坚定远行。整体寓意：品格如兰，心有远方，温柔而有前行的勇气。。气质：温润、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-s13:chunk-1","pageId":"name-s13","chunkIndex":1,"title":"轻寒","category":"song","tag":"宋词","source":"秦观《浣溪沙·漠漠轻寒上小楼》","type":"name","status":"verified","verified":true,"recordId":"s13","keywords":["轻寒","qīng hán","宋词","秦观《浣溪沙·漠漠轻寒上小楼》","灵秀","温润","轻","寒"],"links":["source-song-ci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：轻寒。拼音：qīng hán。原句：漠漠轻寒上小楼，晓阴无赖似穷秋。。字义：轻：从容灵动；寒：清澈自守。整体寓意：清秀灵动，安静自持，气质轻盈而不失坚韧。。气质：灵秀、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"},{"id":"name-p01:chunk-1","pageId":"name-p01","chunkIndex":1,"title":"子衿","category":"shijing","tag":"诗经","source":"《诗经·郑风·子衿》","type":"name","status":"verified","verified":true,"recordId":"p01","keywords":["子衿","zǐ jīn","诗经","《诗经·郑风·子衿》","雅正","温润","子","衿"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：子衿。拼音：zǐ jīn。原句：青青子衿，悠悠我心。。字义：子：谦谦君子；衿：文雅学子。整体寓意：温文有礼，勤学知雅，也寄托深长的牵念。。气质：雅正、温润。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p02:chunk-1","pageId":"name-p02","chunkIndex":1,"title":"其华","category":"shijing","tag":"诗经","source":"《诗经·周南·桃夭》","type":"name","status":"verified","verified":true,"recordId":"p02","keywords":["其华","qí huá","诗经","《诗经·周南·桃夭》","明朗","灵秀","其","华"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：其华。拼音：qí huá。原句：桃之夭夭，灼灼其华。。字义：其：从容笃定；华：灿烂美好。整体寓意：生命明媚，丰盛灿然，也有家庭和美的祝愿。。气质：明朗、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p03:chunk-1","pageId":"name-p03","chunkIndex":1,"title":"静好","category":"shijing","tag":"诗经","source":"《诗经·郑风·女曰鸡鸣》","type":"name","status":"verified","verified":true,"recordId":"p03","keywords":["静好","jìng hǎo","诗经","《诗经·郑风·女曰鸡鸣》","温润","雅正","静","好"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：静好。拼音：jìng hǎo。原句：琴瑟在御，莫不静好。。字义：静：安宁沉着；好：美善和悦。整体寓意：岁月安宁，内心和悦，生活温柔而美好。。气质：温润、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p04:chunk-1","pageId":"name-p04","chunkIndex":1,"title":"令仪","category":"shijing","tag":"诗经","source":"《诗经·小雅·湛露》","type":"name","status":"verified","verified":true,"recordId":"p04","keywords":["令仪","lìng yí","诗经","《诗经·小雅·湛露》","雅正","温润","令","仪"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：令仪。拼音：lìng yí。原句：岂弟君子，莫不令仪。。字义：令：美好端正；仪：仪度有礼。整体寓意：端方知礼，举止从容，内外皆有美好风仪。。气质：雅正、温润。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p05:chunk-1","pageId":"name-p05","chunkIndex":1,"title":"徽音","category":"shijing","tag":"诗经","source":"《诗经·大雅·思齐》","type":"name","status":"verified","verified":true,"recordId":"p05","keywords":["徽音","huī yīn","诗经","《诗经·大雅·思齐》","雅正","灵秀","徽","音"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：徽音。拼音：huī yīn。原句：大姒嗣徽音，则百斯男。。字义：徽：美善嘉德；音：声誉文采。整体寓意：品德美善，声名清雅，将温柔与力量传续下去。。气质：雅正、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p06:chunk-1","pageId":"name-p06","chunkIndex":1,"title":"攸宁","category":"shijing","tag":"诗经","source":"《诗经·小雅·斯干》","type":"name","status":"verified","verified":true,"recordId":"p06","keywords":["攸宁","yōu níng","诗经","《诗经·小雅·斯干》","温润","雅正","攸","宁"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：攸宁。拼音：yōu níng。原句：哙哙其正，哕哕其冥，君子攸宁。。字义：攸：从容长远；宁：安定平和。整体寓意：心有所安，行有所往，一生从容宁定。。气质：温润、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p07:chunk-1","pageId":"name-p07","chunkIndex":1,"title":"维桢","category":"shijing","tag":"诗经","source":"《诗经·大雅·文王》","type":"name","status":"verified","verified":true,"recordId":"p07","keywords":["维桢","wéi zhēn","诗经","《诗经·大雅·文王》","坚毅","雅正","维","桢"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：维桢。拼音：wéi zhēn。原句：王国克生，维周之桢。。字义：维：持守担当；桢：坚实栋梁。整体寓意：坚定可靠，有持守、有担当，能成为可托付的人。。气质：坚毅、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p08:chunk-1","pageId":"name-p08","chunkIndex":1,"title":"柔嘉","category":"shijing","tag":"诗经","source":"《诗经·大雅·抑》","type":"name","status":"verified","verified":true,"recordId":"p08","keywords":["柔嘉","róu jiā","诗经","《诗经·大雅·抑》","温润","雅正","柔","嘉"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：柔嘉。拼音：róu jiā。原句：敬尔威仪，无不柔嘉。。字义：柔：温和有韧；嘉：美善可喜。整体寓意：温柔而有原则，言行美善，亲和且有分寸。。气质：温润、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p09:chunk-1","pageId":"name-p09","chunkIndex":1,"title":"清扬","category":"shijing","tag":"诗经","source":"《诗经·郑风·野有蔓草》","type":"name","status":"verified","verified":true,"recordId":"p09","keywords":["清扬","qīng yáng","诗经","《诗经·郑风·野有蔓草》","灵秀","明朗","清","扬"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：清扬。拼音：qīng yáng。原句：有美一人，清扬婉兮。。字义：清：清澈高洁；扬：舒展明朗。整体寓意：眉目清朗，气质舒展，既清秀也自信。。气质：灵秀、明朗。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p10:chunk-1","pageId":"name-p10","chunkIndex":1,"title":"琼瑶","category":"shijing","tag":"诗经","source":"《诗经·卫风·木瓜》","type":"name","status":"verified","verified":true,"recordId":"p10","keywords":["琼瑶","qióng yáo","诗经","《诗经·卫风·木瓜》","温润","灵秀","琼","瑶"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：琼瑶。拼音：qióng yáo。原句：投我以木桃，报之以琼瑶。。字义：琼：美玉珍贵；瑶：温润光洁。整体寓意：如美玉温润珍贵，也懂得珍惜与回报真情。。气质：温润、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p11:chunk-1","pageId":"name-p11","chunkIndex":1,"title":"景行","category":"shijing","tag":"诗经","source":"《诗经·小雅·车舝》","type":"name","status":"verified","verified":true,"recordId":"p11","keywords":["景行","jǐng xíng","诗经","《诗经·小雅·车舝》","坚毅","雅正","景","行"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：景行。拼音：jǐng xíng。原句：高山仰止，景行行止。。字义：景：光明高尚；行：践履笃定。整体寓意：心向高洁，行有准则，光明坦荡而脚踏实地。。气质：坚毅、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-p12:chunk-1","pageId":"name-p12","chunkIndex":1,"title":"文茵","category":"shijing","tag":"诗经","source":"《诗经·秦风·小戎》","type":"name","status":"verified","verified":true,"recordId":"p12","keywords":["文茵","wén yīn","诗经","《诗经·秦风·小戎》","温润","灵秀","文","茵"],"links":["source-shijing","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：文茵。拼音：wén yīn。原句：文茵畅毂，驾我骐馵。。字义：文：文雅有章；茵：柔和温暖。整体寓意：文雅温和，细腻有涵养，给人舒适安定之感。。气质：温润、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"},{"id":"name-q01:chunk-1","pageId":"name-q01","chunkIndex":1,"title":"怀瑾","category":"chuci","tag":"楚辞","source":"屈原《九章·怀沙》","type":"name","status":"verified","verified":true,"recordId":"q01","keywords":["怀瑾","huái jǐn","楚辞","屈原《九章·怀沙》","雅正","坚毅","怀","瑾"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：怀瑾。拼音：huái jǐn。原句：怀瑾握瑜兮，穷不知所示。。字义：怀：胸怀宽广；瑾：美玉之德。整体寓意：怀抱美德，珍重内心，即使困顿也不改其质。。气质：雅正、坚毅。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q02:chunk-1","pageId":"name-q02","chunkIndex":1,"title":"修远","category":"chuci","tag":"楚辞","source":"屈原《离骚》","type":"name","status":"verified","verified":true,"recordId":"q02","keywords":["修远","xiū yuǎn","楚辞","屈原《离骚》","坚毅","雅正","修","远"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：修远。拼音：xiū yuǎn。原句：路漫漫其修远兮，吾将上下而求索。。字义：修：修身自进；远：志向长远。整体寓意：志在远方，勤于修身，漫漫长路仍求索不息。。气质：坚毅、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q03:chunk-1","pageId":"name-q03","chunkIndex":1,"title":"望舒","category":"chuci","tag":"楚辞","source":"屈原《离骚》","type":"name","status":"verified","verified":true,"recordId":"q03","keywords":["望舒","wàng shū","楚辞","屈原《离骚》","灵秀","明朗","望","舒"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：望舒。拼音：wàng shū。原句：前望舒使先驱兮，后飞廉使奔属。。字义：望：志向高远；舒：从容舒展。整体寓意：望舒为神话中为月驾车之神，寓意清朗从容、心向远方。。气质：灵秀、明朗。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q04:chunk-1","pageId":"name-q04","chunkIndex":1,"title":"秋兰","category":"chuci","tag":"楚辞","source":"屈原《离骚》","type":"name","status":"verified","verified":true,"recordId":"q04","keywords":["秋兰","qiū lán","楚辞","屈原《离骚》","灵秀","雅正","秋","兰"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：秋兰。拼音：qiū lán。原句：扈江离与辟芷兮，纫秋兰以为佩。。字义：秋：澄澈丰盈；兰：幽香高洁。整体寓意：如秋兰清雅自持，温柔有节，不改芬芳。。气质：灵秀、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q05:chunk-1","pageId":"name-q05","chunkIndex":1,"title":"灵均","category":"chuci","tag":"楚辞","source":"屈原《离骚》","type":"name","status":"verified","verified":true,"recordId":"q05","keywords":["灵均","líng jūn","楚辞","屈原《离骚》","灵秀","雅正","灵","均"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：灵均。拼音：líng jūn。原句：名余曰正则兮，字余曰灵均。。字义：灵：聪慧敏锐；均：平和端正。整体寓意：天资灵慧，心有尺度，聪敏而不失平和。。气质：灵秀、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q06:chunk-1","pageId":"name-q06","chunkIndex":1,"title":"杜若","category":"chuci","tag":"楚辞","source":"屈原《九歌·山鬼》","type":"name","status":"verified","verified":true,"recordId":"q06","keywords":["杜若","dù ruò","楚辞","屈原《九歌·山鬼》","灵秀","温润","杜","若"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：杜若。拼音：dù ruò。原句：山中人兮芳杜若，饮石泉兮荫松柏。。字义：杜：安静自守；若：柔和从容。整体寓意：取香草杜若之意，清芬自然，柔美中自有坚持。。气质：灵秀、温润。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q07:chunk-1","pageId":"name-q07","chunkIndex":1,"title":"正则","category":"chuci","tag":"楚辞","source":"屈原《离骚》","type":"name","status":"verified","verified":true,"recordId":"q07","keywords":["正则","zhèng zé","楚辞","屈原《离骚》","雅正","坚毅","正","则"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：正则。拼音：zhèng zé。原句：名余曰正则兮，字余曰灵均。。字义：正：端方坦荡；则：准则法度。整体寓意：品行端正，心有准则，坦荡而知分寸。。气质：雅正、坚毅。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q08:chunk-1","pageId":"name-q08","chunkIndex":1,"title":"若英","category":"chuci","tag":"楚辞","source":"屈原《九歌·云中君》","type":"name","status":"verified","verified":true,"recordId":"q08","keywords":["若英","ruò yīng","楚辞","屈原《九歌·云中君》","灵秀","明朗","若","英"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：若英。拼音：ruò yīng。原句：浴兰汤兮沐芳，华采衣兮若英。。字义：若：温柔从容；英：花之光华。整体寓意：如花英明丽，气质清芬，柔和而有光彩。。气质：灵秀、明朗。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q09:chunk-1","pageId":"name-q09","chunkIndex":1,"title":"云旗","category":"chuci","tag":"楚辞","source":"屈原《离骚》","type":"name","status":"verified","verified":true,"recordId":"q09","keywords":["云旗","yún qí","楚辞","屈原《离骚》","明朗","坚毅","云","旗"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：云旗。拼音：yún qí。原句：驾八龙之婉婉兮，载云旗之委蛇。。字义：云：高远自在；旗：志向引领。整体寓意：气象高远，志向舒展，心怀方向而不失洒脱。。气质：明朗、坚毅。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q10:chunk-1","pageId":"name-q10","chunkIndex":1,"title":"安歌","category":"chuci","tag":"楚辞","source":"屈原《九歌·东皇太一》","type":"name","status":"verified","verified":true,"recordId":"q10","keywords":["安歌","ān gē","楚辞","屈原《九歌·东皇太一》","温润","明朗","安","歌"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：安歌。拼音：ān gē。原句：疏缓节兮安歌，陈竽瑟兮浩倡。。字义：安：从容宁定；歌：开朗有情。整体寓意：从容安然，心中有歌，既宁静也有充沛生命力。。气质：温润、明朗。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q11:chunk-1","pageId":"name-q11","chunkIndex":1,"title":"嘉树","category":"chuci","tag":"楚辞","source":"屈原《九章·橘颂》","type":"name","status":"verified","verified":true,"recordId":"q11","keywords":["嘉树","jiā shù","楚辞","屈原《九章·橘颂》","坚毅","雅正","嘉","树"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：嘉树。拼音：jiā shù。原句：后皇嘉树，橘徕服兮。。字义：嘉：美善可喜；树：坚实成长。整体寓意：如嘉木深根挺立，品性美好，成长坚定。。气质：坚毅、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q12:chunk-1","pageId":"name-q12","chunkIndex":1,"title":"辰良","category":"chuci","tag":"楚辞","source":"屈原《九歌·东皇太一》","type":"name","status":"verified","verified":true,"recordId":"q12","keywords":["辰良","chén liáng","楚辞","屈原《九歌·东皇太一》","明朗","雅正","辰","良"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：辰良。拼音：chén liáng。原句：吉日兮辰良，穆将愉兮上皇。。字义：辰：星辰时序；良：善美贤良。整体寓意：生逢良辰，心性善美，人生明亮而有秩序。。气质：明朗、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"name-q13:chunk-1","pageId":"name-q13","chunkIndex":1,"title":"秉德","category":"chuci","tag":"楚辞","source":"屈原《九章·橘颂》","type":"name","status":"verified","verified":true,"recordId":"q13","keywords":["秉德","bǐng dé","楚辞","屈原《九章·橘颂》","坚毅","雅正","秉","德"],"links":["source-chuci","concept-full-name-phonology","concept-long-term-use"],"backlinks":[],"content":"姓名：秉德。拼音：bǐng dé。原句：秉德无私，参天地兮。。字义：秉：持守坚守；德：仁厚端方。整体寓意：持守美德，坦荡无私，内心坚定而有担当。。气质：坚毅、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"},{"id":"method-g01:chunk-1","pageId":"method-g01","chunkIndex":1,"title":"有出处不等于生搬原句","category":"guide","tag":"起名方法","source":"本地知识库·文化出处","type":"method","status":"verified","verified":true,"recordId":"","keywords":["有出处不等于生搬原句","起名方法","文化出处"],"links":["concept-direct-or-inspired","concept-source-verification"],"backlinks":[],"content":"典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。 典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。两字在原文中相邻最清晰；若是重新组合，应明确说明是取意而不是原句直取，避免给名字附会不存在的出处。"},{"id":"method-g02:chunk-1","pageId":"method-g02","chunkIndex":1,"title":"姓名音韵要连姓通读","category":"guide","tag":"起名方法","source":"本地知识库·音韵","type":"method","status":"verified","verified":true,"recordId":"","keywords":["姓名音韵要连姓通读","起名方法","音韵"],"links":["concept-full-name-phonology","concept-tone-pattern"],"backlinks":[],"content":"判断名字是否顺口，要把姓和名连续朗读。 判断名字是否顺口，要把姓和名连续朗读。注意声母是否过度重复、韵母是否拗口、声调是否全部挤在同一调类。普通话顺口之外，还应让家人用常用方言多读几遍。"},{"id":"method-g03:chunk-1","pageId":"method-g03","chunkIndex":1,"title":"优先选择常用规范汉字","category":"guide","tag":"起名方法","source":"本地知识库·用字","type":"method","status":"verified","verified":true,"recordId":"","keywords":["优先选择常用规范汉字","起名方法","用字"],"links":["concept-standard-characters","concept-rare-characters"],"backlinks":[],"content":"文化感不等于使用生僻字。 文化感不等于使用生僻字。过于冷僻、容易误读或输入困难的字，可能给证件办理、入学登记和日常交流带来负担。正式确定前，应再核对当地户籍可用字规范。"},{"id":"method-g04:chunk-1","pageId":"method-g04","chunkIndex":1,"title":"复姓更需要控制名字节奏","category":"guide","tag":"起名方法","source":"本地知识库·复姓","type":"method","status":"verified","verified":true,"recordId":"","keywords":["复姓更需要控制名字节奏","起名方法","复姓"],"links":["concept-compound-surname","comparison-one-vs-two-character"],"backlinks":[],"content":"欧阳、上官、司马等复姓本身已有两个音节。 欧阳、上官、司马等复姓本身已有两个音节。搭配双字名时总长度较长，可优先选择结构简洁、发音清楚的用字；搭配单字名时则要留意整体意象是否完整。"},{"id":"method-g05:chunk-1","pageId":"method-g05","chunkIndex":1,"title":"方言谐音需要家人共同核验","category":"guide","tag":"起名方法","source":"本地知识库·谐音","type":"method","status":"verified","verified":true,"recordId":"","keywords":["方言谐音需要家人共同核验","起名方法","谐音"],"links":["concept-dialect-homophone","concept-full-name-phonology"],"backlinks":[],"content":"程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。 程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。候选名字应分别快速连读、倒序听读，并和常见称呼搭配，由熟悉家庭方言的人一起检查不雅谐音。"},{"id":"method-g06:chunk-1","pageId":"method-g06","chunkIndex":1,"title":"比较候选名的四个维度","category":"guide","tag":"起名方法","source":"本地知识库·筛选","type":"method","status":"verified","verified":true,"recordId":"","keywords":["比较候选名的四个维度","起名方法","筛选"],"links":["comparison-classic-vs-practical","concept-long-term-use"],"backlinks":[],"content":"比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。 比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。不要只依赖一个笼统分数。"},{"id":"method-g07:chunk-1","pageId":"method-g07","chunkIndex":1,"title":"性别气质只是偏好而非规则","category":"guide","tag":"起名方法","source":"本地知识库·气质","type":"method","status":"verified","verified":true,"recordId":"","keywords":["性别气质只是偏好而非规则","起名方法","气质"],"links":["concept-gender-temperament","concept-long-term-use"],"backlinks":[],"content":"传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。 传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。更重要的是家庭对名字气质的认同，以及孩子未来使用时的舒适感。"},{"id":"method-g08:chunk-1","pageId":"method-g08","chunkIndex":1,"title":"家族字辈应先于自动推荐","category":"guide","tag":"起名方法","source":"本地知识库·字辈","type":"method","status":"verified","verified":true,"recordId":"","keywords":["家族字辈应先于自动推荐","起名方法","字辈"],"links":["concept-generation-name","comparison-one-vs-two-character"],"backlinks":[],"content":"如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。 如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。系统中的“期望包含”适合完成这类约束，但最终仍需家人确认。"},{"id":"method-g09:chunk-1","pageId":"method-g09","chunkIndex":1,"title":"八字信息需要明确授权","category":"guide","tag":"起名方法","source":"本地知识库·隐私","type":"method","status":"verified","verified":true,"recordId":"","keywords":["八字信息需要明确授权","起名方法","隐私"],"links":["concept-bazi-boundary","concept-five-elements"],"backlinks":[],"content":"八字与五行归类属于传统民俗文化参考，不代表科学预测。 八字与五行归类属于传统民俗文化参考，不代表科学预测。系统只接受用户已确认的四柱和用字倾向，不擅自判断喜用神或吉凶；纯本地模式不上传、不保存，使用模型时还需用户单独勾选授权。"},{"id":"method-g10:chunk-1","pageId":"method-g10","chunkIndex":1,"title":"最终落名前做一次长期使用检查","category":"guide","tag":"起名方法","source":"本地知识库·定名","type":"method","status":"verified","verified":true,"recordId":"","keywords":["最终落名前做一次长期使用检查","起名方法","定名"],"links":["concept-long-term-use","concept-standard-characters"],"backlinks":[],"content":"把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。 把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。一个好名字既要有文化来处，也要经得起长期日常使用。"},{"id":"source-lunyu:chunk-1","pageId":"source-lunyu","chunkIndex":1,"title":"《论语》来源页","category":"classics","tag":"四书五经","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["论语","孔子","四书","修身","仁德"],"links":["concept-source-verification","concept-direct-or-inspired"],"backlinks":["name-c05","name-c06","name-c07","name-c08","name-c12"],"content":"《论语》姓名素材常取自修身、求学、仁德与君子人格相关语句。 本库目前收有“知新”“德邻”“弘毅”“思齐”“安仁”等候选。使用时应保留篇目与上下文，不把现代寓意冒充原句释义；同一句中的字词被重新组合时，应标明为“取意”。"},{"id":"source-daxue:chunk-1","pageId":"source-daxue","chunkIndex":1,"title":"《大学》来源页","category":"classics","tag":"四书五经","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["大学","明德","四书","至善","修身"],"links":["concept-source-verification","concept-direct-or-inspired"],"backlinks":["name-c02"],"content":"《大学》强调明德、修身与至善，适合端正明朗的名字意象。 本库候选“明德”来自“大学之道，在明明德”。取名解释应区分“使德性彰明”的语境与现代字面联想，并保留原典篇名。"},{"id":"source-zhongyong:chunk-1","pageId":"source-zhongyong","chunkIndex":1,"title":"《中庸》来源页","category":"classics","tag":"四书五经","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["中庸","慎思","笃行","四书","学习"],"links":["concept-source-verification","concept-full-name-phonology"],"backlinks":["name-c03","name-c04"],"content":"《中庸》中的博学、审问、慎思、明辨、笃行构成完整的学习与实践次序。 “慎思”和“笃行”均来自同一组语句。比较候选时，不宜只看单字吉祥联想，也应看词语在原文中的行动含义，以及和姓氏连读后的节奏。"},{"id":"source-zhouyi:chunk-1","pageId":"source-zhouyi","chunkIndex":1,"title":"《周易》来源页","category":"classics","tag":"四书五经","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["周易","易经","知微","自牧","厚德"],"links":["concept-source-verification","concept-cultural-context"],"backlinks":["name-c01","name-c09","name-c10"],"content":"《周易》相关候选多取谦德、知微与厚德等人格意象。 本库收有“知微”“自牧”“厚德”。《周易》版本与篇章标注可能存在经、传之分，引用时应保留当前记录的篇名，并在需要出版级准确度时进一步核对权威版本。"},{"id":"source-liji:chunk-1","pageId":"source-liji","chunkIndex":1,"title":"《礼记》来源页","category":"classics","tag":"四书五经","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["礼记","学记","玉成","礼仪","学习"],"links":["concept-direct-or-inspired","concept-cultural-context"],"backlinks":["name-c11"],"content":"《礼记》素材常与礼仪、学习、修养和成人之道有关。 本库候选“玉成”取意于《礼记·学记》“玉不琢，不成器”。这属于从完整譬喻中提炼的名字，应说明整体寓意，避免把“玉成”误写成原句中的固定词组。"},{"id":"source-shijing:chunk-1","pageId":"source-shijing","chunkIndex":1,"title":"《诗经》来源页","category":"shijing","tag":"诗经","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["诗经","风雅颂","国风","大雅","小雅"],"links":["concept-source-verification","concept-cultural-context","concept-full-name-phonology","source-thirteen-classics"],"backlinks":["name-p01","name-p02","name-p03","name-p04","name-p05","name-p06","name-p07","name-p08","name-p09","name-p10","name-p11","name-p12"],"content":"《诗经》素材覆盖风、雅、颂，语言凝练，但古今词义和语境可能不同。 本库收有“子衿”“其华”“静好”“令仪”“徽音”“攸宁”“维桢”“柔嘉”“清扬”“琼瑶”“景行”“文茵”。选择时既看原句，也要核查古义、篇章主题与现代使用感。"},{"id":"source-chuci:chunk-1","pageId":"source-chuci","chunkIndex":1,"title":"《楚辞》来源页","category":"chuci","tag":"楚辞","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["楚辞","屈原","离骚","九歌","九章"],"links":["concept-source-verification","concept-rare-characters","concept-cultural-context"],"backlinks":["name-q01","name-q02","name-q03","name-q04","name-q05","name-q06","name-q07","name-q08","name-q09","name-q10","name-q11","name-q12","name-q13"],"content":"《楚辞》常见香草、美玉、星辰与持守品德的意象，语言瑰丽而古奥。 本库收有“怀瑾”“修远”“望舒”“秋兰”“灵均”“杜若”“正则”“若英”“云旗”“安歌”“嘉树”“辰良”“秉德”。使用古奥词语时应特别核查读音、字形与现代语感。"},{"id":"source-tang-poetry:chunk-1","pageId":"source-tang-poetry","chunkIndex":1,"title":"唐诗来源页","category":"tang","tag":"唐诗","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["唐诗","诗人","篇名","意象","原句"],"links":["concept-source-verification","concept-direct-or-inspired","concept-cultural-context","source-complete-tang"],"backlinks":["name-t01","name-t02","name-t03","name-t04","name-t05","name-t06","name-t07","name-t08","name-t09","name-t10","name-t11","name-t12"],"content":"唐诗姓名素材常从景象、行旅、月色和品格语句中取意。 本库按作者与篇名保存候选原句。诗题、异文和作者归属仍应以可靠版本核验；截取后若改变了原句语法关系，应明确说明为取意，不把诗意联想当作字典义。"},{"id":"source-song-ci:chunk-1","pageId":"source-song-ci","chunkIndex":1,"title":"宋词来源页","category":"song","tag":"宋词","source":"本地编辑·原典索引","type":"source","status":"review","verified":false,"recordId":"","keywords":["宋词","词牌","意境","作者","篇名"],"links":["concept-source-verification","concept-full-name-phonology","concept-cultural-context","source-complete-song"],"backlinks":["name-s01","name-s02","name-s03","name-s04","name-s05","name-s06","name-s07","name-s08","name-s09","name-s10","name-s11","name-s12","name-s13"],"content":"宋词姓名素材富于画面与情绪，需同时关注词牌、作者、篇名和上下文。 本库收录苏轼、李清照、周邦彦、辛弃疾、柳永、秦观等作品中的候选。词句的审美氛围不等于名字的唯一含义，确定前还需连姓朗读并检查现代联想。"},{"id":"concept-source-verification:chunk-1","pageId":"concept-source-verification","chunkIndex":1,"title":"出处核验","category":"guide","tag":"知识治理","source":"本地知识库·编辑规范","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["出处","核验","原文","作者","篇名","引用"],"links":["concept-direct-or-inspired","concept-cultural-context"],"backlinks":["method-g01","source-lunyu","source-daxue","source-zhongyong","source-zhouyi","source-shijing","source-chuci","source-tang-poetry","source-song-ci","concept-direct-or-inspired","concept-cultural-context","comparison-direct-vs-inspired","source-thirteen-classics","source-complete-tang","source-complete-song","concept-modern-copyright"],"content":"可靠的出处至少包含作品、篇章或词牌、作者信息和可定位的原句。 核验顺序是：先确认原文，再确认篇名与作者，最后判断候选字词是否在原句中相邻。发现异文、误引或网络转述时标记待复核；严格回答只陈述已有证据支持的内容。"},{"id":"concept-direct-or-inspired:chunk-1","pageId":"concept-direct-or-inspired","chunkIndex":1,"title":"原句直取与取意重组","category":"guide","tag":"文化出处","source":"本地知识库·编辑规范","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["直取","取意","重组","典故","附会"],"links":["concept-source-verification","comparison-classic-vs-practical"],"backlinks":["method-g01","source-lunyu","source-daxue","source-liji","source-tang-poetry","concept-source-verification","concept-cultural-context","comparison-direct-vs-inspired","source-complete-tang"],"content":"原句相邻字词可称直取；跨句、换序或另行组合应称取意。 两种方式都可以形成好名字，但说明必须准确。直取应给出完整原句，取意重组应解释组合逻辑并避免声称原文中存在该固定词组。"},{"id":"concept-full-name-phonology:chunk-1","pageId":"concept-full-name-phonology","chunkIndex":1,"title":"连姓音韵","category":"guide","tag":"音韵","source":"本地知识库·方法整理","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["连姓","音韵","声母","韵母","朗读"],"links":["concept-tone-pattern","concept-dialect-homophone","concept-compound-surname"],"backlinks":["name-c01","name-c02","name-c03","name-c04","name-c05","name-c06","name-c07","name-c08","name-c09","name-c10","name-c11","name-c12","name-t01","name-t02","name-t03","name-t04","name-t05","name-t06","name-t07","name-t08","name-t09","name-t10","name-t11","name-t12","name-s01","name-s02","name-s03","name-s04","name-s05","name-s06","name-s07","name-s08","name-s09","name-s10","name-s11","name-s12","name-s13","name-p01","name-p02","name-p03","name-p04","name-p05","name-p06","name-p07","name-p08","name-p09","name-p10","name-p11","name-p12","name-q01","name-q02","name-q03","name-q04","name-q05","name-q06","name-q07","name-q08","name-q09","name-q10","name-q11","name-q12","name-q13","method-g02","method-g05","source-zhongyong","source-shijing","source-song-ci","concept-tone-pattern","concept-compound-surname","concept-polyphonic-characters","concept-dialect-homophone","concept-generation-name","comparison-one-vs-two-character","comparison-bazi-vs-language"],"content":"音韵判断的最小单位是完整姓名，而不是孤立的名字。 连续朗读姓与名，检查声母是否密集重复、韵母是否拗口、音节边界是否含混。用正常语速、快速称呼和正式点名三种节奏测试，再交给熟悉家庭方言的人复核。"},{"id":"concept-tone-pattern:chunk-1","pageId":"concept-tone-pattern","chunkIndex":1,"title":"声调节奏","category":"guide","tag":"音韵","source":"本地知识库·方法整理","type":"concept","status":"review","verified":false,"recordId":"","keywords":["声调","平仄","四声","节奏","变调"],"links":["concept-full-name-phonology","concept-dialect-homophone"],"backlinks":["method-g02","concept-full-name-phonology"],"content":"声调有起伏通常更易辨认，但没有对所有姓氏都适用的固定吉凶公式。 普通话四声可用于初筛节奏，不能仅凭所谓“最佳声调组合”给名字定高下。还需结合轻声、变调、方言和真实称呼场景判断。"},{"id":"concept-compound-surname:chunk-1","pageId":"concept-compound-surname","chunkIndex":1,"title":"复姓节奏","category":"guide","tag":"复姓","source":"本地知识库·方法整理","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["复姓","欧阳","上官","司马","节奏"],"links":["concept-full-name-phonology","comparison-one-vs-two-character"],"backlinks":["method-g04","concept-full-name-phonology","comparison-one-vs-two-character"],"content":"复姓已有两个音节，搭配名字时要额外控制总长度、停顿和书写密度。 双字名信息更完整，但全名较长；单字名更利落，但需确保意象完整。应把复姓视为整体，不按单姓的节奏模板机械套用。"},{"id":"concept-standard-characters:chunk-1","pageId":"concept-standard-characters","chunkIndex":1,"title":"常用规范汉字","category":"guide","tag":"用字","source":"本地知识库·实用性","type":"concept","status":"review","verified":false,"recordId":"","keywords":["规范汉字","户籍","输入","异体字","证件"],"links":["concept-rare-characters","concept-long-term-use"],"backlinks":["method-g03","method-g10","concept-rare-characters","concept-long-term-use","comparison-classic-vs-practical"],"content":"文化感不依赖生僻字，正式落名前要核对当地户籍可用字符。 程序可检查基本可输入性，但无法代替当地公安户籍系统。候选字应兼顾证件录入、字体显示、教学识读与日常沟通；异体字和罕见扩展字符尤其需要提前确认。"},{"id":"concept-rare-characters:chunk-1","pageId":"concept-rare-characters","chunkIndex":1,"title":"生僻字风险","category":"guide","tag":"用字","source":"本地知识库·实用性","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["生僻字","误读","输入法","显示","录入"],"links":["concept-standard-characters","concept-polyphonic-characters","concept-long-term-use"],"backlinks":["method-g03","source-chuci","concept-standard-characters"],"content":"生僻字可能带来误读、录入、显示和沟通成本。 评估时分别检查：是否容易读错、是否能在常用输入法中找到、不同设备是否显示、证件系统是否接收。若文化寓意可以由常用字表达，通常优先选择使用负担较低的方案。"},{"id":"concept-polyphonic-characters:chunk-1","pageId":"concept-polyphonic-characters","chunkIndex":1,"title":"多音字检查","category":"guide","tag":"用字","source":"本地知识库·音韵","type":"concept","status":"review","verified":false,"recordId":"","keywords":["多音字","读音","误读","自我介绍"],"links":["concept-full-name-phonology","concept-long-term-use"],"backlinks":["concept-rare-characters"],"content":"多音字不一定不能用，但需评估最常见读法是否会造成持续纠正。 检查字在姓名语境中的规范读音、公众最可能采用的读音以及方言读音。若每次自我介绍都要解释，家庭需要判断这种文化价值是否值得长期沟通成本。"},{"id":"concept-dialect-homophone:chunk-1","pageId":"concept-dialect-homophone","chunkIndex":1,"title":"方言谐音","category":"guide","tag":"谐音","source":"本地知识库·方法整理","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["方言","谐音","连读","昵称","家人核验"],"links":["concept-full-name-phonology","concept-long-term-use"],"backlinks":["method-g05","concept-full-name-phonology","concept-tone-pattern","concept-long-term-use"],"content":"普通话检查无法覆盖地方方言，需由真实使用者共同核验。 分别用完整姓名、昵称、快速连读和倒序听感检查。重点询问父母与祖辈常用方言地区，记录具体疑虑，不用笼统“谐音分数”替代人工判断。"},{"id":"concept-gender-temperament:chunk-1","pageId":"concept-gender-temperament","chunkIndex":1,"title":"性别与名字气质","category":"guide","tag":"气质","source":"本地知识库·审美原则","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["性别","中性名","气质","刚健","温润","灵秀"],"links":["comparison-classic-vs-practical","concept-long-term-use"],"backlinks":["method-g07"],"content":"刚健、温润、灵秀等是审美偏好，不是固定性别规则。 程序中的性别筛选用于减少明显不符合家庭偏好的候选，而不把某个字永久归为男性或女性。最终应以家庭认同、文化语境和孩子长期使用的舒适度为准。"},{"id":"concept-generation-name:chunk-1","pageId":"concept-generation-name","chunkIndex":1,"title":"家族字辈","category":"guide","tag":"字辈","source":"本地知识库·家庭约束","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["字辈","排行字","族谱","家族","包含字"],"links":["concept-full-name-phonology","comparison-one-vs-two-character"],"backlinks":["method-g08","comparison-one-vs-two-character"],"content":"有明确字辈时先固定排行字，再寻找音义协调的另一个字。 需要同时确认字辈放在名字第几位、能否同音替代、男女是否共用以及族谱原义。字辈属于家庭事实，应由家人确认，不由程序推断。"},{"id":"concept-bazi-boundary:chunk-1","pageId":"concept-bazi-boundary","chunkIndex":1,"title":"八字参考边界","category":"guide","tag":"八字","source":"本地知识库·隐私与民俗边界","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["八字","四柱","隐私","授权","喜用神","吉凶"],"links":["concept-five-elements","comparison-bazi-vs-language"],"backlinks":["method-g09","concept-five-elements","comparison-bazi-vs-language"],"content":"八字信息只在用户主动提供和授权时作为传统文化偏好，不用于预测命运。 程序接受已确认的四柱和明确的五行用字倾向，不擅自推算真太阳时、喜用神或吉凶。纯本地模式不上传；调用模型时只在用户勾选授权后发送相关字段。"},{"id":"concept-five-elements:chunk-1","pageId":"concept-five-elements","chunkIndex":1,"title":"五行用字流派","category":"guide","tag":"五行","source":"本地知识库·民俗说明","type":"concept","status":"review","verified":false,"recordId":"","keywords":["五行","用字","流派","字形","字义","音律"],"links":["concept-bazi-boundary","comparison-bazi-vs-language"],"backlinks":["method-g09","concept-bazi-boundary","comparison-bazi-vs-language"],"content":"汉字五行归类存在字形、字义、音律等不同民俗流派，不能当作唯一客观结论。 本程序的木、火、土、金、水字符映射只是排序偏好。遇到不同资料归类冲突时应明确标注流派差异，不自动宣布哪一种为真，更不能据此断言命运。"},{"id":"concept-long-term-use:chunk-1","pageId":"concept-long-term-use","chunkIndex":1,"title":"长期使用检查","category":"guide","tag":"定名","source":"本地知识库·实用性","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["长期使用","点名","签名","首字母","自我介绍"],"links":["concept-standard-characters","concept-dialect-homophone","comparison-classic-vs-practical"],"backlinks":["name-c01","name-c02","name-c03","name-c04","name-c05","name-c06","name-c07","name-c08","name-c09","name-c10","name-c11","name-c12","name-t01","name-t02","name-t03","name-t04","name-t05","name-t06","name-t07","name-t08","name-t09","name-t10","name-t11","name-t12","name-s01","name-s02","name-s03","name-s04","name-s05","name-s06","name-s07","name-s08","name-s09","name-s10","name-s11","name-s12","name-s13","name-p01","name-p02","name-p03","name-p04","name-p05","name-p06","name-p07","name-p08","name-p09","name-p10","name-p11","name-p12","name-q01","name-q02","name-q03","name-q04","name-q05","name-q06","name-q07","name-q08","name-q09","name-q10","name-q11","name-q12","name-q13","method-g06","method-g07","method-g10","concept-standard-characters","concept-rare-characters","concept-polyphonic-characters","concept-dialect-homophone","concept-gender-temperament","comparison-classic-vs-practical","comparison-bazi-vs-language"],"content":"好名字要在儿童、学生、成年和正式证件场景中都能自然使用。 把候选放进点名、自我介绍、签名、邮件地址和电话口述场景。检查常见昵称、首字母、重复解释成本和书写密度；文化寓意与日常便利需要共同决策。"},{"id":"concept-cultural-context:chunk-1","pageId":"concept-cultural-context","chunkIndex":1,"title":"古今语境","category":"guide","tag":"文化语境","source":"本地知识库·编辑规范","type":"concept","status":"review","verified":false,"recordId":"","keywords":["古义","今义","语境","情绪","现代联想"],"links":["concept-source-verification","concept-direct-or-inspired"],"backlinks":["source-zhouyi","source-liji","source-shijing","source-chuci","source-tang-poetry","source-song-ci","concept-source-verification","comparison-classic-vs-practical","source-thirteen-classics","source-complete-song"],"content":"古典字词的原义、篇章情绪和现代联想需要同时考察。 优美名句可能处于离别、哀伤或讽谏语境；这不必然否定取名价值，但应让家庭知情。解释时把原文语境、取名后的积极寄托与现代社会联想分开陈述。"},{"id":"comparison-one-vs-two-character:chunk-1","pageId":"comparison-one-vs-two-character","chunkIndex":1,"title":"单字名与双字名","category":"guide","tag":"方案比较","source":"本地知识库·决策框架","type":"comparison","status":"verified","verified":true,"recordId":"","keywords":["单字名","双字名","重名","长度","节奏"],"links":["concept-compound-surname","concept-generation-name","concept-full-name-phonology"],"backlinks":["method-g04","method-g08","concept-compound-surname","concept-generation-name"],"content":"单字名简洁，双字名承载信息更多；选择取决于姓氏节奏、重名风险与字辈约束。 单字名书写和称呼利落，但组合空间较小；双字名更容易表达完整意象，也可能增加全名长度。复姓和固定字辈会显著改变两者的权衡。"},{"id":"comparison-direct-vs-inspired:chunk-1","pageId":"comparison-direct-vs-inspired","chunkIndex":1,"title":"直取与取意怎么选","category":"guide","tag":"方案比较","source":"本地知识库·决策框架","type":"comparison","status":"verified","verified":true,"recordId":"","keywords":["直取","取意","出处","组合","字辈"],"links":["concept-direct-or-inspired","concept-source-verification"],"backlinks":[],"content":"直取证据链清楚，取意组合更自由；两者关键差别是说明是否诚实准确。 重视出处可追溯时优先原句相邻词；重视连姓音韵或字辈约束时可取意重组。无论哪种，都应保存原句和组合理由。"},{"id":"comparison-classic-vs-practical:chunk-1","pageId":"comparison-classic-vs-practical","chunkIndex":1,"title":"古典感与实用性","category":"guide","tag":"方案比较","source":"本地知识库·决策框架","type":"comparison","status":"verified","verified":true,"recordId":"","keywords":["古典","实用","文化","易读","输入"],"links":["concept-standard-characters","concept-long-term-use","concept-cultural-context"],"backlinks":["method-g06","concept-direct-or-inspired","concept-gender-temperament","concept-long-term-use"],"content":"典籍出处提供文化深度，规范、易读和长期使用决定日常成本。 不必在文化与实用之间二选一。先排除明显误引、难输入和不雅谐音，再在合格候选中比较意境；若家人长期需要解释读音，应明确接受这一成本。"},{"id":"comparison-bazi-vs-language:chunk-1","pageId":"comparison-bazi-vs-language","chunkIndex":1,"title":"八字偏好与音形义","category":"guide","tag":"方案比较","source":"本地知识库·决策框架","type":"comparison","status":"verified","verified":true,"recordId":"","keywords":["八字","五行","音形义","排序","民俗"],"links":["concept-bazi-boundary","concept-five-elements","concept-full-name-phonology","concept-long-term-use"],"backlinks":["concept-bazi-boundary","concept-five-elements"],"content":"八字五行只能作为可选民俗偏好，音、形、义和真实使用应是基础门槛。 先保证出处可靠、连姓顺口、字形可用、含义合适，再对符合门槛的候选应用用户指定的五行偏好排序。不要为了某一归类牺牲明显的读写体验。"},{"id":"source-thirteen-classics:chunk-1","pageId":"source-thirteen-classics","chunkIndex":1,"title":"完整四书五经与十三经语料","category":"classics","tag":"完整原文","source":"gujilab/chinese-classical-corpus · CC0","type":"source","status":"review","verified":false,"recordId":"","keywords":["四书","五经","十三经","完整原文","尚书","礼记","周易","春秋"],"links":["concept-source-verification","concept-cultural-context"],"backlinks":["source-shijing"],"content":"本机原文库用 CC0 结构化语料补齐四书、五经与十三经，并按篇章检索。 四书为《大学》《中庸》《论语》《孟子》；五经按《诗经》《尚书》《礼记》《周易》《春秋》处理，其中春秋材料以左传、公羊传、穀梁传分篇保存。原文库保留上游来源与许可，编辑性起名解释仍由 Wiki 页承担。"},{"id":"source-complete-tang:chunk-1","pageId":"source-complete-tang","chunkIndex":1,"title":"《全唐诗》本地原文库","category":"tang","tag":"完整原文","source":"chinese-poetry/chinese-poetry · MIT","type":"source","status":"review","verified":false,"recordId":"","keywords":["全唐诗","唐诗","57500","完整原文","全文检索"],"links":["concept-source-verification","concept-direct-or-inspired"],"backlinks":["source-tang-poetry"],"content":"本机索引收录上游《全唐诗》数据 57,600 条作品记录。 数据按每个 JSON 文件约一千首解析，保留作者、题目、正文和原始文件路径。上游明确提示仍可能存在重出、误收或文字错误，因此检索命中可用于发现候选，正式引用仍需复核可靠版本。"},{"id":"source-complete-song:chunk-1","pageId":"source-complete-song","chunkIndex":1,"title":"全宋诗与全宋词本地原文库","category":"song","tag":"完整原文","source":"chinese-poetry/chinese-poetry · MIT","type":"source","status":"review","verified":false,"recordId":"","keywords":["全宋诗","全宋词","宋诗","宋词","完整原文","全文检索"],"links":["concept-source-verification","concept-cultural-context"],"backlinks":["source-song-ci"],"content":"本机索引收录 254,195 条宋诗和 21,049 条宋词记录。 宋诗与宋词分属不同检索类别，避免把词牌作品混作诗。作品保存作者、题目或词牌、正文和上游文件路径；发现异文时应回到可靠版本核验。"},{"id":"concept-modern-copyright:chunk-1","pageId":"concept-modern-copyright","chunkIndex":1,"title":"近现代作品授权边界","category":"guide","tag":"版权与授权","source":"《中华人民共和国著作权法》第二十三条","type":"concept","status":"verified","verified":true,"recordId":"","keywords":["毛泽东诗词","近现代","著作权","授权","目录","全文"],"links":["concept-source-verification"],"backlinks":[],"content":"近现代作者作品不能仅因能在网上找到，就默认可以整套复制进本地知识库。 自然人作品相关财产权一般保护至作者死亡后第五十年的十二月三十一日。程序对毛泽东诗词默认只保存目录元数据，不内置全文；用户取得合法授权后，可把文本放入 authorized 目录在本机建索引。"}];
+      /* WIKI_BUNDLE_END */
+      const CUSTOM_KB_KEY = "jiaming-custom-knowledge";
+      const CHAT_KEY = "jiaming-chat-history";
+      const FIVE_ELEMENT_CHARS = {
+        木:"林桐兰荷嘉若英华荣森松竹芷茵栩楠",
+        火:"明晖晴星灵灿昭景阳煦照昕曜",
+        土:"安宁均远辰良厚山宇城岚岳",
+        金:"锦书瑾瑜琼瑶知思慎正则钧铭",
+        水:"云雨清河川泽润涵沐江海霖溪冰露寒池"
+      };
+
+      const form = document.getElementById("naming-form");
+      const cards = document.getElementById("cards");
+      const error = document.getElementById("form-error");
+      const title = document.getElementById("result-title");
+      const subtitle = document.getElementById("result-sub");
+      const kicker = document.getElementById("result-kicker");
+      const favoriteToggle = document.getElementById("favorite-toggle");
+      const favoriteCount = document.getElementById("favorite-count");
+      const exportBtn = document.getElementById("export-btn");
+      const toast = document.getElementById("toast");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+      const messages = document.getElementById("messages");
+      const sendBtn = document.getElementById("send-btn");
+      const chatMode = document.getElementById("chat-mode");
+      const retrievalScope = document.getElementById("retrieval-scope");
+      const topKSelect = document.getElementById("top-k");
+      const strictCitations = document.getElementById("strict-citations");
+      const retrievalStatus = document.getElementById("retrieval-status");
+      const aiStatus = document.getElementById("ai-status");
+      const kbCount = document.getElementById("kb-count");
+      const customCount = document.getElementById("custom-count");
+      const shareBaziAI = document.getElementById("share-bazi-ai");
+      let batch = 0;
+      let favoriteMode = false;
+      let current = [];
+      let favorites = loadFavorites();
+      let customKnowledge = loadCustomKnowledge();
+      let chatHistory = loadChatHistory();
+      let aiInfo = {configured:false, provider:"", model:""};
+      let corpusInfo = {available:false, documents:0};
+      let chatPending = false;
+
+      function loadFavorites() {
+        try { return JSON.parse(localStorage.getItem("jiaming-favorites") || "[]"); }
+        catch (_) { return []; }
+      }
+      function loadCustomKnowledge() {
+        try {
+          const data = JSON.parse(localStorage.getItem(CUSTOM_KB_KEY) || "[]");
+          return Array.isArray(data) ? data : [];
+        } catch (_) { return []; }
+      }
+      function loadChatHistory() {
+        try {
+          const data = JSON.parse(localStorage.getItem(CHAT_KEY) || "[]");
+          if (Array.isArray(data) && data.length) return data.slice(-20);
+        } catch (_) {}
+        return [{
+          role:"assistant",
+          content:"你好，我是“问典”。我会通过已配置的 LLM Agent 自主读取本地 Wiki、检索经典原文，再回答你的起名问题。你可以直接描述姓氏、性别、偏好的典籍和名字气质。",
+          citations:[]
+        }];
+      }
+      function saveChatHistory() {
+        try { localStorage.setItem(CHAT_KEY, JSON.stringify(chatHistory.slice(-20))); }
+        catch (_) {}
+      }
+      function saveCustomKnowledge() {
+        try { localStorage.setItem(CUSTOM_KB_KEY, JSON.stringify(customKnowledge)); }
+        catch (_) {}
+        refreshKnowledgeStats();
+      }
+      function saveFavorites() {
+        try { localStorage.setItem("jiaming-favorites", JSON.stringify(favorites)); }
+        catch (_) {}
+        favoriteCount.textContent = favorites.length;
+      }
+      function hash(text) {
+        let h = 2166136261;
+        for (let i = 0; i < text.length; i++) {
+          h ^= text.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return h >>> 0;
+      }
+      function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
+      }
+      function knowledgeDocuments() {
+        const recordMap = new Map(NAMES.map(item => [item.id, item]));
+        const wiki = WIKI_CHUNKS
+          .filter(chunk => chunk.status !== "draft")
+          .map(chunk => ({
+            ...chunk,
+            item:chunk.recordId ? recordMap.get(chunk.recordId) : undefined
+          }));
+        const legacyNames = NAMES.map(item => ({
+          id:`name-${item.id}`,
+          pageId:`name-${item.id}`,
+          title:item.n,
+          category:item.cat,
+          tag:item.tag,
+          source:item.work,
+          type:"name",
+          content:`姓名：${item.n}。拼音：${item.p}。原句：${item.q}。字义：${item.cm.join("；")}。整体寓意：${item.m}。气质：${item.t.join("、")}。`,
+          item
+        }));
+        const legacyGuides = GUIDE_DOCS.map(item => ({
+          id:item.id,
+          pageId:`method-${item.id}`,
+          title:item.title,
+          category:item.cat,
+          tag:item.tag,
+          source:item.source,
+          type:"guide",
+          content:item.content
+        }));
+        const custom = customKnowledge.map(item => ({
+          id:item.id,
+          pageId:item.id,
+          title:item.title,
+          category:"custom",
+          tag:"自建知识",
+          source:item.source || "本机导入",
+          type:"custom",
+          content:item.content
+        }));
+        const builtIn = wiki.length ? wiki : [...legacyNames, ...legacyGuides];
+        return [...builtIn, ...custom];
+      }
+      function tokenize(text) {
+        const normalized = String(text || "").toLowerCase().replace(/\s+/g, " ");
+        const han = normalized.match(/[\u3400-\u9fff]/g) || [];
+        const terms = [...han];
+        for (let i = 0; i < han.length - 1; i++) terms.push(han[i] + han[i + 1]);
+        const latin = normalized.match(/[a-z0-9]{2,}/g) || [];
+        return [...new Set([...terms, ...latin])];
+      }
+      function retrieveKnowledge(query) {
+        const scope = retrievalScope.value;
+        const topK = Number(topKSelect.value) || 5;
+        const wantsGirl = /女孩|女宝|女生/.test(query);
+        const wantsBoy = /男孩|男宝|男生/.test(query);
+        const corpusOnlyScopes = ["corpus","song-poetry","five-dynasties","yuan","qing","modern","han-wei"];
+        let docs = corpusOnlyScopes.includes(scope)
+          ? []
+          : knowledgeDocuments().filter(doc => scope === "all" || doc.category === scope);
+        docs = docs.filter(doc => {
+          if (doc.type !== "name") return true;
+          if (wantsGirl && doc.item.g === "m") return false;
+          if (wantsBoy && doc.item.g === "f") return false;
+          return true;
+        });
+        const queryTerms = tokenize(query);
+        if (!queryTerms.length) return [];
+        const tokenSets = docs.map(doc => new Set(tokenize(`${doc.title} ${doc.tag} ${doc.source} ${(doc.keywords || []).join(" ")} ${doc.content}`)));
+        const documentFrequency = new Map();
+        tokenSets.forEach(set => set.forEach(term => documentFrequency.set(term, (documentFrequency.get(term) || 0) + 1)));
+        const sourceWords = {classics:"四书五经",tang:"唐诗",song:"宋词",shijing:"诗经",chuci:"楚辞",guide:"起名方法",custom:"自建知识"};
+        const scored = docs.map((doc, index) => {
+          const haystack = `${doc.title} ${doc.tag} ${doc.source} ${doc.content}`.toLowerCase();
+          let score = 0;
+          queryTerms.forEach(term => {
+            if (!tokenSets[index].has(term)) return;
+            const idf = Math.log((docs.length + 1) / ((documentFrequency.get(term) || 0) + 1)) + 1;
+            const weight = term.length > 1 ? 4 : .75;
+            score += idf * weight;
+            if (doc.title.includes(term)) score += 4;
+            if (doc.source.includes(term) || doc.tag.includes(term)) score += 2;
+          });
+          if (query.includes(doc.title)) score += 18;
+          const categoryWord = sourceWords[doc.category];
+          if (categoryWord && query.includes(categoryWord)) score += 7;
+          if (doc.type === "name" && doc.item.t.some(trait => query.includes(trait))) score += 8;
+          return {doc, score, directScore:score};
+        }).filter(item => item.score > 0);
+        scored.sort((a,b) => b.score - a.score);
+        const seedPages = new Set(scored.slice(0,4).map(item => item.doc.pageId));
+        scored.forEach(item => {
+          const outgoing = item.doc.links || [];
+          const incoming = item.doc.backlinks || [];
+          const oneHop = [...outgoing, ...incoming].filter(pageId => seedPages.has(pageId)).length;
+          item.score += oneHop * 2.25;
+        });
+        scored.sort((a,b) => b.score - a.score);
+        return scored.slice(0, topK);
+      }
+      async function retrieveFullCorpus(query) {
+        if (location.protocol === "file:") return [];
+        const params = new URLSearchParams({
+          q:query,
+          scope:retrievalScope.value,
+          limit:topKSelect.value
+        });
+        try {
+          const response = await fetch(`/api/kb/search?${params}`);
+          if (!response.ok) return [];
+          const data = await response.json();
+          return (data.results || []).map(doc => ({doc, score:doc.score || 1, corpus:true}));
+        } catch (_) {
+          return [];
+        }
+      }
+      function mergeKnowledgeHits(localHits, corpusHits) {
+        const limit = Number(topKSelect.value) || 5;
+        const ordered = retrievalScope.value === "corpus" ||
+          ["song-poetry","five-dynasties","yuan","qing","modern","han-wei"].includes(retrievalScope.value)
+          ? corpusHits
+          : [...localHits.slice(0,3), ...corpusHits, ...localHits.slice(3)];
+        const seen = new Set();
+        return ordered.filter(hit => {
+          const key = `${hit.doc.title}|${hit.doc.source}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        }).slice(0, limit);
+      }
+      function extractSurname(question) {
+        const before = question.match(/([\u3400-\u9fff]{1,2})姓(?:男孩|女孩|男宝|女宝|宝宝)?/);
+        if (before) return before[1];
+        const after = question.match(/姓(?:氏是|氏为|是|为)?([\u3400-\u9fff]{1,2})/);
+        if (after) return after[1];
+        return document.getElementById("surname").value.trim() || "林";
+      }
+      function localAnswer(question, hits) {
+        if (!hits.length) {
+          return "这次没有检索到足够相关的知识。可以换一种说法，或把检索范围改成“全部知识”；也可以导入自己的家族字辈和用字要求后再问。";
+        }
+        const methodQuestion = /怎样|如何|注意|兼顾|方法|原则|谐音|生僻|户籍|字辈|比较|八字|五行|声调|复姓|多音字/.test(question);
+        const guideHits = hits.filter(hit => hit.doc.type !== "name");
+        const nameHits = hits.filter(hit => hit.doc.type === "name");
+        if (methodQuestion && guideHits.length) {
+          return `我从起名方法知识中整理出以下要点：\n\n${guideHits.slice(0,4).map((hit, index) =>
+            `${index + 1}. ${hit.doc.title}：${hit.doc.content} [${index + 1}]`
+          ).join("\n\n")}\n\n建议把文化出处、连姓音韵、方言谐音和长期使用便利性一起判断。`;
+        }
+        if (nameHits.length) {
+          const surname = extractSurname(question);
+          const picks = nameHits.slice(0,4);
+          return `我从本地典籍库中检索到 ${picks.length} 个较贴近描述的候选：\n\n${picks.map((hit, index) => {
+            const item = hit.doc.item;
+            return `${index + 1}. ${surname}${item.n}（${item.p}）\n出处：${item.work}，“${item.q}”\n寓意：${item.m} [${index + 1}]`;
+          }).join("\n\n")}\n\n可以再告诉我希望避开的字、方言地区或家族字辈，我会继续缩小范围。`;
+        }
+        return `检索到以下相关知识：\n\n${hits.slice(0,4).map((hit, index) =>
+          `${index + 1}. ${hit.doc.title}：${hit.doc.content} [${index + 1}]`
+        ).join("\n\n")}`;
+      }
+      function citationMarkup(citations) {
+        if (!citations || !citations.length) return "";
+        return `<div class="citations"><div class="citation-title">Agent 引用来源</div>${citations.map((item, index) =>
+          `<span class="citation-item">[${index + 1}] ${escapeHTML(item.title)} · ${escapeHTML(item.source)}${item.verified ? " · 已核验" : ""}</span>`
+        ).join("")}</div>`;
+      }
+      function renderMessages() {
+        const content = chatHistory.map(message => {
+          const roleLabel = message.role === "user" ? "你的问题" : "问典回答";
+          const roleClass = message.role === "user" ? "user" : "assistant-message";
+          return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(message.content)}</div>${message.role === "assistant" ? citationMarkup(message.citations) : ""}`;
+        }).join("");
+        const pending = chatPending
+          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>Agent 正在读取 Wiki 并调用本地知识工具……</div>`
+          : "";
+        messages.innerHTML = content + pending;
+        messages.scrollTop = messages.scrollHeight;
+      }
+      function refreshKnowledgeStats() {
+        kbCount.textContent = WIKI_META.pages || knowledgeDocuments().length - customKnowledge.length;
+        document.getElementById("kb-health").textContent = corpusInfo.available
+          ? `原文 ${Number(corpusInfo.documents).toLocaleString("zh-CN")} · Wiki ${WIKI_META.chunks} 块`
+          : WIKI_META.chunks
+            ? `${WIKI_META.chunks} 块 · ${WIKI_META.links} 关联`
+            : "兼容索引";
+        customCount.textContent = `自建 ${customKnowledge.length}`;
+      }
+      async function checkCorpusStatus() {
+        if (location.protocol === "file:") return;
+        try {
+          const response = await fetch("/api/kb/status", {headers:{accept:"application/json"}});
+          if (!response.ok) return;
+          corpusInfo = await response.json();
+          refreshKnowledgeStats();
+        } catch (_) {}
+      }
+      async function checkAIStatus() {
+        if (location.protocol === "file:") {
+          aiStatus.textContent = "需启动 AI 服务版";
+          return;
+        }
+        try {
+          const response = await fetch("/api/chat", {headers:{accept:"application/json"}});
+          if (!response.ok) throw new Error("status unavailable");
+          aiInfo = await response.json();
+          aiStatus.textContent = aiInfo.configured ? `${aiInfo.provider} · ${aiInfo.model}` : "模型未配置";
+        } catch (_) {
+          aiStatus.textContent = "服务未连接";
+        }
+      }
+      function profileContext(forAI = false) {
+        const settings = getSettings();
+        const profile = {
+          surname:settings.surname,
+          gender:settings.gender,
+          preferredSources:settings.sources,
+          temperament:settings.temperament,
+          include:settings.include,
+          avoid:settings.avoid
+        };
+        if (settings.useBazi && (!forAI || shareBaziAI.checked)) {
+          profile.bazi = settings.bazi;
+          profile.baziElement = settings.baziElement;
+          profile.baziNotice = "八字与五行只作传统文化偏好；不得据此断言吉凶或擅自推算喜用神。";
+        }
+        return profile;
+      }
+      async function callAI(question, customHits = []) {
+        const context = customHits.map((hit, index) => ({
+          index:index + 1,
+          title:hit.doc.title,
+          source:hit.doc.source,
+          content:hit.doc.content.slice(0, 1400)
+        }));
+        const response = await fetch("/api/chat", {
+          method:"POST",
+          headers:{"content-type":"application/json"},
+          body:JSON.stringify({
+            messages:chatHistory.slice(-8).map(message => ({role:message.role, content:message.content})),
+            question,
+            context,
+            strict:strictCitations.checked,
+            profile:profileContext(true),
+            requestedMode:chatMode.value,
+            retrievalScope:retrievalScope.value,
+            topK:Number(topKSelect.value) || 6
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || "AI 模型暂时不可用");
+        return data;
+      }
+      async function askQuestion(question) {
+        const value = question.trim();
+        if (!value || chatPending) return;
+        const localProfile = profileContext(false);
+        const profileTerms = [
+          localProfile.gender === "f" ? "女孩" : localProfile.gender === "m" ? "男孩" : "",
+          ...(localProfile.preferredSources || []).map(cat => ({classics:"四书五经",tang:"唐诗",song:"宋词",shijing:"诗经",chuci:"楚辞"}[cat] || "")),
+          localProfile.temperament === "any" ? "" : localProfile.temperament,
+          localProfile.baziElement ? `${localProfile.baziElement}意` : ""
+        ].filter(Boolean).join(" ");
+        const retrievalQuery = `${value} ${profileTerms}`;
+        chatHistory.push({role:"user", content:value});
+        chatInput.value = "";
+        chatPending = true;
+        sendBtn.disabled = true;
+        renderMessages();
+
+        let answer = "";
+        let citations = [];
+        if (chatMode.value === "agent") {
+          retrievalStatus.textContent = "LLM Agent 正在自主规划检索";
+          const customHits = retrieveKnowledge(retrievalQuery)
+            .filter(hit => hit.doc.type === "custom")
+            .slice(0, Number(topKSelect.value) || 6);
+          try {
+            const result = await callAI(value, customHits);
+            answer = result.answer;
+            citations = Array.isArray(result.citations) ? result.citations : [];
+            const tools = Array.isArray(result.toolsUsed) ? result.toolsUsed : [];
+            retrievalStatus.textContent = tools.length
+              ? `Agent 已使用 ${tools.join("、")}，引用 ${citations.length} 条资料`
+              : `Agent 已完成回答，引用 ${citations.length} 条资料`;
+          } catch (err) {
+            answer = `LLM Agent 暂时不可用：${err.message || "请检查模型配置与本地服务"}`;
+            retrievalStatus.textContent = "Agent 调用失败";
+            showToast(err.message || "LLM Agent 未连接");
+          }
+        } else {
+          retrievalStatus.textContent = "正在执行诊断性本地检索";
+          const localHits = retrieveKnowledge(retrievalQuery);
+          const corpusHits = await retrieveFullCorpus(retrievalQuery);
+          const hits = mergeKnowledgeHits(localHits, corpusHits);
+          answer = localAnswer(value, hits);
+          citations = hits.map(hit => ({
+            title:hit.doc.title,
+            source:hit.doc.source,
+            verified:hit.doc.verified
+          }));
+          retrievalStatus.textContent = `诊断检索使用 ${hits.length} 条结果`;
+        }
+        chatHistory.push({role:"assistant", content:answer, citations});
+        chatHistory = chatHistory.slice(-20);
+        chatPending = false;
+        sendBtn.disabled = false;
+        saveChatHistory();
+        renderMessages();
+      }
+      async function importKnowledgeFile(file) {
+        if (!file) return;
+        if (file.size > 1024 * 1024) throw new Error("文件请控制在 1MB 以内");
+        const text = await file.text();
+        let items = [];
+        if (file.name.toLowerCase().endsWith(".json")) {
+          const parsed = JSON.parse(text);
+          if (!Array.isArray(parsed)) throw new Error("JSON 顶层需要是数组");
+          items = parsed.map((item, index) => ({
+            title:String(item.title || `导入知识 ${index + 1}`),
+            content:String(item.content || item.text || ""),
+            source:String(item.source || file.name)
+          }));
+        } else {
+          items = text.split(/\n\s*\n/).map((block, index) => {
+            const clean = block.trim();
+            const firstLine = clean.split("\n")[0].replace(/^#+\s*/, "").slice(0, 60);
+            return {title:firstLine || `导入知识 ${index + 1}`, content:clean, source:file.name};
+          });
+        }
+        const stamp = Date.now();
+        const normalized = items.filter(item => item.content.trim()).slice(0,100).map((item,index) => ({
+          id:`custom-${stamp}-${index}`,
+          title:item.title.slice(0,80),
+          content:item.content.slice(0,4000),
+          source:item.source.slice(0,100)
+        }));
+        customKnowledge = [...customKnowledge, ...normalized].slice(-200);
+        saveCustomKnowledge();
+        showToast(`已导入 ${normalized.length} 条知识`);
+      }
+      function getSettings() {
+        const data = new FormData(form);
+        return {
+          surname: document.getElementById("surname").value.trim(),
+          gender: data.get("gender"),
+          length: data.get("nameLength"),
+          sources: data.getAll("source"),
+          birth: `${data.get("birthDate") || ""}${data.get("birthTime") || ""}`,
+          useBazi: data.get("useBazi") === "on",
+          bazi: String(data.get("baziPillars") || "").replace(/\s+/g, " ").trim(),
+          baziElement: String(data.get("baziElement") || ""),
+          include: document.getElementById("include-char").value.trim(),
+          avoid: document.getElementById("avoid-char").value.trim(),
+          temperament: document.getElementById("temperament").value
+        };
+      }
+      function toLength(seed, length, salt) {
+        if (length !== "1") return {...seed, given: seed.n, py: seed.p, charMeanings: seed.cm};
+        const idx = hash(seed.id + salt) % seed.n.length;
+        const parts = seed.p.split(" ");
+        return {
+          ...seed,
+          id: seed.id + "-" + idx,
+          given: seed.n[idx],
+          py: parts[idx] || parts[0],
+          charMeanings: [seed.cm[idx] || seed.cm[0]]
+        };
+      }
+      function buildCandidates(settings) {
+        const sources = settings.sources.length ? settings.sources : ["classics","tang","song","shijing","chuci"];
+        const seedKey = settings.surname + settings.birth + settings.gender + settings.temperament +
+          (settings.useBazi ? settings.bazi + settings.baziElement : "") + batch;
+        let pool = NAMES.filter(item =>
+          sources.includes(item.cat) &&
+          (settings.gender === "any" || item.g === "n" || item.g === settings.gender)
+        );
+        const lengths = settings.length === "any" ? ["2","1"] : [settings.length];
+        let transformed = [];
+        lengths.forEach(len => pool.forEach(item => transformed.push(toLength(item, len, seedKey))));
+        if (settings.avoid) transformed = transformed.filter(item => ![...settings.avoid].some(ch => item.given.includes(ch)));
+        const seen = new Set();
+        transformed = transformed.filter(item => {
+          if (seen.has(item.given)) return false;
+          seen.add(item.given);
+          return true;
+        });
+        transformed.forEach(item => {
+          item.score = hash(item.id + seedKey);
+          item.elementMatch = "";
+          if (settings.include && item.given.includes(settings.include)) item.score -= 1000000000;
+          if (settings.temperament !== "any" && item.t.includes(settings.temperament)) item.score -= 500000000;
+          if (settings.useBazi && settings.baziElement) {
+            const elementChars = FIVE_ELEMENT_CHARS[settings.baziElement] || "";
+            if ([...item.given].some(ch => elementChars.includes(ch))) {
+              item.score -= 750000000;
+              item.elementMatch = settings.baziElement;
+            }
+          }
+        });
+        transformed.sort((a,b) => a.score - b.score);
+        return transformed.slice(0, 6);
+      }
+      function isSaved(item) {
+        return favorites.some(f => f.key === item.key);
+      }
+      function renderCard(item, index) {
+        const saved = isSaved(item);
+        const meanings = item.charMeanings.map((value, idx) => {
+          const parts = value.split("：");
+          const char = item.given[idx] || item.given[0];
+          return `<div class="char-meaning"><span class="char-box">${escapeHTML(char)}</span><span class="char-copy"><strong>${escapeHTML(parts[0] || char)}</strong>${escapeHTML(parts[1] || value)}</span></div>`;
+        }).join("");
+        return `<article class="name-card" data-mark="${escapeHTML(item.given[item.given.length-1])}" style="animation-delay:${index*45}ms">
+          <div class="card-top">
+            <div><div class="full-name">${escapeHTML(item.fullName)}</div><div class="pinyin">${escapeHTML(item.py)}</div></div>
+            <button class="heart ${saved ? "saved" : ""}" type="button" data-favorite="${escapeHTML(item.key)}" aria-label="${saved ? "取消收藏" : "收藏"}${escapeHTML(item.fullName)}">${saved ? "♥" : "♡"}</button>
+          </div>
+          <blockquote class="quote">“${escapeHTML(item.q)}”</blockquote>
+          <div class="source-line"><span class="source-tag">${escapeHTML(item.tag)}</span><span>${escapeHTML(item.work)}</span></div>
+          <div class="char-meanings ${item.given.length === 1 ? "single" : ""}">${meanings}</div>
+          <div class="meaning"><strong>整体寓意</strong>${escapeHTML(item.m)}</div>
+          <div class="card-foot"><div class="traits">${item.t.map(t => `<span class="trait">${escapeHTML(t)}</span>`).join("")}${item.elementMatch ? `<span class="trait">${escapeHTML(item.elementMatch)}意参考</span>` : ""}</div><button class="copy-btn" type="button" data-copy="${escapeHTML(item.fullName)}">复制姓名</button></div>
+        </article>`;
+      }
+      function render(list, settings, mode) {
+        current = list.map(item => ({
+          ...item,
+          fullName: item.fullName || settings.surname + item.given,
+          key: item.key || `${settings.surname}${item.given}|${item.id}`
+        }));
+        if (!current.length) {
+          cards.innerHTML = `<div class="empty">暂时没有符合全部条件的名字。<br>可以减少避开用字，或多选一个典籍范围再试。</div>`;
+        } else {
+          cards.innerHTML = current.map(renderCard).join("");
+        }
+        title.textContent = mode ? `已收藏 ${current.length} 个名字` : `为“${settings.surname}”姓宝宝择得${toChineseNumber(current.length)}名`;
+        subtitle.textContent = mode ? "收藏保存在当前浏览器，可导出为文本与家人一起斟酌。" :
+          settings.useBazi && settings.baziElement
+            ? `已按你指定的“${settings.baziElement}意”用字倾向优先排序；该归类仅作民俗文化参考。`
+            : "每个名字，都有清晰的文化出处、原句与字义说明。";
+        kicker.textContent = mode ? "藏卷 · 心选" : `卷${toChineseNumber(batch + 1)} · 寻章`;
+        favoriteCount.textContent = favorites.length;
+        favoriteToggle.classList.toggle("active", mode);
+      }
+      function toChineseNumber(num) {
+        return ["零","一","二","三","四","五","六","七","八","九","十"][num] || String(num);
+      }
+      function validate(settings) {
+        if (!/^[\u3400-\u9fff]{1,2}$/.test(settings.surname)) return "请输入 1—2 个汉字姓氏。";
+        if (settings.include && !/^[\u3400-\u9fff]{1,2}$/.test(settings.include)) return "“期望包含”请填写 1—2 个汉字。";
+        if (settings.avoid && !/^[\u3400-\u9fff]{1,8}$/.test(settings.avoid)) return "“避开用字”请只填写汉字。";
+        if (settings.useBazi && !/^([甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥]\s*){4}$/.test(settings.bazi)) {
+          return "启用八字参考后，请填写完整四柱，例如“甲辰 丁卯 丙子 戊戌”。";
+        }
+        return "";
+      }
+      function generate(forceBatch) {
+        const settings = getSettings();
+        const message = validate(settings);
+        error.textContent = message;
+        if (message) return;
+        if (forceBatch) batch++;
+        favoriteMode = false;
+        render(buildCandidates(settings), settings, false);
+      }
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600);
+      }
+      function toggleFavorite(key) {
+        const item = current.find(x => x.key === key);
+        const idx = favorites.findIndex(f => f.key === key);
+        if (idx >= 0) {
+          favorites.splice(idx, 1);
+          showToast("已取消收藏");
+        } else if (item) {
+          favorites.push(item);
+          showToast("已收藏到本机");
+        }
+        saveFavorites();
+        if (favoriteMode) render(favorites, getSettings(), true);
+        else render(current, getSettings(), false);
+      }
+      async function copyName(name) {
+        try {
+          if (navigator.clipboard && location.protocol !== "file:") await navigator.clipboard.writeText(name);
+          else {
+            const area = document.createElement("textarea");
+            area.value = name;
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            area.remove();
+          }
+          showToast(`已复制：${name}`);
+        } catch (_) { showToast("请长按姓名手动复制"); }
+      }
+      function exportFavorites() {
+        if (!favorites.length) return showToast("还没有收藏名字");
+        const text = favorites.map((f, i) =>
+          `${i+1}. ${f.fullName}（${f.py}）\n出处：${f.work}\n原句：${f.q}\n寓意：${f.m}`
+        ).join("\n\n");
+        const blob = new Blob([`嘉名 · 宝宝姓名收藏\n\n${text}\n\n仅供起名灵感参考。`], {type:"text/plain;charset=utf-8"});
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "宝宝姓名收藏.txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+        showToast("收藏已导出");
+      }
+
+      form.addEventListener("submit", event => { event.preventDefault(); batch = 0; generate(false); });
+      document.getElementById("refresh-btn").addEventListener("click", () => generate(true));
+      favoriteToggle.addEventListener("click", () => {
+        favoriteMode = !favoriteMode;
+        if (favoriteMode) render(favorites, getSettings(), true);
+        else generate(false);
+      });
+      exportBtn.addEventListener("click", exportFavorites);
+      cards.addEventListener("click", event => {
+        const favorite = event.target.closest("[data-favorite]");
+        const copy = event.target.closest("[data-copy]");
+        if (favorite) toggleFavorite(favorite.dataset.favorite);
+        if (copy) copyName(copy.dataset.copy);
+      });
+      chatForm.addEventListener("submit", event => {
+        event.preventDefault();
+        askQuestion(chatInput.value);
+      });
+      chatInput.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          chatForm.requestSubmit();
+        }
+      });
+      document.querySelectorAll(".prompt-chip").forEach(button => {
+        button.addEventListener("click", () => askQuestion(button.textContent));
+      });
+      document.getElementById("kb-file").addEventListener("change", async event => {
+        try { await importKnowledgeFile(event.target.files[0]); }
+        catch (err) { showToast(err.message || "知识导入失败"); }
+        event.target.value = "";
+      });
+      document.getElementById("clear-kb").addEventListener("click", () => {
+        if (!customKnowledge.length) return showToast("自建知识库已经是空的");
+        customKnowledge = [];
+        saveCustomKnowledge();
+        showToast("已清空自建知识");
+      });
+      document.getElementById("clear-chat").addEventListener("click", () => {
+        chatHistory = [{
+          role:"assistant",
+          content:"对话已清空。告诉我姓氏、性别、偏好的典籍和名字气质，LLM Agent 会自行检索 Wiki 与原文库后回答。",
+          citations:[]
+        }];
+        saveChatHistory();
+        renderMessages();
+      });
+      chatMode.addEventListener("change", () => {
+        if (chatMode.value !== "local" && location.protocol === "file:") {
+          showToast("请先运行本机启动脚本开启模型服务");
+        }
+        checkAIStatus();
+      });
+      saveFavorites();
+      generate(false);
+      refreshKnowledgeStats();
+      renderMessages();
+      checkAIStatus();
+      checkCorpusStatus();
+    })();
+  </script>
+</body>
+</html>

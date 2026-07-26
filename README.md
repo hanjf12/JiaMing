@@ -1,107 +1,180 @@
 # 嘉名 · 中文宝宝起名
 
-一个纯本地优先的中文起名程序，支持四书五经、诗经、楚辞、唐诗、宋诗、宋词、五代词、元曲与清代专题语料，并可使用本机 Codex 订阅组织带出处的回答。
+嘉名是一个本地优先、可追溯出处的中文宝宝起名项目。它将四书五经、十三经、唐诗、宋诗、宋词、元曲等本地语料做成可检索知识库，并让 LLM 自主调用只读工具核对原文、阅读 Wiki，再生成名字建议。
 
-## 打开方式
+[English](README.en.md) · [模型配置](docs/configuration.zh-CN.md) · [产品与开源调研](docs/product-research.zh-CN.md)
 
-- 首次使用可双击 `配置Codex订阅.bat`：检查或完成 ChatGPT/Codex 订阅登录，不需要 API Key。
-- 双击 `启动Codex订阅版.bat`：启动本机 Codex Agent，支持模型自主读取 Wiki 与调用完整原文检索工具。
-- 双击 `启动局域网版.bat`：同一 Wi-Fi 下其他设备可访问；为保护订阅，局域网设备默认只能使用本地检索，不能调用 Codex。
-- 直接打开 `宝宝起名.html`：单文件离线版，支持 104 页 Wiki，但不加载 459 MB 的完整原文索引。
+## 功能
 
-默认地址：
+- 中文单姓、复姓，单字名和双字名。
+- 典籍偏好、性别气质、包含字、避开字、收藏与导出。
+- 接受用户已确认的出生四柱和五行用字倾向，仅作传统文化偏好。
+- 104 页互链 Wiki 与 345,579 条本机经典原文索引。
+- LLM 自主使用 `knowledge_status`、`wiki_search`、`wiki_read`、`corpus_search`。
+- 两种独立模型模式：
+  - Codex 订阅：使用本机已登录的 Codex CLI，不需要 API Key。
+  - OpenAI 兼容：使用 Responses API 或 Chat Completions API，不需要 Codex CLI。
+- Windows 与 macOS 启动脚本；运行时不依赖 React、Next.js 或数据库服务。
 
-```text
-http://127.0.0.1:4318/
+## 环境要求
+
+- Node.js 22.13 或更高版本。项目使用 Node 内置的 `node:sqlite`。
+- Codex 订阅模式额外需要 Codex CLI 和有效登录。
+- OpenAI 兼容模式只需要可用的模型端点；模型必须支持函数/工具调用。
+
+项目没有第三方运行时依赖，克隆后无需执行 `npm install`。
+
+## 快速开始
+
+### Windows
+
+双击 `start-windows.bat`，或在 PowerShell 中运行：
+
+```powershell
+.\start-windows.bat
 ```
 
-局域网地址请把 `127.0.0.1` 换成本机 IPv4，例如 `http://192.168.31.148:4318/`。
+### macOS
 
-## 知识库结构
+首次使用可赋予执行权限：
 
-本项目参考 LLM Wiki 的三层方式：
+```bash
+chmod +x start-macos.command configure-codex-macos.command
+./start-macos.command
+```
+
+也可在任一平台运行：
+
+```bash
+node src/server.mjs
+```
+
+浏览器地址为 <http://127.0.0.1:4318/>。
+
+## 选择模型
+
+复制配置模板：
+
+```powershell
+# Windows
+Copy-Item config.example.json config.local.json
+Copy-Item .env.example .env
+```
+
+```bash
+# macOS
+cp config.example.json config.local.json
+cp .env.example .env
+```
+
+### Codex 订阅
+
+保持 `config.local.json` 中：
+
+```json
+{
+  "provider": "codex"
+}
+```
+
+Windows 双击 `configure-codex-windows.bat`；macOS 运行 `./configure-codex-macos.command`。登录凭据由 Codex CLI 管理，不写入本项目。
+
+### OpenAI 兼容接口
+
+把提供方改成：
+
+```json
+{
+  "provider": "openai",
+  "openai": {
+    "baseUrl": "https://api.openai.com/v1",
+    "apiKeyEnv": "OPENAI_API_KEY",
+    "model": "gpt-5.6-terra",
+    "apiStyle": "responses"
+  }
+}
+```
+
+然后在 `.env` 中填写：
+
+```dotenv
+OPENAI_API_KEY=你的密钥
+```
+
+兼容服务若只实现 Chat Completions，请将 `apiStyle` 改为 `chat-completions`。本地免密服务可以把 `OPENAI_API_KEY` 留空。完整选项见[模型配置](docs/configuration.zh-CN.md)。
+
+## 知识库
+
+仓库内包含 Wiki、构建脚本与少量编辑资料。因体积和上游许可差异，完整上游仓库与生成的 SQLite 索引不提交：
 
 ```text
 knowledge/
-├── purpose.md                 # 目标、范围和边界
-├── schema.md                  # 页面字段、链接与状态规则
-├── raw/                       # 姓名、方法、编辑资料
-├── wiki/                      # 互链 Markdown 页面
-├── runtime/                   # 网页检索包与知识图谱
+├── purpose.md
+├── schema.md
+├── raw/
+├── wiki/
+├── runtime/
 └── corpus/
-    ├── vendor/                # 上游完整原文（本机，不提交）
-    ├── authorized/            # 用户有权使用的近现代全文
-    ├── classics.sqlite        # 作品级全文索引（本机）
-    └── manifest.json          # 数量、来源与构建统计
+    ├── vendor/             # 上游仓库，本机忽略
+    ├── authorized/         # 用户有权使用的资料
+    ├── classics.sqlite     # 生成的本机全文索引
+    └── manifest.json
 ```
 
-当前编译结果：
+同步公开上游语料并重建索引：
 
-- 104 个 Wiki 页面、104 个检索块、283 条 Wiki 关联。
-- 62 个精选姓名候选、10 个基础方法页。
-- 典籍来源、音韵/用字/八字边界等概念页与方案比较页。
-- 345,579 条完整原文或篇章元数据。
-- 57,600 条唐诗、254,195 条宋诗、21,049 条宋词、10,906 条元曲。
-- 完整四书五经/十三经按篇章索引。
-
-Codex Agent 问答流程是：
-
-```text
-问题
-  ↓
-Codex Agent 读取 AGENTS.md，自主规划检索
-  ├─ status：确认知识库状态
-  ├─ wiki-search：搜索编辑性 Wiki
-  ├─ wiki-read：沿互链读取完整页面
-  └─ corpus-search：SQLite FTS5 检索经典原文
-  ↓
-结构化回答 + 本次实际引用来源
+```bash
+npm run corpus:sync
 ```
 
-Agent 工具入口为 `tools/knowledge-agent-tools.mjs`，全部只读；Codex 运行在 `read-only` 沙箱、临时会话中，不允许修改文件或访问网络。直接打开单文件版时仍保留仅本地检索，作为离线与诊断后备。
+只重建已有本地语料：
 
-非敏感 Agent 设置位于本机忽略文件 `config/local-agent.json`。当前配置使用 `gpt-5.6-terra` 和低推理强度，兼顾工具调用质量与响应速度；把 `model` 或 `reasoningEffort` 改为空字符串可恢复 Codex 默认值。订阅凭证由 Codex CLI 自己管理，不写入项目。
+```bash
+npm run corpus:build
+npm run corpus:status
+```
 
-## 构建与维护
+近现代仍受著作权保护的全文不会随项目分发。仅可将你有权使用的材料放入 `knowledge/corpus/authorized/`，并自行承担授权责任。
+
+## 局域网
 
 ```powershell
-# 重新生成 Wiki、网页内嵌包和知识图谱
-npm run wiki:build
-npm run wiki:lint
-
-# 首次下载完整公开语料并建立本地全文索引
-npm run corpus:sync
-
-# 原文已下载时，只重建 SQLite 索引
-npm run corpus:build
-
-# 查看原文库统计
-npm run corpus:status
-
-# 直接测试 Agent 的只读知识工具
-npm run agent:status
-npm run agent:wiki -- --query "连姓音韵"
-npm run agent:corpus -- --query "人间有味是清欢" --scope song
-
-# 构建与测试应用
-npm run lint
-npm test
+.\start-windows.bat --lan
 ```
 
-新资料先放入 `knowledge/inbox/`，审核来源后再合并到 `raw/`。不要直接手改 `wiki/` 的生成页。
+```bash
+./start-macos.command --lan
+```
 
-## 数据来源与许可
+同一可信网络中的设备可访问 `http://本机IPv4:4318/`。默认情况下，远端设备只能使用网页和本地检索，不能消耗 Codex 订阅或模型 API。只有明确设置 `JIAMING_ALLOW_LAN_AGENT=true` 才开放远端模型调用。不要直接把端口暴露到公网。
 
-- [chinese-poetry/chinese-poetry](https://github.com/chinese-poetry/chinese-poetry)，MIT：全唐诗、全宋诗、全宋词及其他古典选集。
-- [gujilab/chinese-classical-corpus](https://github.com/gujilab/chinese-classical-corpus)，数据 CC0：完整四书五经/十三经。
+## 开发与校验
 
-古典原文本身属于公有领域，但整理数据可能有单独许可；程序保存上游来源、文件路径与许可字段。上游也可能含异文、重出或录入错误，正式定名时应复核可靠版本。
+```bash
+npm test
+npm run wiki:lint
+npm run check
+```
 
-毛泽东诗词等近现代作品默认只收录目录元数据，不随程序复制全文。用户取得合法授权后，可把 JSON、JSONL、TXT 或 Markdown 放入 `knowledge/corpus/authorized/`，再运行 `npm run corpus:build`。
+主要目录：
 
-## 隐私与八字
+```text
+public/       单文件前端
+src/          服务、模型提供方、Agent 工具
+scripts/      Wiki 与原文库维护命令
+schemas/      LLM 结构化输出 Schema
+knowledge/    本地 Wiki 和语料索引
+tests/        Node 内置测试
+docs/         配置与调研文档
+```
 
-- 姓氏、出生信息、八字和收藏默认只在本机页面处理。
-- 八字和五行只作用户主动选择的民俗文化偏好，不自动推算喜用神，不断言吉凶。
-- 调用 Codex 时发送当前问题、有限的对话历史、用户明确授权的资料与允许共享的八字偏好；Wiki 和完整原文由 Agent 在本机工具中自行读取。
-- ChatGPT/Codex 登录令牌由 Codex CLI 保存和使用，本项目不读取、不复制也不显示令牌。
+## 安全与文化边界
+
+- 模型工具只读本地知识库；Codex 运行在只读沙箱和临时会话中。
+- 不凭模型记忆伪造原句、作者或出处，找不到时应明确说明。
+- 八字和五行不被当作科学预测，不自动判断喜用神，不断言吉凶。
+- `.env`、`config.local.json`、本地语料和 SQLite 索引均已忽略，提交前仍请自行检查敏感信息。
+
+## 许可证
+
+程序代码采用 [MIT License](LICENSE)。知识语料保持各自原始许可证或权利状态，详见 [NOTICE.md](NOTICE.md)。

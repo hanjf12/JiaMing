@@ -1,51 +1,30 @@
 {
   "name": "jiaming-baby-names",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "中文宝宝起名与经典原文检索工具，支持 Codex 订阅和 OpenAI 兼容模型。",
+  "type": "module",
+  "license": "MIT",
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build",
-    "start": "vinext start",
-    "codex:start": "node tools/codex-local-server.mjs",
-    "wiki:build": "node tools/build-wiki.mjs",
-    "wiki:lint": "node tools/lint-wiki.mjs",
+    "start": "node src/server.mjs",
+    "start:lan": "node src/server.mjs --lan",
+    "wiki:build": "node scripts/build-wiki.mjs",
+    "wiki:lint": "node scripts/lint-wiki.mjs",
     "wiki:check": "npm run wiki:build && npm run wiki:lint",
-    "corpus:sync": "node tools/sync-corpus.mjs",
-    "corpus:build": "node tools/build-corpus-index.mjs",
-    "corpus:status": "node tools/corpus-status.mjs",
-    "agent:status": "node tools/knowledge-agent-tools.mjs status",
-    "agent:wiki": "node tools/knowledge-agent-tools.mjs wiki-search",
-    "agent:corpus": "node tools/knowledge-agent-tools.mjs corpus-search",
-    "test": "pnpm run build && node --test tests/*.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "corpus:sync": "node scripts/sync-corpus.mjs",
+    "corpus:build": "node scripts/build-corpus.mjs",
+    "corpus:status": "node scripts/corpus-status.mjs",
+    "knowledge": "node scripts/knowledge.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run wiki:lint && npm test"
   },
-  "dependencies": {
-    "drizzle-orm": "0.45.2",
-    "next": "16.2.6",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
-  },
-  "devDependencies": {
-    "@cloudflare/vite-plugin": "1.37.1",
-    "@tailwindcss/postcss": "4.2.1",
-    "@types/node": "22.19.19",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
-    "drizzle-kit": "0.31.10",
-    "eslint": "9.39.4",
-    "eslint-config-next": "16.2.6",
-    "react-server-dom-webpack": "19.2.6",
-    "tailwindcss": "4.2.1",
-    "typescript": "5.9.3",
-    "vinext": "0.0.50",
-    "vite": "8.0.13",
-    "wrangler": "4.92.0"
-  },
-  "type": "module"
+  "keywords": [
+    "chinese-name",
+    "baby-name",
+    "rag",
+    "codex",
+    "openai-compatible"
+  ]
 }

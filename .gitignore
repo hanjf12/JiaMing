@@ -1,47 +1,36 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
+# Dependencies and generated build output
+/node_modules/
+/dist/
 /.next/
 /.vinext/
+/.wrangler/
 /out/
+/outputs/
+/work/
+/coverage/
 
-# misc
+# Local configuration and credentials
+/.env
+/.env.*
+!/.env.example
+/config.local.json
+/config/local-agent.json
+
+# Local corpus checkout and generated SQLite index
+/knowledge/corpus/vendor/
+/knowledge/corpus/classics.sqlite
+/knowledge/corpus/*.log
+
+# Editors and operating systems
 .DS_Store
-*.pem
+Thumbs.db
+*.swp
+.idea/
+.vscode/
 
-# debug
+# Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-!.env.example
-
-# vercel
-.vercel
-
-# typescript
-next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
-knowledge/corpus/vendor/
-knowledge/corpus/classics.sqlite
-knowledge/corpus/*.log
-config/local-agent.json
