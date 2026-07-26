@@ -991,7 +991,7 @@
         } catch (_) {}
         return [{
           role:"assistant",
-          content:"你好，我是“问典”。我会通过已配置的 LLM Agent 自主读取本地 Wiki、检索经典原文，再回答你的起名问题。你可以直接描述姓氏、性别、偏好的典籍和名字气质。",
+          content:"你好，我是“问典”。我会通过已配置的 Codex Agent 运行只读 Shell 命令，自主读取本地 Wiki、检索经典原文，再回答你的起名问题。你可以直接描述姓氏、性别、偏好的典籍和名字气质。",
           citations:[]
         }];
       }
@@ -1193,7 +1193,7 @@
           return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(message.content)}</div>${message.role === "assistant" ? citationMarkup(message.citations) : ""}`;
         }).join("");
         const pending = chatPending
-          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>Agent 正在读取 Wiki 并调用本地知识工具……</div>`
+          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>Agent 正在通过只读 Shell 检索 Wiki 与原文库……</div>`
           : "";
         messages.innerHTML = content + pending;
         messages.scrollTop = messages.scrollHeight;

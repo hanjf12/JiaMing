@@ -17,14 +17,16 @@ const DEFAULTS = {
     reasoningEffort: "low",
     timeoutMs: 240_000,
   },
-  openai: {
-    baseUrl: "https://api.openai.com/v1",
+  thirdParty: {
+    name: "第三方模型",
+    baseUrl: "",
     apiKeyEnv: "OPENAI_API_KEY",
-    model: "gpt-5.6-terra",
-    apiStyle: "responses",
+    model: "",
     reasoningEffort: "low",
-    timeoutMs: 120_000,
-    maxToolRounds: 8,
+    timeoutMs: 240_000,
+    headers: {},
+    headerEnv: {},
+    queryParams: {},
   },
   conversation: {
     maxHistoryMessages: 8,
@@ -87,13 +89,39 @@ function numberValue(value, fallback, min, max) {
 function normalizeProvider(value) {
   const provider = String(value || "").toLowerCase();
   if (["codex", "codex-subscription"].includes(provider)) return "codex";
-  if (["openai", "openai-compatible"].includes(provider)) return "openai";
+  if (
+    ["third-party", "thirdparty", "custom", "openai", "openai-compatible"]
+      .includes(provider)
+  ) return "third-party";
   throw new Error(`不支持的模型提供方：${value}`);
+}
+
+function recordValue(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return Object.fromEntries(
+    Object.entries(value)
+      .map(([key, item]) => [String(key).trim(), String(item).trim()])
+      .filter(([key, item]) => key && item),
+  );
 }
 
 export function loadConfig(args = process.argv.slice(2)) {
   loadDotEnv();
-  let config = merge(DEFAULTS, loadJsonConfig());
+  const local = loadJsonConfig();
+  let config = merge(DEFAULTS, local);
+  // Keep existing local files usable while moving from the old direct adapter.
+  if (local.openai && !local.thirdParty) {
+    config.thirdParty = merge(config.thirdParty, local.openai);
+  }
+  const legacyApiStyle = process.env.OPENAI_API_STYLE || local.openai?.apiStyle;
+  if (
+    legacyApiStyle
+    && String(legacyApiStyle).toLowerCase() !== "responses"
+  ) {
+    throw new Error(
+      "统一 Codex Agent 仅支持 Responses 兼容接口；请移除 chat-completions 配置或增加 Responses 转换层",
+    );
+  }
 
   config.provider = normalizeProvider(process.env.JIAMING_PROVIDER || config.provider);
   config.server.host = args.includes("--lan")
@@ -130,31 +158,34 @@ export function loadConfig(args = process.argv.slice(2)) {
     600_000,
   );
 
-  config.openai.baseUrl = String(
-    process.env.OPENAI_BASE_URL || config.openai.baseUrl,
+  config.thirdParty.name = process.env.JIAMING_THIRD_PARTY_NAME
+    || config.thirdParty.name;
+  config.thirdParty.baseUrl = String(
+    process.env.JIAMING_THIRD_PARTY_BASE_URL
+      || process.env.OPENAI_BASE_URL
+      || config.thirdParty.baseUrl,
   ).replace(/\/+$/, "");
-  config.openai.model = process.env.OPENAI_MODEL || config.openai.model;
-  config.openai.apiStyle = String(
-    process.env.OPENAI_API_STYLE || config.openai.apiStyle,
-  ).toLowerCase();
-  if (!["responses", "chat-completions"].includes(config.openai.apiStyle)) {
-    throw new Error("OPENAI_API_STYLE 必须是 responses 或 chat-completions");
-  }
-  config.openai.reasoningEffort = process.env.OPENAI_REASONING_EFFORT
-    ?? config.openai.reasoningEffort;
-  config.openai.timeoutMs = numberValue(
-    process.env.OPENAI_TIMEOUT_MS,
-    config.openai.timeoutMs,
-    10_000,
+  config.thirdParty.model = process.env.JIAMING_THIRD_PARTY_MODEL
+    || process.env.OPENAI_MODEL
+    || config.thirdParty.model;
+  config.thirdParty.reasoningEffort = process.env.JIAMING_THIRD_PARTY_REASONING
+    ?? process.env.OPENAI_REASONING_EFFORT
+    ?? config.thirdParty.reasoningEffort;
+  config.thirdParty.timeoutMs = numberValue(
+    process.env.JIAMING_THIRD_PARTY_TIMEOUT_MS || process.env.OPENAI_TIMEOUT_MS,
+    config.thirdParty.timeoutMs,
+    30_000,
     600_000,
   );
-  config.openai.maxToolRounds = numberValue(
-    process.env.OPENAI_MAX_TOOL_ROUNDS,
-    config.openai.maxToolRounds,
-    1,
-    16,
+  config.thirdParty.apiKeyEnv = String(
+    process.env.JIAMING_THIRD_PARTY_API_KEY_ENV
+      || config.thirdParty.apiKeyEnv
+      || "OPENAI_API_KEY",
   );
-  config.openai.apiKey = process.env[config.openai.apiKeyEnv] || "";
+  config.thirdParty.apiKey = process.env[config.thirdParty.apiKeyEnv] || "";
+  config.thirdParty.headers = recordValue(config.thirdParty.headers);
+  config.thirdParty.headerEnv = recordValue(config.thirdParty.headerEnv);
+  config.thirdParty.queryParams = recordValue(config.thirdParty.queryParams);
   config.conversation.maxHistoryMessages = numberValue(
     process.env.JIAMING_MAX_HISTORY,
     config.conversation.maxHistoryMessages,
@@ -162,23 +193,4 @@ export function loadConfig(args = process.argv.slice(2)) {
     20,
   );
   return config;
-}
-
-export function publicConfig(config) {
-  if (config.provider === "codex") {
-    return {
-      configured: true,
-      provider: "Codex 订阅",
-      model: config.codex.model || "Codex 默认模型",
-      apiStyle: "Codex CLI + MCP",
-    };
-  }
-  return {
-    configured: Boolean(config.openai.baseUrl && config.openai.model),
-    provider: "OpenAI 兼容接口",
-    model: config.openai.model || "未配置",
-    apiStyle: config.openai.apiStyle,
-    baseUrl: config.openai.baseUrl,
-    hasApiKey: Boolean(config.openai.apiKey),
-  };
 }

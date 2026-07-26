@@ -15,7 +15,7 @@ for /f "delims=" %%I in ('where codex 2^>nul') do (
 )
 
 echo 未找到 Codex CLI。Codex 订阅模式需要先安装 Codex CLI。
-echo 若使用 OpenAI 兼容模型，则不需要 Codex CLI。
+echo 第三方模型模式也使用 Codex Agent，因此同样需要 Codex CLI。
 pause
 exit /b 1
 

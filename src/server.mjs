@@ -3,12 +3,11 @@ import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { KNOWLEDGE_TOOLS } from "./agent-tools.mjs";
 import { loadConfig, ROOT } from "./config.mjs";
 import { corpusStatus, searchCorpus } from "./corpus.mjs";
+import { KNOWLEDGE_SHELL_COMMANDS } from "./knowledge-shell.mjs";
 import { sanitizeRequest } from "./prompt.mjs";
-import { askCodex, codexStatus } from "./providers/codex.mjs";
-import { askOpenAI, openAIStatus } from "./providers/openai.mjs";
+import { agentStatus, askAgent } from "./providers/agent.mjs";
 
 const PAGE = join(ROOT, "public", "index.html");
 const FAVICON = join(ROOT, "public", "favicon.svg");
@@ -78,19 +77,13 @@ async function readJson(request) {
   }
 }
 
-function publicTool(tool) {
-  return {
-    name: tool.name,
-    description: tool.description,
-    readOnly: true,
-  };
-}
-
 function remoteStatus(config) {
   return {
     configured: false,
     provider: "本地知识库",
-    model: `局域网设备默认不开放 ${config.provider === "codex" ? "Codex 订阅" : "模型接口"}`,
+    model: `局域网设备默认不开放 ${
+      config.provider === "codex" ? "Codex 订阅" : "第三方模型"
+    }`,
     apiStyle: "仅本地检索",
     auth: "受保护",
     detail: "取名表单与本地原文检索仍可使用；如确需开放，请在可信网络中设置 JIAMING_ALLOW_LAN_AGENT=1。",
@@ -101,10 +94,8 @@ export function createAppServer(
   config = loadConfig(),
   dependencies = {},
 ) {
-  const statusProvider = dependencies.statusProvider
-    || (config.provider === "codex" ? codexStatus : openAIStatus);
-  const askProvider = dependencies.askProvider
-    || (config.provider === "codex" ? askCodex : askOpenAI);
+  const statusProvider = dependencies.statusProvider || agentStatus;
+  const askProvider = dependencies.askProvider || askAgent;
   const loadPage = dependencies.loadPage || (() => readFile(PAGE));
   const loadFavicon = dependencies.loadFavicon || (() => readFile(FAVICON));
   let busy = false;
@@ -142,11 +133,16 @@ export function createAppServer(
       }
     }
 
-    if (request.method === "GET" && url.pathname === "/api/agent/tools") {
+    if (
+      request.method === "GET"
+      && ["/api/agent/shell", "/api/agent/tools"].includes(url.pathname)
+    ) {
       return responseJson(response, {
-        tools: KNOWLEDGE_TOOLS.map(publicTool),
+        interface: "shell",
+        commands: KNOWLEDGE_SHELL_COMMANDS,
         mode: "read-only",
         network: false,
+        mcp: false,
       });
     }
 
@@ -240,7 +236,11 @@ export function startServer(config = loadConfig()) {
     process.stdout.write([
       "",
       `嘉名已启动：${url}`,
-      `模型提供方：${config.provider === "codex" ? "Codex 订阅" : "OpenAI 兼容接口"}`,
+      `模型提供方：${
+        config.provider === "codex"
+          ? "Codex 订阅"
+          : config.thirdParty.name || "第三方模型"
+      }`,
       config.server.host === "0.0.0.0"
         ? "已监听局域网；模型调用默认仅允许本机。"
         : "仅监听本机。",

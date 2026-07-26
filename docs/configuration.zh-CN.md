@@ -1,13 +1,20 @@
 # 模型与本机服务配置
 
-嘉名只运行一个本机 HTTP 服务，但可以选择两种互不依赖的模型提供方。配置优先级为：环境变量 > `.env` > `config.local.json` > 内置默认值。
+嘉名只运行一个本机 HTTP 服务。Codex 订阅和第三方模型都进入同一个 Codex CLI Agent，区别只在模型认证与 provider 配置；知识库统一由 Agent 的只读 Shell 工具访问，不使用 MCP。
+
+配置优先级为：环境变量 > `.env` > `config.local.json` > 内置默认值。
 
 ## 公共准备
 
-需要 Node.js 22.13 或更高版本，不需要安装项目依赖：
+两种模式都需要：
+
+- Node.js 22.13 或更高版本；
+- Codex CLI；
+- 项目内已经构建好的 Wiki 与原文索引。
 
 ```bash
 node --version
+codex --version
 node src/server.mjs
 ```
 
@@ -20,9 +27,36 @@ config.example.json → config.local.json
 
 这两个本机文件都不会被 Git 提交。
 
-## 方式一：Codex 订阅
+## 统一 Agent 与 Shell 知识库
 
-适合已经拥有可用 ChatGPT/Codex 订阅的用户。
+每次问答都会启动临时的 `codex exec`：
+
+```text
+网页 /api/chat
+  → codex exec --ephemeral --sandbox read-only
+  → Agent 自主运行 node scripts/knowledge.mjs ...
+  → 本地 Wiki / SQLite
+  → 结构化回答与引用
+```
+
+应用不启动 MCP server，也不向 Codex 注册 MCP 工具。每次执行都用 `mcp_servers={}` 覆盖个人配置，同时关闭插件、应用、Hooks、浏览器、计算机和多 Agent 等无关能力。保留用户配置层只为了读取项目可信状态和订阅认证；当前模型 provider、只读沙箱和工具能力都由本次命令覆盖。项目内 `.codex/rules/knowledge.rules` 只放行知识 CLI，第三方 provider 也只通过本次进程的 `--config` 参数注入。
+
+Agent 只应运行：
+
+```bash
+node scripts/knowledge.mjs status
+node scripts/knowledge.mjs wiki-search --query "连姓音韵" --scope all --limit 6
+node scripts/knowledge.mjs wiki-read --id concept-full-name-phonology
+node scripts/knowledge.mjs corpus-search --query "人间有味是清欢" --scope song --limit 6
+```
+
+Codex 自身运行在只读沙箱，知识命令只读项目文件和 SQLite。
+
+Windows 后台服务显式使用官方的 `windows.sandbox = "unelevated"` 回退模式，避免依赖桌面 App 的 elevated sandbox 会话；它仍使用受限令牌和 ACL 边界。若希望使用更强的 elevated 模式，可先在 Codex App 中完成管理员批准的沙箱设置，再自行调整这一项目默认值。参考 [Windows sandbox](https://developers.openai.com/codex/windows)。
+
+## 方式一：本机 Codex 订阅
+
+适合已经拥有可用 ChatGPT/Codex 订阅的用户：
 
 ```json
 {
@@ -34,8 +68,6 @@ config.example.json → config.local.json
   }
 }
 ```
-
-此模式需要 Codex CLI。订阅登录与 API Key 是两套不同的认证方式；不要把 Codex 登录令牌粘贴到 `.env` 或网页。
 
 Windows：
 
@@ -58,7 +90,7 @@ chmod +x configure-codex-macos.command start-macos.command
 codex login status
 ```
 
-服务每次问答运行临时 `codex exec`，启用只读沙箱、结构化输出和本地 `jiaming` MCP 工具。临时回答文件在结束后删除。
+订阅凭据由 Codex CLI 管理，不要把登录令牌粘贴到 `.env`、JSON 或网页。
 
 可用环境变量：
 
@@ -70,72 +102,86 @@ JIAMING_CODEX_REASONING=low
 JIAMING_CODEX_TIMEOUT_MS=240000
 ```
 
-## 方式二：OpenAI 兼容模型
+## 方式二：第三方模型
 
-此模式不需要 Codex CLI。它需要一个支持函数/工具调用的 OpenAI 格式端点。
+第三方模式仍使用 Codex CLI 作为 Agent 运行时，不需要登录 ChatGPT，但需要配置可用的模型端点。
 
-Responses API 示例：
-
-```json
-{
-  "provider": "openai",
-  "openai": {
-    "baseUrl": "https://api.openai.com/v1",
-    "apiKeyEnv": "OPENAI_API_KEY",
-    "model": "gpt-5.6-terra",
-    "apiStyle": "responses",
-    "reasoningEffort": "low",
-    "timeoutMs": 120000,
-    "maxToolRounds": 8
-  }
-}
-```
-
-Chat Completions 兼容服务：
+`config.local.json`：
 
 ```json
 {
-  "provider": "openai",
-  "openai": {
+  "provider": "third-party",
+  "thirdParty": {
+    "name": "我的模型服务",
     "baseUrl": "http://127.0.0.1:8000/v1",
     "apiKeyEnv": "OPENAI_API_KEY",
-    "model": "your-tool-capable-model",
-    "apiStyle": "chat-completions",
-    "reasoningEffort": ""
+    "model": "your-agent-capable-model",
+    "reasoningEffort": "low",
+    "timeoutMs": 240000,
+    "headers": {},
+    "headerEnv": {},
+    "queryParams": {}
   }
 }
 ```
 
-密钥放在 `.env`，不要写进 JSON：
+`.env`：
 
 ```dotenv
-JIAMING_PROVIDER=openai
+JIAMING_PROVIDER=third-party
 OPENAI_API_KEY=你的密钥
 ```
 
-本地免认证服务可留空。若兼容服务不接受 `reasoning_effort`，把 `reasoningEffort` 设为空字符串。额外固定请求头可在 `openai.headers` 中配置，但不要把含密钥的配置提交到 Git。
+也可以只用环境变量：
 
-本项目自己执行模型提出的本地工具调用，并把结果送回模型。无论选择 Responses 还是 Chat Completions，使用的都是同一套只读知识工具：
+```dotenv
+JIAMING_PROVIDER=third-party
+JIAMING_THIRD_PARTY_NAME=我的模型服务
+JIAMING_THIRD_PARTY_BASE_URL=https://example.com/v1
+JIAMING_THIRD_PARTY_MODEL=your-agent-capable-model
+JIAMING_THIRD_PARTY_API_KEY_ENV=OPENAI_API_KEY
+JIAMING_THIRD_PARTY_REASONING=low
+JIAMING_THIRD_PARTY_TIMEOUT_MS=240000
+OPENAI_API_KEY=你的密钥
+```
 
-- `knowledge_status`
-- `wiki_search`
-- `wiki_read`
-- `corpus_search`
+`apiKeyEnv` 是真正保存密钥的环境变量名。服务会读取它，再通过临时子进程环境传给 Codex；密钥不会出现在 `codex exec` 的命令行参数中。本机免认证接口可以留空。
 
-不支持工具调用的“仅文本兼容”模型无法完成基于 LLM 的知识库问答，可继续使用页面中的“仅本地检索（诊断）”。
+### 额外请求参数
 
-### Codex CLI 能否接 OpenAI 兼容接口
+- `headers`：非敏感固定请求头；
+- `headerEnv`：请求头名到环境变量名的映射，适合敏感值；
+- `queryParams`：固定查询参数，例如 Azure 风格的 `api-version`。
 
-可以，但它与本项目的直接 OpenAI 模式不是一回事。Codex CLI 支持在用户级 `~/.codex/config.toml` 中定义自定义 `model_providers`，可配置 `base_url`、`env_key` 和请求头；当前自定义 provider 的 `wire_api` 只支持 `responses`。官方也内置了 Ollama、LM Studio 等本地 provider。
+示例：
 
-嘉名的 `provider: "openai"` 选择直接调用接口，是因为：
+```json
+{
+  "thirdParty": {
+    "headers": {
+      "X-Client": "jiaming"
+    },
+    "headerEnv": {
+      "X-Tenant-Key": "TENANT_KEY"
+    },
+    "queryParams": {
+      "api-version": "2026-01-01"
+    }
+  }
+}
+```
 
-- 同时兼容 Responses 和 Chat Completions；
-- 不要求安装 Codex CLI；
-- 项目配置与个人 Codex 全局配置互不影响；
-- 本地知识工具执行逻辑更容易测试和审计。
+### 兼容性要求
 
-因此，OpenAI 兼容模型建议使用嘉名的直接模式。Codex 订阅模式则保持使用已登录的官方 Codex CLI。参考 [Codex 高级配置](https://developers.openai.com/codex/config-advanced) 和 [配置字段参考](https://developers.openai.com/codex/config-reference)。
+Codex CLI 的自定义 `model_providers` 可配置 `base_url`、`env_key`、请求头和查询参数；当前 `wire_api` 只有 `responses`。因此第三方接口必须：
+
+- 兼容 OpenAI Responses API；
+- 支持函数/工具调用，使 Codex Agent 能调用 Shell；
+- 能处理所选模型和结构化输出。
+
+只实现 `/chat/completions` 的服务不能直接用于这条统一链路，需要在前面增加 Responses 兼容转换层。项目仍接受旧的 `provider: "openai"` 作为 `third-party` 别名，但不再使用旧的直连 Chat Completions 适配器。
+
+参考 [Codex 高级配置](https://developers.openai.com/codex/config-advanced) 和 [Codex 配置字段参考](https://developers.openai.com/codex/config-reference)。
 
 ## 服务与局域网
 
@@ -164,7 +210,7 @@ node src/server.mjs --lan
 JIAMING_ALLOW_LAN_AGENT=true
 ```
 
-这会允许其他设备使用你的订阅额度或 API Key，务必谨慎。服务没有面向公网的账号、TLS、限流和审计机制，不应直接映射到互联网。
+这会允许其他设备使用你的订阅额度或第三方 API Key，务必谨慎。服务没有面向公网的账号、TLS、限流和审计机制，不应直接映射到互联网。
 
 ## 八字与隐私
 

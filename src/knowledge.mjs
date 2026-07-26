@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { corpusStatus, searchCorpus } from "./corpus.mjs";
+import { KNOWLEDGE_SHELL_COMMANDS } from "./knowledge-shell.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const KNOWLEDGE = join(ROOT, "knowledge");
@@ -110,7 +111,8 @@ export async function knowledgeStatus() {
     ok: true,
     wiki: bundle.meta,
     corpus: corpusStatus(),
-    tools: ["knowledge_status", "wiki_search", "wiki_read", "corpus_search"],
+    interface: "shell",
+    commands: KNOWLEDGE_SHELL_COMMANDS.map(({ id, command }) => ({ id, command })),
   };
 }
 

@@ -1,0 +1,16 @@
+# The naming agent may run only the project's read-only knowledge CLI without
+# an interactive approval. The CLI itself validates command names and inputs.
+prefix_rule(
+    pattern = ["node", "scripts/knowledge.mjs"],
+    decision = "allow",
+    justification = "Read-only access to the checked-in wiki and SQLite corpus.",
+    match = [
+        "node scripts/knowledge.mjs status",
+        "node scripts/knowledge.mjs wiki-search --query 连姓音韵 --scope all --limit 6",
+        "node scripts/knowledge.mjs wiki-read --id concept-full-name-phonology",
+        "node scripts/knowledge.mjs corpus-search --query 人间有味是清欢 --scope song --limit 6",
+    ],
+    not_match = [
+        "node scripts/build-corpus.mjs",
+    ],
+)

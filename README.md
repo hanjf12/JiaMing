@@ -1,6 +1,6 @@
 # 嘉名 · 中文宝宝起名
 
-嘉名是一个本地优先、可追溯出处的中文宝宝起名项目。它将四书五经、十三经、唐诗、宋诗、宋词、元曲等本地语料做成可检索知识库，并让 LLM 自主调用只读工具核对原文、阅读 Wiki，再生成名字建议。
+嘉名是一个本地优先、可追溯出处的中文宝宝起名项目。它将四书五经、十三经、唐诗、宋诗、宋词、元曲等本地语料做成可检索知识库，并让 Codex Agent 自主运行只读 Shell 命令核对原文、阅读 Wiki，再生成名字建议。
 
 [English](README.en.md) · [模型配置](docs/configuration.zh-CN.md) · [产品与开源调研](docs/product-research.zh-CN.md)
 
@@ -10,17 +10,18 @@
 - 典籍偏好、性别气质、包含字、避开字、收藏与导出。
 - 接受用户已确认的出生四柱和五行用字倾向，仅作传统文化偏好。
 - 104 页互链 Wiki 与 345,579 条本机经典原文索引。
-- LLM 自主使用 `knowledge_status`、`wiki_search`、`wiki_read`、`corpus_search`。
-- 两种独立模型模式：
+- 统一 Agent 链路：知识库只通过 `node scripts/knowledge.mjs ...` 接入，不启动 MCP。
+- 两种模型配置：
   - Codex 订阅：使用本机已登录的 Codex CLI，不需要 API Key。
-  - OpenAI 兼容：使用 Responses API 或 Chat Completions API，不需要 Codex CLI。
+  - 第三方模型：仍由同一个 Codex CLI Agent 运行，通过自定义 provider 连接 Responses 兼容接口。
 - Windows 与 macOS 启动脚本；运行时不依赖 React、Next.js 或数据库服务。
 
 ## 环境要求
 
 - Node.js 22.13 或更高版本。项目使用 Node 内置的 `node:sqlite`。
-- Codex 订阅模式额外需要 Codex CLI 和有效登录。
-- OpenAI 兼容模式只需要可用的模型端点；模型必须支持函数/工具调用。
+- Codex CLI。两种模式都使用它提供 Agent 循环和 Shell 工具。
+- Codex 订阅模式需要有效的 ChatGPT/Codex 登录。
+- 第三方模式要求端点兼容 OpenAI Responses API，并支持函数/工具调用。
 
 项目没有第三方运行时依赖，克隆后无需执行 `npm install`。
 
@@ -79,18 +80,19 @@ cp .env.example .env
 
 Windows 双击 `configure-codex-windows.bat`；macOS 运行 `./configure-codex-macos.command`。登录凭据由 Codex CLI 管理，不写入本项目。
 
-### OpenAI 兼容接口
+### 第三方模型
 
 把提供方改成：
 
 ```json
 {
-  "provider": "openai",
-  "openai": {
-    "baseUrl": "https://api.openai.com/v1",
+  "provider": "third-party",
+  "thirdParty": {
+    "name": "我的模型服务",
+    "baseUrl": "http://127.0.0.1:8000/v1",
     "apiKeyEnv": "OPENAI_API_KEY",
-    "model": "gpt-5.6-terra",
-    "apiStyle": "responses"
+    "model": "your-agent-capable-model",
+    "reasoningEffort": "low"
   }
 }
 ```
@@ -101,7 +103,7 @@ Windows 双击 `configure-codex-windows.bat`；macOS 运行 `./configure-codex-m
 OPENAI_API_KEY=你的密钥
 ```
 
-兼容服务若只实现 Chat Completions，请将 `apiStyle` 改为 `chat-completions`。本地免密服务可以把 `OPENAI_API_KEY` 留空。完整选项见[模型配置](docs/configuration.zh-CN.md)。
+本地免密服务可以把 `OPENAI_API_KEY` 留空。Codex 自定义 provider 当前只使用 Responses 协议；只实现 Chat Completions 的接口需要先加 Responses 转换层。完整选项见[模型配置](docs/configuration.zh-CN.md)。
 
 ## 知识库
 
@@ -136,6 +138,15 @@ npm run corpus:status
 
 近现代仍受著作权保护的全文不会随项目分发。仅可将你有权使用的材料放入 `knowledge/corpus/authorized/`，并自行承担授权责任。
 
+Agent 与人工诊断使用同一套 Shell 命令：
+
+```bash
+node scripts/knowledge.mjs status
+node scripts/knowledge.mjs wiki-search --query "连姓音韵" --scope all --limit 6
+node scripts/knowledge.mjs wiki-read --id concept-full-name-phonology
+node scripts/knowledge.mjs corpus-search --query "人间有味是清欢" --scope song --limit 6
+```
+
 ## 局域网
 
 ```powershell
@@ -160,7 +171,7 @@ npm run check
 
 ```text
 public/       单文件前端
-src/          服务、模型提供方、Agent 工具
+src/          服务、统一 Codex Agent、Shell 知识接口
 scripts/      Wiki 与原文库维护命令
 schemas/      LLM 结构化输出 Schema
 knowledge/    本地 Wiki 和语料索引
@@ -170,7 +181,8 @@ docs/         配置与调研文档
 
 ## 安全与文化边界
 
-- 模型工具只读本地知识库；Codex 运行在只读沙箱和临时会话中。
+- Codex 运行在只读沙箱和临时会话中；项目规则只放行知识库 Shell 命令。
+- 每次执行把 Codex MCP 配置覆盖为空，并关闭插件、应用等无关能力。
 - 不凭模型记忆伪造原句、作者或出处，找不到时应明确说明。
 - 八字和五行不被当作科学预测，不自动判断喜用神，不断言吉凶。
 - `.env`、`config.local.json`、本地语料和 SQLite 索引均已忽略，提交前仍请自行检查敏感信息。

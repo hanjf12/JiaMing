@@ -5,12 +5,13 @@ import test from "node:test";
 
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
 
-function runNode(args) {
+function runNode(args, env = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, args, {
       cwd: new URL("..", import.meta.url),
       windowsHide: true,
       stdio: ["ignore", "pipe", "pipe"],
+      env: { ...process.env, ...env },
     });
     let stdout = "";
     let stderr = "";
@@ -34,22 +35,65 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+stylesheet/);
 });
 
-test("Codex provider is read-only and OpenAI provider has both API styles", async () => {
-  const codex = await read("../src/providers/codex.mjs");
-  const openai = await read("../src/providers/openai.mjs");
+test("both providers share the read-only Codex Agent and shell knowledge path", async () => {
+  const agent = await read("../src/providers/agent.mjs");
   const prompt = await read("../src/prompt.mjs");
-  assert.match(codex, /"--sandbox", "read-only"/);
-  assert.match(codex, /"--ephemeral"/);
-  assert.match(codex, /src\/mcp-server\.mjs/);
-  assert.match(openai, /"\/responses"/);
-  assert.match(openai, /"\/chat\/completions"/);
+  const shell = await read("../src/knowledge-shell.mjs");
+  const rules = await read("../.codex/rules/knowledge.rules");
+  assert.match(agent, /"--sandbox", "read-only"/);
+  assert.match(agent, /"--ephemeral"/);
+  assert.match(agent, /wire_api="responses"/);
+  assert.match(agent, /"mcp_servers=\{\}"/);
+  assert.doesNotMatch(agent, /mcp_servers\.[a-z]|mcp-server/);
+  assert.match(shell, /node scripts\/knowledge\.mjs/);
+  assert.match(prompt, /不要调用 MCP/);
   assert.match(prompt, /不得擅自推算喜用神或断言吉凶/);
+  assert.match(rules, /pattern = \["node", "scripts\/knowledge\.mjs"\]/);
+  assert.match(rules, /decision = "allow"/);
+  assert.doesNotMatch(rules, /build-corpus.*decision = "allow"/s);
 });
 
 test("knowledge CLI reports the checked-in wiki", async () => {
   const result = await runNode(["scripts/knowledge.mjs", "status"]);
   const status = JSON.parse(result.stdout);
   assert.ok(status.wiki.pages >= 100);
+});
+
+test("environment variables select the third-party Codex provider", async () => {
+  const result = await runNode([
+    "--input-type=module",
+    "-e",
+    "import {loadConfig} from './src/config.mjs'; const c=loadConfig(['--no-open']); console.log(JSON.stringify({provider:c.provider,name:c.thirdParty.name,baseUrl:c.thirdParty.baseUrl,model:c.thirdParty.model,hasKey:Boolean(c.thirdParty.apiKey)}));",
+  ], {
+    JIAMING_PROVIDER: "third-party",
+    JIAMING_THIRD_PARTY_NAME: "Mock Provider",
+    JIAMING_THIRD_PARTY_BASE_URL: "http://127.0.0.1:8000/v1/",
+    JIAMING_THIRD_PARTY_MODEL: "mock-model",
+    JIAMING_THIRD_PARTY_API_KEY_ENV: "TEST_PROVIDER_KEY",
+    TEST_PROVIDER_KEY: "test-secret",
+    OPENAI_API_STYLE: "",
+  });
+  assert.deepEqual(JSON.parse(result.stdout), {
+    provider: "third-party",
+    name: "Mock Provider",
+    baseUrl: "http://127.0.0.1:8000/v1",
+    model: "mock-model",
+    hasKey: true,
+  });
+});
+
+test("legacy Chat Completions mode fails with a migration message", async () => {
+  await assert.rejects(
+    runNode([
+      "--input-type=module",
+      "-e",
+      "import {loadConfig} from './src/config.mjs'; loadConfig(['--no-open']);",
+    ], {
+      JIAMING_PROVIDER: "third-party",
+      OPENAI_API_STYLE: "chat-completions",
+    }),
+    /仅支持 Responses 兼容接口/,
+  );
 });
 
 test("package has no third-party runtime dependencies", async () => {

@@ -16,13 +16,13 @@ async function withServer(server, callback) {
 }
 
 const config = {
-  provider: "openai",
+  provider: "third-party",
   server: {
     host: "127.0.0.1",
     port: 4318,
     allowLanAgent: false,
   },
-  openai: {},
+  thirdParty: {},
   conversation: { maxHistoryMessages: 8 },
 };
 
@@ -51,10 +51,12 @@ test("local server exposes the page, status, tools, and chat endpoint", async ()
     assert.equal(status.configured, true);
     assert.equal(status.model, "mock-model");
 
-    const tools = await fetch(`${base}/api/agent/tools`).then((response) => response.json());
+    const tools = await fetch(`${base}/api/agent/shell`).then((response) => response.json());
+    assert.equal(tools.interface, "shell");
     assert.equal(tools.mode, "read-only");
+    assert.equal(tools.mcp, false);
     assert.deepEqual(
-      tools.tools.map((tool) => tool.name),
+      tools.commands.map((command) => command.id),
       ["knowledge_status", "wiki_search", "wiki_read", "corpus_search"],
     );
 
