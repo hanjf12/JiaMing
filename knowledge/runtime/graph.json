@@ -1,0 +1,2045 @@
+{
+  "nodes": [
+    {
+      "id": "name-c01",
+      "title": "知微",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c02",
+      "title": "明德",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c03",
+      "title": "慎思",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c04",
+      "title": "笃行",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c05",
+      "title": "知新",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c06",
+      "title": "德邻",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c07",
+      "title": "弘毅",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c08",
+      "title": "思齐",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c09",
+      "title": "自牧",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c10",
+      "title": "厚德",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c11",
+      "title": "玉成",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-c12",
+      "title": "安仁",
+      "type": "name",
+      "category": "classics"
+    },
+    {
+      "id": "name-t01",
+      "title": "云起",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t02",
+      "title": "星垂",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t03",
+      "title": "润物",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t04",
+      "title": "轻舟",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t05",
+      "title": "云帆",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t06",
+      "title": "明月",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t07",
+      "title": "春晖",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t08",
+      "title": "灵犀",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t09",
+      "title": "晴川",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t10",
+      "title": "若邻",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t11",
+      "title": "秋池",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-t12",
+      "title": "晚晴",
+      "type": "name",
+      "category": "tang"
+    },
+    {
+      "id": "name-s01",
+      "title": "疏桐",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s02",
+      "title": "清欢",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s03",
+      "title": "徐行",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s04",
+      "title": "烟雨",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s05",
+      "title": "婵娟",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s06",
+      "title": "锦书",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s07",
+      "title": "星河",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s08",
+      "title": "清圆",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s09",
+      "title": "风荷",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s10",
+      "title": "知许",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s11",
+      "title": "阑珊",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s12",
+      "title": "兰舟",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-s13",
+      "title": "轻寒",
+      "type": "name",
+      "category": "song"
+    },
+    {
+      "id": "name-p01",
+      "title": "子衿",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p02",
+      "title": "其华",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p03",
+      "title": "静好",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p04",
+      "title": "令仪",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p05",
+      "title": "徽音",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p06",
+      "title": "攸宁",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p07",
+      "title": "维桢",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p08",
+      "title": "柔嘉",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p09",
+      "title": "清扬",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p10",
+      "title": "琼瑶",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p11",
+      "title": "景行",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-p12",
+      "title": "文茵",
+      "type": "name",
+      "category": "shijing"
+    },
+    {
+      "id": "name-q01",
+      "title": "怀瑾",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q02",
+      "title": "修远",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q03",
+      "title": "望舒",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q04",
+      "title": "秋兰",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q05",
+      "title": "灵均",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q06",
+      "title": "杜若",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q07",
+      "title": "正则",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q08",
+      "title": "若英",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q09",
+      "title": "云旗",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q10",
+      "title": "安歌",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q11",
+      "title": "嘉树",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q12",
+      "title": "辰良",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "name-q13",
+      "title": "秉德",
+      "type": "name",
+      "category": "chuci"
+    },
+    {
+      "id": "method-g01",
+      "title": "有出处不等于生搬原句",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g02",
+      "title": "姓名音韵要连姓通读",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g03",
+      "title": "优先选择常用规范汉字",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g04",
+      "title": "复姓更需要控制名字节奏",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g05",
+      "title": "方言谐音需要家人共同核验",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g06",
+      "title": "比较候选名的四个维度",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g07",
+      "title": "性别气质只是偏好而非规则",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g08",
+      "title": "家族字辈应先于自动推荐",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g09",
+      "title": "八字信息需要明确授权",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "method-g10",
+      "title": "最终落名前做一次长期使用检查",
+      "type": "method",
+      "category": "guide"
+    },
+    {
+      "id": "source-lunyu",
+      "title": "《论语》来源页",
+      "type": "source",
+      "category": "classics"
+    },
+    {
+      "id": "source-daxue",
+      "title": "《大学》来源页",
+      "type": "source",
+      "category": "classics"
+    },
+    {
+      "id": "source-zhongyong",
+      "title": "《中庸》来源页",
+      "type": "source",
+      "category": "classics"
+    },
+    {
+      "id": "source-zhouyi",
+      "title": "《周易》来源页",
+      "type": "source",
+      "category": "classics"
+    },
+    {
+      "id": "source-liji",
+      "title": "《礼记》来源页",
+      "type": "source",
+      "category": "classics"
+    },
+    {
+      "id": "source-shijing",
+      "title": "《诗经》来源页",
+      "type": "source",
+      "category": "shijing"
+    },
+    {
+      "id": "source-chuci",
+      "title": "《楚辞》来源页",
+      "type": "source",
+      "category": "chuci"
+    },
+    {
+      "id": "source-tang-poetry",
+      "title": "唐诗来源页",
+      "type": "source",
+      "category": "tang"
+    },
+    {
+      "id": "source-song-ci",
+      "title": "宋词来源页",
+      "type": "source",
+      "category": "song"
+    },
+    {
+      "id": "concept-source-verification",
+      "title": "出处核验",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-direct-or-inspired",
+      "title": "原句直取与取意重组",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-full-name-phonology",
+      "title": "连姓音韵",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-tone-pattern",
+      "title": "声调节奏",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-compound-surname",
+      "title": "复姓节奏",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-standard-characters",
+      "title": "常用规范汉字",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-rare-characters",
+      "title": "生僻字风险",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-polyphonic-characters",
+      "title": "多音字检查",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-dialect-homophone",
+      "title": "方言谐音",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-gender-temperament",
+      "title": "性别与名字气质",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-generation-name",
+      "title": "家族字辈",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-bazi-boundary",
+      "title": "八字参考边界",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-five-elements",
+      "title": "五行用字流派",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-long-term-use",
+      "title": "长期使用检查",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "concept-cultural-context",
+      "title": "古今语境",
+      "type": "concept",
+      "category": "guide"
+    },
+    {
+      "id": "comparison-one-vs-two-character",
+      "title": "单字名与双字名",
+      "type": "comparison",
+      "category": "guide"
+    },
+    {
+      "id": "comparison-direct-vs-inspired",
+      "title": "直取与取意怎么选",
+      "type": "comparison",
+      "category": "guide"
+    },
+    {
+      "id": "comparison-classic-vs-practical",
+      "title": "古典感与实用性",
+      "type": "comparison",
+      "category": "guide"
+    },
+    {
+      "id": "comparison-bazi-vs-language",
+      "title": "八字偏好与音形义",
+      "type": "comparison",
+      "category": "guide"
+    },
+    {
+      "id": "source-thirteen-classics",
+      "title": "完整四书五经与十三经语料",
+      "type": "source",
+      "category": "classics"
+    },
+    {
+      "id": "source-complete-tang",
+      "title": "《全唐诗》本地原文库",
+      "type": "source",
+      "category": "tang"
+    },
+    {
+      "id": "source-complete-song",
+      "title": "全宋诗与全宋词本地原文库",
+      "type": "source",
+      "category": "song"
+    },
+    {
+      "id": "concept-modern-copyright",
+      "title": "近现代作品授权边界",
+      "type": "concept",
+      "category": "guide"
+    }
+  ],
+  "edges": [
+    {
+      "source": "name-c01",
+      "target": "source-zhouyi",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c01",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c01",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c02",
+      "target": "source-daxue",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c02",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c02",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c03",
+      "target": "source-zhongyong",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c03",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c03",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c04",
+      "target": "source-zhongyong",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c04",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c04",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c05",
+      "target": "source-lunyu",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c05",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c05",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c06",
+      "target": "source-lunyu",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c06",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c06",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c07",
+      "target": "source-lunyu",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c07",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c07",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c08",
+      "target": "source-lunyu",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c08",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c08",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c09",
+      "target": "source-zhouyi",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c09",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c09",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c10",
+      "target": "source-zhouyi",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c10",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c10",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c11",
+      "target": "source-liji",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c11",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c11",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c12",
+      "target": "source-lunyu",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c12",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-c12",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t01",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t01",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t01",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t02",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t02",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t02",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t03",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t03",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t03",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t04",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t04",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t04",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t05",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t05",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t05",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t06",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t06",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t06",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t07",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t07",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t07",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t08",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t08",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t08",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t09",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t09",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t09",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t10",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t10",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t10",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t11",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t11",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t11",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t12",
+      "target": "source-tang-poetry",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t12",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-t12",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s01",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s01",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s01",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s02",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s02",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s02",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s03",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s03",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s03",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s04",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s04",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s04",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s05",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s05",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s05",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s06",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s06",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s06",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s07",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s07",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s07",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s08",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s08",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s08",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s09",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s09",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s09",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s10",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s10",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s10",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s11",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s11",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s11",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s12",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s12",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s12",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s13",
+      "target": "source-song-ci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s13",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-s13",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p01",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p01",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p01",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p02",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p02",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p02",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p03",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p03",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p03",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p04",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p04",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p04",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p05",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p05",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p05",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p06",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p06",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p06",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p07",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p07",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p07",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p08",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p08",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p08",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p09",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p09",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p09",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p10",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p10",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p10",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p11",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p11",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p11",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p12",
+      "target": "source-shijing",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p12",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-p12",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q01",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q01",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q01",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q02",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q02",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q02",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q03",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q03",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q03",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q04",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q04",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q04",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q05",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q05",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q05",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q06",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q06",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q06",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q07",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q07",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q07",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q08",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q08",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q08",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q09",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q09",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q09",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q10",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q10",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q10",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q11",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q11",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q11",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q12",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q12",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q12",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q13",
+      "target": "source-chuci",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q13",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "name-q13",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g01",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g01",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g02",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g02",
+      "target": "concept-tone-pattern",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g03",
+      "target": "concept-standard-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g03",
+      "target": "concept-rare-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g04",
+      "target": "concept-compound-surname",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g04",
+      "target": "comparison-one-vs-two-character",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g05",
+      "target": "concept-dialect-homophone",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g05",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g06",
+      "target": "comparison-classic-vs-practical",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g06",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g07",
+      "target": "concept-gender-temperament",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g07",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g08",
+      "target": "concept-generation-name",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g08",
+      "target": "comparison-one-vs-two-character",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g09",
+      "target": "concept-bazi-boundary",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g09",
+      "target": "concept-five-elements",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g10",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "method-g10",
+      "target": "concept-standard-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-lunyu",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-lunyu",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-daxue",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-daxue",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-zhongyong",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-zhongyong",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-zhouyi",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-zhouyi",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-liji",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-liji",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-shijing",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-shijing",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-shijing",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-shijing",
+      "target": "source-thirteen-classics",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-chuci",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-chuci",
+      "target": "concept-rare-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-chuci",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-tang-poetry",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-tang-poetry",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-tang-poetry",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-tang-poetry",
+      "target": "source-complete-tang",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-song-ci",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-song-ci",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-song-ci",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-song-ci",
+      "target": "source-complete-song",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-source-verification",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-source-verification",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-direct-or-inspired",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-direct-or-inspired",
+      "target": "comparison-classic-vs-practical",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-full-name-phonology",
+      "target": "concept-tone-pattern",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-full-name-phonology",
+      "target": "concept-dialect-homophone",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-full-name-phonology",
+      "target": "concept-compound-surname",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-tone-pattern",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-tone-pattern",
+      "target": "concept-dialect-homophone",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-compound-surname",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-compound-surname",
+      "target": "comparison-one-vs-two-character",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-standard-characters",
+      "target": "concept-rare-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-standard-characters",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-rare-characters",
+      "target": "concept-standard-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-rare-characters",
+      "target": "concept-polyphonic-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-rare-characters",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-polyphonic-characters",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-polyphonic-characters",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-dialect-homophone",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-dialect-homophone",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-gender-temperament",
+      "target": "comparison-classic-vs-practical",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-gender-temperament",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-generation-name",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-generation-name",
+      "target": "comparison-one-vs-two-character",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-bazi-boundary",
+      "target": "concept-five-elements",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-bazi-boundary",
+      "target": "comparison-bazi-vs-language",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-five-elements",
+      "target": "concept-bazi-boundary",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-five-elements",
+      "target": "comparison-bazi-vs-language",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-long-term-use",
+      "target": "concept-standard-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-long-term-use",
+      "target": "concept-dialect-homophone",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-long-term-use",
+      "target": "comparison-classic-vs-practical",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-cultural-context",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-cultural-context",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-one-vs-two-character",
+      "target": "concept-compound-surname",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-one-vs-two-character",
+      "target": "concept-generation-name",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-one-vs-two-character",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-direct-vs-inspired",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-direct-vs-inspired",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-classic-vs-practical",
+      "target": "concept-standard-characters",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-classic-vs-practical",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-classic-vs-practical",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-bazi-vs-language",
+      "target": "concept-bazi-boundary",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-bazi-vs-language",
+      "target": "concept-five-elements",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-bazi-vs-language",
+      "target": "concept-full-name-phonology",
+      "type": "wikilink"
+    },
+    {
+      "source": "comparison-bazi-vs-language",
+      "target": "concept-long-term-use",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-thirteen-classics",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-thirteen-classics",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-complete-tang",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-complete-tang",
+      "target": "concept-direct-or-inspired",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-complete-song",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    },
+    {
+      "source": "source-complete-song",
+      "target": "concept-cultural-context",
+      "type": "wikilink"
+    },
+    {
+      "source": "concept-modern-copyright",
+      "target": "concept-source-verification",
+      "type": "wikilink"
+    }
+  ]
+}

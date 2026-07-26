@@ -5,6 +5,7 @@ import { createServer } from "node:http";
 import { homedir, tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { corpusStatus, searchCorpus } from "./corpus-search.mjs";
 
 const ARGUMENTS = process.argv.slice(2);
 const HOST = ARGUMENTS.includes("--lan")
@@ -205,6 +206,24 @@ const server = createServer(async (request, response) => {
       });
     }
     return responseJson(response, await codexStatus());
+  }
+  if (request.method === "GET" && url.pathname === "/api/kb/status") {
+    return responseJson(response, corpusStatus());
+  }
+  if (request.method === "GET" && url.pathname === "/api/kb/search") {
+    try {
+      const query = clean(url.searchParams.get("q"), 600);
+      if (!query) return responseJson(response, { results: [] });
+      const results = searchCorpus(query, {
+        scope: clean(url.searchParams.get("scope"), 40) || "all",
+        limit: Number(url.searchParams.get("limit") || 5),
+      });
+      return responseJson(response, { results });
+    } catch (error) {
+      return responseJson(response, {
+        error: error instanceof Error ? error.message : "原文库检索失败",
+      }, 500);
+    }
   }
   if (request.method === "POST" && url.pathname === "/api/chat") {
     if (!isLoopbackRequest(request) && process.env.JIAMING_ALLOW_LAN_AI !== "1") {

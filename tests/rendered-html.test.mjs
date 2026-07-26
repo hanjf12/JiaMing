@@ -50,6 +50,11 @@ test("ships a self-contained local naming tool", async () => {
   assert.match(html, /导出收藏/);
   assert.match(html, /问典/);
   assert.match(html, /本地 RAG/);
+  assert.match(html, /互链 Markdown Wiki/);
+  assert.match(html, /历代完整原文（本机）/);
+  assert.match(html, /const WIKI_META = \{.*?"pages":104/);
+  assert.match(html, /const WIKI_CHUNKS = \[/);
+  assert.match(html, /retrieveFullCorpus/);
   assert.match(html, /Codex 订阅（本机）/);
   assert.match(html, /出生八字/);
   assert.match(html, /不得据此断言吉凶或擅自推算喜用神/);

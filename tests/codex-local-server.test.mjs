@@ -11,11 +11,23 @@ test("Codex bridge protects remote AI and uses a read-only ephemeral exec", asyn
   assert.match(source, /process\.env\.JIAMING_HOST \|\| "127\.0\.0\.1"/);
   assert.match(source, /isLoopbackRequest/);
   assert.match(source, /JIAMING_ALLOW_LAN_AI/);
+  assert.match(source, /\/api\/kb\/search/);
+  assert.match(source, /searchCorpus/);
   assert.match(source, /"exec"/);
   assert.match(source, /"--ephemeral"/);
   assert.match(source, /"--sandbox", "read-only"/);
   assert.match(source, /"--ignore-rules"/);
   assert.doesNotMatch(source, /dangerously-bypass-approvals-and-sandbox|--yolo/);
+});
+
+test("full corpus builder keeps modern copyrighted text metadata-only", async () => {
+  const source = await readFile(
+    new URL("../tools/build-corpus-index.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(source, /modernMetadata/);
+  assert.match(source, /metadata-only/);
+  assert.match(source, /authorized-full-text/);
 });
 
 test("AI routes keep bazi advice non-deterministic", async () => {

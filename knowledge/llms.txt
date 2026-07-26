@@ -1,0 +1,115 @@
+# 嘉名本地知识库
+
+> 中文宝宝起名的可追溯、互链知识库。
+
+- [知识库目标](purpose.md)
+- [数据结构](schema.md)
+- [总目录](wiki/index.md)
+- [概览](wiki/overview.md)
+
+## 页面
+
+- [知微](wiki/names/name-c01.md): 知微（zhī wēi），出自《周易·系辞下》。
+- [明德](wiki/names/name-c02.md): 明德（míng dé），出自《大学》。
+- [慎思](wiki/names/name-c03.md): 慎思（shèn sī），出自《中庸》。
+- [笃行](wiki/names/name-c04.md): 笃行（dǔ xíng），出自《中庸》。
+- [知新](wiki/names/name-c05.md): 知新（zhī xīn），出自《论语·为政》。
+- [德邻](wiki/names/name-c06.md): 德邻（dé lín），出自《论语·里仁》。
+- [弘毅](wiki/names/name-c07.md): 弘毅（hóng yì），出自《论语·泰伯》。
+- [思齐](wiki/names/name-c08.md): 思齐（sī qí），出自《论语·里仁》。
+- [自牧](wiki/names/name-c09.md): 自牧（zì mù），出自《周易·谦》。
+- [厚德](wiki/names/name-c10.md): 厚德（hòu dé），出自《周易·坤》。
+- [玉成](wiki/names/name-c11.md): 玉成（yù chéng），出自《礼记·学记》。
+- [安仁](wiki/names/name-c12.md): 安仁（ān rén），出自《论语·里仁》。
+- [云起](wiki/names/name-t01.md): 云起（yún qǐ），出自王维《终南别业》。
+- [星垂](wiki/names/name-t02.md): 星垂（xīng chuí），出自杜甫《旅夜书怀》。
+- [润物](wiki/names/name-t03.md): 润物（rùn wù），出自杜甫《春夜喜雨》。
+- [轻舟](wiki/names/name-t04.md): 轻舟（qīng zhōu），出自李白《早发白帝城》。
+- [云帆](wiki/names/name-t05.md): 云帆（yún fān），出自李白《行路难》。
+- [明月](wiki/names/name-t06.md): 明月（míng yuè），出自张九龄《望月怀远》。
+- [春晖](wiki/names/name-t07.md): 春晖（chūn huī），出自孟郊《游子吟》。
+- [灵犀](wiki/names/name-t08.md): 灵犀（líng xī），出自李商隐《无题》。
+- [晴川](wiki/names/name-t09.md): 晴川（qíng chuān），出自崔颢《黄鹤楼》。
+- [若邻](wiki/names/name-t10.md): 若邻（ruò lín），出自王勃《送杜少府之任蜀州》。
+- [秋池](wiki/names/name-t11.md): 秋池（qiū chí），出自李商隐《夜雨寄北》。
+- [晚晴](wiki/names/name-t12.md): 晚晴（wǎn qíng），出自李商隐《晚晴》。
+- [疏桐](wiki/names/name-s01.md): 疏桐（shū tóng），出自苏轼《卜算子·黄州定慧院寓居作》。
+- [清欢](wiki/names/name-s02.md): 清欢（qīng huān），出自苏轼《浣溪沙·细雨斜风作晓寒》。
+- [徐行](wiki/names/name-s03.md): 徐行（xú xíng），出自苏轼《定风波·莫听穿林打叶声》。
+- [烟雨](wiki/names/name-s04.md): 烟雨（yān yǔ），出自苏轼《定风波·莫听穿林打叶声》。
+- [婵娟](wiki/names/name-s05.md): 婵娟（chán juān），出自苏轼《水调歌头·明月几时有》。
+- [锦书](wiki/names/name-s06.md): 锦书（jǐn shū），出自李清照《一剪梅·红藕香残玉簟秋》。
+- [星河](wiki/names/name-s07.md): 星河（xīng hé），出自李清照《渔家傲·天接云涛连晓雾》。
+- [清圆](wiki/names/name-s08.md): 清圆（qīng yuán），出自周邦彦《苏幕遮·燎沉香》。
+- [风荷](wiki/names/name-s09.md): 风荷（fēng hé），出自周邦彦《苏幕遮·燎沉香》。
+- [知许](wiki/names/name-s10.md): 知许（zhī xǔ），出自李清照《永遇乐·落日熔金》。
+- [阑珊](wiki/names/name-s11.md): 阑珊（lán shān），出自辛弃疾《青玉案·元夕》。
+- [兰舟](wiki/names/name-s12.md): 兰舟（lán zhōu），出自柳永《雨霖铃·寒蝉凄切》。
+- [轻寒](wiki/names/name-s13.md): 轻寒（qīng hán），出自秦观《浣溪沙·漠漠轻寒上小楼》。
+- [子衿](wiki/names/name-p01.md): 子衿（zǐ jīn），出自《诗经·郑风·子衿》。
+- [其华](wiki/names/name-p02.md): 其华（qí huá），出自《诗经·周南·桃夭》。
+- [静好](wiki/names/name-p03.md): 静好（jìng hǎo），出自《诗经·郑风·女曰鸡鸣》。
+- [令仪](wiki/names/name-p04.md): 令仪（lìng yí），出自《诗经·小雅·湛露》。
+- [徽音](wiki/names/name-p05.md): 徽音（huī yīn），出自《诗经·大雅·思齐》。
+- [攸宁](wiki/names/name-p06.md): 攸宁（yōu níng），出自《诗经·小雅·斯干》。
+- [维桢](wiki/names/name-p07.md): 维桢（wéi zhēn），出自《诗经·大雅·文王》。
+- [柔嘉](wiki/names/name-p08.md): 柔嘉（róu jiā），出自《诗经·大雅·抑》。
+- [清扬](wiki/names/name-p09.md): 清扬（qīng yáng），出自《诗经·郑风·野有蔓草》。
+- [琼瑶](wiki/names/name-p10.md): 琼瑶（qióng yáo），出自《诗经·卫风·木瓜》。
+- [景行](wiki/names/name-p11.md): 景行（jǐng xíng），出自《诗经·小雅·车舝》。
+- [文茵](wiki/names/name-p12.md): 文茵（wén yīn），出自《诗经·秦风·小戎》。
+- [怀瑾](wiki/names/name-q01.md): 怀瑾（huái jǐn），出自屈原《九章·怀沙》。
+- [修远](wiki/names/name-q02.md): 修远（xiū yuǎn），出自屈原《离骚》。
+- [望舒](wiki/names/name-q03.md): 望舒（wàng shū），出自屈原《离骚》。
+- [秋兰](wiki/names/name-q04.md): 秋兰（qiū lán），出自屈原《离骚》。
+- [灵均](wiki/names/name-q05.md): 灵均（líng jūn），出自屈原《离骚》。
+- [杜若](wiki/names/name-q06.md): 杜若（dù ruò），出自屈原《九歌·山鬼》。
+- [正则](wiki/names/name-q07.md): 正则（zhèng zé），出自屈原《离骚》。
+- [若英](wiki/names/name-q08.md): 若英（ruò yīng），出自屈原《九歌·云中君》。
+- [云旗](wiki/names/name-q09.md): 云旗（yún qí），出自屈原《离骚》。
+- [安歌](wiki/names/name-q10.md): 安歌（ān gē），出自屈原《九歌·东皇太一》。
+- [嘉树](wiki/names/name-q11.md): 嘉树（jiā shù），出自屈原《九章·橘颂》。
+- [辰良](wiki/names/name-q12.md): 辰良（chén liáng），出自屈原《九歌·东皇太一》。
+- [秉德](wiki/names/name-q13.md): 秉德（bǐng dé），出自屈原《九章·橘颂》。
+- [有出处不等于生搬原句](wiki/methods/method-g01.md): 典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。
+- [姓名音韵要连姓通读](wiki/methods/method-g02.md): 判断名字是否顺口，要把姓和名连续朗读。
+- [优先选择常用规范汉字](wiki/methods/method-g03.md): 文化感不等于使用生僻字。
+- [复姓更需要控制名字节奏](wiki/methods/method-g04.md): 欧阳、上官、司马等复姓本身已有两个音节。
+- [方言谐音需要家人共同核验](wiki/methods/method-g05.md): 程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。
+- [比较候选名的四个维度](wiki/methods/method-g06.md): 比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。
+- [性别气质只是偏好而非规则](wiki/methods/method-g07.md): 传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。
+- [家族字辈应先于自动推荐](wiki/methods/method-g08.md): 如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。
+- [八字信息需要明确授权](wiki/methods/method-g09.md): 八字与五行归类属于传统民俗文化参考，不代表科学预测。
+- [最终落名前做一次长期使用检查](wiki/methods/method-g10.md): 把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。
+- [《论语》来源页](wiki/sources/source-lunyu.md): 《论语》姓名素材常取自修身、求学、仁德与君子人格相关语句。
+- [《大学》来源页](wiki/sources/source-daxue.md): 《大学》强调明德、修身与至善，适合端正明朗的名字意象。
+- [《中庸》来源页](wiki/sources/source-zhongyong.md): 《中庸》中的博学、审问、慎思、明辨、笃行构成完整的学习与实践次序。
+- [《周易》来源页](wiki/sources/source-zhouyi.md): 《周易》相关候选多取谦德、知微与厚德等人格意象。
+- [《礼记》来源页](wiki/sources/source-liji.md): 《礼记》素材常与礼仪、学习、修养和成人之道有关。
+- [《诗经》来源页](wiki/sources/source-shijing.md): 《诗经》素材覆盖风、雅、颂，语言凝练，但古今词义和语境可能不同。
+- [《楚辞》来源页](wiki/sources/source-chuci.md): 《楚辞》常见香草、美玉、星辰与持守品德的意象，语言瑰丽而古奥。
+- [唐诗来源页](wiki/sources/source-tang-poetry.md): 唐诗姓名素材常从景象、行旅、月色和品格语句中取意。
+- [宋词来源页](wiki/sources/source-song-ci.md): 宋词姓名素材富于画面与情绪，需同时关注词牌、作者、篇名和上下文。
+- [出处核验](wiki/concepts/concept-source-verification.md): 可靠的出处至少包含作品、篇章或词牌、作者信息和可定位的原句。
+- [原句直取与取意重组](wiki/concepts/concept-direct-or-inspired.md): 原句相邻字词可称直取；跨句、换序或另行组合应称取意。
+- [连姓音韵](wiki/concepts/concept-full-name-phonology.md): 音韵判断的最小单位是完整姓名，而不是孤立的名字。
+- [声调节奏](wiki/concepts/concept-tone-pattern.md): 声调有起伏通常更易辨认，但没有对所有姓氏都适用的固定吉凶公式。
+- [复姓节奏](wiki/concepts/concept-compound-surname.md): 复姓已有两个音节，搭配名字时要额外控制总长度、停顿和书写密度。
+- [常用规范汉字](wiki/concepts/concept-standard-characters.md): 文化感不依赖生僻字，正式落名前要核对当地户籍可用字符。
+- [生僻字风险](wiki/concepts/concept-rare-characters.md): 生僻字可能带来误读、录入、显示和沟通成本。
+- [多音字检查](wiki/concepts/concept-polyphonic-characters.md): 多音字不一定不能用，但需评估最常见读法是否会造成持续纠正。
+- [方言谐音](wiki/concepts/concept-dialect-homophone.md): 普通话检查无法覆盖地方方言，需由真实使用者共同核验。
+- [性别与名字气质](wiki/concepts/concept-gender-temperament.md): 刚健、温润、灵秀等是审美偏好，不是固定性别规则。
+- [家族字辈](wiki/concepts/concept-generation-name.md): 有明确字辈时先固定排行字，再寻找音义协调的另一个字。
+- [八字参考边界](wiki/concepts/concept-bazi-boundary.md): 八字信息只在用户主动提供和授权时作为传统文化偏好，不用于预测命运。
+- [五行用字流派](wiki/concepts/concept-five-elements.md): 汉字五行归类存在字形、字义、音律等不同民俗流派，不能当作唯一客观结论。
+- [长期使用检查](wiki/concepts/concept-long-term-use.md): 好名字要在儿童、学生、成年和正式证件场景中都能自然使用。
+- [古今语境](wiki/concepts/concept-cultural-context.md): 古典字词的原义、篇章情绪和现代联想需要同时考察。
+- [单字名与双字名](wiki/comparisons/comparison-one-vs-two-character.md): 单字名简洁，双字名承载信息更多；选择取决于姓氏节奏、重名风险与字辈约束。
+- [直取与取意怎么选](wiki/comparisons/comparison-direct-vs-inspired.md): 直取证据链清楚，取意组合更自由；两者关键差别是说明是否诚实准确。
+- [古典感与实用性](wiki/comparisons/comparison-classic-vs-practical.md): 典籍出处提供文化深度，规范、易读和长期使用决定日常成本。
+- [八字偏好与音形义](wiki/comparisons/comparison-bazi-vs-language.md): 八字五行只能作为可选民俗偏好，音、形、义和真实使用应是基础门槛。
+- [完整四书五经与十三经语料](wiki/sources/source-thirteen-classics.md): 本机原文库用 CC0 结构化语料补齐四书、五经与十三经，并按篇章检索。
+- [《全唐诗》本地原文库](wiki/sources/source-complete-tang.md): 本机索引收录上游《全唐诗》数据 57,600 条作品记录。
+- [全宋诗与全宋词本地原文库](wiki/sources/source-complete-song.md): 本机索引收录 254,195 条宋诗和 21,049 条宋词记录。
+- [近现代作品授权边界](wiki/concepts/concept-modern-copyright.md): 近现代作者作品不能仅因能在网上找到，就默认可以整套复制进本地知识库。

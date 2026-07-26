@@ -1,0 +1,153 @@
+{
+  "builtAt": "2026-07-26T07:58:30.863Z",
+  "documents": 345579,
+  "sourceRecords": {
+    "chinesePoetry": 345027,
+    "classicalCorpus": 587,
+    "authorized": 0,
+    "modernMetadata": 10
+  },
+  "byCorpus": [
+    {
+      "corpus": "全宋诗",
+      "count": 254195
+    },
+    {
+      "corpus": "全唐诗",
+      "count": 57600
+    },
+    {
+      "corpus": "全宋词",
+      "count": 21049
+    },
+    {
+      "corpus": "元曲",
+      "count": 10906
+    },
+    {
+      "corpus": "诗经",
+      "count": 610
+    },
+    {
+      "corpus": "五代诗词",
+      "count": 542
+    },
+    {
+      "corpus": "纳兰性德诗词",
+      "count": 258
+    },
+    {
+      "corpus": "周易",
+      "count": 69
+    },
+    {
+      "corpus": "楚辞",
+      "count": 65
+    },
+    {
+      "corpus": "尚书",
+      "count": 57
+    },
+    {
+      "corpus": "礼记",
+      "count": 47
+    },
+    {
+      "corpus": "论语",
+      "count": 40
+    },
+    {
+      "corpus": "曹操诗集",
+      "count": 26
+    },
+    {
+      "corpus": "尔雅",
+      "count": 19
+    },
+    {
+      "corpus": "孝经",
+      "count": 18
+    },
+    {
+      "corpus": "四书",
+      "count": 16
+    },
+    {
+      "corpus": "孟子",
+      "count": 14
+    },
+    {
+      "corpus": "春秋穀梁传",
+      "count": 12
+    },
+    {
+      "corpus": "春秋左传",
+      "count": 12
+    },
+    {
+      "corpus": "春秋公羊传",
+      "count": 12
+    },
+    {
+      "corpus": "毛泽东诗词目录",
+      "count": 10
+    },
+    {
+      "corpus": "大学",
+      "count": 1
+    },
+    {
+      "corpus": "中庸",
+      "count": 1
+    }
+  ],
+  "byCategory": [
+    {
+      "category": "song-poetry",
+      "count": 254195
+    },
+    {
+      "category": "tang",
+      "count": 57600
+    },
+    {
+      "category": "song",
+      "count": 21049
+    },
+    {
+      "category": "yuan",
+      "count": 10906
+    },
+    {
+      "category": "shijing",
+      "count": 610
+    },
+    {
+      "category": "five-dynasties",
+      "count": 542
+    },
+    {
+      "category": "classics",
+      "count": 318
+    },
+    {
+      "category": "qing",
+      "count": 258
+    },
+    {
+      "category": "chuci",
+      "count": 65
+    },
+    {
+      "category": "han-wei",
+      "count": 26
+    },
+    {
+      "category": "modern",
+      "count": 10
+    }
+  ],
+  "database": "classics.sqlite",
+  "architecture": "SQLite FTS5 + Wiki hybrid retrieval",
+  "modernCopyrightPolicy": "metadata-only unless user-authorized"
+}

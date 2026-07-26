@@ -1,0 +1,3298 @@
+{
+  "meta": {
+    "architecture": "LLM Wiki",
+    "version": "bcc4eccdbd01",
+    "builtAt": "2026-07-26",
+    "pages": 104,
+    "chunks": 104,
+    "links": 283,
+    "names": 62,
+    "methods": 10,
+    "sources": 12,
+    "concepts": 16,
+    "comparisons": 4,
+    "categoryCounts": {
+      "chuci": 14,
+      "classics": 18,
+      "guide": 30,
+      "shijing": 13,
+      "song": 15,
+      "tang": 14
+    },
+    "typeCounts": {
+      "comparison": 4,
+      "concept": 16,
+      "method": 10,
+      "name": 62,
+      "source": 12
+    }
+  },
+  "chunks": [
+    {
+      "id": "name-c01:chunk-1",
+      "pageId": "name-c01",
+      "chunkIndex": 1,
+      "title": "知微",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《周易·系辞下》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c01",
+      "keywords": [
+        "知微",
+        "zhī wēi",
+        "四书五经",
+        "《周易·系辞下》",
+        "雅正",
+        "灵秀",
+        "知",
+        "微"
+      ],
+      "links": [
+        "source-zhouyi",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：知微。拼音：zhī wēi。原句：君子知微知彰，知柔知刚，万夫之望。。字义：知：明辨通达；微：洞察精微。整体寓意：见微知著，思虑通透，温柔且有力量。。气质：雅正、灵秀。关联知识：《周易》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c02:chunk-1",
+      "pageId": "name-c02",
+      "chunkIndex": 1,
+      "title": "明德",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《大学》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c02",
+      "keywords": [
+        "明德",
+        "míng dé",
+        "四书五经",
+        "《大学》",
+        "雅正",
+        "明朗",
+        "明",
+        "德"
+      ],
+      "links": [
+        "source-daxue",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：明德。拼音：míng dé。原句：大学之道，在明明德，在亲民，在止于至善。。字义：明：澄明光亮；德：品行仁厚。整体寓意：明心修德，光而不耀，以仁厚立身。。气质：雅正、明朗。关联知识：《大学》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c03:chunk-1",
+      "pageId": "name-c03",
+      "chunkIndex": 1,
+      "title": "慎思",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《中庸》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c03",
+      "keywords": [
+        "慎思",
+        "shèn sī",
+        "四书五经",
+        "《中庸》",
+        "雅正",
+        "温润",
+        "慎",
+        "思"
+      ],
+      "links": [
+        "source-zhongyong",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：慎思。拼音：shèn sī。原句：博学之，审问之，慎思之，明辨之，笃行之。。字义：慎：审慎周全；思：善思明辨。整体寓意：勤学善思，审慎笃定，行事有分寸。。气质：雅正、温润。关联知识：《中庸》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c04:chunk-1",
+      "pageId": "name-c04",
+      "chunkIndex": 1,
+      "title": "笃行",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《中庸》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c04",
+      "keywords": [
+        "笃行",
+        "dǔ xíng",
+        "四书五经",
+        "《中庸》",
+        "坚毅",
+        "雅正",
+        "笃",
+        "行"
+      ],
+      "links": [
+        "source-zhongyong",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：笃行。拼音：dǔ xíng。原句：博学之，审问之，慎思之，明辨之，笃行之。。字义：笃：坚定专一；行：躬身践履。整体寓意：知行相济，坚定务实，所行有所至。。气质：坚毅、雅正。关联知识：《中庸》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c05:chunk-1",
+      "pageId": "name-c05",
+      "chunkIndex": 1,
+      "title": "知新",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《论语·为政》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c05",
+      "keywords": [
+        "知新",
+        "zhī xīn",
+        "四书五经",
+        "《论语·为政》",
+        "明朗",
+        "灵秀",
+        "知",
+        "新"
+      ],
+      "links": [
+        "source-lunyu",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：知新。拼音：zhī xīn。原句：温故而知新，可以为师矣。。字义：知：通晓明达；新：日有所进。整体寓意：温故知新，常怀好奇，日日精进。。气质：明朗、灵秀。关联知识：《论语》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c06:chunk-1",
+      "pageId": "name-c06",
+      "chunkIndex": 1,
+      "title": "德邻",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《论语·里仁》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c06",
+      "keywords": [
+        "德邻",
+        "dé lín",
+        "四书五经",
+        "《论语·里仁》",
+        "温润",
+        "雅正",
+        "德",
+        "邻"
+      ],
+      "links": [
+        "source-lunyu",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：德邻。拼音：dé lín。原句：德不孤，必有邻。。字义：德：仁厚有度；邻：亲和相伴。整体寓意：以德立身，亲和宽厚，所行自有同道。。气质：温润、雅正。关联知识：《论语》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c07:chunk-1",
+      "pageId": "name-c07",
+      "chunkIndex": 1,
+      "title": "弘毅",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《论语·泰伯》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c07",
+      "keywords": [
+        "弘毅",
+        "hóng yì",
+        "四书五经",
+        "《论语·泰伯》",
+        "坚毅",
+        "明朗",
+        "弘",
+        "毅"
+      ],
+      "links": [
+        "source-lunyu",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：弘毅。拼音：hóng yì。原句：士不可以不弘毅，任重而道远。。字义：弘：宽广宏阔；毅：坚韧果决。整体寓意：胸怀广阔，意志坚毅，能担远任。。气质：坚毅、明朗。关联知识：《论语》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c08:chunk-1",
+      "pageId": "name-c08",
+      "chunkIndex": 1,
+      "title": "思齐",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《论语·里仁》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c08",
+      "keywords": [
+        "思齐",
+        "sī qí",
+        "四书五经",
+        "《论语·里仁》",
+        "雅正",
+        "温润",
+        "思",
+        "齐"
+      ],
+      "links": [
+        "source-lunyu",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：思齐。拼音：sī qí。原句：见贤思齐焉，见不贤而内自省也。。字义：思：善思自省；齐：向善看齐。整体寓意：心有所向，自省自进，始终向优秀者看齐。。气质：雅正、温润。关联知识：《论语》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c09:chunk-1",
+      "pageId": "name-c09",
+      "chunkIndex": 1,
+      "title": "自牧",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《周易·谦》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c09",
+      "keywords": [
+        "自牧",
+        "zì mù",
+        "四书五经",
+        "《周易·谦》",
+        "温润",
+        "雅正",
+        "自",
+        "牧"
+      ],
+      "links": [
+        "source-zhouyi",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：自牧。拼音：zì mù。原句：谦谦君子，卑以自牧也。。字义：自：自省自主；牧：修养涵育。整体寓意：谦逊自持，善于自我涵养，安静而有力量。。气质：温润、雅正。关联知识：《周易》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c10:chunk-1",
+      "pageId": "name-c10",
+      "chunkIndex": 1,
+      "title": "厚德",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《周易·坤》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c10",
+      "keywords": [
+        "厚德",
+        "hòu dé",
+        "四书五经",
+        "《周易·坤》",
+        "坚毅",
+        "雅正",
+        "厚",
+        "德"
+      ],
+      "links": [
+        "source-zhouyi",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：厚德。拼音：hòu dé。原句：地势坤，君子以厚德载物。。字义：厚：宽厚深沉；德：仁善端方。整体寓意：厚道包容，有担当，也有容纳万物的胸襟。。气质：坚毅、雅正。关联知识：《周易》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c11:chunk-1",
+      "pageId": "name-c11",
+      "chunkIndex": 1,
+      "title": "玉成",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《礼记·学记》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c11",
+      "keywords": [
+        "玉成",
+        "yù chéng",
+        "四书五经",
+        "《礼记·学记》",
+        "温润",
+        "雅正",
+        "玉",
+        "成"
+      ],
+      "links": [
+        "source-liji",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：玉成。拼音：yù chéng。原句：玉不琢，不成器；人不学，不知道。。字义：玉：温润珍贵；成：成就圆满。整体寓意：如玉可琢，勤学自成，温润而坚定。。气质：温润、雅正。关联知识：《礼记》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-c12:chunk-1",
+      "pageId": "name-c12",
+      "chunkIndex": 1,
+      "title": "安仁",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "《论语·里仁》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "c12",
+      "keywords": [
+        "安仁",
+        "ān rén",
+        "四书五经",
+        "《论语·里仁》",
+        "温润",
+        "雅正",
+        "安",
+        "仁"
+      ],
+      "links": [
+        "source-lunyu",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：安仁。拼音：ān rén。原句：仁者安仁，知者利仁。。字义：安：安定从容；仁：仁爱宽和。整体寓意：内心安定，以仁厚待人，温和而自有原则。。气质：温润、雅正。关联知识：《论语》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t01:chunk-1",
+      "pageId": "name-t01",
+      "chunkIndex": 1,
+      "title": "云起",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "王维《终南别业》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t01",
+      "keywords": [
+        "云起",
+        "yún qǐ",
+        "唐诗",
+        "王维《终南别业》",
+        "明朗",
+        "温润",
+        "云",
+        "起"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：云起。拼音：yún qǐ。原句：行到水穷处，坐看云起时。。字义：云：自在舒展；起：蓬勃向上。整体寓意：从容通达，顺境逆境皆能看见新的生机。。气质：明朗、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t02:chunk-1",
+      "pageId": "name-t02",
+      "chunkIndex": 1,
+      "title": "星垂",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "杜甫《旅夜书怀》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t02",
+      "keywords": [
+        "星垂",
+        "xīng chuí",
+        "唐诗",
+        "杜甫《旅夜书怀》",
+        "明朗",
+        "坚毅",
+        "星",
+        "垂"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：星垂。拼音：xīng chuí。原句：星垂平野阔，月涌大江流。。字义：星：明亮高远；垂：沉静照临。整体寓意：胸有星野，气象开阔，沉静中自有光芒。。气质：明朗、坚毅。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t03:chunk-1",
+      "pageId": "name-t03",
+      "chunkIndex": 1,
+      "title": "润物",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "杜甫《春夜喜雨》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t03",
+      "keywords": [
+        "润物",
+        "rùn wù",
+        "唐诗",
+        "杜甫《春夜喜雨》",
+        "温润",
+        "雅正",
+        "润",
+        "物"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：润物。拼音：rùn wù。原句：随风潜入夜，润物细无声。。字义：润：温和滋养；物：关怀万有。整体寓意：温厚体贴，行善无声，给身边人以滋养。。气质：温润、雅正。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t04:chunk-1",
+      "pageId": "name-t04",
+      "chunkIndex": 1,
+      "title": "轻舟",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "李白《早发白帝城》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t04",
+      "keywords": [
+        "轻舟",
+        "qīng zhōu",
+        "唐诗",
+        "李白《早发白帝城》",
+        "明朗",
+        "灵秀",
+        "轻",
+        "舟"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：轻舟。拼音：qīng zhōu。原句：两岸猿声啼不住，轻舟已过万重山。。字义：轻：从容洒脱；舟：行稳致远。整体寓意：一生从容自在，纵有万山亦能轻快向前。。气质：明朗、灵秀。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t05:chunk-1",
+      "pageId": "name-t05",
+      "chunkIndex": 1,
+      "title": "云帆",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "李白《行路难》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t05",
+      "keywords": [
+        "云帆",
+        "yún fān",
+        "唐诗",
+        "李白《行路难》",
+        "坚毅",
+        "明朗",
+        "云",
+        "帆"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：云帆。拼音：yún fān。原句：长风破浪会有时，直挂云帆济沧海。。字义：云：高远自在；帆：逐风前行。整体寓意：志向高远，乘风破浪，始终相信前路。。气质：坚毅、明朗。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t06:chunk-1",
+      "pageId": "name-t06",
+      "chunkIndex": 1,
+      "title": "明月",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "张九龄《望月怀远》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t06",
+      "keywords": [
+        "明月",
+        "míng yuè",
+        "唐诗",
+        "张九龄《望月怀远》",
+        "灵秀",
+        "温润",
+        "明",
+        "月"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：明月。拼音：míng yuè。原句：海上生明月，天涯共此时。。字义：明：澄澈明亮；月：清雅温柔。整体寓意：心境澄明，温柔清雅，也寄托长久的牵念。。气质：灵秀、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t07:chunk-1",
+      "pageId": "name-t07",
+      "chunkIndex": 1,
+      "title": "春晖",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "孟郊《游子吟》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t07",
+      "keywords": [
+        "春晖",
+        "chūn huī",
+        "唐诗",
+        "孟郊《游子吟》",
+        "温润",
+        "明朗",
+        "春",
+        "晖"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：春晖。拼音：chūn huī。原句：谁言寸草心，报得三春晖。。字义：春：和暖生机；晖：温暖光辉。整体寓意：温暖明朗，心怀感恩，如春光照拂身边的人。。气质：温润、明朗。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t08:chunk-1",
+      "pageId": "name-t08",
+      "chunkIndex": 1,
+      "title": "灵犀",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "李商隐《无题》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t08",
+      "keywords": [
+        "灵犀",
+        "líng xī",
+        "唐诗",
+        "李商隐《无题》",
+        "灵秀",
+        "温润",
+        "灵",
+        "犀"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：灵犀。拼音：líng xī。原句：身无彩凤双飞翼，心有灵犀一点通。。字义：灵：聪慧灵动；犀：通透敏锐。整体寓意：聪慧敏锐，善解人意，内心通透明澈。。气质：灵秀、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t09:chunk-1",
+      "pageId": "name-t09",
+      "chunkIndex": 1,
+      "title": "晴川",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "崔颢《黄鹤楼》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t09",
+      "keywords": [
+        "晴川",
+        "qíng chuān",
+        "唐诗",
+        "崔颢《黄鹤楼》",
+        "明朗",
+        "灵秀",
+        "晴",
+        "川"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：晴川。拼音：qíng chuān。原句：晴川历历汉阳树，芳草萋萋鹦鹉洲。。字义：晴：明净开朗；川：舒展通达。整体寓意：心境明净，人生如长川舒展，明朗而辽阔。。气质：明朗、灵秀。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t10:chunk-1",
+      "pageId": "name-t10",
+      "chunkIndex": 1,
+      "title": "若邻",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "王勃《送杜少府之任蜀州》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t10",
+      "keywords": [
+        "若邻",
+        "ruò lín",
+        "唐诗",
+        "王勃《送杜少府之任蜀州》",
+        "温润",
+        "雅正",
+        "若",
+        "邻"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：若邻。拼音：ruò lín。原句：海内存知己，天涯若比邻。。字义：若：从容柔和；邻：亲近和睦。整体寓意：真诚亲和，重情重义，虽远亦能心意相通。。气质：温润、雅正。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t11:chunk-1",
+      "pageId": "name-t11",
+      "chunkIndex": 1,
+      "title": "秋池",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "李商隐《夜雨寄北》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t11",
+      "keywords": [
+        "秋池",
+        "qiū chí",
+        "唐诗",
+        "李商隐《夜雨寄北》",
+        "灵秀",
+        "温润",
+        "秋",
+        "池"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：秋池。拼音：qiū chí。原句：君问归期未有期，巴山夜雨涨秋池。。字义：秋：澄澈丰盈；池：宁静包容。整体寓意：清澈宁静，情感丰沛，心中自有一方天地。。气质：灵秀、温润。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-t12:chunk-1",
+      "pageId": "name-t12",
+      "chunkIndex": 1,
+      "title": "晚晴",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "李商隐《晚晴》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "t12",
+      "keywords": [
+        "晚晴",
+        "wǎn qíng",
+        "唐诗",
+        "李商隐《晚晴》",
+        "温润",
+        "明朗",
+        "晚",
+        "晴"
+      ],
+      "links": [
+        "source-tang-poetry",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：晚晴。拼音：wǎn qíng。原句：天意怜幽草，人间重晚晴。。字义：晚：沉静从容；晴：明朗温暖。整体寓意：历雨而晴，温柔坚定，珍惜平常日子里的光亮。。气质：温润、明朗。关联知识：唐诗来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s01:chunk-1",
+      "pageId": "name-s01",
+      "chunkIndex": 1,
+      "title": "疏桐",
+      "category": "song",
+      "tag": "宋词",
+      "source": "苏轼《卜算子·黄州定慧院寓居作》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s01",
+      "keywords": [
+        "疏桐",
+        "shū tóng",
+        "宋词",
+        "苏轼《卜算子·黄州定慧院寓居作》",
+        "灵秀",
+        "雅正",
+        "疏",
+        "桐"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：疏桐。拼音：shū tóng。原句：缺月挂疏桐，漏断人初静。。字义：疏：通透从容；桐：清雅坚贞。整体寓意：清朗疏阔，内心安定，保有独立清雅的品格。。气质：灵秀、雅正。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s02:chunk-1",
+      "pageId": "name-s02",
+      "chunkIndex": 1,
+      "title": "清欢",
+      "category": "song",
+      "tag": "宋词",
+      "source": "苏轼《浣溪沙·细雨斜风作晓寒》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s02",
+      "keywords": [
+        "清欢",
+        "qīng huān",
+        "宋词",
+        "苏轼《浣溪沙·细雨斜风作晓寒》",
+        "温润",
+        "明朗",
+        "清",
+        "欢"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：清欢。拼音：qīng huān。原句：人间有味是清欢。。字义：清：澄澈纯净；欢：喜悦明朗。整体寓意：知足清醒，能在平常生活里发现真切欢喜。。气质：温润、明朗。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s03:chunk-1",
+      "pageId": "name-s03",
+      "chunkIndex": 1,
+      "title": "徐行",
+      "category": "song",
+      "tag": "宋词",
+      "source": "苏轼《定风波·莫听穿林打叶声》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s03",
+      "keywords": [
+        "徐行",
+        "xú xíng",
+        "宋词",
+        "苏轼《定风波·莫听穿林打叶声》",
+        "坚毅",
+        "温润",
+        "徐",
+        "行"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：徐行。拼音：xú xíng。原句：莫听穿林打叶声，何妨吟啸且徐行。。字义：徐：从容不迫；行：笃定前行。整体寓意：风雨之中仍从容前行，豁达而有定力。。气质：坚毅、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s04:chunk-1",
+      "pageId": "name-s04",
+      "chunkIndex": 1,
+      "title": "烟雨",
+      "category": "song",
+      "tag": "宋词",
+      "source": "苏轼《定风波·莫听穿林打叶声》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s04",
+      "keywords": [
+        "烟雨",
+        "yān yǔ",
+        "宋词",
+        "苏轼《定风波·莫听穿林打叶声》",
+        "明朗",
+        "灵秀",
+        "烟",
+        "雨"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：烟雨。拼音：yān yǔ。原句：竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。。字义：烟：轻盈旷远；雨：滋养万物。整体寓意：旷达自在，不畏风雨，内心自有从容天地。。气质：明朗、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s05:chunk-1",
+      "pageId": "name-s05",
+      "chunkIndex": 1,
+      "title": "婵娟",
+      "category": "song",
+      "tag": "宋词",
+      "source": "苏轼《水调歌头·明月几时有》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s05",
+      "keywords": [
+        "婵娟",
+        "chán juān",
+        "宋词",
+        "苏轼《水调歌头·明月几时有》",
+        "灵秀",
+        "温润",
+        "婵",
+        "娟"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：婵娟。拼音：chán juān。原句：但愿人长久，千里共婵娟。。字义：婵：姿态美好；娟：秀丽清雅。整体寓意：清雅美好，寄托团圆长久与真挚祝愿。。气质：灵秀、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s06:chunk-1",
+      "pageId": "name-s06",
+      "chunkIndex": 1,
+      "title": "锦书",
+      "category": "song",
+      "tag": "宋词",
+      "source": "李清照《一剪梅·红藕香残玉簟秋》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s06",
+      "keywords": [
+        "锦书",
+        "jǐn shū",
+        "宋词",
+        "李清照《一剪梅·红藕香残玉簟秋》",
+        "雅正",
+        "灵秀",
+        "锦",
+        "书"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：锦书。拼音：jǐn shū。原句：云中谁寄锦书来？雁字回时，月满西楼。。字义：锦：绚丽美好；书：知礼好学。整体寓意：腹有诗书，情感细腻，人生如锦而有章法。。气质：雅正、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s07:chunk-1",
+      "pageId": "name-s07",
+      "chunkIndex": 1,
+      "title": "星河",
+      "category": "song",
+      "tag": "宋词",
+      "source": "李清照《渔家傲·天接云涛连晓雾》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s07",
+      "keywords": [
+        "星河",
+        "xīng hé",
+        "宋词",
+        "李清照《渔家傲·天接云涛连晓雾》",
+        "明朗",
+        "灵秀",
+        "星",
+        "河"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：星河。拼音：xīng hé。原句：天接云涛连晓雾，星河欲转千帆舞。。字义：星：明亮高远；河：辽阔绵长。整体寓意：心有星河，眼界辽阔，明亮而富有想象力。。气质：明朗、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s08:chunk-1",
+      "pageId": "name-s08",
+      "chunkIndex": 1,
+      "title": "清圆",
+      "category": "song",
+      "tag": "宋词",
+      "source": "周邦彦《苏幕遮·燎沉香》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s08",
+      "keywords": [
+        "清圆",
+        "qīng yuán",
+        "宋词",
+        "周邦彦《苏幕遮·燎沉香》",
+        "温润",
+        "灵秀",
+        "清",
+        "圆"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：清圆。拼音：qīng yuán。原句：叶上初阳干宿雨，水面清圆，一一风荷举。。字义：清：清澈高洁；圆：圆融和满。整体寓意：清澈圆融，温和完整，如雨后荷叶生机自持。。气质：温润、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s09:chunk-1",
+      "pageId": "name-s09",
+      "chunkIndex": 1,
+      "title": "风荷",
+      "category": "song",
+      "tag": "宋词",
+      "source": "周邦彦《苏幕遮·燎沉香》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s09",
+      "keywords": [
+        "风荷",
+        "fēng hé",
+        "宋词",
+        "周邦彦《苏幕遮·燎沉香》",
+        "灵秀",
+        "雅正",
+        "风",
+        "荷"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：风荷。拼音：fēng hé。原句：叶上初阳干宿雨，水面清圆，一一风荷举。。字义：风：自由清朗；荷：高洁生香。整体寓意：气质清雅，舒展有节，在风中仍保有自己的姿态。。气质：灵秀、雅正。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s10:chunk-1",
+      "pageId": "name-s10",
+      "chunkIndex": 1,
+      "title": "知许",
+      "category": "song",
+      "tag": "宋词",
+      "source": "李清照《永遇乐·落日熔金》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s10",
+      "keywords": [
+        "知许",
+        "zhī xǔ",
+        "宋词",
+        "李清照《永遇乐·落日熔金》",
+        "灵秀",
+        "温润",
+        "知",
+        "许"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：知许。拼音：zhī xǔ。原句：染柳烟浓，吹梅笛怨，春意知几许。。字义：知：聪慧通达；许：从容期许。整体寓意：知春意、懂分寸，聪慧温柔，对未来怀有期许。。气质：灵秀、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s11:chunk-1",
+      "pageId": "name-s11",
+      "chunkIndex": 1,
+      "title": "阑珊",
+      "category": "song",
+      "tag": "宋词",
+      "source": "辛弃疾《青玉案·元夕》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s11",
+      "keywords": [
+        "阑珊",
+        "lán shān",
+        "宋词",
+        "辛弃疾《青玉案·元夕》",
+        "灵秀",
+        "雅正",
+        "阑",
+        "珊"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：阑珊。拼音：lán shān。原句：蓦然回首，那人却在，灯火阑珊处。。字义：阑：沉静有度；珊：珍贵美好。整体寓意：沉静自持，不逐喧哗，自有被看见的光芒。。气质：灵秀、雅正。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s12:chunk-1",
+      "pageId": "name-s12",
+      "chunkIndex": 1,
+      "title": "兰舟",
+      "category": "song",
+      "tag": "宋词",
+      "source": "柳永《雨霖铃·寒蝉凄切》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s12",
+      "keywords": [
+        "兰舟",
+        "lán zhōu",
+        "宋词",
+        "柳永《雨霖铃·寒蝉凄切》",
+        "温润",
+        "灵秀",
+        "兰",
+        "舟"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：兰舟。拼音：lán zhōu。原句：都门帐饮无绪，留恋处，兰舟催发。。字义：兰：高洁芬芳；舟：坚定远行。整体寓意：品格如兰，心有远方，温柔而有前行的勇气。。气质：温润、灵秀。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-s13:chunk-1",
+      "pageId": "name-s13",
+      "chunkIndex": 1,
+      "title": "轻寒",
+      "category": "song",
+      "tag": "宋词",
+      "source": "秦观《浣溪沙·漠漠轻寒上小楼》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "s13",
+      "keywords": [
+        "轻寒",
+        "qīng hán",
+        "宋词",
+        "秦观《浣溪沙·漠漠轻寒上小楼》",
+        "灵秀",
+        "温润",
+        "轻",
+        "寒"
+      ],
+      "links": [
+        "source-song-ci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：轻寒。拼音：qīng hán。原句：漠漠轻寒上小楼，晓阴无赖似穷秋。。字义：轻：从容灵动；寒：清澈自守。整体寓意：清秀灵动，安静自持，气质轻盈而不失坚韧。。气质：灵秀、温润。关联知识：宋词来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p01:chunk-1",
+      "pageId": "name-p01",
+      "chunkIndex": 1,
+      "title": "子衿",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·郑风·子衿》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p01",
+      "keywords": [
+        "子衿",
+        "zǐ jīn",
+        "诗经",
+        "《诗经·郑风·子衿》",
+        "雅正",
+        "温润",
+        "子",
+        "衿"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：子衿。拼音：zǐ jīn。原句：青青子衿，悠悠我心。。字义：子：谦谦君子；衿：文雅学子。整体寓意：温文有礼，勤学知雅，也寄托深长的牵念。。气质：雅正、温润。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p02:chunk-1",
+      "pageId": "name-p02",
+      "chunkIndex": 1,
+      "title": "其华",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·周南·桃夭》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p02",
+      "keywords": [
+        "其华",
+        "qí huá",
+        "诗经",
+        "《诗经·周南·桃夭》",
+        "明朗",
+        "灵秀",
+        "其",
+        "华"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：其华。拼音：qí huá。原句：桃之夭夭，灼灼其华。。字义：其：从容笃定；华：灿烂美好。整体寓意：生命明媚，丰盛灿然，也有家庭和美的祝愿。。气质：明朗、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p03:chunk-1",
+      "pageId": "name-p03",
+      "chunkIndex": 1,
+      "title": "静好",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·郑风·女曰鸡鸣》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p03",
+      "keywords": [
+        "静好",
+        "jìng hǎo",
+        "诗经",
+        "《诗经·郑风·女曰鸡鸣》",
+        "温润",
+        "雅正",
+        "静",
+        "好"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：静好。拼音：jìng hǎo。原句：琴瑟在御，莫不静好。。字义：静：安宁沉着；好：美善和悦。整体寓意：岁月安宁，内心和悦，生活温柔而美好。。气质：温润、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p04:chunk-1",
+      "pageId": "name-p04",
+      "chunkIndex": 1,
+      "title": "令仪",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·小雅·湛露》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p04",
+      "keywords": [
+        "令仪",
+        "lìng yí",
+        "诗经",
+        "《诗经·小雅·湛露》",
+        "雅正",
+        "温润",
+        "令",
+        "仪"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：令仪。拼音：lìng yí。原句：岂弟君子，莫不令仪。。字义：令：美好端正；仪：仪度有礼。整体寓意：端方知礼，举止从容，内外皆有美好风仪。。气质：雅正、温润。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p05:chunk-1",
+      "pageId": "name-p05",
+      "chunkIndex": 1,
+      "title": "徽音",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·大雅·思齐》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p05",
+      "keywords": [
+        "徽音",
+        "huī yīn",
+        "诗经",
+        "《诗经·大雅·思齐》",
+        "雅正",
+        "灵秀",
+        "徽",
+        "音"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：徽音。拼音：huī yīn。原句：大姒嗣徽音，则百斯男。。字义：徽：美善嘉德；音：声誉文采。整体寓意：品德美善，声名清雅，将温柔与力量传续下去。。气质：雅正、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p06:chunk-1",
+      "pageId": "name-p06",
+      "chunkIndex": 1,
+      "title": "攸宁",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·小雅·斯干》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p06",
+      "keywords": [
+        "攸宁",
+        "yōu níng",
+        "诗经",
+        "《诗经·小雅·斯干》",
+        "温润",
+        "雅正",
+        "攸",
+        "宁"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：攸宁。拼音：yōu níng。原句：哙哙其正，哕哕其冥，君子攸宁。。字义：攸：从容长远；宁：安定平和。整体寓意：心有所安，行有所往，一生从容宁定。。气质：温润、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p07:chunk-1",
+      "pageId": "name-p07",
+      "chunkIndex": 1,
+      "title": "维桢",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·大雅·文王》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p07",
+      "keywords": [
+        "维桢",
+        "wéi zhēn",
+        "诗经",
+        "《诗经·大雅·文王》",
+        "坚毅",
+        "雅正",
+        "维",
+        "桢"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：维桢。拼音：wéi zhēn。原句：王国克生，维周之桢。。字义：维：持守担当；桢：坚实栋梁。整体寓意：坚定可靠，有持守、有担当，能成为可托付的人。。气质：坚毅、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p08:chunk-1",
+      "pageId": "name-p08",
+      "chunkIndex": 1,
+      "title": "柔嘉",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·大雅·抑》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p08",
+      "keywords": [
+        "柔嘉",
+        "róu jiā",
+        "诗经",
+        "《诗经·大雅·抑》",
+        "温润",
+        "雅正",
+        "柔",
+        "嘉"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：柔嘉。拼音：róu jiā。原句：敬尔威仪，无不柔嘉。。字义：柔：温和有韧；嘉：美善可喜。整体寓意：温柔而有原则，言行美善，亲和且有分寸。。气质：温润、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p09:chunk-1",
+      "pageId": "name-p09",
+      "chunkIndex": 1,
+      "title": "清扬",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·郑风·野有蔓草》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p09",
+      "keywords": [
+        "清扬",
+        "qīng yáng",
+        "诗经",
+        "《诗经·郑风·野有蔓草》",
+        "灵秀",
+        "明朗",
+        "清",
+        "扬"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：清扬。拼音：qīng yáng。原句：有美一人，清扬婉兮。。字义：清：清澈高洁；扬：舒展明朗。整体寓意：眉目清朗，气质舒展，既清秀也自信。。气质：灵秀、明朗。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p10:chunk-1",
+      "pageId": "name-p10",
+      "chunkIndex": 1,
+      "title": "琼瑶",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·卫风·木瓜》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p10",
+      "keywords": [
+        "琼瑶",
+        "qióng yáo",
+        "诗经",
+        "《诗经·卫风·木瓜》",
+        "温润",
+        "灵秀",
+        "琼",
+        "瑶"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：琼瑶。拼音：qióng yáo。原句：投我以木桃，报之以琼瑶。。字义：琼：美玉珍贵；瑶：温润光洁。整体寓意：如美玉温润珍贵，也懂得珍惜与回报真情。。气质：温润、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p11:chunk-1",
+      "pageId": "name-p11",
+      "chunkIndex": 1,
+      "title": "景行",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·小雅·车舝》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p11",
+      "keywords": [
+        "景行",
+        "jǐng xíng",
+        "诗经",
+        "《诗经·小雅·车舝》",
+        "坚毅",
+        "雅正",
+        "景",
+        "行"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：景行。拼音：jǐng xíng。原句：高山仰止，景行行止。。字义：景：光明高尚；行：践履笃定。整体寓意：心向高洁，行有准则，光明坦荡而脚踏实地。。气质：坚毅、雅正。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-p12:chunk-1",
+      "pageId": "name-p12",
+      "chunkIndex": 1,
+      "title": "文茵",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "《诗经·秦风·小戎》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "p12",
+      "keywords": [
+        "文茵",
+        "wén yīn",
+        "诗经",
+        "《诗经·秦风·小戎》",
+        "温润",
+        "灵秀",
+        "文",
+        "茵"
+      ],
+      "links": [
+        "source-shijing",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：文茵。拼音：wén yīn。原句：文茵畅毂，驾我骐馵。。字义：文：文雅有章；茵：柔和温暖。整体寓意：文雅温和，细腻有涵养，给人舒适安定之感。。气质：温润、灵秀。关联知识：《诗经》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q01:chunk-1",
+      "pageId": "name-q01",
+      "chunkIndex": 1,
+      "title": "怀瑾",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九章·怀沙》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q01",
+      "keywords": [
+        "怀瑾",
+        "huái jǐn",
+        "楚辞",
+        "屈原《九章·怀沙》",
+        "雅正",
+        "坚毅",
+        "怀",
+        "瑾"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：怀瑾。拼音：huái jǐn。原句：怀瑾握瑜兮，穷不知所示。。字义：怀：胸怀宽广；瑾：美玉之德。整体寓意：怀抱美德，珍重内心，即使困顿也不改其质。。气质：雅正、坚毅。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q02:chunk-1",
+      "pageId": "name-q02",
+      "chunkIndex": 1,
+      "title": "修远",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《离骚》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q02",
+      "keywords": [
+        "修远",
+        "xiū yuǎn",
+        "楚辞",
+        "屈原《离骚》",
+        "坚毅",
+        "雅正",
+        "修",
+        "远"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：修远。拼音：xiū yuǎn。原句：路漫漫其修远兮，吾将上下而求索。。字义：修：修身自进；远：志向长远。整体寓意：志在远方，勤于修身，漫漫长路仍求索不息。。气质：坚毅、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q03:chunk-1",
+      "pageId": "name-q03",
+      "chunkIndex": 1,
+      "title": "望舒",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《离骚》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q03",
+      "keywords": [
+        "望舒",
+        "wàng shū",
+        "楚辞",
+        "屈原《离骚》",
+        "灵秀",
+        "明朗",
+        "望",
+        "舒"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：望舒。拼音：wàng shū。原句：前望舒使先驱兮，后飞廉使奔属。。字义：望：志向高远；舒：从容舒展。整体寓意：望舒为神话中为月驾车之神，寓意清朗从容、心向远方。。气质：灵秀、明朗。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q04:chunk-1",
+      "pageId": "name-q04",
+      "chunkIndex": 1,
+      "title": "秋兰",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《离骚》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q04",
+      "keywords": [
+        "秋兰",
+        "qiū lán",
+        "楚辞",
+        "屈原《离骚》",
+        "灵秀",
+        "雅正",
+        "秋",
+        "兰"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：秋兰。拼音：qiū lán。原句：扈江离与辟芷兮，纫秋兰以为佩。。字义：秋：澄澈丰盈；兰：幽香高洁。整体寓意：如秋兰清雅自持，温柔有节，不改芬芳。。气质：灵秀、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q05:chunk-1",
+      "pageId": "name-q05",
+      "chunkIndex": 1,
+      "title": "灵均",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《离骚》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q05",
+      "keywords": [
+        "灵均",
+        "líng jūn",
+        "楚辞",
+        "屈原《离骚》",
+        "灵秀",
+        "雅正",
+        "灵",
+        "均"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：灵均。拼音：líng jūn。原句：名余曰正则兮，字余曰灵均。。字义：灵：聪慧敏锐；均：平和端正。整体寓意：天资灵慧，心有尺度，聪敏而不失平和。。气质：灵秀、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q06:chunk-1",
+      "pageId": "name-q06",
+      "chunkIndex": 1,
+      "title": "杜若",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九歌·山鬼》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q06",
+      "keywords": [
+        "杜若",
+        "dù ruò",
+        "楚辞",
+        "屈原《九歌·山鬼》",
+        "灵秀",
+        "温润",
+        "杜",
+        "若"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：杜若。拼音：dù ruò。原句：山中人兮芳杜若，饮石泉兮荫松柏。。字义：杜：安静自守；若：柔和从容。整体寓意：取香草杜若之意，清芬自然，柔美中自有坚持。。气质：灵秀、温润。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q07:chunk-1",
+      "pageId": "name-q07",
+      "chunkIndex": 1,
+      "title": "正则",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《离骚》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q07",
+      "keywords": [
+        "正则",
+        "zhèng zé",
+        "楚辞",
+        "屈原《离骚》",
+        "雅正",
+        "坚毅",
+        "正",
+        "则"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：正则。拼音：zhèng zé。原句：名余曰正则兮，字余曰灵均。。字义：正：端方坦荡；则：准则法度。整体寓意：品行端正，心有准则，坦荡而知分寸。。气质：雅正、坚毅。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q08:chunk-1",
+      "pageId": "name-q08",
+      "chunkIndex": 1,
+      "title": "若英",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九歌·云中君》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q08",
+      "keywords": [
+        "若英",
+        "ruò yīng",
+        "楚辞",
+        "屈原《九歌·云中君》",
+        "灵秀",
+        "明朗",
+        "若",
+        "英"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：若英。拼音：ruò yīng。原句：浴兰汤兮沐芳，华采衣兮若英。。字义：若：温柔从容；英：花之光华。整体寓意：如花英明丽，气质清芬，柔和而有光彩。。气质：灵秀、明朗。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q09:chunk-1",
+      "pageId": "name-q09",
+      "chunkIndex": 1,
+      "title": "云旗",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《离骚》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q09",
+      "keywords": [
+        "云旗",
+        "yún qí",
+        "楚辞",
+        "屈原《离骚》",
+        "明朗",
+        "坚毅",
+        "云",
+        "旗"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：云旗。拼音：yún qí。原句：驾八龙之婉婉兮，载云旗之委蛇。。字义：云：高远自在；旗：志向引领。整体寓意：气象高远，志向舒展，心怀方向而不失洒脱。。气质：明朗、坚毅。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q10:chunk-1",
+      "pageId": "name-q10",
+      "chunkIndex": 1,
+      "title": "安歌",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九歌·东皇太一》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q10",
+      "keywords": [
+        "安歌",
+        "ān gē",
+        "楚辞",
+        "屈原《九歌·东皇太一》",
+        "温润",
+        "明朗",
+        "安",
+        "歌"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：安歌。拼音：ān gē。原句：疏缓节兮安歌，陈竽瑟兮浩倡。。字义：安：从容宁定；歌：开朗有情。整体寓意：从容安然，心中有歌，既宁静也有充沛生命力。。气质：温润、明朗。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q11:chunk-1",
+      "pageId": "name-q11",
+      "chunkIndex": 1,
+      "title": "嘉树",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九章·橘颂》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q11",
+      "keywords": [
+        "嘉树",
+        "jiā shù",
+        "楚辞",
+        "屈原《九章·橘颂》",
+        "坚毅",
+        "雅正",
+        "嘉",
+        "树"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：嘉树。拼音：jiā shù。原句：后皇嘉树，橘徕服兮。。字义：嘉：美善可喜；树：坚实成长。整体寓意：如嘉木深根挺立，品性美好，成长坚定。。气质：坚毅、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q12:chunk-1",
+      "pageId": "name-q12",
+      "chunkIndex": 1,
+      "title": "辰良",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九歌·东皇太一》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q12",
+      "keywords": [
+        "辰良",
+        "chén liáng",
+        "楚辞",
+        "屈原《九歌·东皇太一》",
+        "明朗",
+        "雅正",
+        "辰",
+        "良"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：辰良。拼音：chén liáng。原句：吉日兮辰良，穆将愉兮上皇。。字义：辰：星辰时序；良：善美贤良。整体寓意：生逢良辰，心性善美，人生明亮而有秩序。。气质：明朗、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "name-q13:chunk-1",
+      "pageId": "name-q13",
+      "chunkIndex": 1,
+      "title": "秉德",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "屈原《九章·橘颂》",
+      "type": "name",
+      "status": "verified",
+      "verified": true,
+      "recordId": "q13",
+      "keywords": [
+        "秉德",
+        "bǐng dé",
+        "楚辞",
+        "屈原《九章·橘颂》",
+        "坚毅",
+        "雅正",
+        "秉",
+        "德"
+      ],
+      "links": [
+        "source-chuci",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "姓名：秉德。拼音：bǐng dé。原句：秉德无私，参天地兮。。字义：秉：持守坚守；德：仁厚端方。整体寓意：持守美德，坦荡无私，内心坚定而有担当。。气质：坚毅、雅正。关联知识：《楚辞》来源页、连姓音韵、长期使用检查。"
+    },
+    {
+      "id": "method-g01:chunk-1",
+      "pageId": "method-g01",
+      "chunkIndex": 1,
+      "title": "有出处不等于生搬原句",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·文化出处",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "有出处不等于生搬原句",
+        "起名方法",
+        "文化出处"
+      ],
+      "links": [
+        "concept-direct-or-inspired",
+        "concept-source-verification"
+      ],
+      "backlinks": [],
+      "content": "典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。 典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。两字在原文中相邻最清晰；若是重新组合，应明确说明是取意而不是原句直取，避免给名字附会不存在的出处。"
+    },
+    {
+      "id": "method-g02:chunk-1",
+      "pageId": "method-g02",
+      "chunkIndex": 1,
+      "title": "姓名音韵要连姓通读",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·音韵",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "姓名音韵要连姓通读",
+        "起名方法",
+        "音韵"
+      ],
+      "links": [
+        "concept-full-name-phonology",
+        "concept-tone-pattern"
+      ],
+      "backlinks": [],
+      "content": "判断名字是否顺口，要把姓和名连续朗读。 判断名字是否顺口，要把姓和名连续朗读。注意声母是否过度重复、韵母是否拗口、声调是否全部挤在同一调类。普通话顺口之外，还应让家人用常用方言多读几遍。"
+    },
+    {
+      "id": "method-g03:chunk-1",
+      "pageId": "method-g03",
+      "chunkIndex": 1,
+      "title": "优先选择常用规范汉字",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·用字",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "优先选择常用规范汉字",
+        "起名方法",
+        "用字"
+      ],
+      "links": [
+        "concept-standard-characters",
+        "concept-rare-characters"
+      ],
+      "backlinks": [],
+      "content": "文化感不等于使用生僻字。 文化感不等于使用生僻字。过于冷僻、容易误读或输入困难的字，可能给证件办理、入学登记和日常交流带来负担。正式确定前，应再核对当地户籍可用字规范。"
+    },
+    {
+      "id": "method-g04:chunk-1",
+      "pageId": "method-g04",
+      "chunkIndex": 1,
+      "title": "复姓更需要控制名字节奏",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·复姓",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "复姓更需要控制名字节奏",
+        "起名方法",
+        "复姓"
+      ],
+      "links": [
+        "concept-compound-surname",
+        "comparison-one-vs-two-character"
+      ],
+      "backlinks": [],
+      "content": "欧阳、上官、司马等复姓本身已有两个音节。 欧阳、上官、司马等复姓本身已有两个音节。搭配双字名时总长度较长，可优先选择结构简洁、发音清楚的用字；搭配单字名时则要留意整体意象是否完整。"
+    },
+    {
+      "id": "method-g05:chunk-1",
+      "pageId": "method-g05",
+      "chunkIndex": 1,
+      "title": "方言谐音需要家人共同核验",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·谐音",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "方言谐音需要家人共同核验",
+        "起名方法",
+        "谐音"
+      ],
+      "links": [
+        "concept-dialect-homophone",
+        "concept-full-name-phonology"
+      ],
+      "backlinks": [],
+      "content": "程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。 程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。候选名字应分别快速连读、倒序听读，并和常见称呼搭配，由熟悉家庭方言的人一起检查不雅谐音。"
+    },
+    {
+      "id": "method-g06:chunk-1",
+      "pageId": "method-g06",
+      "chunkIndex": 1,
+      "title": "比较候选名的四个维度",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·筛选",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "比较候选名的四个维度",
+        "起名方法",
+        "筛选"
+      ],
+      "links": [
+        "comparison-classic-vs-practical",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。 比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。不要只依赖一个笼统分数。"
+    },
+    {
+      "id": "method-g07:chunk-1",
+      "pageId": "method-g07",
+      "chunkIndex": 1,
+      "title": "性别气质只是偏好而非规则",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·气质",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "性别气质只是偏好而非规则",
+        "起名方法",
+        "气质"
+      ],
+      "links": [
+        "concept-gender-temperament",
+        "concept-long-term-use"
+      ],
+      "backlinks": [],
+      "content": "传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。 传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。更重要的是家庭对名字气质的认同，以及孩子未来使用时的舒适感。"
+    },
+    {
+      "id": "method-g08:chunk-1",
+      "pageId": "method-g08",
+      "chunkIndex": 1,
+      "title": "家族字辈应先于自动推荐",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·字辈",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "家族字辈应先于自动推荐",
+        "起名方法",
+        "字辈"
+      ],
+      "links": [
+        "concept-generation-name",
+        "comparison-one-vs-two-character"
+      ],
+      "backlinks": [],
+      "content": "如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。 如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。系统中的“期望包含”适合完成这类约束，但最终仍需家人确认。"
+    },
+    {
+      "id": "method-g09:chunk-1",
+      "pageId": "method-g09",
+      "chunkIndex": 1,
+      "title": "八字信息需要明确授权",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·隐私",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "八字信息需要明确授权",
+        "起名方法",
+        "隐私"
+      ],
+      "links": [
+        "concept-bazi-boundary",
+        "concept-five-elements"
+      ],
+      "backlinks": [],
+      "content": "八字与五行归类属于传统民俗文化参考，不代表科学预测。 八字与五行归类属于传统民俗文化参考，不代表科学预测。系统只接受用户已确认的四柱和用字倾向，不擅自判断喜用神或吉凶；纯本地模式不上传、不保存，使用模型时还需用户单独勾选授权。"
+    },
+    {
+      "id": "method-g10:chunk-1",
+      "pageId": "method-g10",
+      "chunkIndex": 1,
+      "title": "最终落名前做一次长期使用检查",
+      "category": "guide",
+      "tag": "起名方法",
+      "source": "本地知识库·定名",
+      "type": "method",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "最终落名前做一次长期使用检查",
+        "起名方法",
+        "定名"
+      ],
+      "links": [
+        "concept-long-term-use",
+        "concept-standard-characters"
+      ],
+      "backlinks": [],
+      "content": "把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。 把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。一个好名字既要有文化来处，也要经得起长期日常使用。"
+    },
+    {
+      "id": "source-lunyu:chunk-1",
+      "pageId": "source-lunyu",
+      "chunkIndex": 1,
+      "title": "《论语》来源页",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "论语",
+        "孔子",
+        "四书",
+        "修身",
+        "仁德"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-direct-or-inspired"
+      ],
+      "backlinks": [
+        "name-c05",
+        "name-c06",
+        "name-c07",
+        "name-c08",
+        "name-c12"
+      ],
+      "content": "《论语》姓名素材常取自修身、求学、仁德与君子人格相关语句。 本库目前收有“知新”“德邻”“弘毅”“思齐”“安仁”等候选。使用时应保留篇目与上下文，不把现代寓意冒充原句释义；同一句中的字词被重新组合时，应标明为“取意”。"
+    },
+    {
+      "id": "source-daxue:chunk-1",
+      "pageId": "source-daxue",
+      "chunkIndex": 1,
+      "title": "《大学》来源页",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "大学",
+        "明德",
+        "四书",
+        "至善",
+        "修身"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-direct-or-inspired"
+      ],
+      "backlinks": [
+        "name-c02"
+      ],
+      "content": "《大学》强调明德、修身与至善，适合端正明朗的名字意象。 本库候选“明德”来自“大学之道，在明明德”。取名解释应区分“使德性彰明”的语境与现代字面联想，并保留原典篇名。"
+    },
+    {
+      "id": "source-zhongyong:chunk-1",
+      "pageId": "source-zhongyong",
+      "chunkIndex": 1,
+      "title": "《中庸》来源页",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "中庸",
+        "慎思",
+        "笃行",
+        "四书",
+        "学习"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-full-name-phonology"
+      ],
+      "backlinks": [
+        "name-c03",
+        "name-c04"
+      ],
+      "content": "《中庸》中的博学、审问、慎思、明辨、笃行构成完整的学习与实践次序。 “慎思”和“笃行”均来自同一组语句。比较候选时，不宜只看单字吉祥联想，也应看词语在原文中的行动含义，以及和姓氏连读后的节奏。"
+    },
+    {
+      "id": "source-zhouyi:chunk-1",
+      "pageId": "source-zhouyi",
+      "chunkIndex": 1,
+      "title": "《周易》来源页",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "周易",
+        "易经",
+        "知微",
+        "自牧",
+        "厚德"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "name-c01",
+        "name-c09",
+        "name-c10"
+      ],
+      "content": "《周易》相关候选多取谦德、知微与厚德等人格意象。 本库收有“知微”“自牧”“厚德”。《周易》版本与篇章标注可能存在经、传之分，引用时应保留当前记录的篇名，并在需要出版级准确度时进一步核对权威版本。"
+    },
+    {
+      "id": "source-liji:chunk-1",
+      "pageId": "source-liji",
+      "chunkIndex": 1,
+      "title": "《礼记》来源页",
+      "category": "classics",
+      "tag": "四书五经",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "礼记",
+        "学记",
+        "玉成",
+        "礼仪",
+        "学习"
+      ],
+      "links": [
+        "concept-direct-or-inspired",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "name-c11"
+      ],
+      "content": "《礼记》素材常与礼仪、学习、修养和成人之道有关。 本库候选“玉成”取意于《礼记·学记》“玉不琢，不成器”。这属于从完整譬喻中提炼的名字，应说明整体寓意，避免把“玉成”误写成原句中的固定词组。"
+    },
+    {
+      "id": "source-shijing:chunk-1",
+      "pageId": "source-shijing",
+      "chunkIndex": 1,
+      "title": "《诗经》来源页",
+      "category": "shijing",
+      "tag": "诗经",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "诗经",
+        "风雅颂",
+        "国风",
+        "大雅",
+        "小雅"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-cultural-context",
+        "concept-full-name-phonology",
+        "source-thirteen-classics"
+      ],
+      "backlinks": [
+        "name-p01",
+        "name-p02",
+        "name-p03",
+        "name-p04",
+        "name-p05",
+        "name-p06",
+        "name-p07",
+        "name-p08",
+        "name-p09",
+        "name-p10",
+        "name-p11",
+        "name-p12"
+      ],
+      "content": "《诗经》素材覆盖风、雅、颂，语言凝练，但古今词义和语境可能不同。 本库收有“子衿”“其华”“静好”“令仪”“徽音”“攸宁”“维桢”“柔嘉”“清扬”“琼瑶”“景行”“文茵”。选择时既看原句，也要核查古义、篇章主题与现代使用感。"
+    },
+    {
+      "id": "source-chuci:chunk-1",
+      "pageId": "source-chuci",
+      "chunkIndex": 1,
+      "title": "《楚辞》来源页",
+      "category": "chuci",
+      "tag": "楚辞",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "楚辞",
+        "屈原",
+        "离骚",
+        "九歌",
+        "九章"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-rare-characters",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "name-q01",
+        "name-q02",
+        "name-q03",
+        "name-q04",
+        "name-q05",
+        "name-q06",
+        "name-q07",
+        "name-q08",
+        "name-q09",
+        "name-q10",
+        "name-q11",
+        "name-q12",
+        "name-q13"
+      ],
+      "content": "《楚辞》常见香草、美玉、星辰与持守品德的意象，语言瑰丽而古奥。 本库收有“怀瑾”“修远”“望舒”“秋兰”“灵均”“杜若”“正则”“若英”“云旗”“安歌”“嘉树”“辰良”“秉德”。使用古奥词语时应特别核查读音、字形与现代语感。"
+    },
+    {
+      "id": "source-tang-poetry:chunk-1",
+      "pageId": "source-tang-poetry",
+      "chunkIndex": 1,
+      "title": "唐诗来源页",
+      "category": "tang",
+      "tag": "唐诗",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "唐诗",
+        "诗人",
+        "篇名",
+        "意象",
+        "原句"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-direct-or-inspired",
+        "concept-cultural-context",
+        "source-complete-tang"
+      ],
+      "backlinks": [
+        "name-t01",
+        "name-t02",
+        "name-t03",
+        "name-t04",
+        "name-t05",
+        "name-t06",
+        "name-t07",
+        "name-t08",
+        "name-t09",
+        "name-t10",
+        "name-t11",
+        "name-t12"
+      ],
+      "content": "唐诗姓名素材常从景象、行旅、月色和品格语句中取意。 本库按作者与篇名保存候选原句。诗题、异文和作者归属仍应以可靠版本核验；截取后若改变了原句语法关系，应明确说明为取意，不把诗意联想当作字典义。"
+    },
+    {
+      "id": "source-song-ci:chunk-1",
+      "pageId": "source-song-ci",
+      "chunkIndex": 1,
+      "title": "宋词来源页",
+      "category": "song",
+      "tag": "宋词",
+      "source": "本地编辑·原典索引",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "宋词",
+        "词牌",
+        "意境",
+        "作者",
+        "篇名"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-full-name-phonology",
+        "concept-cultural-context",
+        "source-complete-song"
+      ],
+      "backlinks": [
+        "name-s01",
+        "name-s02",
+        "name-s03",
+        "name-s04",
+        "name-s05",
+        "name-s06",
+        "name-s07",
+        "name-s08",
+        "name-s09",
+        "name-s10",
+        "name-s11",
+        "name-s12",
+        "name-s13"
+      ],
+      "content": "宋词姓名素材富于画面与情绪，需同时关注词牌、作者、篇名和上下文。 本库收录苏轼、李清照、周邦彦、辛弃疾、柳永、秦观等作品中的候选。词句的审美氛围不等于名字的唯一含义，确定前还需连姓朗读并检查现代联想。"
+    },
+    {
+      "id": "concept-source-verification:chunk-1",
+      "pageId": "concept-source-verification",
+      "chunkIndex": 1,
+      "title": "出处核验",
+      "category": "guide",
+      "tag": "知识治理",
+      "source": "本地知识库·编辑规范",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "出处",
+        "核验",
+        "原文",
+        "作者",
+        "篇名",
+        "引用"
+      ],
+      "links": [
+        "concept-direct-or-inspired",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "method-g01",
+        "source-lunyu",
+        "source-daxue",
+        "source-zhongyong",
+        "source-zhouyi",
+        "source-shijing",
+        "source-chuci",
+        "source-tang-poetry",
+        "source-song-ci",
+        "concept-direct-or-inspired",
+        "concept-cultural-context",
+        "comparison-direct-vs-inspired",
+        "source-thirteen-classics",
+        "source-complete-tang",
+        "source-complete-song",
+        "concept-modern-copyright"
+      ],
+      "content": "可靠的出处至少包含作品、篇章或词牌、作者信息和可定位的原句。 核验顺序是：先确认原文，再确认篇名与作者，最后判断候选字词是否在原句中相邻。发现异文、误引或网络转述时标记待复核；严格回答只陈述已有证据支持的内容。"
+    },
+    {
+      "id": "concept-direct-or-inspired:chunk-1",
+      "pageId": "concept-direct-or-inspired",
+      "chunkIndex": 1,
+      "title": "原句直取与取意重组",
+      "category": "guide",
+      "tag": "文化出处",
+      "source": "本地知识库·编辑规范",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "直取",
+        "取意",
+        "重组",
+        "典故",
+        "附会"
+      ],
+      "links": [
+        "concept-source-verification",
+        "comparison-classic-vs-practical"
+      ],
+      "backlinks": [
+        "method-g01",
+        "source-lunyu",
+        "source-daxue",
+        "source-liji",
+        "source-tang-poetry",
+        "concept-source-verification",
+        "concept-cultural-context",
+        "comparison-direct-vs-inspired",
+        "source-complete-tang"
+      ],
+      "content": "原句相邻字词可称直取；跨句、换序或另行组合应称取意。 两种方式都可以形成好名字，但说明必须准确。直取应给出完整原句，取意重组应解释组合逻辑并避免声称原文中存在该固定词组。"
+    },
+    {
+      "id": "concept-full-name-phonology:chunk-1",
+      "pageId": "concept-full-name-phonology",
+      "chunkIndex": 1,
+      "title": "连姓音韵",
+      "category": "guide",
+      "tag": "音韵",
+      "source": "本地知识库·方法整理",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "连姓",
+        "音韵",
+        "声母",
+        "韵母",
+        "朗读"
+      ],
+      "links": [
+        "concept-tone-pattern",
+        "concept-dialect-homophone",
+        "concept-compound-surname"
+      ],
+      "backlinks": [
+        "name-c01",
+        "name-c02",
+        "name-c03",
+        "name-c04",
+        "name-c05",
+        "name-c06",
+        "name-c07",
+        "name-c08",
+        "name-c09",
+        "name-c10",
+        "name-c11",
+        "name-c12",
+        "name-t01",
+        "name-t02",
+        "name-t03",
+        "name-t04",
+        "name-t05",
+        "name-t06",
+        "name-t07",
+        "name-t08",
+        "name-t09",
+        "name-t10",
+        "name-t11",
+        "name-t12",
+        "name-s01",
+        "name-s02",
+        "name-s03",
+        "name-s04",
+        "name-s05",
+        "name-s06",
+        "name-s07",
+        "name-s08",
+        "name-s09",
+        "name-s10",
+        "name-s11",
+        "name-s12",
+        "name-s13",
+        "name-p01",
+        "name-p02",
+        "name-p03",
+        "name-p04",
+        "name-p05",
+        "name-p06",
+        "name-p07",
+        "name-p08",
+        "name-p09",
+        "name-p10",
+        "name-p11",
+        "name-p12",
+        "name-q01",
+        "name-q02",
+        "name-q03",
+        "name-q04",
+        "name-q05",
+        "name-q06",
+        "name-q07",
+        "name-q08",
+        "name-q09",
+        "name-q10",
+        "name-q11",
+        "name-q12",
+        "name-q13",
+        "method-g02",
+        "method-g05",
+        "source-zhongyong",
+        "source-shijing",
+        "source-song-ci",
+        "concept-tone-pattern",
+        "concept-compound-surname",
+        "concept-polyphonic-characters",
+        "concept-dialect-homophone",
+        "concept-generation-name",
+        "comparison-one-vs-two-character",
+        "comparison-bazi-vs-language"
+      ],
+      "content": "音韵判断的最小单位是完整姓名，而不是孤立的名字。 连续朗读姓与名，检查声母是否密集重复、韵母是否拗口、音节边界是否含混。用正常语速、快速称呼和正式点名三种节奏测试，再交给熟悉家庭方言的人复核。"
+    },
+    {
+      "id": "concept-tone-pattern:chunk-1",
+      "pageId": "concept-tone-pattern",
+      "chunkIndex": 1,
+      "title": "声调节奏",
+      "category": "guide",
+      "tag": "音韵",
+      "source": "本地知识库·方法整理",
+      "type": "concept",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "声调",
+        "平仄",
+        "四声",
+        "节奏",
+        "变调"
+      ],
+      "links": [
+        "concept-full-name-phonology",
+        "concept-dialect-homophone"
+      ],
+      "backlinks": [
+        "method-g02",
+        "concept-full-name-phonology"
+      ],
+      "content": "声调有起伏通常更易辨认，但没有对所有姓氏都适用的固定吉凶公式。 普通话四声可用于初筛节奏，不能仅凭所谓“最佳声调组合”给名字定高下。还需结合轻声、变调、方言和真实称呼场景判断。"
+    },
+    {
+      "id": "concept-compound-surname:chunk-1",
+      "pageId": "concept-compound-surname",
+      "chunkIndex": 1,
+      "title": "复姓节奏",
+      "category": "guide",
+      "tag": "复姓",
+      "source": "本地知识库·方法整理",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "复姓",
+        "欧阳",
+        "上官",
+        "司马",
+        "节奏"
+      ],
+      "links": [
+        "concept-full-name-phonology",
+        "comparison-one-vs-two-character"
+      ],
+      "backlinks": [
+        "method-g04",
+        "concept-full-name-phonology",
+        "comparison-one-vs-two-character"
+      ],
+      "content": "复姓已有两个音节，搭配名字时要额外控制总长度、停顿和书写密度。 双字名信息更完整，但全名较长；单字名更利落，但需确保意象完整。应把复姓视为整体，不按单姓的节奏模板机械套用。"
+    },
+    {
+      "id": "concept-standard-characters:chunk-1",
+      "pageId": "concept-standard-characters",
+      "chunkIndex": 1,
+      "title": "常用规范汉字",
+      "category": "guide",
+      "tag": "用字",
+      "source": "本地知识库·实用性",
+      "type": "concept",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "规范汉字",
+        "户籍",
+        "输入",
+        "异体字",
+        "证件"
+      ],
+      "links": [
+        "concept-rare-characters",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "method-g03",
+        "method-g10",
+        "concept-rare-characters",
+        "concept-long-term-use",
+        "comparison-classic-vs-practical"
+      ],
+      "content": "文化感不依赖生僻字，正式落名前要核对当地户籍可用字符。 程序可检查基本可输入性，但无法代替当地公安户籍系统。候选字应兼顾证件录入、字体显示、教学识读与日常沟通；异体字和罕见扩展字符尤其需要提前确认。"
+    },
+    {
+      "id": "concept-rare-characters:chunk-1",
+      "pageId": "concept-rare-characters",
+      "chunkIndex": 1,
+      "title": "生僻字风险",
+      "category": "guide",
+      "tag": "用字",
+      "source": "本地知识库·实用性",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "生僻字",
+        "误读",
+        "输入法",
+        "显示",
+        "录入"
+      ],
+      "links": [
+        "concept-standard-characters",
+        "concept-polyphonic-characters",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "method-g03",
+        "source-chuci",
+        "concept-standard-characters"
+      ],
+      "content": "生僻字可能带来误读、录入、显示和沟通成本。 评估时分别检查：是否容易读错、是否能在常用输入法中找到、不同设备是否显示、证件系统是否接收。若文化寓意可以由常用字表达，通常优先选择使用负担较低的方案。"
+    },
+    {
+      "id": "concept-polyphonic-characters:chunk-1",
+      "pageId": "concept-polyphonic-characters",
+      "chunkIndex": 1,
+      "title": "多音字检查",
+      "category": "guide",
+      "tag": "用字",
+      "source": "本地知识库·音韵",
+      "type": "concept",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "多音字",
+        "读音",
+        "误读",
+        "自我介绍"
+      ],
+      "links": [
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "concept-rare-characters"
+      ],
+      "content": "多音字不一定不能用，但需评估最常见读法是否会造成持续纠正。 检查字在姓名语境中的规范读音、公众最可能采用的读音以及方言读音。若每次自我介绍都要解释，家庭需要判断这种文化价值是否值得长期沟通成本。"
+    },
+    {
+      "id": "concept-dialect-homophone:chunk-1",
+      "pageId": "concept-dialect-homophone",
+      "chunkIndex": 1,
+      "title": "方言谐音",
+      "category": "guide",
+      "tag": "谐音",
+      "source": "本地知识库·方法整理",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "方言",
+        "谐音",
+        "连读",
+        "昵称",
+        "家人核验"
+      ],
+      "links": [
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "method-g05",
+        "concept-full-name-phonology",
+        "concept-tone-pattern",
+        "concept-long-term-use"
+      ],
+      "content": "普通话检查无法覆盖地方方言，需由真实使用者共同核验。 分别用完整姓名、昵称、快速连读和倒序听感检查。重点询问父母与祖辈常用方言地区，记录具体疑虑，不用笼统“谐音分数”替代人工判断。"
+    },
+    {
+      "id": "concept-gender-temperament:chunk-1",
+      "pageId": "concept-gender-temperament",
+      "chunkIndex": 1,
+      "title": "性别与名字气质",
+      "category": "guide",
+      "tag": "气质",
+      "source": "本地知识库·审美原则",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "性别",
+        "中性名",
+        "气质",
+        "刚健",
+        "温润",
+        "灵秀"
+      ],
+      "links": [
+        "comparison-classic-vs-practical",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "method-g07"
+      ],
+      "content": "刚健、温润、灵秀等是审美偏好，不是固定性别规则。 程序中的性别筛选用于减少明显不符合家庭偏好的候选，而不把某个字永久归为男性或女性。最终应以家庭认同、文化语境和孩子长期使用的舒适度为准。"
+    },
+    {
+      "id": "concept-generation-name:chunk-1",
+      "pageId": "concept-generation-name",
+      "chunkIndex": 1,
+      "title": "家族字辈",
+      "category": "guide",
+      "tag": "字辈",
+      "source": "本地知识库·家庭约束",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "字辈",
+        "排行字",
+        "族谱",
+        "家族",
+        "包含字"
+      ],
+      "links": [
+        "concept-full-name-phonology",
+        "comparison-one-vs-two-character"
+      ],
+      "backlinks": [
+        "method-g08",
+        "comparison-one-vs-two-character"
+      ],
+      "content": "有明确字辈时先固定排行字，再寻找音义协调的另一个字。 需要同时确认字辈放在名字第几位、能否同音替代、男女是否共用以及族谱原义。字辈属于家庭事实，应由家人确认，不由程序推断。"
+    },
+    {
+      "id": "concept-bazi-boundary:chunk-1",
+      "pageId": "concept-bazi-boundary",
+      "chunkIndex": 1,
+      "title": "八字参考边界",
+      "category": "guide",
+      "tag": "八字",
+      "source": "本地知识库·隐私与民俗边界",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "八字",
+        "四柱",
+        "隐私",
+        "授权",
+        "喜用神",
+        "吉凶"
+      ],
+      "links": [
+        "concept-five-elements",
+        "comparison-bazi-vs-language"
+      ],
+      "backlinks": [
+        "method-g09",
+        "concept-five-elements",
+        "comparison-bazi-vs-language"
+      ],
+      "content": "八字信息只在用户主动提供和授权时作为传统文化偏好，不用于预测命运。 程序接受已确认的四柱和明确的五行用字倾向，不擅自推算真太阳时、喜用神或吉凶。纯本地模式不上传；调用模型时只在用户勾选授权后发送相关字段。"
+    },
+    {
+      "id": "concept-five-elements:chunk-1",
+      "pageId": "concept-five-elements",
+      "chunkIndex": 1,
+      "title": "五行用字流派",
+      "category": "guide",
+      "tag": "五行",
+      "source": "本地知识库·民俗说明",
+      "type": "concept",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "五行",
+        "用字",
+        "流派",
+        "字形",
+        "字义",
+        "音律"
+      ],
+      "links": [
+        "concept-bazi-boundary",
+        "comparison-bazi-vs-language"
+      ],
+      "backlinks": [
+        "method-g09",
+        "concept-bazi-boundary",
+        "comparison-bazi-vs-language"
+      ],
+      "content": "汉字五行归类存在字形、字义、音律等不同民俗流派，不能当作唯一客观结论。 本程序的木、火、土、金、水字符映射只是排序偏好。遇到不同资料归类冲突时应明确标注流派差异，不自动宣布哪一种为真，更不能据此断言命运。"
+    },
+    {
+      "id": "concept-long-term-use:chunk-1",
+      "pageId": "concept-long-term-use",
+      "chunkIndex": 1,
+      "title": "长期使用检查",
+      "category": "guide",
+      "tag": "定名",
+      "source": "本地知识库·实用性",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "长期使用",
+        "点名",
+        "签名",
+        "首字母",
+        "自我介绍"
+      ],
+      "links": [
+        "concept-standard-characters",
+        "concept-dialect-homophone",
+        "comparison-classic-vs-practical"
+      ],
+      "backlinks": [
+        "name-c01",
+        "name-c02",
+        "name-c03",
+        "name-c04",
+        "name-c05",
+        "name-c06",
+        "name-c07",
+        "name-c08",
+        "name-c09",
+        "name-c10",
+        "name-c11",
+        "name-c12",
+        "name-t01",
+        "name-t02",
+        "name-t03",
+        "name-t04",
+        "name-t05",
+        "name-t06",
+        "name-t07",
+        "name-t08",
+        "name-t09",
+        "name-t10",
+        "name-t11",
+        "name-t12",
+        "name-s01",
+        "name-s02",
+        "name-s03",
+        "name-s04",
+        "name-s05",
+        "name-s06",
+        "name-s07",
+        "name-s08",
+        "name-s09",
+        "name-s10",
+        "name-s11",
+        "name-s12",
+        "name-s13",
+        "name-p01",
+        "name-p02",
+        "name-p03",
+        "name-p04",
+        "name-p05",
+        "name-p06",
+        "name-p07",
+        "name-p08",
+        "name-p09",
+        "name-p10",
+        "name-p11",
+        "name-p12",
+        "name-q01",
+        "name-q02",
+        "name-q03",
+        "name-q04",
+        "name-q05",
+        "name-q06",
+        "name-q07",
+        "name-q08",
+        "name-q09",
+        "name-q10",
+        "name-q11",
+        "name-q12",
+        "name-q13",
+        "method-g06",
+        "method-g07",
+        "method-g10",
+        "concept-standard-characters",
+        "concept-rare-characters",
+        "concept-polyphonic-characters",
+        "concept-dialect-homophone",
+        "concept-gender-temperament",
+        "comparison-classic-vs-practical",
+        "comparison-bazi-vs-language"
+      ],
+      "content": "好名字要在儿童、学生、成年和正式证件场景中都能自然使用。 把候选放进点名、自我介绍、签名、邮件地址和电话口述场景。检查常见昵称、首字母、重复解释成本和书写密度；文化寓意与日常便利需要共同决策。"
+    },
+    {
+      "id": "concept-cultural-context:chunk-1",
+      "pageId": "concept-cultural-context",
+      "chunkIndex": 1,
+      "title": "古今语境",
+      "category": "guide",
+      "tag": "文化语境",
+      "source": "本地知识库·编辑规范",
+      "type": "concept",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "古义",
+        "今义",
+        "语境",
+        "情绪",
+        "现代联想"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-direct-or-inspired"
+      ],
+      "backlinks": [
+        "source-zhouyi",
+        "source-liji",
+        "source-shijing",
+        "source-chuci",
+        "source-tang-poetry",
+        "source-song-ci",
+        "concept-source-verification",
+        "comparison-classic-vs-practical",
+        "source-thirteen-classics",
+        "source-complete-song"
+      ],
+      "content": "古典字词的原义、篇章情绪和现代联想需要同时考察。 优美名句可能处于离别、哀伤或讽谏语境；这不必然否定取名价值，但应让家庭知情。解释时把原文语境、取名后的积极寄托与现代社会联想分开陈述。"
+    },
+    {
+      "id": "comparison-one-vs-two-character:chunk-1",
+      "pageId": "comparison-one-vs-two-character",
+      "chunkIndex": 1,
+      "title": "单字名与双字名",
+      "category": "guide",
+      "tag": "方案比较",
+      "source": "本地知识库·决策框架",
+      "type": "comparison",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "单字名",
+        "双字名",
+        "重名",
+        "长度",
+        "节奏"
+      ],
+      "links": [
+        "concept-compound-surname",
+        "concept-generation-name",
+        "concept-full-name-phonology"
+      ],
+      "backlinks": [
+        "method-g04",
+        "method-g08",
+        "concept-compound-surname",
+        "concept-generation-name"
+      ],
+      "content": "单字名简洁，双字名承载信息更多；选择取决于姓氏节奏、重名风险与字辈约束。 单字名书写和称呼利落，但组合空间较小；双字名更容易表达完整意象，也可能增加全名长度。复姓和固定字辈会显著改变两者的权衡。"
+    },
+    {
+      "id": "comparison-direct-vs-inspired:chunk-1",
+      "pageId": "comparison-direct-vs-inspired",
+      "chunkIndex": 1,
+      "title": "直取与取意怎么选",
+      "category": "guide",
+      "tag": "方案比较",
+      "source": "本地知识库·决策框架",
+      "type": "comparison",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "直取",
+        "取意",
+        "出处",
+        "组合",
+        "字辈"
+      ],
+      "links": [
+        "concept-direct-or-inspired",
+        "concept-source-verification"
+      ],
+      "backlinks": [],
+      "content": "直取证据链清楚，取意组合更自由；两者关键差别是说明是否诚实准确。 重视出处可追溯时优先原句相邻词；重视连姓音韵或字辈约束时可取意重组。无论哪种，都应保存原句和组合理由。"
+    },
+    {
+      "id": "comparison-classic-vs-practical:chunk-1",
+      "pageId": "comparison-classic-vs-practical",
+      "chunkIndex": 1,
+      "title": "古典感与实用性",
+      "category": "guide",
+      "tag": "方案比较",
+      "source": "本地知识库·决策框架",
+      "type": "comparison",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "古典",
+        "实用",
+        "文化",
+        "易读",
+        "输入"
+      ],
+      "links": [
+        "concept-standard-characters",
+        "concept-long-term-use",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "method-g06",
+        "concept-direct-or-inspired",
+        "concept-gender-temperament",
+        "concept-long-term-use"
+      ],
+      "content": "典籍出处提供文化深度，规范、易读和长期使用决定日常成本。 不必在文化与实用之间二选一。先排除明显误引、难输入和不雅谐音，再在合格候选中比较意境；若家人长期需要解释读音，应明确接受这一成本。"
+    },
+    {
+      "id": "comparison-bazi-vs-language:chunk-1",
+      "pageId": "comparison-bazi-vs-language",
+      "chunkIndex": 1,
+      "title": "八字偏好与音形义",
+      "category": "guide",
+      "tag": "方案比较",
+      "source": "本地知识库·决策框架",
+      "type": "comparison",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "八字",
+        "五行",
+        "音形义",
+        "排序",
+        "民俗"
+      ],
+      "links": [
+        "concept-bazi-boundary",
+        "concept-five-elements",
+        "concept-full-name-phonology",
+        "concept-long-term-use"
+      ],
+      "backlinks": [
+        "concept-bazi-boundary",
+        "concept-five-elements"
+      ],
+      "content": "八字五行只能作为可选民俗偏好，音、形、义和真实使用应是基础门槛。 先保证出处可靠、连姓顺口、字形可用、含义合适，再对符合门槛的候选应用用户指定的五行偏好排序。不要为了某一归类牺牲明显的读写体验。"
+    },
+    {
+      "id": "source-thirteen-classics:chunk-1",
+      "pageId": "source-thirteen-classics",
+      "chunkIndex": 1,
+      "title": "完整四书五经与十三经语料",
+      "category": "classics",
+      "tag": "完整原文",
+      "source": "gujilab/chinese-classical-corpus · CC0",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "四书",
+        "五经",
+        "十三经",
+        "完整原文",
+        "尚书",
+        "礼记",
+        "周易",
+        "春秋"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "source-shijing"
+      ],
+      "content": "本机原文库用 CC0 结构化语料补齐四书、五经与十三经，并按篇章检索。 四书为《大学》《中庸》《论语》《孟子》；五经按《诗经》《尚书》《礼记》《周易》《春秋》处理，其中春秋材料以左传、公羊传、穀梁传分篇保存。原文库保留上游来源与许可，编辑性起名解释仍由 Wiki 页承担。"
+    },
+    {
+      "id": "source-complete-tang:chunk-1",
+      "pageId": "source-complete-tang",
+      "chunkIndex": 1,
+      "title": "《全唐诗》本地原文库",
+      "category": "tang",
+      "tag": "完整原文",
+      "source": "chinese-poetry/chinese-poetry · MIT",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "全唐诗",
+        "唐诗",
+        "57500",
+        "完整原文",
+        "全文检索"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-direct-or-inspired"
+      ],
+      "backlinks": [
+        "source-tang-poetry"
+      ],
+      "content": "本机索引收录上游《全唐诗》数据 57,600 条作品记录。 数据按每个 JSON 文件约一千首解析，保留作者、题目、正文和原始文件路径。上游明确提示仍可能存在重出、误收或文字错误，因此检索命中可用于发现候选，正式引用仍需复核可靠版本。"
+    },
+    {
+      "id": "source-complete-song:chunk-1",
+      "pageId": "source-complete-song",
+      "chunkIndex": 1,
+      "title": "全宋诗与全宋词本地原文库",
+      "category": "song",
+      "tag": "完整原文",
+      "source": "chinese-poetry/chinese-poetry · MIT",
+      "type": "source",
+      "status": "review",
+      "verified": false,
+      "recordId": "",
+      "keywords": [
+        "全宋诗",
+        "全宋词",
+        "宋诗",
+        "宋词",
+        "完整原文",
+        "全文检索"
+      ],
+      "links": [
+        "concept-source-verification",
+        "concept-cultural-context"
+      ],
+      "backlinks": [
+        "source-song-ci"
+      ],
+      "content": "本机索引收录 254,195 条宋诗和 21,049 条宋词记录。 宋诗与宋词分属不同检索类别，避免把词牌作品混作诗。作品保存作者、题目或词牌、正文和上游文件路径；发现异文时应回到可靠版本核验。"
+    },
+    {
+      "id": "concept-modern-copyright:chunk-1",
+      "pageId": "concept-modern-copyright",
+      "chunkIndex": 1,
+      "title": "近现代作品授权边界",
+      "category": "guide",
+      "tag": "版权与授权",
+      "source": "《中华人民共和国著作权法》第二十三条",
+      "type": "concept",
+      "status": "verified",
+      "verified": true,
+      "recordId": "",
+      "keywords": [
+        "毛泽东诗词",
+        "近现代",
+        "著作权",
+        "授权",
+        "目录",
+        "全文"
+      ],
+      "links": [
+        "concept-source-verification"
+      ],
+      "backlinks": [],
+      "content": "近现代作者作品不能仅因能在网上找到，就默认可以整套复制进本地知识库。 自然人作品相关财产权一般保护至作者死亡后第五十年的十二月三十一日。程序对毛泽东诗词默认只保存目录元数据，不内置全文；用户取得合法授权后，可把文本放入 authorized 目录在本机建索引。"
+    }
+  ]
+}
