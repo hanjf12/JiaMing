@@ -19,10 +19,12 @@ function json(data: unknown, status = 200) {
 
 function configuration() {
   const provider = (process.env.AI_PROVIDER || "ollama").toLowerCase();
+  const model = process.env.AI_MODEL || "";
   return {
     provider,
     baseUrl: (process.env.AI_BASE_URL || "http://127.0.0.1:11434").replace(/\/+$/, ""),
-    model: process.env.AI_MODEL || "qwen3:4b",
+    model,
+    configured: Boolean(model),
     apiKey: process.env.AI_API_KEY || "",
   };
 }
@@ -77,9 +79,9 @@ function sanitizeBody(body: Record<string, unknown>) {
 export async function GET() {
   const config = configuration();
   return json({
-    configured: Boolean(config.model),
+    configured: config.configured,
     provider: config.provider,
-    model: config.model,
+    model: config.model || "未配置",
     privacy: "模型服务地址仅由服务端环境变量配置",
   });
 }
@@ -100,6 +102,9 @@ export async function POST(request: Request) {
   if (!body.question) return json({ error: "请输入问题" }, 400);
 
   const config = configuration();
+  if (!config.configured) {
+    return json({ error: "托管环境未配置模型，请使用本地知识库模式" }, 503);
+  }
   const contextText = body.context.length
     ? body.context.map((item) =>
         `[${item.index}] ${item.title}\n来源：${item.source}\n${item.content}`,
