@@ -23,8 +23,6 @@
     "wiki:lint": "node scripts/lint-wiki.mjs",
     "wiki:check": "npm run wiki:build && npm run wiki:lint",
     "corpus:sync": "node scripts/sync-corpus.mjs",
-    "corpus:build": "node scripts/build-corpus.mjs",
-    "corpus:status": "node scripts/corpus-status.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run wiki:lint && npm test"
   },

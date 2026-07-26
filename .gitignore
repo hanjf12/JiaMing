@@ -16,9 +16,8 @@
 /config.local.json
 /config/local-agent.json
 
-# Local corpus checkout and generated SQLite index
+# Local corpus checkout
 /knowledge/corpus/vendor/
-/knowledge/corpus/classics.sqlite
 /knowledge/corpus/*.log
 
 # Editors and operating systems

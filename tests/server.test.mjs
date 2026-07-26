@@ -60,6 +60,9 @@ test("local server exposes the page, status, tools, and chat endpoint", async ()
       ["file_find", "file_grep", "file_read"],
     );
 
+    const removedSearch = await fetch(`${base}/api/kb/search?q=清欢`);
+    assert.equal(removedSearch.status, 404);
+
     const chat = await fetch(`${base}/api/chat`, {
       method: "POST",
       headers: { "content-type": "application/json" },

@@ -52,7 +52,7 @@ rg -n -i -m 20 "连姓|音韵" knowledge/wiki knowledge/llms.txt
 rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
 ```
 
-读取命中页时，Windows 使用 `Get-Content`，macOS 使用 `sed`；没有 `rg` 时分别回退到 `Get-ChildItem / Select-String` 或 `find / grep`。详细路径和限制见 [`knowledge/README.md`](../knowledge/README.md)。SQLite 只供网页本地诊断检索，LLM Agent 不读取数据库。
+读取命中页时，Windows 使用 `Get-Content`，macOS 使用 `sed`；没有 `rg` 时分别回退到 `Get-ChildItem / Select-String` 或 `find / grep`。详细路径和限制见 [`knowledge/README.md`](../knowledge/README.md)。所有问答都走 LLM Agent；调用失败会直接返回错误，不使用本地规则或数据库降级回答。
 
 Windows 后台服务显式使用官方的 `windows.sandbox = "unelevated"` 回退模式，避免依赖桌面 App 的 elevated sandbox 会话；它仍使用受限令牌和 ACL 边界。若希望使用更强的 elevated 模式，可先在 Codex App 中完成管理员批准的沙箱设置，再自行调整这一项目默认值。参考 [Windows sandbox](https://developers.openai.com/codex/windows)。
 

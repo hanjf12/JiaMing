@@ -9,7 +9,7 @@
 - 中文单姓、复姓，单字名和双字名。
 - 典籍偏好、性别气质、包含字、避开字、收藏与导出。
 - 接受用户已确认的出生四柱和五行用字倾向，仅作传统文化偏好。
-- 105 页互链 Wiki 与 345,579 条本机经典原文索引。
+- 105 页互链 Wiki，以及可按需同步的历代经典原始语料。
 - Agent 采用“原文直取、同篇化用、跨典合意”三条候选路线，先扩展候选池，再按出处、语境、连姓音韵与长期使用成本筛选。
 - 问答中的姓名卡片会标明构成方式、原句、组合理由、音律和风险提醒，不用本地文件路径干扰选择。
 - 统一 Agent 链路：直接用 `read / grep / find` 等只读 Shell 命令查看文件知识库，不启动 MCP。
@@ -21,7 +21,7 @@
 ## 环境要求
 
 - Git，用于克隆和更新仓库。
-- Node.js 22.13 或更高版本；项目使用 Node 内置的 `node:sqlite`。
+- Node.js 22.13 或更高版本。
 - 最新版 Codex CLI；两种模式都使用它提供 Agent 循环、结构化输出和只读 Shell。
 - Codex 订阅模式需要有效的 ChatGPT/Codex 登录。
 - 第三方模式要求端点兼容 OpenAI Responses API，并支持工具调用与结构化输出。
@@ -140,7 +140,7 @@ OPENAI_API_KEY=你的密钥
 
 ## 知识库
 
-仓库内包含 Wiki、构建脚本与少量编辑资料。因体积和上游许可差异，完整上游仓库与生成的 SQLite 索引不提交：
+仓库内包含 Wiki、构建脚本与少量编辑资料。因体积和上游许可差异，完整上游仓库不提交：
 
 ```text
 knowledge/
@@ -155,22 +155,13 @@ knowledge/
 └── corpus/
     ├── catalog.md         # 完整语料路径表
     ├── vendor/             # 上游仓库，本机忽略
-    ├── authorized/         # 用户有权使用的资料
-    ├── classics.sqlite     # 网页诊断检索索引
-    └── manifest.json
+    └── authorized/         # 用户有权使用的资料
 ```
 
-同步公开上游语料并重建索引：
+同步公开上游原始语料：
 
 ```bash
 npm run corpus:sync
-```
-
-只重建已有本地语料：
-
-```bash
-npm run corpus:build
-npm run corpus:status
 ```
 
 近现代仍受著作权保护的全文不会随项目分发。仅可将你有权使用的材料放入 `knowledge/corpus/authorized/`，并自行承担授权责任。
@@ -207,7 +198,7 @@ sed -n '1,220p' knowledge/wiki/concepts/concept-full-name-phonology.md
 ./start-macos.command --lan
 ```
 
-同一可信网络中的设备可访问 `http://本机IPv4:4318/`。默认情况下，远端设备只能使用网页和本地检索，不能消耗 Codex 订阅或模型 API。只有明确设置 `JIAMING_ALLOW_LAN_AGENT=true` 才开放远端模型调用。不要直接把端口暴露到公网。
+同一可信网络中的设备可访问 `http://本机IPv4:4318/`。默认情况下，远端设备不能调用 Agent；页面不会降级生成本地回答。只有明确设置 `JIAMING_ALLOW_LAN_AGENT=true` 才开放远端模型调用。不要直接把端口暴露到公网。
 
 ## 开发与校验
 
@@ -223,9 +214,9 @@ npm run check
 ```text
 public/       单文件前端
 src/          服务、统一 Codex Agent、Shell 知识接口
-scripts/      Wiki 与原文库维护命令
+scripts/      Wiki 与原始语料维护命令
 schemas/      LLM 结构化输出 Schema
-knowledge/    本地 Wiki 和语料索引
+knowledge/    本地 Wiki 和原始语料
 tests/        Node 内置测试
 docs/         配置与调研文档
 ```
@@ -234,10 +225,11 @@ docs/         配置与调研文档
 
 - Codex 运行在只读沙箱和临时会话中，并使用 `approval_policy=never` 禁止请求跳出沙箱。
 - 每次执行把 Codex MCP 配置覆盖为空，并关闭插件、应用等无关能力。
-- Agent 只能读取 `knowledge/`，使用文件发现、文本检索和局部读取命令，不运行项目脚本或打开 SQLite。
+- Agent 只能读取 `knowledge/`，使用文件发现、文本检索和局部读取命令，不运行项目脚本。
+- Agent 调用失败时直接返回配置或连接错误，不使用规则模板或本地检索生成降级答案。
 - 不凭模型记忆伪造原句、作者或出处，找不到时应明确说明。
 - 八字和五行不被当作科学预测，不自动判断喜用神，不断言吉凶。
-- `.env`、`config.local.json`、本地语料和 SQLite 索引均已忽略，提交前仍请自行检查敏感信息。
+- `.env`、`config.local.json` 和本地同步语料均已忽略，提交前仍请自行检查敏感信息。
 
 ## 许可证
 

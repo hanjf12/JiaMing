@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { ROOT, loadConfig } from "../src/config.mjs";
@@ -94,21 +94,15 @@ if (config.provider === "third-party") {
   failed ||= !endpointOk;
 }
 
-const manifestPath = join(ROOT, "knowledge", "corpus", "manifest.json");
-let corpusDetail = "清单不存在";
-let corpusOk = false;
-if (existsSync(manifestPath)) {
-  try {
-    const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
-    const documents = Number(manifest.documents || manifest.totalDocuments || 0);
-    corpusDetail = documents
-      ? `${documents.toLocaleString("zh-CN")} 条原文记录`
-      : "基础 Wiki 可用；完整原文库可按需同步";
-    corpusOk = true;
-  } catch {
-    corpusDetail = "清单无法解析";
-  }
-}
+const wikiPath = join(ROOT, "knowledge", "llms.txt");
+const catalogPath = join(ROOT, "knowledge", "corpus", "catalog.md");
+const vendorPath = join(ROOT, "knowledge", "corpus", "vendor");
+const corpusOk = existsSync(wikiPath) && existsSync(catalogPath);
+const corpusDetail = corpusOk
+  ? existsSync(vendorPath)
+    ? "Wiki 与上游原始语料可用"
+    : "基础 Wiki 可用；完整原始语料可按需同步"
+  : "缺少 knowledge/llms.txt 或语料路径表";
 line(corpusOk, "本地知识库", corpusDetail);
 failed ||= !corpusOk;
 

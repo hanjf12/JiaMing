@@ -53,4 +53,4 @@ rg -n -F -m 8 -B 5 -A 5 "博学之，审问之，慎思之" knowledge/corpus/ven
 rg -n -F -m 8 "沁园春·长沙" knowledge/corpus/modern-catalog.json
 ```
 
-`classics.sqlite` 仍为网页的快速全文诊断服务保留，但 LLM Agent 不读取数据库；Agent 的证据链来自上述可直接检查的文件路径和行号。
+Agent 的证据链来自上述可直接检查的文件路径和行号。项目不维护数据库索引或脱离模型的本地回答链路。

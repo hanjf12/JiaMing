@@ -7,8 +7,7 @@
 1. `llms.txt`：约一万字的精炼入口，列出所有 Wiki 页面和用途；优先 grep 定位，不要每次完整输出。
 2. `wiki/index.md`：按来源、概念、比较、方法和姓名组织的互链目录。
 3. `corpus/catalog.md`：四书五经、十三经及历代诗词的实际文件路径。
-4. `corpus/manifest.json`：本机语料数量与构建状态。
-5. `llms-full.txt`：全部 Wiki 的合并文本，只在确实需要整体上下文时读取。
+4. `llms-full.txt`：全部 Wiki 的合并文本，只在确实需要整体上下文时读取。
 
 ## Agent 的三步检索
 
@@ -76,10 +75,8 @@ knowledge/
 ├── runtime/              # 浏览器用的编译检索包
 └── corpus/
     ├── catalog.md        # 语料路径表
-    ├── manifest.json     # 构建统计
     ├── vendor/           # 上游原始 JSON，本机同步
-    ├── authorized/       # 用户有权使用的近现代文本
-    └── classics.sqlite   # 仅供网页诊断检索，不供 Agent 使用
+    └── authorized/       # 用户有权使用的近现代文本
 ```
 
 ## 引用与版权

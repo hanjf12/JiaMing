@@ -68,4 +68,4 @@ syncRepository({
   branch: "main",
   patterns: ["/output/sishu/", "/output/wujing/", "/output/shisanjing/", "/LICENSE", "/README.md"],
 });
-run(process.execPath, [path.join(ROOT, "scripts", "build-corpus.mjs")]);
+process.stdout.write("原始语料同步完成；LLM Agent 将通过只读 Shell 直接检索这些文件。\n");

@@ -7,7 +7,7 @@
 | 依赖 | 要求 | 是否必需 | 用途 |
 | --- | --- | --- | --- |
 | Git | 当前稳定版 | 克隆时需要 | 获取项目与后续更新 |
-| Node.js | 22.13.0 或更高 | 必需 | HTTP 服务、Wiki 构建、测试及内置 SQLite |
+| Node.js | 22.13.0 或更高 | 必需 | HTTP 服务、Wiki 构建与测试 |
 | Codex CLI | 建议安装最新版 | 必需 | 两种模型模式统一使用的 Agent、结构化输出与只读 Shell |
 | ChatGPT/Codex 登录 | 有效订阅 | 仅 Codex 订阅模式 | 使用订阅额度，不需要 API Key |
 | Responses 兼容模型接口 | 支持工具调用与结构化输出 | 仅第三方模式 | 自定义模型服务 |
@@ -243,17 +243,13 @@ JIAMING_ALLOW_LAN_AGENT=true
 
 ## 8. 完整语料与开发检查
 
-仓库自带 Wiki 和语料清单，可直接启动。下载公开上游完整语料并构建本地索引：
+仓库自带 Wiki，可直接启动。下载公开上游完整原始语料：
 
 ```bash
 npm run corpus:sync
 ```
 
-只重建已有语料：
-
-```bash
-npm run corpus:build
-```
+Agent 通过只读 Shell 直接检索同步后的 JSON 和 Markdown 文件，不构建数据库索引。模型不可用时页面会显示错误，不生成本地降级回答。
 
 运行全部检查：
 

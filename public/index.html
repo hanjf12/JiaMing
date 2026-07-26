@@ -970,19 +970,12 @@
           <div class="agent-status">
             <strong><i class="status-dot" aria-hidden="true"></i><span id="ai-status">模型检测中</span></strong>
             <span><span id="kb-count">0</span> 个 Wiki 页面</span>
-            <span id="kb-health">索引准备中</span>
+            <span id="kb-health">文件知识库</span>
             <span id="custom-count">自建 0</span>
           </div>
           <details class="agent-settings">
             <summary>检索与知识库设置</summary>
             <div class="agent-settings-panel">
-              <div class="field">
-                <div class="label-line"><label for="chat-mode">回答模式</label></div>
-                <select class="select" id="chat-mode">
-                  <option value="agent" selected>LLM Agent（自主检索）</option>
-                  <option value="local">仅本地检索（诊断）</option>
-                </select>
-              </div>
               <div class="field">
                 <div class="label-line"><label for="retrieval-scope">检索范围</label></div>
                 <select class="select" id="retrieval-scope">
@@ -1185,7 +1178,6 @@
       const chatInput = document.getElementById("chat-input");
       const messages = document.getElementById("messages");
       const sendBtn = document.getElementById("send-btn");
-      const chatMode = document.getElementById("chat-mode");
       const retrievalScope = document.getElementById("retrieval-scope");
       const topKSelect = document.getElementById("top-k");
       const strictCitations = document.getElementById("strict-citations");
@@ -1203,7 +1195,6 @@
       let customKnowledge = loadCustomKnowledge();
       let chatHistory = loadChatHistory();
       let aiInfo = {configured:false, provider:"", model:""};
-      let corpusInfo = {available:false, documents:0};
       let chatPending = false;
 
       function loadFavorites() {
@@ -1360,67 +1351,6 @@
         scored.sort((a,b) => b.score - a.score);
         return scored.slice(0, topK);
       }
-      async function retrieveFullCorpus(query) {
-        if (location.protocol === "file:") return [];
-        const params = new URLSearchParams({
-          q:query,
-          scope:retrievalScope.value,
-          limit:topKSelect.value
-        });
-        try {
-          const response = await fetch(`/api/kb/search?${params}`);
-          if (!response.ok) return [];
-          const data = await response.json();
-          return (data.results || []).map(doc => ({doc, score:doc.score || 1, corpus:true}));
-        } catch (_) {
-          return [];
-        }
-      }
-      function mergeKnowledgeHits(localHits, corpusHits) {
-        const limit = Number(topKSelect.value) || 5;
-        const ordered = retrievalScope.value === "corpus" ||
-          ["song-poetry","five-dynasties","yuan","qing","modern","han-wei"].includes(retrievalScope.value)
-          ? corpusHits
-          : [...localHits.slice(0,3), ...corpusHits, ...localHits.slice(3)];
-        const seen = new Set();
-        return ordered.filter(hit => {
-          const key = `${hit.doc.title}|${hit.doc.source}`;
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        }).slice(0, limit);
-      }
-      function extractSurname(question) {
-        const before = question.match(/([\u3400-\u9fff]{1,2})姓(?:男孩|女孩|男宝|女宝|宝宝)?/);
-        if (before) return before[1];
-        const after = question.match(/姓(?:氏是|氏为|是|为)?([\u3400-\u9fff]{1,2})/);
-        if (after) return after[1];
-        return document.getElementById("surname").value.trim() || "林";
-      }
-      function localAnswer(question, hits) {
-        if (!hits.length) {
-          return "这次没有检索到足够相关的知识。可以换一种说法，或把检索范围改成“全部知识”；也可以导入自己的家族字辈和用字要求后再问。";
-        }
-        const methodQuestion = /怎样|如何|注意|兼顾|方法|原则|谐音|生僻|户籍|字辈|比较|八字|五行|声调|复姓|多音字/.test(question);
-        const guideHits = hits.filter(hit => hit.doc.type !== "name");
-        const nameHits = hits.filter(hit => hit.doc.type === "name");
-        if (methodQuestion && guideHits.length) {
-          return `我从起名方法知识中整理出以下要点：\n\n${guideHits.slice(0,4).map((hit, index) =>
-            `${index + 1}. ${hit.doc.title}：${hit.doc.content} [${index + 1}]`
-          ).join("\n\n")}\n\n建议把文化出处、连姓音韵、方言谐音和长期使用便利性一起判断。`;
-        }
-        if (nameHits.length) {
-          const surname = extractSurname(question);
-          const picks = nameHits.slice(0,4);
-          return `我从本地典籍库中检索到 ${picks.length} 个较贴近描述的候选：\n\n${picks.map((hit, index) => {
-            const item = hit.doc.item;
-            return `${index + 1}. ${surname}${item.n}（${item.p}）\n出处：${item.work}，“${item.q}”\n寓意：${item.m} [${index + 1}]`;
-          }).join("\n\n")}\n\n可以再告诉我希望避开的字、方言地区或家族字辈，我会继续缩小范围。`;
-        }
-        return `检索到以下相关知识：\n\n${hits.slice(0,4).map((hit, index) =>
-          `${index + 1}. ${hit.doc.title}：${hit.doc.content} [${index + 1}]`
-        ).join("\n\n")}`;
-      }
       function citationMarkup(citations) {
         if (!citations || !citations.length) return "";
         return `<div class="citations"><div class="citation-title">Agent 引用来源</div>${citations.map((item, index) =>
@@ -1488,21 +1418,10 @@
       }
       function refreshKnowledgeStats() {
         kbCount.textContent = WIKI_META.pages || knowledgeDocuments().length - customKnowledge.length;
-        document.getElementById("kb-health").textContent = corpusInfo.available
-          ? `原文 ${Number(corpusInfo.documents).toLocaleString("zh-CN")} · Wiki ${WIKI_META.chunks} 块`
-          : WIKI_META.chunks
-            ? `${WIKI_META.chunks} 块 · ${WIKI_META.links} 关联`
-            : "兼容索引";
+        document.getElementById("kb-health").textContent = WIKI_META.chunks
+          ? `${WIKI_META.chunks} 块 · Shell 检索`
+          : "文件知识库";
         customCount.textContent = `自建 ${customKnowledge.length}`;
-      }
-      async function checkCorpusStatus() {
-        if (location.protocol === "file:") return;
-        try {
-          const response = await fetch("/api/kb/status", {headers:{accept:"application/json"}});
-          if (!response.ok) return;
-          corpusInfo = await response.json();
-          refreshKnowledgeStats();
-        } catch (_) {}
       }
       async function checkAIStatus() {
         if (location.protocol === "file:") {
@@ -1585,7 +1504,6 @@
             context,
             strict:strictCitations.checked,
             profile:profileContext(true),
-            requestedMode:chatMode.value,
             retrievalScope:retrievalScope.value,
             topK:Number(topKSelect.value) || 6
           })
@@ -1614,56 +1532,35 @@
         let answer = "";
         let citations = [];
         let nameCards = [];
-        if (chatMode.value === "agent") {
-          retrievalStatus.textContent = "LLM Agent 正在自主规划检索";
-          const progressTimers = [
-            setTimeout(() => {
-              if (chatPending) retrievalStatus.textContent = "Codex 正在连接模型并准备检索，请稍候";
-            }, 15_000),
-            setTimeout(() => {
-              if (chatPending) retrievalStatus.textContent = "首次连接可能较慢，正在尝试兼容传输";
-            }, 60_000),
-          ];
-          const customHits = retrieveKnowledge(retrievalQuery)
-            .filter(hit => hit.doc.type === "custom")
-            .slice(0, Number(topKSelect.value) || 6);
-          try {
-            const result = await callAI(value, customHits);
-            answer = result.answer;
-            citations = Array.isArray(result.citations) ? result.citations : [];
-            nameCards = Array.isArray(result.nameCards) ? result.nameCards : [];
-            const tools = Array.isArray(result.toolsUsed) ? result.toolsUsed : [];
-            const toolLabels = {file_find:"find", file_grep:"grep", file_read:"read"};
-            retrievalStatus.textContent = tools.length
-              ? `Agent 已使用 ${tools.map(tool => toolLabels[tool] || tool).join("、")}，引用 ${citations.length} 条资料`
-              : `Agent 已完成回答，引用 ${citations.length} 条资料`;
-          } catch (err) {
-            const localHits = retrieveKnowledge(retrievalQuery);
-            const corpusHits = await retrieveFullCorpus(retrievalQuery);
-            const hits = mergeKnowledgeHits(localHits, corpusHits);
-            answer = `Codex Agent 本次连接未完成，已自动改用本地知识库回答。\n\n${localAnswer(value, hits)}`;
-            citations = hits.map(hit => ({
-              title:hit.doc.title,
-              source:hit.doc.source,
-              verified:hit.doc.verified
-            }));
-            retrievalStatus.textContent = `Agent 连接未完成 · 已使用 ${hits.length} 条本地结果`;
-            showToast("Agent 连接未完成，已自动切换本地检索");
-          } finally {
-            progressTimers.forEach(clearTimeout);
-          }
-        } else {
-          retrievalStatus.textContent = "正在执行诊断性本地检索";
-          const localHits = retrieveKnowledge(retrievalQuery);
-          const corpusHits = await retrieveFullCorpus(retrievalQuery);
-          const hits = mergeKnowledgeHits(localHits, corpusHits);
-          answer = localAnswer(value, hits);
-          citations = hits.map(hit => ({
-            title:hit.doc.title,
-            source:hit.doc.source,
-            verified:hit.doc.verified
-          }));
-          retrievalStatus.textContent = `诊断检索使用 ${hits.length} 条结果`;
+        retrievalStatus.textContent = "LLM Agent 正在自主规划检索";
+        const progressTimers = [
+          setTimeout(() => {
+            if (chatPending) retrievalStatus.textContent = "Codex 正在连接模型并准备检索，请稍候";
+          }, 15_000),
+          setTimeout(() => {
+            if (chatPending) retrievalStatus.textContent = "首次连接可能较慢，正在尝试兼容传输";
+          }, 60_000),
+        ];
+        const customHits = retrieveKnowledge(retrievalQuery)
+          .filter(hit => hit.doc.type === "custom")
+          .slice(0, Number(topKSelect.value) || 6);
+        try {
+          const result = await callAI(value, customHits);
+          answer = result.answer;
+          citations = Array.isArray(result.citations) ? result.citations : [];
+          nameCards = Array.isArray(result.nameCards) ? result.nameCards : [];
+          const tools = Array.isArray(result.toolsUsed) ? result.toolsUsed : [];
+          const toolLabels = {file_find:"find", file_grep:"grep", file_read:"read"};
+          retrievalStatus.textContent = tools.length
+            ? `Agent 已使用 ${tools.map(tool => toolLabels[tool] || tool).join("、")}，引用 ${citations.length} 条资料`
+            : `Agent 已完成回答，引用 ${citations.length} 条资料`;
+        } catch (err) {
+          const reason = err instanceof Error ? err.message : "模型调用失败";
+          answer = `Agent 调用失败：${reason}\n\n请检查 Codex 登录或第三方 Responses 模型配置后重试。`;
+          retrievalStatus.textContent = "Agent 调用失败 · 未生成降级回答";
+          showToast("Agent 调用失败，请检查模型配置");
+        } finally {
+          progressTimers.forEach(clearTimeout);
         }
         chatHistory.push({role:"assistant", content:answer, citations, nameCards});
         chatHistory = chatHistory.slice(-20);
@@ -1954,18 +1851,11 @@
         saveChatHistory();
         renderMessages();
       });
-      chatMode.addEventListener("change", () => {
-        if (chatMode.value !== "local" && location.protocol === "file:") {
-          showToast("请先运行本机启动脚本开启模型服务");
-        }
-        checkAIStatus();
-      });
       saveFavorites();
       generate(false);
       refreshKnowledgeStats();
       renderMessages();
       checkAIStatus();
-      checkCorpusStatus();
     })();
   </script>
 </body>

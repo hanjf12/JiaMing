@@ -4,7 +4,6 @@ import { createServer } from "node:http";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadConfig, ROOT } from "./config.mjs";
-import { corpusStatus, searchCorpus } from "./corpus.mjs";
 import { KNOWLEDGE_SHELL_COMMANDS } from "./knowledge-shell.mjs";
 import { sanitizeRequest } from "./prompt.mjs";
 import { agentStatus, askAgent } from "./providers/agent.mjs";
@@ -80,13 +79,13 @@ async function readJson(request) {
 function remoteStatus(config) {
   return {
     configured: false,
-    provider: "本地知识库",
+    provider: config.provider,
     model: `局域网设备默认不开放 ${
       config.provider === "codex" ? "Codex 订阅" : "第三方模型"
     }`,
-    apiStyle: "仅本地检索",
+    apiStyle: "LLM Agent",
     auth: "受保护",
-    detail: "取名表单与本地原文检索仍可使用；如确需开放，请在可信网络中设置 JIAMING_ALLOW_LAN_AGENT=1。",
+    detail: "未启用局域网 Agent 调用；请在可信网络中设置 JIAMING_ALLOW_LAN_AGENT=1。",
   };
 }
 
@@ -123,16 +122,6 @@ export function createAppServer(
       }
     }
 
-    if (request.method === "GET" && url.pathname === "/api/kb/status") {
-      try {
-        return responseJson(response, corpusStatus());
-      } catch (error) {
-        return responseJson(response, {
-          error: error instanceof Error ? error.message : "知识库状态读取失败",
-        }, 500);
-      }
-    }
-
     if (
       request.method === "GET"
       && ["/api/agent/shell", "/api/agent/tools"].includes(url.pathname)
@@ -146,26 +135,10 @@ export function createAppServer(
       });
     }
 
-    if (request.method === "GET" && url.pathname === "/api/kb/search") {
-      try {
-        const query = String(url.searchParams.get("q") || "").trim().slice(0, 600);
-        if (!query) return responseJson(response, { results: [] });
-        const results = searchCorpus(query, {
-          scope: String(url.searchParams.get("scope") || "all").slice(0, 40),
-          limit: Math.max(1, Math.min(Number(url.searchParams.get("limit")) || 5, 20)),
-        });
-        return responseJson(response, { results });
-      } catch (error) {
-        return responseJson(response, {
-          error: error instanceof Error ? error.message : "原文库检索失败",
-        }, 500);
-      }
-    }
-
     if (request.method === "POST" && url.pathname === "/api/chat") {
       if (!isLoopbackRequest(request) && !config.server.allowLanAgent) {
         return responseJson(response, {
-          error: "为保护本机订阅或模型凭据，局域网设备默认不能调用 LLM；请使用本地知识库模式。",
+          error: "为保护本机订阅或模型凭据，局域网设备默认不能调用 LLM；如需使用，请在可信网络中启用 JIAMING_ALLOW_LAN_AGENT=1。",
         }, 403);
       }
       if (busy) {

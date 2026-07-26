@@ -7,7 +7,7 @@ MIT License 仅覆盖本项目程序代码和项目作者自行编写、且有�
 - `chinese-poetry/chinese-poetry`
 - `gujilab/chinese-classical-corpus`
 
-使用、再分发或修改这些资料时，应阅读对应上游仓库随附的许可证、说明与来源信息。`knowledge/corpus/vendor/` 和生成的 `knowledge/corpus/classics.sqlite` 不随本仓库提交。
+使用、再分发或修改这些资料时，应阅读对应上游仓库随附的许可证、说明与来源信息。`knowledge/corpus/vendor/` 不随本仓库提交。
 
 `knowledge/corpus/authorized/` 仅用于用户自行放置有合法使用权的资料。提交者应确认资料已经进入公有领域、采用兼容许可证，或已取得必要授权。
 

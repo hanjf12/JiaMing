@@ -31,15 +31,15 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.match(html, /第二步 · 问答主入口/);
   assert.match(html, /左侧资料会自动带入每次提问/);
   assert.match(html, /data-ask-name/);
-  assert.match(html, /已自动改用本地知识库回答/);
+  assert.match(html, /未生成降级回答/);
   assert.match(html, /function cardSourceText/);
   assert.match(html, /function compositionModeLabel/);
   assert.match(html, /构成说明/);
   assert.match(html, /跨典合意/);
   assert.match(html, /const references = hasNameCards \? "" : citationMarkup/);
-  assert.match(html, /LLM Agent（自主检索）/);
+  assert.match(html, /LLM Agent 正在自主规划检索/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
-  assert.doesNotMatch(html, /value="codex"|本机 Codex Agent/);
+  assert.doesNotMatch(html, /value="codex"|本机 Codex Agent|仅本地检索|\/api\/kb\/search/);
   assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+stylesheet/);
 });
 
@@ -121,6 +121,8 @@ test("package has no third-party runtime dependencies", async () => {
   assert.equal(pkg.license, "MIT");
   assert.equal(pkg.repository.url, "git+https://github.com/hanjf12/JiaMing.git");
   assert.equal(pkg.scripts.doctor, "node scripts/doctor.mjs");
+  assert.equal(pkg.scripts["corpus:build"], undefined);
+  assert.equal(pkg.scripts["corpus:status"], undefined);
   assert.deepEqual(pkg.dependencies || {}, {});
   assert.deepEqual(pkg.devDependencies || {}, {});
 });

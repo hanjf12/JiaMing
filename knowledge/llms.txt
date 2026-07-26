@@ -8,7 +8,6 @@
 - [总目录](wiki/index.md)
 - [概览](wiki/overview.md)
 - [完整语料路径表](corpus/catalog.md)
-- [语料构建清单](corpus/manifest.json)
 - [近现代作品目录](corpus/modern-catalog.json)
 
 ## 页面

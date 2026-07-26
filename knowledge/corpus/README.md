@@ -1,11 +1,10 @@
 # 嘉名完整原文语料库
 
-这个目录保存大规模本地原文与全文检索索引。它与 `knowledge/wiki/` 的编辑性知识页分开：
+这个目录保存大规模本地原文。它与 `knowledge/wiki/` 的编辑性知识页分开：
 
 - Wiki 负责来源、概念、候选姓名与互链关系。
 - Corpus 负责完整原文和作品级全文检索。
-- 浏览器先搜 Wiki；通过本地服务运行时，再并行搜索 SQLite Corpus。
-- LLM Agent 不打开 SQLite，而是按 `catalog.md` 用 find/grep/read 直接核对 Wiki 和上游原始文件。
+- LLM Agent 按 `catalog.md` 用 find/grep/read 直接核对 Wiki 和上游原始文件。
 
 ## 当前语料
 
@@ -20,7 +19,7 @@
 3. `authorized/`
    - 用户自己拥有授权的近现代文本。未经授权的在版权作品不随程序分发。
 
-上游原始数据位于 `vendor/`，本地索引为 `classics.sqlite`，统计见 `manifest.json`。这些大文件默认不提交到应用源码仓库，可运行 `npm run corpus:sync` 重新获取。
+上游原始数据位于 `vendor/`。这些大文件默认不提交到应用源码仓库，可运行 `npm run corpus:sync` 重新获取。
 
 ## 版权与版本说明
 
@@ -30,8 +29,6 @@
 
 ```powershell
 npm run corpus:sync
-npm run corpus:build
-npm run corpus:status
 ```
 
-构建后的全文库通过本地服务 `/api/kb/search` 查询，不会上传到在线站点。
+同步完成后，LLM Agent 使用只读 Shell 直接检索文件，不会上传到在线站点。模型不可用时应用直接显示错误，不生成本地降级回答。
