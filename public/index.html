@@ -680,14 +680,14 @@
         <div class="brand-sub">采撷千年文脉 · 为新生取一佳名</div>
       </div>
     </div>
-    <div class="local-badge">本地知识库 · 模型可配置</div>
+    <div class="local-badge">典籍常伴 · 安心寻名</div>
   </header>
 
   <main class="layout">
     <form class="panel" id="naming-form" novalidate>
       <div class="eyebrow">第一步 · 基础资料</div>
       <h1>先认识宝宝，<br>再从典籍中寻名。</h1>
-      <p class="intro">这里填写的资料会自动用于每一次问答；Agent 会据此检索 Wiki 和经典原文。</p>
+      <p class="intro">这里填写的资料会自动用于每一次问答；嘉名会据此查阅典籍，寻找有来处的名字。</p>
 
       <div class="field">
         <div class="label-line"><label for="surname">宝宝姓氏</label><span class="hint">支持单姓、复姓</span></div>
@@ -746,7 +746,7 @@
           </div>
           <label class="inline-check bazi-consent" for="share-bazi-ai">
             <input id="share-bazi-ai" type="checkbox">
-            允许将八字与五行倾向发送给当前模型
+            允许嘉名在本次回答中参考八字与五行倾向
           </label>
         </div>
       </details>
@@ -796,19 +796,19 @@
         </div>
       </details>
 
-      <button class="generate" type="submit">带着资料 · 请问典推荐</button>
-      <p class="profile-submit-note">提交后会在右侧开启一次 Agent 问答；随后可继续补充要求、比较候选或追问出处。</p>
-      <p class="privacy">出生信息与八字默认不保存；八字只有单独勾选授权后才会发送给模型。</p>
+      <button class="generate" type="submit">带着资料 · 请嘉名推荐</button>
+      <p class="profile-submit-note">提交后，嘉名会结合左侧资料给出建议；随后可继续补充要求、比较候选或追问出处。</p>
+      <p class="privacy">出生信息与八字默认不保存；八字只有单独勾选授权后才会用于本次回答。</p>
       <p class="error" id="form-error" role="alert"></p>
     </form>
 
-    <section class="assistant" id="assistant" aria-label="起名知识库对话">
+    <section class="assistant" id="assistant" aria-label="嘉名起名对话">
       <div class="chat-shell">
         <header class="chat-head">
           <div>
             <div class="eyebrow">第二步 · 问答主入口</div>
-            <h2>和“问典”一起为宝宝寻名</h2>
-            <p>左侧资料会自动带入每次提问。Agent 将直接检索本地 Wiki 与经典原文，并把推荐姓名以卡片呈现。</p>
+            <h2>和“嘉名”一起为宝宝寻名</h2>
+            <p>左侧资料会自动带入每次提问。嘉名会查阅典籍与经典原文，并把推荐姓名以卡片呈现。</p>
             <div class="profile-context" id="profile-context" aria-label="本次问答使用的资料"></div>
           </div>
           <button class="quiet-btn" id="clear-chat" type="button">清空对话</button>
@@ -816,18 +816,18 @@
 
         <div class="agent-bar">
           <div class="agent-status">
-            <strong><i class="status-dot" aria-hidden="true"></i><span id="ai-status">模型检测中</span></strong>
-            <span><span id="kb-count">0</span> 个 Wiki 页面</span>
-            <span id="kb-health">文件知识库</span>
-            <span id="custom-count">自建 0</span>
+            <strong><i class="status-dot" aria-hidden="true"></i><span id="ai-status">嘉名准备中</span></strong>
+            <span><span id="kb-count">0</span> 篇参考资料</span>
+            <span id="kb-health">典籍整理中</span>
+            <span id="custom-count">补充资料 0</span>
           </div>
           <details class="agent-settings">
-            <summary>检索与知识库设置</summary>
+            <summary>典籍与回答设置</summary>
             <div class="agent-settings-panel">
               <div class="field">
-                <div class="label-line"><label for="retrieval-scope">检索范围</label></div>
+                <div class="label-line"><label for="retrieval-scope">查阅范围</label></div>
                 <select class="select" id="retrieval-scope">
-                  <option value="all">全部知识</option>
+                  <option value="all">全部典籍</option>
                   <option value="classics">四书五经</option>
                   <option value="tang">唐诗</option>
                   <option value="song">宋词</option>
@@ -839,11 +839,11 @@
                   <option value="five-dynasties">五代诗词（本机）</option>
                   <option value="yuan">元曲（本机）</option>
                   <option value="qing">清代专题（本机）</option>
-                  <option value="custom">自建知识</option>
+                  <option value="custom">补充资料</option>
                 </select>
               </div>
               <div class="field">
-                <div class="label-line"><label for="top-k">召回条数</label></div>
+                <div class="label-line"><label for="top-k">参考数量</label></div>
                 <select class="select" id="top-k">
                   <option value="3">3 条</option>
                   <option value="5" selected>5 条</option>
@@ -852,17 +852,17 @@
               </div>
               <label class="inline-check" for="strict-citations">
                 <input id="strict-citations" type="checkbox" checked>
-                严格依据 Agent 实际检索结果
+                仅依据实际查阅的典籍与原文
               </label>
               <div class="agent-settings-wide">
-                <div class="label-line"><span class="field-label">扩充知识库</span><span class="hint">仅存本机</span></div>
+                <div class="label-line"><span class="field-label">补充参考资料</span><span class="hint">仅存本机</span></div>
                 <div class="kb-actions">
                   <label class="quiet-btn" for="kb-file" style="display:grid;place-items:center">导入 TXT / JSON</label>
                   <input class="kb-file" id="kb-file" type="file" accept=".txt,.md,.json,application/json,text/plain">
-                  <button class="quiet-btn" id="clear-kb" type="button">清空自建</button>
+                  <button class="quiet-btn" id="clear-kb" type="button">清空补充</button>
                 </div>
                 <p class="kb-small">TXT/Markdown 按空行分段；JSON 支持 title、content、source 字段。</p>
-                <p class="kb-small" id="ai-privacy">模型模式只发送当前问题、基础资料与授权内容；八字需要单独勾选。</p>
+                <p class="kb-small" id="ai-privacy">回答时只使用当前问题、基础资料与授权内容；八字需要单独勾选。</p>
               </div>
             </div>
           </details>
@@ -879,7 +879,7 @@
         <form class="composer" id="chat-form">
           <div class="composer-row">
             <textarea class="chat-input" id="chat-input" rows="2" maxlength="600" placeholder="继续补充要求，例如：希望更温润一些，避开多音字，并说明每个名字的原文语境……"></textarea>
-            <button class="send-btn" id="send-btn" type="submit">检索并回答</button>
+            <button class="send-btn" id="send-btn" type="submit">请嘉名回答</button>
           </div>
           <div class="composer-note">
             <span id="retrieval-status">左侧资料已自动关联 · 回车发送</span>
@@ -966,16 +966,16 @@
       ];
 
       const GUIDE_DOCS = [
-        {id:"g01",title:"有出处不等于生搬原句",cat:"guide",tag:"起名方法",source:"本地知识库·文化出处",content:"典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。两字在原文中相邻最清晰；若是重新组合，应明确说明是取意而不是原句直取，避免给名字附会不存在的出处。"},
-        {id:"g02",title:"姓名音韵要连姓通读",cat:"guide",tag:"起名方法",source:"本地知识库·音韵",content:"判断名字是否顺口，要把姓和名连续朗读。注意声母是否过度重复、韵母是否拗口、声调是否全部挤在同一调类。普通话顺口之外，还应让家人用常用方言多读几遍。"},
-        {id:"g03",title:"优先选择常用规范汉字",cat:"guide",tag:"起名方法",source:"本地知识库·用字",content:"文化感不等于使用生僻字。过于冷僻、容易误读或输入困难的字，可能给证件办理、入学登记和日常交流带来负担。正式确定前，应再核对当地户籍可用字规范。"},
-        {id:"g04",title:"复姓更需要控制名字节奏",cat:"guide",tag:"起名方法",source:"本地知识库·复姓",content:"欧阳、上官、司马等复姓本身已有两个音节。搭配双字名时总长度较长，可优先选择结构简洁、发音清楚的用字；搭配单字名时则要留意整体意象是否完整。"},
-        {id:"g05",title:"方言谐音需要家人共同核验",cat:"guide",tag:"起名方法",source:"本地知识库·谐音",content:"程序只能提供普通话层面的基础灵感，无法穷尽所有地区方言。候选名字应分别快速连读、倒序听读，并和常见称呼搭配，由熟悉家庭方言的人一起检查不雅谐音。"},
-        {id:"g06",title:"比较候选名的四个维度",cat:"guide",tag:"起名方法",source:"本地知识库·筛选",content:"比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。不要只依赖一个笼统分数。"},
-        {id:"g07",title:"性别气质只是偏好而非规则",cat:"guide",tag:"起名方法",source:"本地知识库·气质",content:"传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。更重要的是家庭对名字气质的认同，以及孩子未来使用时的舒适感。"},
-        {id:"g08",title:"家族字辈应先于自动推荐",cat:"guide",tag:"起名方法",source:"本地知识库·字辈",content:"如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。系统中的“期望包含”适合完成这类约束，但最终仍需家人确认。"},
-        {id:"g09",title:"八字信息需要明确授权",cat:"guide",tag:"起名方法",source:"本地知识库·隐私",content:"八字与五行归类属于传统民俗文化参考，不代表科学预测。系统只接受用户已确认的四柱和用字倾向，不擅自判断喜用神或吉凶；纯本地模式不上传、不保存，使用模型时还需用户单独勾选授权。"},
-        {id:"g10",title:"最终落名前做一次长期使用检查",cat:"guide",tag:"起名方法",source:"本地知识库·定名",content:"把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。一个好名字既要有文化来处，也要经得起长期日常使用。"}
+        {id:"g01",title:"有出处不等于生搬原句",cat:"guide",tag:"起名方法",source:"嘉名整理·文化出处",content:"典籍起名应先确认原句、篇名与作者，再判断截取后的字词是否保留原意。两字在原文中相邻最清晰；若是重新组合，应明确说明是取意而不是原句直取，避免给名字附会不存在的出处。"},
+        {id:"g02",title:"姓名音韵要连姓通读",cat:"guide",tag:"起名方法",source:"嘉名整理·音韵",content:"判断名字是否顺口，要把姓和名连续朗读。注意声母是否过度重复、韵母是否拗口、声调是否全部挤在同一调类。普通话顺口之外，还应让家人用常用方言多读几遍。"},
+        {id:"g03",title:"优先选择常用规范汉字",cat:"guide",tag:"起名方法",source:"嘉名整理·用字",content:"文化感不等于使用生僻字。过于冷僻、容易误读或输入困难的字，可能给证件办理、入学登记和日常交流带来负担。正式确定前，应再核对当地户籍可用字规范。"},
+        {id:"g04",title:"复姓更需要控制名字节奏",cat:"guide",tag:"起名方法",source:"嘉名整理·复姓",content:"欧阳、上官、司马等复姓本身已有两个音节。搭配双字名时总长度较长，可优先选择结构简洁、发音清楚的用字；搭配单字名时则要留意整体意象是否完整。"},
+        {id:"g05",title:"方言谐音需要家人共同核验",cat:"guide",tag:"起名方法",source:"嘉名整理·谐音",content:"嘉名只能提供普通话层面的基础参考，无法穷尽所有地区方言。候选名字应分别快速连读、倒序听读，并和常见称呼搭配，由熟悉家庭方言的人一起检查不雅谐音。"},
+        {id:"g06",title:"比较候选名的四个维度",cat:"guide",tag:"起名方法",source:"嘉名整理·筛选",content:"比较两个候选名时，可依次看：一是完整出处是否可靠；二是字义与整体意境是否一致；三是与姓氏连读是否清楚；四是书写、输入和长期使用是否方便。不要只依赖一个笼统分数。"},
+        {id:"g07",title:"性别气质只是偏好而非规则",cat:"guide",tag:"起名方法",source:"嘉名整理·气质",content:"传统上部分字词会被理解为刚健、温润或灵秀，但这只是审美倾向，不是固定性别规则。更重要的是家庭对名字气质的认同，以及孩子未来使用时的舒适感。"},
+        {id:"g08",title:"家族字辈应先于自动推荐",cat:"guide",tag:"起名方法",source:"嘉名整理·字辈",content:"如果家庭有明确字辈、排行字或纪念字，应先固定该字，再从典籍中寻找与其音义协调的另一个字。“期望包含”适合完成这类约束，但最终仍需家人确认。"},
+        {id:"g09",title:"八字信息需要明确授权",cat:"guide",tag:"起名方法",source:"嘉名整理·隐私",content:"八字与五行归类属于传统民俗文化参考，不代表科学预测。嘉名只接受用户已确认的四柱和用字倾向，不擅自判断喜用神或吉凶；八字信息仅在用户单独勾选授权后用于本次回答。"},
+        {id:"g10",title:"最终落名前做一次长期使用检查",cat:"guide",tag:"起名方法",source:"嘉名整理·定名",content:"把候选名分别放进儿童、学生和成年人的称呼场景中朗读；再检查常见缩写、首字母、签名书写和电子输入。一个好名字既要有文化来处，也要经得起长期日常使用。"}
       ];
       /* WIKI_BUNDLE_START */
       const WIKI_META = {"architecture":"LLM Wiki","version":"6680c56bcdb3","builtAt":"2026-07-26","pages":105,"chunks":105,"links":290,"names":62,"methods":10,"sources":12,"concepts":17,"comparisons":4,"categoryCounts":{"chuci":14,"classics":18,"guide":31,"shijing":13,"song":15,"tang":14},"typeCounts":{"comparison":4,"concept":17,"method":10,"name":62,"source":12}};
@@ -1019,7 +1019,7 @@
         } catch (_) {}
         return [{
           role:"assistant",
-          content:"你好，我是“问典”。左侧宝宝资料会自动用于每次提问。我会通过只读 Shell 检索本地 Wiki 与经典原文，并在推荐姓名时直接生成候选卡。你可以先点击“带着资料，请问典推荐”，也可以在这里继续补充要求。",
+          content:"你好，我是“嘉名”。左侧宝宝资料会自动用于每次提问。我会查阅典籍与经典原文，并在推荐姓名时直接生成候选卡。你可以先点击“带着资料，请嘉名推荐”，也可以在这里继续补充要求。",
           citations:[],
           nameCards:[]
         }];
@@ -1035,6 +1035,17 @@
       }
       function escapeHTML(value) {
         return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
+      }
+      function friendlyAssistantText(value) {
+        return String(value || "")
+          .replace(/Codex Agent|LLM Agent/gi, "嘉名")
+          .replace(/\bAgent\b/gi, "嘉名")
+          .replace(/只读\s*Shell/gi, "本地典籍")
+          .replace(/\bShell\b/gi, "本地资料")
+          .replace(/\bWiki\b/gi, "典籍资料")
+          .replace(/本地知识库/g, "本地典籍资料")
+          .replace(/\bResponses(?: API)?\b/gi, "回答服务")
+          .replace(/“问典”|问典/g, "“嘉名”");
       }
       function cardSourceText(value) {
         const withoutLocalPaths = String(value || "")
@@ -1078,8 +1089,8 @@
           pageId:item.id,
           title:item.title,
           category:"custom",
-          tag:"自建知识",
-          source:item.source || "本机导入",
+          tag:"补充资料",
+          source:item.source || "用户补充",
           type:"custom",
           content:item.content
         }));
@@ -1114,7 +1125,7 @@
         const tokenSets = docs.map(doc => new Set(tokenize(`${doc.title} ${doc.tag} ${doc.source} ${(doc.keywords || []).join(" ")} ${doc.content}`)));
         const documentFrequency = new Map();
         tokenSets.forEach(set => set.forEach(term => documentFrequency.set(term, (documentFrequency.get(term) || 0) + 1)));
-        const sourceWords = {classics:"四书五经",tang:"唐诗",song:"宋词",shijing:"诗经",chuci:"楚辞",guide:"起名方法",custom:"自建知识"};
+        const sourceWords = {classics:"四书五经",tang:"唐诗",song:"宋词",shijing:"诗经",chuci:"楚辞",guide:"起名方法",custom:"补充资料"};
         const scored = docs.map((doc, index) => {
           const haystack = `${doc.title} ${doc.tag} ${doc.source} ${doc.content}`.toLowerCase();
           let score = 0;
@@ -1145,8 +1156,8 @@
       }
       function citationMarkup(citations) {
         if (!citations || !citations.length) return "";
-        return `<div class="citations"><div class="citation-title">Agent 引用来源</div>${citations.map((item, index) =>
-          `<span class="citation-item">[${index + 1}] ${escapeHTML(item.title)} · ${escapeHTML(item.source)}${item.verified ? " · 已核验" : ""}</span>`
+        return `<div class="citations"><div class="citation-title">参考出处</div>${citations.map((item, index) =>
+          `<span class="citation-item">[${index + 1}] ${escapeHTML(friendlyAssistantText(item.title))}${item.verified ? " · 已核验" : ""}</span>`
         ).join("")}</div>`;
       }
       function compositionModeLabel(mode) {
@@ -1191,19 +1202,22 @@
       }
       function renderMessages() {
         const content = chatHistory.map(message => {
-          const roleLabel = message.role === "user" ? "你的问题" : "问典回答";
+          const roleLabel = message.role === "user" ? "你的问题" : "嘉名回答";
           const roleClass = message.role === "user" ? "user" : "assistant-message";
           const hasNameCards = message.role === "assistant"
             && Array.isArray(message.nameCards)
             && message.nameCards.length > 0;
-          const displayContent = hasNameCards
+          const rawContent = hasNameCards
             ? String(message.content).replace(/\s*\[\d+\]/g, "")
             : message.content;
+          const displayContent = message.role === "assistant"
+            ? friendlyAssistantText(rawContent)
+            : rawContent;
           const references = hasNameCards ? "" : citationMarkup(message.citations);
           return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(displayContent)}</div>${message.role === "assistant" ? `${nameCardsMarkup(message.nameCards)}${references}` : ""}`;
         }).join("");
         const pending = chatPending
-          ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>Agent 正在通过只读 Shell 检索 Wiki 与原文库……</div>`
+          ? `<div class="message assistant-message pending"><span class="message-label">嘉名回答</span>嘉名正在查阅典籍与原文，请稍候……</div>`
           : "";
         messages.innerHTML = content + pending;
         messages.scrollTop = messages.scrollHeight;
@@ -1211,22 +1225,22 @@
       function refreshKnowledgeStats() {
         kbCount.textContent = WIKI_META.pages || knowledgeDocuments().length - customKnowledge.length;
         document.getElementById("kb-health").textContent = WIKI_META.chunks
-          ? `${WIKI_META.chunks} 块 · Shell 检索`
-          : "文件知识库";
-        customCount.textContent = `自建 ${customKnowledge.length}`;
+          ? `${WIKI_META.chunks} 项已整理`
+          : "典籍资料已就绪";
+        customCount.textContent = `补充资料 ${customKnowledge.length}`;
       }
       async function checkAIStatus() {
         if (location.protocol === "file:") {
-          aiStatus.textContent = "需启动 AI 服务版";
+          aiStatus.textContent = "请先启动嘉名服务";
           return;
         }
         try {
           const response = await fetch("/api/chat", {headers:{accept:"application/json"}});
           if (!response.ok) throw new Error("status unavailable");
           aiInfo = await response.json();
-          aiStatus.textContent = aiInfo.configured ? `${aiInfo.provider} · ${aiInfo.model}` : "模型未配置";
+          aiStatus.textContent = aiInfo.configured ? "嘉名已就绪" : "嘉名尚未就绪";
         } catch (_) {
-          aiStatus.textContent = "服务未连接";
+          aiStatus.textContent = "嘉名未连接";
         }
       }
       function profileContext(forAI = false) {
@@ -1301,7 +1315,7 @@
           })
         });
         const data = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(data.error || "AI 模型暂时不可用");
+        if (!response.ok) throw new Error(data.error || "嘉名暂时无法回答");
         return data;
       }
       async function askQuestion(question) {
@@ -1324,13 +1338,13 @@
         let answer = "";
         let citations = [];
         let nameCards = [];
-        retrievalStatus.textContent = "LLM Agent 正在自主规划检索";
+        retrievalStatus.textContent = "嘉名正在查阅相关典籍";
         const progressTimers = [
           setTimeout(() => {
-            if (chatPending) retrievalStatus.textContent = "Codex 正在连接模型并准备检索，请稍候";
+            if (chatPending) retrievalStatus.textContent = "嘉名正在细读典籍与原文，请稍候";
           }, 15_000),
           setTimeout(() => {
-            if (chatPending) retrievalStatus.textContent = "首次连接可能较慢，正在尝试兼容传输";
+            if (chatPending) retrievalStatus.textContent = "本次查阅内容较多，嘉名仍在认真核对";
           }, 60_000),
         ];
         const customHits = retrieveKnowledge(retrievalQuery)
@@ -1341,16 +1355,14 @@
           answer = result.answer;
           citations = Array.isArray(result.citations) ? result.citations : [];
           nameCards = Array.isArray(result.nameCards) ? result.nameCards : [];
-          const tools = Array.isArray(result.toolsUsed) ? result.toolsUsed : [];
-          const toolLabels = {file_find:"find", file_grep:"grep", file_read:"read"};
-          retrievalStatus.textContent = tools.length
-            ? `Agent 已使用 ${tools.map(tool => toolLabels[tool] || tool).join("、")}，引用 ${citations.length} 条资料`
-            : `Agent 已完成回答，引用 ${citations.length} 条资料`;
+          retrievalStatus.textContent = citations.length
+            ? `嘉名已完成回答，共核对 ${citations.length} 条参考资料`
+            : "嘉名已完成回答";
         } catch (err) {
-          const reason = err instanceof Error ? err.message : "模型调用失败";
-          answer = `Agent 调用失败：${reason}\n\n请检查 Codex 登录或第三方 Responses 模型配置后重试。`;
-          retrievalStatus.textContent = "Agent 调用失败 · 未生成降级回答";
-          showToast("Agent 调用失败，请检查模型配置");
+          console.error("嘉名回答失败", err);
+          answer = "嘉名暂时无法回答，请稍后再试；如果持续出现，可请维护者检查服务配置。";
+          retrievalStatus.textContent = "嘉名暂时无法回答";
+          showToast("嘉名暂时无法回答，请稍后重试");
         } finally {
           progressTimers.forEach(clearTimeout);
         }
@@ -1370,7 +1382,7 @@
           const parsed = JSON.parse(text);
           if (!Array.isArray(parsed)) throw new Error("JSON 顶层需要是数组");
           items = parsed.map((item, index) => ({
-            title:String(item.title || `导入知识 ${index + 1}`),
+            title:String(item.title || `补充资料 ${index + 1}`),
             content:String(item.content || item.text || ""),
             source:String(item.source || file.name)
           }));
@@ -1378,7 +1390,7 @@
           items = text.split(/\n\s*\n/).map((block, index) => {
             const clean = block.trim();
             const firstLine = clean.split("\n")[0].replace(/^#+\s*/, "").slice(0, 60);
-            return {title:firstLine || `导入知识 ${index + 1}`, content:clean, source:file.name};
+            return {title:firstLine || `补充资料 ${index + 1}`, content:clean, source:file.name};
           });
         }
         const stamp = Date.now();
@@ -1390,7 +1402,7 @@
         }));
         customKnowledge = [...customKnowledge, ...normalized].slice(-200);
         saveCustomKnowledge();
-        showToast(`已导入 ${normalized.length} 条知识`);
+        showToast(`已导入 ${normalized.length} 条补充资料`);
       }
       function getSettings() {
         const data = new FormData(form);
@@ -1472,14 +1484,14 @@
       });
       document.getElementById("kb-file").addEventListener("change", async event => {
         try { await importKnowledgeFile(event.target.files[0]); }
-        catch (err) { showToast(err.message || "知识导入失败"); }
+        catch (err) { showToast(err.message || "资料导入失败"); }
         event.target.value = "";
       });
       document.getElementById("clear-kb").addEventListener("click", () => {
-        if (!customKnowledge.length) return showToast("自建知识库已经是空的");
+        if (!customKnowledge.length) return showToast("补充资料已经是空的");
         customKnowledge = [];
         saveCustomKnowledge();
-        showToast("已清空自建知识");
+        showToast("已清空补充资料");
       });
       document.getElementById("clear-chat").addEventListener("click", () => {
         chatHistory = [{

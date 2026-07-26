@@ -27,19 +27,27 @@ function runNode(args, env = {}) {
 
 test("static page is self-contained and provider-neutral", async () => {
   const html = await read("../public/index.html");
+  const visibleText = html
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<[^>]+>/g, " ");
   assert.match(html, /<title>嘉名 · 中文宝宝起名<\/title>/);
   assert.match(html, /第二步 · 问答主入口/);
   assert.match(html, /左侧资料会自动带入每次提问/);
   assert.match(html, /data-chat-ask/);
-  assert.match(html, /未生成降级回答/);
+  assert.match(html, /嘉名暂时无法回答/);
   assert.match(html, /function cardSourceText/);
   assert.match(html, /function compositionModeLabel/);
   assert.match(html, /构成说明/);
   assert.match(html, /跨典合意/);
   assert.match(html, /const references = hasNameCards \? "" : citationMarkup/);
-  assert.match(html, /LLM Agent 正在自主规划检索/);
+  assert.match(html, /嘉名正在查阅相关典籍/);
+  assert.match(html, /嘉名正在查阅典籍与原文，请稍候/);
+  assert.match(html, /<div class="citation-title">参考出处<\/div>/);
+  assert.doesNotMatch(visibleText, /问典|Agent|Shell|Wiki|LLM|Codex|Responses|模型|检索|知识库|原文库/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
   assert.doesNotMatch(html, /即时灵感|换一批灵感|id="cards"|function buildCandidates|jiaming-favorites/);
+  assert.doesNotMatch(html, />和“问典”|>带着资料 · 请问典推荐<|>问典回答<|Agent 正在通过|个 Wiki 页面|Shell 检索|LLM Agent 正在自主规划|Agent 调用失败/);
   assert.doesNotMatch(html, /value="codex"|本机 Codex Agent|仅本地检索|\/api\/kb\/search/);
   assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+stylesheet/);
 });

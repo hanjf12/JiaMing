@@ -76,7 +76,7 @@ function run(command, args, {
     let stderr = "";
     const timer = setTimeout(() => {
       child.kill();
-      reject(new Error("Codex Agent 响应超时"));
+      reject(new Error("嘉名响应超时，请稍后重试"));
     }, timeout);
     child.stdout.on("data", (chunk) => { stdout = (stdout + chunk).slice(-262_144); });
     child.stderr.on("data", (chunk) => { stderr = (stderr + chunk).slice(-262_144); });
@@ -120,25 +120,21 @@ export function summarizeCodexFailure(stdout, stderr, code = 1) {
   const messages = eventMessages(stdout);
   const combined = [...messages, String(stderr || "")].join("\n");
   if (/invalid_json_schema|Invalid schema for response_format/i.test(combined)) {
-    return "Agent 输出格式与当前模型不兼容，请更新项目后重试";
+    return "嘉名暂时无法整理回答，请更新项目后重试";
   }
   if (/not logged in|login required|unauthorized|\b401\b/i.test(combined)) {
-    return "Codex 订阅尚未登录或登录已失效，请重新登录后重试";
+    return "嘉名尚未完成登录或登录已失效，请重新登录后重试";
   }
   if (/rate.?limit|\b429\b|quota/i.test(combined)) {
-    return "Codex 服务当前请求较多，请稍后重试";
+    return "嘉名当前请求较多，请稍后重试";
   }
   if (
     /stream disconnected|request timed out|falling back from websockets|error sending request|connection (?:reset|closed)|transport/i
       .test(combined)
   ) {
-    return "Codex 订阅连接暂时不稳定，请稍后重试";
+    return "嘉名连接暂时不稳定，请稍后重试";
   }
-  const lastMessage = messages.at(-1)?.replace(/\s+/g, " ").trim();
-  if (lastMessage) {
-    return `Codex Agent 调用失败：${lastMessage.slice(0, 300)}`;
-  }
-  return `Codex Agent 调用失败（退出码 ${code ?? "未知"}）`;
+  return "嘉名暂时无法回答，请检查服务配置后重试";
 }
 
 function tomlString(value) {
@@ -338,7 +334,7 @@ export async function askAgent(config, request) {
       process.stderr.write(`\n--- Agent diagnostics ---\n${execution.stderr}\n`);
     }
     const raw = (await readFile(output, "utf8")).trim();
-    if (!raw) throw new Error("Codex Agent 没有返回内容");
+    if (!raw) throw new Error("嘉名没有返回内容，请稍后重试");
     return normalizeAgentResult(raw, completedKnowledgeCommands(execution.stdout));
   } finally {
     await rm(work, { recursive: true, force: true }).catch(() => {});

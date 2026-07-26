@@ -81,6 +81,8 @@ test("agent prompt permits only file-native knowledge reads through shell", () =
     topK: 5,
   });
   const prompt = buildPrompts(request).system;
+  assert.match(prompt, /你是“嘉名”/);
+  assert.match(prompt, /不得提及 Agent、LLM、Codex、Shell、Wiki/);
   assert.match(prompt, /Codex 内置 shell 工具/);
   assert.match(prompt, /rg -n -F/);
   assert.match(prompt, /knowledge\/llms\.txt/);
@@ -184,6 +186,6 @@ test("Codex process errors are reduced to user-safe messages", () => {
   ].join("\n");
   const stderr = "2026-07-26 WARN codex_core::responses_retry: stream disconnected";
   const message = summarizeCodexFailure(stdout, stderr, 1);
-  assert.equal(message, "Agent 输出格式与当前模型不兼容，请更新项目后重试");
+  assert.equal(message, "嘉名暂时无法整理回答，请更新项目后重试");
   assert.doesNotMatch(message, /2026|codex_core|stream disconnected/);
 });

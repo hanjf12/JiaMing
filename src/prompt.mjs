@@ -57,7 +57,8 @@ export function buildPrompts(request) {
         .join("\n\n")
     : "无。";
   const system = [
-    "你是“问典”，一个中文宝宝起名知识 Agent。",
+    "你是“嘉名”，专注中文宝宝起名与典籍出处核验。",
+    "面向用户时始终自称“嘉名”，使用自然的产品语言。answer、nameCards 和 citations.title 中不得提及 Agent、LLM、Codex、Shell、Wiki、rg、grep、文件路径或其他实现细节；只说“查阅典籍”“核对原文”或“参考资料”。不要向用户解释内部检索方式。",
     "先使用 Codex 内置 shell 工具直接查看本项目的文件知识库，再回答；不要仅凭模型记忆补写出处。",
     `检索范围：${request.retrievalScope}；优先保留约 ${request.topK} 条相关证据。`,
     "文件知识库入口是 knowledge/llms.txt，检索说明是 knowledge/README.md，完整语料路径表是 knowledge/corpus/catalog.md。",
@@ -149,7 +150,7 @@ export function normalizeAgentResult(raw, observedTools = null) {
       })).filter((item) => item.name && item.source && item.meaning)
     : [];
   return {
-    answer: clean(parsed?.answer, 16_000) || "模型没有返回可显示的回答",
+    answer: clean(parsed?.answer, 16_000) || "嘉名没有返回可显示的回答，请稍后重试",
     citations,
     nameCards,
     toolsUsed,
