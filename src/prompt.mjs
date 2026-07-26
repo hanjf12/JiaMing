@@ -73,7 +73,7 @@ export function buildPrompts(request) {
       : "",
     "八字与五行只作为用户主动提供的传统文化偏好，不是科学预测；不得擅自推算喜用神或断言吉凶。",
     "最终返回 JSON 对象：answer 为中文回答；citations 为 {title,source,verified} 数组；toolsUsed 为实际成功运行的命令标识（file_find、file_grep、file_read）数组。",
-    "当回答包含姓名推荐或姓名比较时，同时返回 nameCards 数组（最多 6 个），每项含 name（带姓完整姓名）、pinyin、source、quote、meaning、verified；纯方法问答返回空数组。",
+    "当回答包含姓名推荐或姓名比较时，同时返回 nameCards 数组（最多 6 个），每项含 name（带姓完整姓名）、pinyin、source、quote、meaning、verified；source 只写作者与作品名，不写 knowledge/ 本地路径；纯方法问答返回空数组。",
     "answer 中的 [n] 必须对应 citations[n-1]；source 优先写 `knowledge/...:行号`，并保留作品、作者或上游来源信息。提交前检查编号。",
   ].filter(Boolean).join("\n");
   const user = [

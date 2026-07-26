@@ -32,6 +32,8 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.match(html, /左侧资料会自动带入每次提问/);
   assert.match(html, /data-ask-name/);
   assert.match(html, /已自动改用本地知识库回答/);
+  assert.match(html, /function cardSourceText/);
+  assert.match(html, /const references = hasNameCards \? "" : citationMarkup/);
   assert.match(html, /LLM Agent（自主检索）/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
   assert.doesNotMatch(html, /value="codex"|本机 Codex Agent/);

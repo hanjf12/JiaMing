@@ -86,6 +86,7 @@ test("agent prompt permits only file-native knowledge reads through shell", () =
   assert.match(prompt, /knowledge\/llms\.txt/);
   assert.match(prompt, /file_find、file_grep、file_read/);
   assert.match(prompt, /nameCards/);
+  assert.match(prompt, /source 只写作者与作品名，不写 knowledge\//);
   assert.doesNotMatch(prompt, /scripts\/knowledge\.mjs/);
   assert.match(prompt, /不要调用 MCP/);
   assert.match(prompt, /不得擅自推算喜用神或断言吉凶/);

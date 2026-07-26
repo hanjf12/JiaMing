@@ -1234,6 +1234,14 @@
       function escapeHTML(value) {
         return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
       }
+      function cardSourceText(value) {
+        const withoutLocalPaths = String(value || "")
+          .replace(/knowledge\/[^\s，。；;）)]+/gi, "")
+          .replace(/\s*[；;·•]\s*(?=[；;·•]|$)/g, "");
+        return withoutLocalPaths
+          .replace(/^[\s；;·•，,]+|[\s；;·•，,]+$/g, "")
+          .trim() || "出处已核验";
+      }
       function knowledgeDocuments() {
         const recordMap = new Map(NAMES.map(item => [item.id, item]));
         const wiki = WIKI_CHUNKS
@@ -1409,7 +1417,7 @@
               <span class="agent-verified">${item.verified ? "已核验" : "待复核"}</span>
             </div>
             <div class="agent-quote">“${escapeHTML(item.quote || "未提供原句")}”</div>
-            <div class="agent-source">${escapeHTML(item.source)}</div>
+            <div class="agent-source">${escapeHTML(cardSourceText(item.source))}</div>
             <div class="agent-meaning">${escapeHTML(item.meaning)}</div>
             <div class="agent-card-actions">
               <button class="agent-card-btn" type="button" data-chat-ask="${escapeHTML(item.name)}">继续追问</button>
@@ -1422,7 +1430,14 @@
         const content = chatHistory.map(message => {
           const roleLabel = message.role === "user" ? "你的问题" : "问典回答";
           const roleClass = message.role === "user" ? "user" : "assistant-message";
-          return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(message.content)}</div>${message.role === "assistant" ? `${nameCardsMarkup(message.nameCards)}${citationMarkup(message.citations)}` : ""}`;
+          const hasNameCards = message.role === "assistant"
+            && Array.isArray(message.nameCards)
+            && message.nameCards.length > 0;
+          const displayContent = hasNameCards
+            ? String(message.content).replace(/\s*\[\d+\]/g, "")
+            : message.content;
+          const references = hasNameCards ? "" : citationMarkup(message.citations);
+          return `<div class="message ${roleClass}"><span class="message-label">${roleLabel}</span>${escapeHTML(displayContent)}</div>${message.role === "assistant" ? `${nameCardsMarkup(message.nameCards)}${references}` : ""}`;
         }).join("");
         const pending = chatPending
           ? `<div class="message assistant-message pending"><span class="message-label">问典回答</span>Agent 正在通过只读 Shell 检索 Wiki 与原文库……</div>`
