@@ -1560,6 +1560,14 @@
         let nameCards = [];
         if (chatMode.value === "agent") {
           retrievalStatus.textContent = "LLM Agent 正在自主规划检索";
+          const progressTimers = [
+            setTimeout(() => {
+              if (chatPending) retrievalStatus.textContent = "Codex 正在连接模型并准备检索，请稍候";
+            }, 15_000),
+            setTimeout(() => {
+              if (chatPending) retrievalStatus.textContent = "首次连接可能较慢，正在尝试兼容传输";
+            }, 60_000),
+          ];
           const customHits = retrieveKnowledge(retrievalQuery)
             .filter(hit => hit.doc.type === "custom")
             .slice(0, Number(topKSelect.value) || 6);
@@ -1574,9 +1582,19 @@
               ? `Agent 已使用 ${tools.map(tool => toolLabels[tool] || tool).join("、")}，引用 ${citations.length} 条资料`
               : `Agent 已完成回答，引用 ${citations.length} 条资料`;
           } catch (err) {
-            answer = `LLM Agent 暂时不可用：${err.message || "请检查模型配置与本地服务"}`;
-            retrievalStatus.textContent = "Agent 调用失败";
-            showToast(err.message || "LLM Agent 未连接");
+            const localHits = retrieveKnowledge(retrievalQuery);
+            const corpusHits = await retrieveFullCorpus(retrievalQuery);
+            const hits = mergeKnowledgeHits(localHits, corpusHits);
+            answer = `Codex Agent 本次连接未完成，已自动改用本地知识库回答。\n\n${localAnswer(value, hits)}`;
+            citations = hits.map(hit => ({
+              title:hit.doc.title,
+              source:hit.doc.source,
+              verified:hit.doc.verified
+            }));
+            retrievalStatus.textContent = `Agent 连接未完成 · 已使用 ${hits.length} 条本地结果`;
+            showToast("Agent 连接未完成，已自动切换本地检索");
+          } finally {
+            progressTimers.forEach(clearTimeout);
           }
         } else {
           retrievalStatus.textContent = "正在执行诊断性本地检索";

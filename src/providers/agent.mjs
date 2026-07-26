@@ -19,6 +19,7 @@ const DISABLED_AGENT_FEATURES = [
   "image_generation",
   "in_app_browser",
   "multi_agent",
+  "shell_snapshot",
   "skill_search",
   "tool_suggest",
 ];
@@ -86,10 +87,58 @@ function run(command, args, {
     child.on("close", (code) => {
       clearTimeout(timer);
       if (code === 0) resolvePromise({ stdout, stderr });
-      else reject(new Error(stderr.trim() || stdout.trim() || `Codex 退出码 ${code}`));
+      else {
+        const error = new Error(summarizeCodexFailure(stdout, stderr, code));
+        error.exitCode = code;
+        error.stdout = stdout;
+        error.stderr = stderr;
+        reject(error);
+      }
     });
     child.stdin.end(input);
   });
+}
+
+function eventMessages(stdout) {
+  const messages = [];
+  for (const line of String(stdout || "").split(/\r?\n/)) {
+    if (!line.trim().startsWith("{")) continue;
+    try {
+      const event = JSON.parse(line);
+      const message = event?.error?.message
+        || event?.item?.message
+        || (event?.type === "error" ? event.message : "");
+      if (message) messages.push(String(message));
+    } catch {
+      // Ignore non-JSON diagnostics; stderr is classified separately below.
+    }
+  }
+  return messages;
+}
+
+export function summarizeCodexFailure(stdout, stderr, code = 1) {
+  const messages = eventMessages(stdout);
+  const combined = [...messages, String(stderr || "")].join("\n");
+  if (/invalid_json_schema|Invalid schema for response_format/i.test(combined)) {
+    return "Agent 输出格式与当前模型不兼容，请更新项目后重试";
+  }
+  if (/not logged in|login required|unauthorized|\b401\b/i.test(combined)) {
+    return "Codex 订阅尚未登录或登录已失效，请重新登录后重试";
+  }
+  if (/rate.?limit|\b429\b|quota/i.test(combined)) {
+    return "Codex 服务当前请求较多，请稍后重试";
+  }
+  if (
+    /stream disconnected|request timed out|falling back from websockets|error sending request|connection (?:reset|closed)|transport/i
+      .test(combined)
+  ) {
+    return "Codex 订阅连接暂时不稳定，请稍后重试";
+  }
+  const lastMessage = messages.at(-1)?.replace(/\s+/g, " ").trim();
+  if (lastMessage) {
+    return `Codex Agent 调用失败：${lastMessage.slice(0, 300)}`;
+  }
+  return `Codex Agent 调用失败（退出码 ${code ?? "未知"}）`;
 }
 
 function tomlString(value) {

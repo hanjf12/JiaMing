@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   buildAgentInvocation,
+  summarizeCodexFailure,
 } from "../src/providers/agent.mjs";
 import { completedKnowledgeCommands } from "../src/knowledge-shell.mjs";
 import {
@@ -54,7 +55,7 @@ test("both routes use the same read-only Codex Agent invocation without MCP", ()
       assert.ok(invocation.args.includes('windows.sandbox="unelevated"'));
     }
     assert.ok(invocation.args.includes("--output-schema"));
-    for (const feature of ["plugins", "apps", "browser_use", "multi_agent"]) {
+    for (const feature of ["plugins", "apps", "browser_use", "multi_agent", "shell_snapshot"]) {
       const index = invocation.args.indexOf(feature);
       assert.equal(invocation.args[index - 1], "--disable");
     }
@@ -151,4 +152,20 @@ test("agent name recommendations are normalized into display cards", () => {
   }, []);
   assert.equal(result.nameCards.length, 1);
   assert.equal(result.nameCards[0].name, "林清欢");
+});
+
+test("Codex process errors are reduced to user-safe messages", () => {
+  const stdout = [
+    JSON.stringify({ type: "error", message: "Reconnecting... 5/5" }),
+    JSON.stringify({
+      type: "turn.failed",
+      error: {
+        message: "Invalid schema for response_format 'codex_output_schema': invalid_json_schema",
+      },
+    }),
+  ].join("\n");
+  const stderr = "2026-07-26 WARN codex_core::responses_retry: stream disconnected";
+  const message = summarizeCodexFailure(stdout, stderr, 1);
+  assert.equal(message, "Agent 输出格式与当前模型不兼容，请更新项目后重试");
+  assert.doesNotMatch(message, /2026|codex_core|stream disconnected/);
 });

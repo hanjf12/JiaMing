@@ -31,10 +31,19 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.match(html, /第二步 · 问答主入口/);
   assert.match(html, /左侧资料会自动带入每次提问/);
   assert.match(html, /data-ask-name/);
+  assert.match(html, /已自动改用本地知识库回答/);
   assert.match(html, /LLM Agent（自主检索）/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
   assert.doesNotMatch(html, /value="codex"|本机 Codex Agent/);
   assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+stylesheet/);
+});
+
+test("structured Agent schema requires every declared top-level field", async () => {
+  const schema = JSON.parse(await read("../schemas/agent-answer.schema.json"));
+  assert.deepEqual(
+    [...schema.required].sort(),
+    Object.keys(schema.properties).sort(),
+  );
 });
 
 test("both providers share the read-only Codex Agent and file-native knowledge path", async () => {
