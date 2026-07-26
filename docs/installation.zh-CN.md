@@ -243,13 +243,44 @@ JIAMING_ALLOW_LAN_AGENT=true
 
 ## 8. 完整语料与开发检查
 
-仓库自带 Wiki，可直接启动。下载公开上游完整原始语料：
+仓库自带 Wiki，可直接启动并完成基础知识问答。完整唐诗、宋诗、宋词和十三经等原文体积较大，没有直接提交到 Git 仓库；需要逐字检索完整原文时，推荐安装固定版本语料包。
+
+查看下载地址、文件名和校验值：
+
+```bash
+npm run corpus:info
+```
+
+夸克网盘地址：<https://pan.quark.cn/s/0f58be1b7b2e>
+
+下载 `jiaming-corpus-v2026.07.26.tar.gz` 后运行：
+
+```powershell
+# Windows
+npm run corpus:verify -- "$env:USERPROFILE\Downloads\jiaming-corpus-v2026.07.26.tar.gz"
+npm run corpus:install -- "$env:USERPROFILE\Downloads\jiaming-corpus-v2026.07.26.tar.gz"
+```
+
+```bash
+# macOS
+npm run corpus:verify -- "$HOME/Downloads/jiaming-corpus-v2026.07.26.tar.gz"
+npm run corpus:install -- "$HOME/Downloads/jiaming-corpus-v2026.07.26.tar.gz"
+```
+
+安装器会依次检查：
+
+1. 文件大小是否为 `60,469,138` 字节；
+2. SHA-256 是否为 `e683e58ebc8b2815878277c747062a29b2cde9559da1cd6fbaa99aef9f41539d`；
+3. 压缩包是否只包含声明的两个语料目录并且没有越界路径；
+4. `knowledge/corpus/vendor/` 是否为空，避免覆盖本机已有资料。
+
+也可以不使用网盘，直接同步公开上游仓库：
 
 ```bash
 npm run corpus:sync
 ```
 
-Agent 通过只读 Shell 直接检索同步后的 JSON 和 Markdown 文件，不构建数据库索引。模型不可用时页面会显示错误，不生成本地降级回答。
+Agent 通过只读 Shell 直接检索安装或同步后的 JSON 和 Markdown 文件，不构建数据库索引。模型不可用时页面会显示错误，不生成本地降级回答。
 
 运行全部检查：
 

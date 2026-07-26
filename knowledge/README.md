@@ -9,6 +9,8 @@
 3. `corpus/catalog.md`：四书五经、十三经及历代诗词的实际文件路径。
 4. `llms-full.txt`：全部 Wiki 的合并文本，只在确实需要整体上下文时读取。
 
+完整语料没有提交到 Git。维护者可运行 `npm run corpus:info` 查看夸克网盘固定版本，下载后用 `npm run corpus:install -- "<压缩包路径>"` 校验并安装；也可运行 `npm run corpus:sync` 从公开上游同步。
+
 ## Agent 的三步检索
 
 ### 1. Find：发现文件
@@ -76,7 +78,7 @@ knowledge/
 └── corpus/
     ├── catalog.md        # 语料路径表
     ├── vendor/           # 上游原始 JSON，本机同步
-    └── authorized/       # 用户有权使用的近现代文本
+    └── authorized/       # 用户有权使用的文本
 ```
 
 ## 引用与版权
@@ -84,4 +86,4 @@ knowledge/
 - Wiki 引用写成 `knowledge/wiki/...md:行号`。
 - 原文引用写成 `knowledge/corpus/vendor/...json:行号`，并从附近字段核对作者、篇名。
 - 同一句在多个上游版本出现时，优先使用路径更明确、元数据更完整的一份，并注明版本差异。
-- 近现代仍受保护作品默认只有目录元数据；除非用户已取得合法授权并放入 `authorized/`，否则不复制全文。
+- 在版权作品不收录目录或全文；用户自行导入 `authorized/` 时必须记录合法授权来源。

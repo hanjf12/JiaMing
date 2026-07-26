@@ -1,6 +1,6 @@
 # 嘉名知识目录
 
-> 版本 fd2c7f916310 · 105 页 · 105 检索块 · 290 条关联
+> 版本 6680c56bcdb3 · 105 页 · 105 检索块 · 290 条关联
 
 ## 典籍与来源
 
@@ -35,7 +35,7 @@
 - [[concept-five-elements|五行用字流派]] · guide · review
 - [[concept-long-term-use|长期使用检查]] · guide · verified
 - [[concept-cultural-context|古今语境]] · guide · review
-- [[concept-modern-copyright|近现代作品授权边界]] · guide · verified
+- [[concept-modern-copyright|在版权作品授权边界]] · guide · verified
 
 ## 方案比较
 

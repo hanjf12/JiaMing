@@ -121,6 +121,9 @@ test("package has no third-party runtime dependencies", async () => {
   assert.equal(pkg.license, "MIT");
   assert.equal(pkg.repository.url, "git+https://github.com/hanjf12/JiaMing.git");
   assert.equal(pkg.scripts.doctor, "node scripts/doctor.mjs");
+  assert.equal(pkg.scripts["corpus:info"], "node scripts/corpus-info.mjs");
+  assert.equal(pkg.scripts["corpus:verify"], "node scripts/install-corpus.mjs --verify-only");
+  assert.equal(pkg.scripts["corpus:install"], "node scripts/install-corpus.mjs");
   assert.equal(pkg.scripts["corpus:build"], undefined);
   assert.equal(pkg.scripts["corpus:status"], undefined);
   assert.deepEqual(pkg.dependencies || {}, {});
@@ -136,4 +139,20 @@ test("installation guide documents system dependencies and both model routes", a
   assert.match(guide, /Responses API/);
   assert.match(guide, /Windows/);
   assert.match(guide, /macOS/);
+});
+
+test("corpus package is versioned and installable without npm dependencies", async () => {
+  const manifest = JSON.parse(await read("../knowledge/corpus/corpus-package.json"));
+  const info = await read("../scripts/corpus-info.mjs");
+  const installer = await read("../scripts/install-corpus.mjs");
+  assert.equal(manifest.packageVersion, "2026.07.26");
+  assert.equal(manifest.fileName, "jiaming-corpus-v2026.07.26.tar.gz");
+  assert.equal(manifest.sizeBytes, 60469138);
+  assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
+  assert.equal(manifest.download.shareUrl, "https://pan.quark.cn/s/0f58be1b7b2e");
+  assert.match(info, /corpus-package\.json/);
+  assert.match(installer, /createHash\("sha256"\)/);
+  assert.match(installer, /--verify-only/);
+  assert.match(installer, /压缩包包含不安全路径/);
+  assert.match(installer, /为避免覆盖/);
 });

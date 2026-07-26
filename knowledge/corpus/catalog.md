@@ -1,6 +1,6 @@
 # 完整原文语料路径表
 
-Agent 应先用本页缩小检索范围，再对相应目录执行固定字符串搜索。`vendor/` 是本机同步的上游原文件；若目录不存在，先由维护者运行 `npm run corpus:sync`，问答 Agent 不负责下载。
+Agent 应先用本页缩小检索范围，再对相应目录执行固定字符串搜索。`vendor/` 是本机安装的上游原文件；若目录不存在，维护者可运行 `npm run corpus:info` 获取夸克网盘固定版本并使用 `npm run corpus:install -- "<压缩包路径>"` 安装，或运行 `npm run corpus:sync` 从公开上游同步。问答 Agent 不负责下载。
 
 ## 四书五经与十三经
 
@@ -30,12 +30,11 @@ Agent 应先用本页缩小检索范围，再对相应目录执行固定字符�
 
 来源：`chinese-poetry/chinese-poetry`，MIT。注意上游把 `poet.song.*.json` 与唐诗文件放在同一个“全唐诗”目录中，必须按文件名前缀区分朝代。
 
-## 近现代作品
+## 用户授权作品
 
-- `knowledge/corpus/modern-catalog.json`：毛泽东诗词等作品目录，只包含作品名、作者、年代和版权状态。
 - `knowledge/corpus/authorized/`：用户自行导入且有权使用的全文。
 
-未获授权的近现代作品不得从外部网络补全文，也不得把模型记忆当作原文。
+未获授权的在版权作品不得从外部网络补全文，也不得把模型记忆当作原文。
 
 ## 推荐命令
 
@@ -49,8 +48,8 @@ rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese
 # 在四书中定位关键词
 rg -n -F -m 8 -B 5 -A 5 "博学之，审问之，慎思之" knowledge/corpus/vendor/chinese-classical-corpus/output/sishu
 
-# 检查近现代目录，不搜索未授权全文
-rg -n -F -m 8 "沁园春·长沙" knowledge/corpus/modern-catalog.json
+# 检查用户自行导入的授权文本
+rg --files knowledge/corpus/authorized
 ```
 
 Agent 的证据链来自上述可直接检查的文件路径和行号。项目不维护数据库索引或脱离模型的本地回答链路。

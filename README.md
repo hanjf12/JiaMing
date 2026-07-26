@@ -140,7 +140,7 @@ OPENAI_API_KEY=你的密钥
 
 ## 知识库
 
-仓库内包含 Wiki、构建脚本与少量编辑资料。因体积和上游许可差异，完整上游仓库不提交：
+仓库内包含 Wiki、构建脚本与少量编辑资料。项目可以在不安装完整原文库时启动并使用内置 Wiki；涉及大规模原文检索和逐字核验时，需要另外安装完整语料。因体积和上游许可差异，完整上游仓库不直接提交到 Git：
 
 ```text
 knowledge/
@@ -154,11 +154,34 @@ knowledge/
 ├── runtime/
 └── corpus/
     ├── catalog.md         # 完整语料路径表
+    ├── corpus-package.json # 下载包版本与校验信息
     ├── vendor/             # 上游仓库，本机忽略
     └── authorized/         # 用户有权使用的资料
 ```
 
-同步公开上游原始语料：
+推荐从夸克网盘下载已经固定版本的完整原文包：
+
+```bash
+npm run corpus:info
+```
+
+下载链接：<https://pan.quark.cn/s/0f58be1b7b2e>
+
+文件为 `jiaming-corpus-v2026.07.26.tar.gz`，下载后不要手工复制其中的目录，使用安装命令完成大小、SHA-256 和路径安全校验：
+
+```powershell
+# Windows 示例
+npm run corpus:verify -- "$env:USERPROFILE\Downloads\jiaming-corpus-v2026.07.26.tar.gz"
+npm run corpus:install -- "$env:USERPROFILE\Downloads\jiaming-corpus-v2026.07.26.tar.gz"
+```
+
+```bash
+# macOS 示例
+npm run corpus:verify -- "$HOME/Downloads/jiaming-corpus-v2026.07.26.tar.gz"
+npm run corpus:install -- "$HOME/Downloads/jiaming-corpus-v2026.07.26.tar.gz"
+```
+
+也可以直接从公开上游仓库重新同步：
 
 ```bash
 npm run corpus:sync

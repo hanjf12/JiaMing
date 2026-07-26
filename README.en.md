@@ -51,7 +51,15 @@ Open <http://127.0.0.1:4318/>.
 
 Copy `config.example.json` to `config.local.json` and `.env.example` to `.env`, then select either `codex` or `third-party`. Both modes require Codex CLI; third-party endpoints must implement the Responses API and tool calling. See the [Chinese configuration guide](docs/configuration.zh-CN.md) for all options.
 
-The repository does not redistribute large upstream corpora. Run `npm run corpus:sync` to fetch supported public sources; the Agent searches those source files directly. If the Agent is unavailable, the application reports the error instead of generating a fallback answer. Do not add copyrighted modern texts unless you have the right to use them.
+The repository runs independently with its checked-in wiki, but full-text quotation discovery and verification require the optional corpus package. The versioned package is available from [Quark Drive](https://pan.quark.cn/s/0f58be1b7b2e):
+
+```bash
+npm run corpus:info
+npm run corpus:verify -- "/path/to/jiaming-corpus-v2026.07.26.tar.gz"
+npm run corpus:install -- "/path/to/jiaming-corpus-v2026.07.26.tar.gz"
+```
+
+The installer checks the file size, SHA-256 digest, and archive paths before extracting it into the ignored `knowledge/corpus/vendor/` directory. Alternatively, run `npm run corpus:sync` to fetch the supported public sources directly from their upstream repositories. If the Agent is unavailable, the application reports the error instead of generating a fallback answer. Do not add copyrighted modern texts unless you have the right to use them.
 
 The Agent starts from `knowledge/llms.txt`, searches the Markdown wiki, and verifies exact quotations in the sharded upstream JSON files. See the [file knowledge guide](knowledge/README.md) and [design research](docs/file-native-llm-wiki.zh-CN.md).
 

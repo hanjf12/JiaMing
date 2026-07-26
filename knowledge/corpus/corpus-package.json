@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "packageVersion": "2026.07.26",
+  "fileName": "jiaming-corpus-v2026.07.26.tar.gz",
+  "sizeBytes": 60469138,
+  "sha256": "e683e58ebc8b2815878277c747062a29b2cde9559da1cd6fbaa99aef9f41539d",
+  "download": {
+    "provider": "夸克网盘",
+    "shareUrl": "https://pan.quark.cn/s/0f58be1b7b2e",
+    "passcode": ""
+  },
+  "contents": [
+    {
+      "directory": "chinese-poetry",
+      "repository": "https://github.com/chinese-poetry/chinese-poetry.git",
+      "commit": "b8594f81a89752241442f2ce267d6f66f96704ee",
+      "license": "MIT"
+    },
+    {
+      "directory": "chinese-classical-corpus",
+      "repository": "https://github.com/gujilab/chinese-classical-corpus.git",
+      "commit": "09a6873e46760f20027e20bf48814f5c5cc05d66",
+      "license": "CC0-1.0"
+    }
+  ]
+}

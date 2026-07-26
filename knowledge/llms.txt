@@ -8,7 +8,6 @@
 - [总目录](wiki/index.md)
 - [概览](wiki/overview.md)
 - [完整语料路径表](corpus/catalog.md)
-- [近现代作品目录](corpus/modern-catalog.json)
 
 ## 页面
 
@@ -116,4 +115,4 @@
 - [完整四书五经与十三经语料](wiki/sources/source-thirteen-classics.md): 本机原文库用 CC0 结构化语料补齐四书、五经与十三经，并按篇章检索。
 - [《全唐诗》本地原文库](wiki/sources/source-complete-tang.md): 本机索引收录上游《全唐诗》数据 57,600 条作品记录。
 - [全宋诗与全宋词本地原文库](wiki/sources/source-complete-song.md): 本机索引收录 254,195 条宋诗和 21,049 条宋词记录。
-- [近现代作品授权边界](wiki/concepts/concept-modern-copyright.md): 近现代作者作品不能仅因能在网上找到，就默认可以整套复制进本地知识库。
+- [在版权作品授权边界](wiki/concepts/concept-modern-copyright.md): 仍受版权保护的作品不能仅因能在网上找到，就默认可以复制进本地知识库。

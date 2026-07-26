@@ -3137,7 +3137,7 @@ keywords: ["出处", "核验", "原文", "作者", "篇名", "引用"]
 ## 关联
 
 - 前向链接：[[concept-direct-or-inspired|原句直取与取意重组]]、[[concept-cultural-context|古今语境]]
-- 反向链接：[[method-g01|有出处不等于生搬原句]]、[[source-lunyu|《论语》来源页]]、[[source-daxue|《大学》来源页]]、[[source-zhongyong|《中庸》来源页]]、[[source-zhouyi|《周易》来源页]]、[[source-shijing|《诗经》来源页]]、[[source-chuci|《楚辞》来源页]]、[[source-tang-poetry|唐诗来源页]]、[[source-song-ci|宋词来源页]]、[[concept-direct-or-inspired|原句直取与取意重组]]、[[concept-multi-route-generation|多路线候选生成与筛选]]、[[concept-cultural-context|古今语境]]、[[comparison-direct-vs-inspired|直取与取意怎么选]]、[[source-thirteen-classics|完整四书五经与十三经语料]]、[[source-complete-tang|《全唐诗》本地原文库]]、[[source-complete-song|全宋诗与全宋词本地原文库]]、[[concept-modern-copyright|近现代作品授权边界]]
+- 反向链接：[[method-g01|有出处不等于生搬原句]]、[[source-lunyu|《论语》来源页]]、[[source-daxue|《大学》来源页]]、[[source-zhongyong|《中庸》来源页]]、[[source-zhouyi|《周易》来源页]]、[[source-shijing|《诗经》来源页]]、[[source-chuci|《楚辞》来源页]]、[[source-tang-poetry|唐诗来源页]]、[[source-song-ci|宋词来源页]]、[[concept-direct-or-inspired|原句直取与取意重组]]、[[concept-multi-route-generation|多路线候选生成与筛选]]、[[concept-cultural-context|古今语境]]、[[comparison-direct-vs-inspired|直取与取意怎么选]]、[[source-thirteen-classics|完整四书五经与十三经语料]]、[[source-complete-tang|《全唐诗》本地原文库]]、[[source-complete-song|全宋诗与全宋词本地原文库]]、[[concept-modern-copyright|在版权作品授权边界]]
 
 
 ---
@@ -3739,21 +3739,21 @@ keywords: ["全宋诗", "全宋词", "宋诗", "宋词", "完整原文", "全文
 ---
 id: "concept-modern-copyright"
 type: "concept"
-title: "近现代作品授权边界"
+title: "在版权作品授权边界"
 category: "guide"
 source: "《中华人民共和国著作权法》第二十三条"
 status: "verified"
 updated: "2026-07-26"
-keywords: ["毛泽东诗词", "近现代", "著作权", "授权", "目录", "全文"]
+keywords: ["在版权作品", "著作权", "授权", "许可", "全文"]
 ---
 
-# 近现代作品授权边界
+# 在版权作品授权边界
 
-近现代作者作品不能仅因能在网上找到，就默认可以整套复制进本地知识库。
+仍受版权保护的作品不能仅因能在网上找到，就默认可以复制进本地知识库。
 
 ## 说明
 
-自然人作品相关财产权一般保护至作者死亡后第五十年的十二月三十一日。程序对毛泽东诗词默认只保存目录元数据，不内置全文；用户取得合法授权后，可把文本放入 authorized 目录在本机建索引。
+自然人作品相关财产权一般保护至作者死亡后第五十年的十二月三十一日。项目只分发许可状态明确的原文；用户取得合法授权后，可把文本放入 authorized 目录供本机 Agent 检索，并记录权利来源。
 
 ## 关联
 

@@ -397,7 +397,7 @@ const llmsIndex = pages
   .join("\n");
 await writeFile(
   path.join(KNOWLEDGE, "llms.txt"),
-  `# 嘉名本地知识库\n\n> 中文宝宝起名的可追溯、互链知识库。\n\n- [Agent 文件检索指南](README.md)\n- [知识库目标](purpose.md)\n- [数据结构](schema.md)\n- [总目录](wiki/index.md)\n- [概览](wiki/overview.md)\n- [完整语料路径表](corpus/catalog.md)\n- [近现代作品目录](corpus/modern-catalog.json)\n\n## 页面\n\n${llmsIndex}\n`,
+  `# 嘉名本地知识库\n\n> 中文宝宝起名的可追溯、互链知识库。\n\n- [Agent 文件检索指南](README.md)\n- [知识库目标](purpose.md)\n- [数据结构](schema.md)\n- [总目录](wiki/index.md)\n- [概览](wiki/overview.md)\n- [完整语料路径表](corpus/catalog.md)\n\n## 页面\n\n${llmsIndex}\n`,
   "utf8",
 );
 await writeFile(
