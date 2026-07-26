@@ -4,14 +4,14 @@ export const KNOWLEDGE_SHELL_COMMANDS = [
     command: "rg --files knowledge",
     windows: "Get-ChildItem knowledge -Recurse -File",
     macos: "find knowledge -type f",
-    description: "发现 llms.txt、Wiki 页面、语料目录和原始文本文件。",
+    description: "发现 llms.txt 与 Wiki 页面；检查被 Git 忽略的完整原文库时，显式使用 `rg --files knowledge/corpus/vendor`。",
   },
   {
     id: "file_grep",
     command: 'rg -n -i -m 20 "<关键词>" knowledge/wiki knowledge/llms.txt',
     windows: "Select-String -Path <知识库文件> -Pattern <关键词>",
     macos: "grep -RIn -m 20 <关键词> knowledge/wiki",
-    description: "在 Wiki 或原始语料中定位关键词、原句及行号。",
+    description: "在 Wiki 或原始语料中定位关键词、原句及行号；检索原文时使用 catalog 给出的显式 vendor 路径。",
   },
   {
     id: "file_read",

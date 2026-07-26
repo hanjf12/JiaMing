@@ -62,6 +62,7 @@ test("both providers share the read-only Codex Agent and file-native knowledge p
   assert.match(agent, /"mcp_servers=\{\}"/);
   assert.doesNotMatch(agent, /mcp_servers\.[a-z]|mcp-server/);
   assert.match(shell, /rg --files knowledge/);
+  assert.match(shell, /rg --files knowledge\/corpus\/vendor/);
   assert.match(shell, /Get-Content/);
   assert.match(shell, /find knowledge -type f/);
   assert.doesNotMatch(shell, /scripts\/knowledge\.mjs/);

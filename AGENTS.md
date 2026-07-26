@@ -8,6 +8,7 @@
 
 ```text
 find/list: rg --files knowledge
+corpus:   rg --files knowledge/corpus/vendor
 grep:      rg -n -i -m 20 "连姓|音韵" knowledge/wiki knowledge/llms.txt
 read:      Get-Content -Encoding UTF8 <知识文件>（Windows）
 read:      sed -n '1,220p' <知识文件>（macOS）
@@ -21,6 +22,7 @@ read:      sed -n '1,220p' <知识文件>（macOS）
 1. 先用 rg/grep 搜 `knowledge/llms.txt` 和 Wiki；只有不清楚目录时才局部读取 `knowledge/README.md`，不要完整输出 `llms.txt` 或 `llms-full.txt`。
 2. 用 grep/rg 在 Wiki 中定位页面，再读取命中的具体 Markdown。
 3. 涉及原句、篇名或作者时，先读 `knowledge/corpus/catalog.md`，缩小到相关语料目录后检索原始 JSON。
+   `knowledge/corpus/vendor/` 被 Git 忽略，不能因为 `rg --files knowledge` 没列出它就判断原文库不存在；必须显式执行 `rg --files knowledge/corpus/vendor` 或对应系统的目录命令。
 4. 涉及方法、八字边界、音韵或用字风险时，读取具体概念页及必要的一跳链接。
 5. 引用只来自本轮 Shell 结果，优先记录 `knowledge/...:行号`，按 `[1]`、`[2]` 标注；找不到就明确说明。
 6. 提交前检查每个 `[n]` 与 `citations[n-1]` 对应。
