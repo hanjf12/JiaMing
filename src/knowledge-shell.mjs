@@ -1,17 +1,19 @@
 export const KNOWLEDGE_SHELL_COMMANDS = [
   {
     id: "file_find",
-    command: "rg --files knowledge",
-    windows: "Get-ChildItem knowledge -Recurse -File",
+    command: "rg --files --no-ignore knowledge",
+    corpus: "rg --files --no-ignore knowledge/corpus/vendor",
+    windows: "Get-ChildItem -LiteralPath knowledge -Recurse -File -Force",
     macos: "find knowledge -type f",
-    description: "发现 llms.txt 与 Wiki 页面；检查被 Git 忽略的完整原文库时，显式使用 `rg --files knowledge/corpus/vendor`。",
+    description: "发现 Wiki 与完整原文库；`--no-ignore` 关闭 Git 忽略规则，同时不读取隐藏的 .git 元数据。",
   },
   {
     id: "file_grep",
     command: 'rg -n -i -m 20 "<关键词>" knowledge/wiki knowledge/llms.txt',
-    windows: "Select-String -Path <知识库文件> -Pattern <关键词>",
-    macos: "grep -RIn -m 20 <关键词> knowledge/wiki",
-    description: "在 Wiki 或原始语料中定位关键词、原句及行号；检索原文时使用 catalog 给出的显式 vendor 路径。",
+    corpus: 'rg -n -F --no-ignore -m 8 -B 12 -A 5 "<原句或罕见字>" <catalog 指定的 knowledge/corpus/vendor 路径>',
+    windows: "Get-ChildItem -LiteralPath <原文目录> -Recurse -File -Force | Select-String -SimpleMatch <关键词>",
+    macos: "grep -RIn -F -m 8 <关键词> <原文目录>",
+    description: "在 Wiki 或 catalog 指定的原文目录中定位关键词、上下文及行号；原文检索明确关闭忽略规则。",
   },
   {
     id: "file_read",
@@ -64,8 +66,9 @@ export function knowledgeShellGuide() {
     .map((item) => [
       `- ${item.id}：${item.description}`,
       `  - 首选：\`${item.command}\``,
+      item.corpus ? `  - 原文库：\`${item.corpus}\`` : "",
       `  - Windows 回退：\`${item.windows}\``,
       `  - macOS 回退：\`${item.macos}\``,
-    ].join("\n"))
+    ].filter(Boolean).join("\n"))
     .join("\n");
 }

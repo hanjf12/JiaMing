@@ -21,7 +21,7 @@ npm run wiki:lint
 
 ### Query
 
-从 `llms.txt` 或 `wiki/index.md` 进入，用 `rg`/`grep` 定位页面，优先读取具体页面及其一跳链接。核对完整原文时，先按 `corpus/catalog.md` 缩小目录，再检索上游 JSON。`corpus/vendor/` 被 Git 忽略，必须用 `rg --files knowledge/corpus/vendor` 显式确认，不能因宽泛文件发现未列出它而判断未安装。回答必须区分原句直取、取意重组和编辑性建议。
+从 `llms.txt` 或 `wiki/index.md` 进入，用 `rg`/`grep` 定位页面，优先读取具体页面及其一跳链接。核对完整原文时，先按 `corpus/catalog.md` 缩小目录，再检索上游 JSON。`corpus/vendor/` 被 Git 忽略，文件发现和原文检索统一使用 `--no-ignore`；不要用 `-uu` 读入隐藏的 `.git` 元数据，也不能因普通文件发现命令未列出它而判断未安装。回答必须区分原句直取、取意重组和编辑性建议。
 
 ### Lint
 

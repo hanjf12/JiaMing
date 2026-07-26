@@ -40,16 +40,16 @@ Agent 应先用本页缩小检索范围，再对相应目录执行固定字符�
 
 ```bash
 # 先看本机有哪些文件
-rg --files knowledge/corpus
+rg --files --no-ignore knowledge/corpus
 
 # 在宋词中核对精确原句
-rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
+rg -n -F --no-ignore -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
 
 # 在四书中定位关键词
-rg -n -F -m 8 -B 5 -A 5 "博学之，审问之，慎思之" knowledge/corpus/vendor/chinese-classical-corpus/output/sishu
+rg -n -F --no-ignore -m 8 -B 5 -A 5 "博学之，审问之，慎思之" knowledge/corpus/vendor/chinese-classical-corpus/output/sishu
 
 # 检查用户自行导入的授权文本
-rg --files knowledge/corpus/authorized
+rg --files --no-ignore knowledge/corpus/authorized
 ```
 
 Agent 的证据链来自上述可直接检查的文件路径和行号。项目不维护数据库索引或脱离模型的本地回答链路。

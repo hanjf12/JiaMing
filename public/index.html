@@ -93,7 +93,7 @@
       align-items: start;
     }
 
-    .panel, .name-card {
+    .panel {
       background: var(--card);
       border: 1px solid rgba(159, 137, 105, .34);
       box-shadow: var(--shadow);
@@ -232,18 +232,6 @@
     .privacy::before { content: "○"; color: var(--bamboo); }
     .error { min-height: 18px; margin: 8px 0 0; color: var(--cinnabar); font-size: 12px; }
 
-    .results { min-width: 0; }
-    .results-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin: 5px 2px 18px;
-    }
-    .result-kicker { color: var(--cinnabar); font: 12px/1.4 var(--serif); letter-spacing: .14em; }
-    h2 { margin: 6px 0 4px; font: 700 clamp(24px, 2.1vw, 34px)/1.25 var(--serif); }
-    .result-sub { color: var(--muted); font: 13px/1.6 var(--serif); }
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
     .quiet-btn {
       min-height: 38px;
       padding: 0 13px;
@@ -258,116 +246,6 @@
       background: rgba(159,47,35,.07);
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-    .name-card {
-      min-height: 326px;
-      padding: 23px 22px 19px;
-      position: relative;
-      overflow: hidden;
-      animation: cardIn .35s both;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-    .name-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 38px rgba(71,52,31,.13);
-      border-color: rgba(159,47,35,.32);
-    }
-    .name-card::after {
-      content: attr(data-mark);
-      position: absolute;
-      right: -5px; top: 35px;
-      color: rgba(159,47,35,.038);
-      font: 116px/1 var(--serif);
-      pointer-events: none;
-    }
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; position: relative; z-index: 1; }
-    .full-name { font: 700 clamp(25px, 2vw, 33px)/1.2 var(--serif); letter-spacing: .05em; }
-    .pinyin { margin-top: 5px; color: #8a7e70; font: italic 12px/1.3 Georgia, serif; letter-spacing: .08em; }
-    .heart {
-      width: 36px; height: 36px; flex: 0 0 36px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      color: #9b9083;
-      background: rgba(255,255,255,.45);
-      font-size: 20px;
-      line-height: 1;
-    }
-    .heart.saved { color: var(--cinnabar); border-color: rgba(159,47,35,.42); background: var(--soft-red); }
-    .quote {
-      margin: 18px 0 10px;
-      padding: 1px 0 1px 15px;
-      border-left: 2px solid var(--cinnabar);
-      font: 15px/1.65 var(--serif);
-      position: relative; z-index: 1;
-    }
-    .source-line { display: flex; align-items: center; gap: 8px; color: #85796b; font-size: 11px; position: relative; z-index: 1; }
-    .source-tag {
-      color: var(--cinnabar-deep);
-      border: 1px solid rgba(159,47,35,.36);
-      padding: 3px 7px;
-      font-family: var(--serif);
-      white-space: nowrap;
-    }
-    .char-meanings {
-      margin: 15px 0 11px;
-      padding: 12px 0 10px;
-      border-top: 1px solid rgba(159,137,105,.25);
-      border-bottom: 1px solid rgba(159,137,105,.25);
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 9px;
-      position: relative; z-index: 1;
-    }
-    .char-meanings.single { grid-template-columns: 1fr; }
-    .char-meaning { display: flex; gap: 7px; min-width: 0; }
-    .char-box {
-      width: 25px; height: 25px; flex: 0 0 25px;
-      display: grid; place-items: center;
-      border: 1px solid var(--line);
-      font: 15px/1 var(--serif);
-    }
-    .char-copy { font-size: 11px; line-height: 1.45; color: var(--muted); }
-    .char-copy strong { color: var(--ink); display: block; font-weight: 700; }
-    .meaning { color: var(--muted); font: 12px/1.65 var(--serif); position: relative; z-index: 1; }
-    .meaning strong { color: var(--bamboo); margin-right: 7px; }
-    .card-foot {
-      margin-top: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
-    }
-    .traits { display: flex; gap: 5px; flex-wrap: wrap; }
-    .trait { color: var(--bamboo); background: rgba(102,116,100,.08); padding: 3px 7px; font-size: 10px; }
-    .copy-btn { border: 0; color: var(--cinnabar); background: transparent; padding: 5px; font-size: 11px; }
-    .empty {
-      grid-column: 1 / -1;
-      padding: 70px 24px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed var(--line);
-      background: rgba(255,255,255,.26);
-      font: 15px/1.8 var(--serif);
-    }
-    .footer-note {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin: 18px 2px 0;
-      color: #877e73;
-      font-size: 11px;
-      line-height: 1.6;
-    }
     .toast {
       position: fixed;
       left: 50%; bottom: 28px;
@@ -756,38 +634,14 @@
     .agent-card-actions { margin-top: 9px; display: flex; gap: 12px; justify-content: flex-end; }
     .agent-card-btn { border: 0; padding: 0; color: var(--cinnabar); background: transparent; font-size: 10px; }
 
-    .results {
-      grid-column: 1 / -1;
-      margin-top: 2px;
-      padding: 25px 28px 27px;
-      border: 1px solid rgba(159,137,105,.3);
-      border-radius: 12px;
-      background: rgba(255,253,247,.52);
-      box-shadow: var(--shadow);
-    }
-    .results-head { margin: 0 0 17px; }
-    .results h2 { font-size: 25px; }
-    .cards { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .name-card { min-height: 300px; box-shadow: none; border-radius: 8px; }
-    .followup-btn {
-      border: 0;
-      color: var(--cinnabar);
-      background: transparent;
-      padding: 5px;
-      font-size: 11px;
-    }
-
     @media (max-width: 1260px) {
       .layout { grid-template-columns: 320px minmax(0,1fr); }
-      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
     @media (max-width: 900px) {
       .topbar { position: static; }
       .layout { width: min(720px, calc(100% - 28px)); grid-template-columns: 1fr; margin-top: 18px; }
       .panel { position: static; }
-      .cards { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .assistant { grid-column: 1; }
-      .results { grid-column: 1; }
     }
     @media (max-width: 620px) {
       .topbar { align-items: flex-start; padding: 12px 15px; }
@@ -803,11 +657,6 @@
       .agent-bar { align-items: flex-start; padding: 11px 18px; }
       .agent-settings-panel { position: fixed; left: 10px; right: 10px; top: 86px; width: auto; grid-template-columns: 1fr; max-height: calc(100vh - 105px); overflow-y: auto; }
       .agent-settings-wide { grid-column: 1; }
-      .results-head { align-items: flex-start; flex-direction: column; }
-      .actions { justify-content: flex-start; }
-      .cards { grid-template-columns: 1fr; }
-      .name-card { min-height: 0; }
-      .footer-note { flex-direction: column; }
       .chat-head { align-items: flex-start; }
       .suggestions, .messages, .composer { padding-left: 15px; padding-right: 15px; }
       .messages { max-height: none; }
@@ -816,7 +665,6 @@
       .composer-row { grid-template-columns: 1fr; }
       .send-btn { min-height: 45px; }
       .composer-note { flex-direction: column; }
-      .results { padding: 21px 17px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
@@ -1041,26 +889,6 @@
       </div>
     </section>
 
-    <section class="results" aria-live="polite">
-      <div class="results-head">
-        <div>
-          <div class="result-kicker" id="result-kicker">本地即时灵感 · 可继续追问</div>
-          <h2 id="result-title">根据“林”姓资料准备的候选卡</h2>
-          <div class="result-sub" id="result-sub">这些卡片用于快速浏览；点击“让问典详解”会回到上方核对原文与语境。</div>
-        </div>
-        <div class="actions">
-          <button class="quiet-btn" id="favorite-toggle" type="button">♡ 我的收藏 <span id="favorite-count">0</span></button>
-          <button class="quiet-btn" id="export-btn" type="button">导出收藏</button>
-          <button class="quiet-btn" id="refresh-btn" type="button">换一批灵感</button>
-        </div>
-      </div>
-
-      <div class="cards" id="cards"></div>
-      <div class="footer-note">
-        <span>本地卡片是即时灵感，不等同于 Agent 答案；正式判断请让“问典”核对出处、上下文与连姓音韵。</span>
-        <span>嘉名 · 让每个名字都有来处</span>
-      </div>
-    </section>
   </main>
 
   <div class="toast" id="toast" role="status"></div>
@@ -1155,23 +983,9 @@
       /* WIKI_BUNDLE_END */
       const CUSTOM_KB_KEY = "jiaming-custom-knowledge";
       const CHAT_KEY = "jiaming-chat-history";
-      const FIVE_ELEMENT_CHARS = {
-        木:"林桐兰荷嘉若英华荣森松竹芷茵栩楠",
-        火:"明晖晴星灵灿昭景阳煦照昕曜",
-        土:"安宁均远辰良厚山宇城岚岳",
-        金:"锦书瑾瑜琼瑶知思慎正则钧铭",
-        水:"云雨清河川泽润涵沐江海霖溪冰露寒池"
-      };
 
       const form = document.getElementById("naming-form");
-      const cards = document.getElementById("cards");
       const error = document.getElementById("form-error");
-      const title = document.getElementById("result-title");
-      const subtitle = document.getElementById("result-sub");
-      const kicker = document.getElementById("result-kicker");
-      const favoriteToggle = document.getElementById("favorite-toggle");
-      const favoriteCount = document.getElementById("favorite-count");
-      const exportBtn = document.getElementById("export-btn");
       const toast = document.getElementById("toast");
       const chatForm = document.getElementById("chat-form");
       const chatInput = document.getElementById("chat-input");
@@ -1187,19 +1001,11 @@
       const shareBaziAI = document.getElementById("share-bazi-ai");
       const profileSummary = document.getElementById("profile-summary");
       const profileContextView = document.getElementById("profile-context");
-      let batch = 0;
-      let favoriteMode = false;
-      let current = [];
-      let favorites = loadFavorites();
       let customKnowledge = loadCustomKnowledge();
       let chatHistory = loadChatHistory();
       let aiInfo = {configured:false, provider:"", model:""};
       let chatPending = false;
 
-      function loadFavorites() {
-        try { return JSON.parse(localStorage.getItem("jiaming-favorites") || "[]"); }
-        catch (_) { return []; }
-      }
       function loadCustomKnowledge() {
         try {
           const data = JSON.parse(localStorage.getItem(CUSTOM_KB_KEY) || "[]");
@@ -1226,19 +1032,6 @@
         try { localStorage.setItem(CUSTOM_KB_KEY, JSON.stringify(customKnowledge)); }
         catch (_) {}
         refreshKnowledgeStats();
-      }
-      function saveFavorites() {
-        try { localStorage.setItem("jiaming-favorites", JSON.stringify(favorites)); }
-        catch (_) {}
-        favoriteCount.textContent = favorites.length;
-      }
-      function hash(text) {
-        let h = 2166136261;
-        for (let i = 0; i < text.length; i++) {
-          h ^= text.charCodeAt(i);
-          h = Math.imul(h, 16777619);
-        }
-        return h >>> 0;
       }
       function escapeHTML(value) {
         return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch]));
@@ -1615,100 +1408,6 @@
           temperament: document.getElementById("temperament").value
         };
       }
-      function toLength(seed, length, salt) {
-        if (length !== "1") return {...seed, given: seed.n, py: seed.p, charMeanings: seed.cm};
-        const idx = hash(seed.id + salt) % seed.n.length;
-        const parts = seed.p.split(" ");
-        return {
-          ...seed,
-          id: seed.id + "-" + idx,
-          given: seed.n[idx],
-          py: parts[idx] || parts[0],
-          charMeanings: [seed.cm[idx] || seed.cm[0]]
-        };
-      }
-      function buildCandidates(settings) {
-        const sources = settings.sources.length ? settings.sources : ["classics","tang","song","shijing","chuci"];
-        const seedKey = settings.surname + settings.birth + settings.gender + settings.temperament +
-          (settings.useBazi ? settings.bazi + settings.baziElement : "") + batch;
-        let pool = NAMES.filter(item =>
-          sources.includes(item.cat) &&
-          (settings.gender === "any" || item.g === "n" || item.g === settings.gender)
-        );
-        const lengths = settings.length === "any" ? ["2","1"] : [settings.length];
-        let transformed = [];
-        lengths.forEach(len => pool.forEach(item => transformed.push(toLength(item, len, seedKey))));
-        if (settings.avoid) transformed = transformed.filter(item => ![...settings.avoid].some(ch => item.given.includes(ch)));
-        const seen = new Set();
-        transformed = transformed.filter(item => {
-          if (seen.has(item.given)) return false;
-          seen.add(item.given);
-          return true;
-        });
-        transformed.forEach(item => {
-          item.score = hash(item.id + seedKey);
-          item.elementMatch = "";
-          if (settings.include && item.given.includes(settings.include)) item.score -= 1000000000;
-          if (settings.temperament !== "any" && item.t.includes(settings.temperament)) item.score -= 500000000;
-          if (settings.useBazi && settings.baziElement) {
-            const elementChars = FIVE_ELEMENT_CHARS[settings.baziElement] || "";
-            if ([...item.given].some(ch => elementChars.includes(ch))) {
-              item.score -= 750000000;
-              item.elementMatch = settings.baziElement;
-            }
-          }
-        });
-        transformed.sort((a,b) => a.score - b.score);
-        return transformed.slice(0, 6);
-      }
-      function isSaved(item) {
-        return favorites.some(f => f.key === item.key);
-      }
-      function renderCard(item, index) {
-        const saved = isSaved(item);
-        const meanings = item.charMeanings.map((value, idx) => {
-          const parts = value.split("：");
-          const char = item.given[idx] || item.given[0];
-          return `<div class="char-meaning"><span class="char-box">${escapeHTML(char)}</span><span class="char-copy"><strong>${escapeHTML(parts[0] || char)}</strong>${escapeHTML(parts[1] || value)}</span></div>`;
-        }).join("");
-        return `<article class="name-card" data-mark="${escapeHTML(item.given[item.given.length-1])}" style="animation-delay:${index*45}ms">
-          <div class="card-top">
-            <div><div class="full-name">${escapeHTML(item.fullName)}</div><div class="pinyin">${escapeHTML(item.py)}</div></div>
-            <button class="heart ${saved ? "saved" : ""}" type="button" data-favorite="${escapeHTML(item.key)}" aria-label="${saved ? "取消收藏" : "收藏"}${escapeHTML(item.fullName)}">${saved ? "♥" : "♡"}</button>
-          </div>
-          <blockquote class="quote">“${escapeHTML(item.q)}”</blockquote>
-          <div class="source-line"><span class="source-tag">${escapeHTML(item.tag)}</span><span>${escapeHTML(item.work)}</span></div>
-          <div class="char-meanings ${item.given.length === 1 ? "single" : ""}">${meanings}</div>
-          <div class="meaning"><strong>整体寓意</strong>${escapeHTML(item.m)}</div>
-          <div class="card-foot">
-            <div class="traits">${item.t.map(t => `<span class="trait">${escapeHTML(t)}</span>`).join("")}${item.elementMatch ? `<span class="trait">${escapeHTML(item.elementMatch)}意参考</span>` : ""}</div>
-            <div><button class="followup-btn" type="button" data-ask-name="${escapeHTML(item.fullName)}">让问典详解</button><button class="copy-btn" type="button" data-copy="${escapeHTML(item.fullName)}">复制</button></div>
-          </div>
-        </article>`;
-      }
-      function render(list, settings, mode) {
-        current = list.map(item => ({
-          ...item,
-          fullName: item.fullName || settings.surname + item.given,
-          key: item.key || `${settings.surname}${item.given}|${item.id}`
-        }));
-        if (!current.length) {
-          cards.innerHTML = `<div class="empty">暂时没有符合全部条件的名字。<br>可以减少避开用字，或多选一个典籍范围再试。</div>`;
-        } else {
-          cards.innerHTML = current.map(renderCard).join("");
-        }
-        title.textContent = mode ? `已收藏 ${current.length} 个名字` : `根据“${settings.surname}”姓资料准备的${toChineseNumber(current.length)}张候选卡`;
-        subtitle.textContent = mode ? "收藏保存在当前浏览器，可导出为文本与家人一起斟酌。" :
-          settings.useBazi && settings.baziElement
-            ? `本地卡片已按“${settings.baziElement}意”倾向排序；点击“让问典详解”可进一步核对原文。`
-            : "本地卡片用于即时浏览；点击“让问典详解”会由 Agent 核对原文、语境与连姓音韵。";
-        kicker.textContent = mode ? "藏卷 · 心选" : "本地即时灵感 · 可继续追问";
-        favoriteCount.textContent = favorites.length;
-        favoriteToggle.classList.toggle("active", mode);
-      }
-      function toChineseNumber(num) {
-        return ["零","一","二","三","四","五","六","七","八","九","十"][num] || String(num);
-      }
       function validate(settings) {
         if (!/^[\u3400-\u9fff]{1,2}$/.test(settings.surname)) return "请输入 1—2 个汉字姓氏。";
         if (settings.include && !/^[\u3400-\u9fff]{1,2}$/.test(settings.include)) return "“期望包含”请填写 1—2 个汉字。";
@@ -1718,36 +1417,11 @@
         }
         return "";
       }
-      function generate(forceBatch) {
-        const settings = getSettings();
-        const message = validate(settings);
-        error.textContent = message;
-        if (message) return false;
-        if (forceBatch) batch++;
-        favoriteMode = false;
-        updateProfileViews(settings);
-        render(buildCandidates(settings), settings, false);
-        return true;
-      }
       function showToast(message) {
         toast.textContent = message;
         toast.classList.add("show");
         clearTimeout(showToast.timer);
         showToast.timer = setTimeout(() => toast.classList.remove("show"), 1600);
-      }
-      function toggleFavorite(key) {
-        const item = current.find(x => x.key === key);
-        const idx = favorites.findIndex(f => f.key === key);
-        if (idx >= 0) {
-          favorites.splice(idx, 1);
-          showToast("已取消收藏");
-        } else if (item) {
-          favorites.push(item);
-          showToast("已收藏到本机");
-        }
-        saveFavorites();
-        if (favoriteMode) render(favorites, getSettings(), true);
-        else render(current, getSettings(), false);
       }
       async function copyName(name) {
         try {
@@ -1765,51 +1439,18 @@
           showToast(`已复制：${name}`);
         } catch (_) { showToast("请长按姓名手动复制"); }
       }
-      function exportFavorites() {
-        if (!favorites.length) return showToast("还没有收藏名字");
-        const text = favorites.map((f, i) =>
-          `${i+1}. ${f.fullName}（${f.py}）\n出处：${f.work}\n原句：${f.q}\n寓意：${f.m}`
-        ).join("\n\n");
-        const blob = new Blob([`嘉名 · 宝宝姓名收藏\n\n${text}\n\n仅供起名灵感参考。`], {type:"text/plain;charset=utf-8"});
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "宝宝姓名收藏.txt";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 500);
-        showToast("收藏已导出");
-      }
-
       form.addEventListener("submit", event => {
         event.preventDefault();
-        batch = 0;
-        if (!generate(false)) return;
         const settings = getSettings();
+        const message = validate(settings);
+        error.textContent = message;
+        if (message) return;
+        updateProfileViews(settings);
         document.getElementById("assistant").scrollIntoView({behavior:"smooth", block:"start"});
         askQuestion(buildNamingQuestion(settings));
       });
       form.addEventListener("input", () => updateProfileViews(getSettings()));
       form.addEventListener("change", () => updateProfileViews(getSettings()));
-      document.getElementById("refresh-btn").addEventListener("click", () => generate(true));
-      favoriteToggle.addEventListener("click", () => {
-        favoriteMode = !favoriteMode;
-        if (favoriteMode) render(favorites, getSettings(), true);
-        else generate(false);
-      });
-      exportBtn.addEventListener("click", exportFavorites);
-      cards.addEventListener("click", event => {
-        const favorite = event.target.closest("[data-favorite]");
-        const copy = event.target.closest("[data-copy]");
-        const ask = event.target.closest("[data-ask-name]");
-        if (favorite) toggleFavorite(favorite.dataset.favorite);
-        if (copy) copyName(copy.dataset.copy);
-        if (ask) {
-          document.getElementById("assistant").scrollIntoView({behavior:"smooth", block:"start"});
-          askQuestion(`请详细分析“${ask.dataset.askName}”这个名字，核对完整出处、原句语境、字义和与姓氏连读的音韵，并指出需要注意的地方。`);
-        }
-      });
       messages.addEventListener("click", event => {
         const copy = event.target.closest("[data-chat-copy]");
         const ask = event.target.closest("[data-chat-ask]");
@@ -1850,8 +1491,7 @@
         saveChatHistory();
         renderMessages();
       });
-      saveFavorites();
-      generate(false);
+      updateProfileViews(getSettings());
       refreshKnowledgeStats();
       renderMessages();
       checkAIStatus();

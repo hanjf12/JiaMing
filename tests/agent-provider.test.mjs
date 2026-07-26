@@ -88,7 +88,9 @@ test("agent prompt permits only file-native knowledge reads through shell", () =
   assert.match(prompt, /nameCards/);
   assert.match(prompt, /1 个 direct、3 个 adapted、2 个 combined/);
   assert.match(prompt, /名字的自然使用感优先于机械截取连续两字/);
-  assert.match(prompt, /rg --files knowledge\/corpus\/vendor/);
+  assert.match(prompt, /rg --files --no-ignore knowledge\/corpus\/vendor/);
+  assert.match(prompt, /rg -n -F --no-ignore/);
+  assert.match(prompt, /不得用普通 `rg --files knowledge` 判断原文库状态/);
   assert.match(prompt, /Wiki 未命中只表示没有编辑页/);
   assert.match(prompt, /罕见字可以在已缩小的原文目录中单字检索/);
   assert.match(prompt, /最终 nameCards 应使用该字/);

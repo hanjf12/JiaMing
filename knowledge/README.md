@@ -18,17 +18,17 @@
 首选跨平台的 ripgrep：
 
 ```bash
-rg --files knowledge
-rg --files knowledge/wiki
-rg --files knowledge/corpus/vendor
+rg --files --no-ignore knowledge
+rg --files --no-ignore knowledge/wiki
+rg --files --no-ignore knowledge/corpus/vendor
 ```
 
-`corpus/vendor/` 在 `.gitignore` 中，宽泛执行 `rg --files knowledge` 时可能不会列出其中的原文。检查完整原文库是否安装时，必须显式传入 `knowledge/corpus/vendor`，不能把“未列出”当成“目录不存在”。
+`corpus/vendor/` 在 `.gitignore` 中。这里统一使用 `--no-ignore` 关闭忽略规则，同时继续排除隐藏的 `.git` 元数据；检查完整原文库是否安装时必须执行第三条命令，并用对应系统的回退命令复核，不能把普通 `rg --files knowledge` 的“未列出”当成“目录不存在”。
 
 Windows 回退：
 
 ```powershell
-Get-ChildItem knowledge -Recurse -File
+Get-ChildItem -LiteralPath knowledge -Recurse -File -Force
 ```
 
 macOS 回退：
@@ -48,7 +48,7 @@ rg -n -i -m 20 "连姓|音韵" knowledge/wiki knowledge/llms.txt
 核对原句时使用固定字符串，并按 `corpus/catalog.md` 缩小目录：
 
 ```bash
-rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
+rg -n -F --no-ignore -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
 ```
 
 `rg` 不可用时，Windows 可用 `Select-String`，macOS 可用 `grep -RIn`。不要用“清”“明”这类单个常见字扫描全部 34 万条语料。

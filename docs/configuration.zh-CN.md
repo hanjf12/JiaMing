@@ -47,9 +47,10 @@ config.example.json → config.local.json
 Agent 只在 `knowledge/` 中运行只读文件命令：
 
 ```bash
-rg --files knowledge
+rg --files --no-ignore knowledge
+rg --files --no-ignore knowledge/corpus/vendor
 rg -n -i -m 20 "连姓|音韵" knowledge/wiki knowledge/llms.txt
-rg -n -F -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
+rg -n -F --no-ignore -m 8 -B 12 -A 5 "人间有味是清欢" knowledge/corpus/vendor/chinese-poetry/宋词
 ```
 
 读取命中页时，Windows 使用 `Get-Content`，macOS 使用 `sed`；没有 `rg` 时分别回退到 `Get-ChildItem / Select-String` 或 `find / grep`。详细路径和限制见 [`knowledge/README.md`](../knowledge/README.md)。所有问答都走 LLM Agent；调用失败会直接返回错误，不使用本地规则或数据库降级回答。

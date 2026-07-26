@@ -30,7 +30,7 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.match(html, /<title>嘉名 · 中文宝宝起名<\/title>/);
   assert.match(html, /第二步 · 问答主入口/);
   assert.match(html, /左侧资料会自动带入每次提问/);
-  assert.match(html, /data-ask-name/);
+  assert.match(html, /data-chat-ask/);
   assert.match(html, /未生成降级回答/);
   assert.match(html, /function cardSourceText/);
   assert.match(html, /function compositionModeLabel/);
@@ -39,6 +39,7 @@ test("static page is self-contained and provider-neutral", async () => {
   assert.match(html, /const references = hasNameCards \? "" : citationMarkup/);
   assert.match(html, /LLM Agent 正在自主规划检索/);
   assert.match(html, /<link rel="icon" href="\/favicon\.svg"/);
+  assert.doesNotMatch(html, /即时灵感|换一批灵感|id="cards"|function buildCandidates|jiaming-favorites/);
   assert.doesNotMatch(html, /value="codex"|本机 Codex Agent|仅本地检索|\/api\/kb\/search/);
   assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+stylesheet/);
 });
@@ -61,8 +62,9 @@ test("both providers share the read-only Codex Agent and file-native knowledge p
   assert.match(agent, /wire_api="responses"/);
   assert.match(agent, /"mcp_servers=\{\}"/);
   assert.doesNotMatch(agent, /mcp_servers\.[a-z]|mcp-server/);
-  assert.match(shell, /rg --files knowledge/);
-  assert.match(shell, /rg --files knowledge\/corpus\/vendor/);
+  assert.match(shell, /rg --files --no-ignore knowledge/);
+  assert.match(shell, /rg --files --no-ignore knowledge\/corpus\/vendor/);
+  assert.match(shell, /--no-ignore/);
   assert.match(shell, /Get-Content/);
   assert.match(shell, /find knowledge -type f/);
   assert.doesNotMatch(shell, /scripts\/knowledge\.mjs/);
@@ -75,7 +77,7 @@ test("file-native knowledge map points to the checked-in wiki and corpus", async
   const guide = await read("../knowledge/README.md");
   const catalog = await read("../knowledge/corpus/catalog.md");
   assert.match(llms, /wiki\/index\.md/);
-  assert.match(guide, /rg --files knowledge/);
+  assert.match(guide, /rg --files --no-ignore knowledge/);
   assert.match(catalog, /poet\.tang\.\*\.json/);
 });
 
